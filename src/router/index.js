@@ -2,17 +2,30 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+import SellerDashboard from '../views/Seller/Dashboard.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    meta: { layout: 'seller' },
+    component: SellerDashboard
   },
+
+  {
+    path: '/seller/dashboard',
+    name: 'Seller-Dashboard',
+    meta: { layout: 'seller' },
+    component: SellerDashboard
+  },
+
+
   {
     path: '/about',
     name: 'About',
+    meta: { layout: 'default' },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
