@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import SellerDashboard from '../views/Seller/Dashboard.vue'
+import SellerProductList from '../views/Seller/Products/List.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,13 @@ const routes = [
     name: 'Seller-Dashboard',
     meta: { layout: 'seller' },
     component: SellerDashboard
+  },
+
+  {
+    path: '/seller/products',
+    name: 'Seller-Product-List',
+    meta: { layout: 'seller' },
+    component: SellerProductList
   },
 
 

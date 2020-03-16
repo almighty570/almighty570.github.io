@@ -35,15 +35,15 @@
             role="menu"
             data-accordion="false"
           >
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <!-- <i class="nav-icon fas fa-ad"></i> -->
-                <!-- <i class="fal fa-ad"></i> -->
-                <p>
-                  Widgets
-                  <i class="fas fa-abacus"></i>
-                </p>
-              </a>
+            <li class="nav-item" v-for="(menuItem, index) in menus" :key="index">
+              <router-link
+                :to="{name: menuItem.pathName}"
+                class="nav-link"
+                :class="{'active': currentRoute === menuItem.pathName}"
+              >
+                <i class="nav-icon" :class="menuItem.icon"></i>
+                <p>{{menuItem.title}}</p>
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -74,15 +74,71 @@
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.0.0
       </div>
-    </footer> -->
+    </footer>-->
+    <div id="sidebar-overlay"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Seller"
+  name: "Seller",
+  data() {
+    return {
+      currentRoute: null,
+      menus: [
+        {
+          title: "Dashboard",
+          icon: "fal fa-tachometer-fastest",
+          pathName: "Seller-Dashboard"
+        },
+
+        {
+          title: "Products",
+          icon: "fal fa-box-full",
+          pathName: "Seller-Product-List"
+        },
+
+        {
+          title: "Orders",
+          icon: "fal fa-dolly",
+          pathName: "Order-Product-List"
+        },
+
+        {
+          title: "Sales Agents",
+          icon: "fal fa-users",
+          pathName: "Seller-Sales-Agents-List"
+        },
+
+        {
+          title: "Settings",
+          icon: "fal fa-cogs",
+          pathName: "Seller-Settings"
+        }
+      ]
+    };
+  },
+
+  created() {
+    this.setCurrentRoute(this.$route);
+  },
+
+  methods: {
+    setCurrentRoute(route) {
+      this.currentRoute = route.name;
+    }
+  },
+
+  watch: {
+    $route(to, from) {
+      this.setCurrentRoute(to);
+    }
+  }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.nav-icon {
+  margin-right: 1.5rem !important;
+}
 </style>
