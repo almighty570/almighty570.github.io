@@ -19,11 +19,11 @@
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
+          <div class="image mr-2">
             <img src="@/assets/seller.png" class="img-circle elevation-2" alt="User Image" />
           </div>
           <div class="info">
-            <a href="#" class="d-block">Seller</a>
+            <a href="#" class="d-block">Seller Panel</a>
           </div>
         </div>
 
@@ -65,16 +65,12 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <!-- <footer class="main-footer">
-      <strong>
-        Copyright &copy; 2014-2019
-        <a href="http://adminlte.io">AdminLTE.io</a>.
-      </strong>
-      All rights reserved.
+    <footer class="main-footer">
+      <strong>Proship</strong>
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.0
+        <b>Version</b> 1.0.0
       </div>
-    </footer>-->
+    </footer>
     <div id="sidebar-overlay"></div>
   </div>
 </template>

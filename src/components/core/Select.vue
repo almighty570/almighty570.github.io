@@ -1,25 +1,23 @@
 <template>
   <div class="form-group">
     <label v-if="label" :for="id">{{label}}</label>
-    <input
-      :type="type"
-      ref="input"
-      class="form-control"
-      :id="id"
-      :placeholder="placeholder"
-      :value="value"
-      @input="updateValue()"
-    />
+    <select class="form-control" :class="custom_class" ref="input" :id="id" @input="updateValue()">
+      <option v-for="(option, index) in options" :key="index" :value="option.value">{{option.title}}</option>
+    </select>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TextBox",
+  name: "Select",
   props: {
     id: {
       type: String,
       required: true
+    },
+
+    custom_class: {
+      type: String
     },
 
     value: {
@@ -28,6 +26,10 @@ export default {
 
     label: {
       type: String
+    },
+
+    options: {
+      type: Array
     }
   },
 

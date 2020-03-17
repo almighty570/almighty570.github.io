@@ -8,7 +8,7 @@
 
     <div class="content">
       <div class="container-fluid">
-        <div class="row mb-4">
+        <!-- <div class="row mb-4">
           <div class="col-6">
             <div class="card h-100">
               <div class="card-header border-0">
@@ -70,11 +70,31 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
         <div class="row mt-4">
           <div class="col-12">
-            <TextBox id="unique" type="text" v-model="val" label="INput here" placeholder="shh....." />
+            <Button id="unique-1" variant="info" size="lg">Info</Button>
+            <Button id="unique-2" variant="warning" size="lg">Warning</Button>
+            <Button id="unique-3" variant="success" size="sm" @click="handleClick()">Success</Button>
+
+            <Button id="unique-4" variant="warning" size="lg" loading>Loading</Button>
+
+            <TextBox
+              id="unique-1"
+              type="text"
+              v-model="val"
+              label="Input here"
+              placeholder="shh....."
+            />
+
+            <DatePicker v-model="date" />
+
+            <Select
+              id="unique-5"
+              v-model="select"
+              :options="[{title: 'One', value: 1}, {title: 'Two', value: 2}]"
+            />
           </div>
         </div>
       </div>
@@ -84,19 +104,31 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import Button from "@/components/core/Button";
+import DatePicker from "@/components/core/DatePicker";
 
 export default {
   name: "Dashbaord",
   components: {
-    TextBox
+    TextBox,
+    Button,
+    DatePicker
   },
   data() {
     return {
-      val: null
+      val: null,
+      date: null,
+      select: null
     };
+  },
+
+  methods: {
+    handleClick() {
+      alert("clicked");
+    }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>
