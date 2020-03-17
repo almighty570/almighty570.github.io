@@ -1,7 +1,7 @@
 <template>
   <div class="form-group">
     <div class="radio-wrapper">
-      <div v-for="option in options" :key="option" class="radio-item">
+      <div v-for="(option,i) in options" :key="i" class="radio-item">
         <input
           type="radio"
           ref="input"
@@ -32,8 +32,10 @@ export default {
     }
   },
 
-  data: {
-    radio_value: null
+  data: function() {
+    return {
+      radio_value: null
+    };
   },
 
   methods: {
