@@ -1,8 +1,8 @@
 <template>
   <div class="form-group">
     <label v-if="label" :for="id">{{label}}</label>
-    <select class="form-control" :class="custom_class" ref="input" :id="id" @input="updateValue()">
-      <option v-for="(option, index) in options" :key="index" :value="option.value">{{option.title}}</option>
+    <select ref="input" class="form-control" :id="id" @change="updateValue()">
+      <option v-for="(option,i) in options" :key="i" :value="option.value">{{option.name}}</option>
     </select>
   </div>
 </template>
@@ -16,22 +16,16 @@ export default {
       required: true
     },
 
-    custom_class: {
-      type: String
-    },
-
-    value: {
-      type: String
+    options: {
+      type: Array,
+      required: true
     },
 
     label: {
       type: String
-    },
-
-    options: {
-      type: Array
     }
   },
+
 
   methods: {
     updateValue() {

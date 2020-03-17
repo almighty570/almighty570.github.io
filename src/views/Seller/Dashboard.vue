@@ -90,11 +90,41 @@
 
             <DatePicker v-model="date" />
 
-            <Select
-              id="unique-5"
-              v-model="select"
-              :options="[{title: 'One', value: 1}, {title: 'Two', value: 2}]"
+            <br />
+          </div>
+
+          <div class="col-12">
+            <NumberField
+              id="number-field"
+              v-model="number_field_value"
+              label="Enter Number Here"
+              placeholder="2050"
             />
+          </div>
+          <div class="col-12">
+            <RadioGroup
+              :options="[{value:'male' , label:'Male'},{value:'female' , label:'Female'},{value:'others' , label:'Others'}]"
+              name="gender"
+              v-model="radio_field_value"
+            />
+            Radio: {{radio_field_value}}
+          </div>
+          <div class="col-12">
+            <Select
+              id="select"
+              :options="[{value:'china',name:'China'},{value:'usa',name:'U.S.A'},{value:'egypt',name:'Egypt'}]"
+              label="Select:"
+              v-model="select_field_value"
+            />
+          </div>
+          <div class="col-12">
+            <Card>
+              <h2 slot="title">Hellow World!</h2>
+              <p
+                slot="body"
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, modi ipsam. Voluptate, eaque dolorum eum sequi alias soluta. Similique molestias nihil ad ab consequuntur harum tenetur! Quidem molestiae alias inventore!</p>
+              <p slot="footer">yolo</p>
+            </Card>
           </div>
         </div>
       </div>
@@ -106,19 +136,30 @@
 import TextBox from "@/components/core/TextBox";
 import Button from "@/components/core/Button";
 import DatePicker from "@/components/core/DatePicker";
+import NumberField from "@/components/core/NumberField";
+import RadioGroup from "@/components/core/RadioGroup";
+import Select from "@/components/core/Select";
+import Card from "@/components/core/Card";
 
 export default {
   name: "Dashbaord",
   components: {
     TextBox,
     Button,
-    DatePicker
+    DatePicker,
+    NumberField,
+    RadioGroup,
+    Select,
+    Card
   },
   data() {
     return {
       val: null,
       date: null,
-      select: null
+      select: null,
+      number_field_value: null,
+      radio_field_value: null,
+      select_field_value: null
     };
   },
 
