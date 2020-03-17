@@ -76,6 +76,9 @@
           <div class="col-12">
             <TextBox id="unique" type="text" v-model="val" label="INput here" placeholder="shh....." />
           </div>
+          <div class="col-12">
+            <NumberField id="number-field" v-model="numberFieldVal" label="Enter Number Here" placeholder="2050" />
+          </div>
         </div>
       </div>
     </div>
@@ -84,15 +87,18 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import NumberField from "@/components/core/NumberField";
 
 export default {
   name: "Dashbaord",
   components: {
-    TextBox
+    TextBox,
+    NumberField
   },
   data() {
     return {
-      val: null
+      val: null,
+      numberFieldVal: null
     };
   }
 };
