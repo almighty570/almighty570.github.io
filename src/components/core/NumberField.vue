@@ -22,11 +22,6 @@ export default {
       required: true
     },
 
-    type: {
-      type: String,
-      required: true
-    },
-
     value: {
       type: Number
     },
@@ -49,7 +44,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

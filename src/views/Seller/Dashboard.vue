@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="content-header">
-      <div class="container-fluid">
+      <div class="container">
         <h1 class="text-dark">Dashboard</h1>
       </div>
     </div>
 
     <div class="content">
-      <div class="container-fluid">
+      <div class="container">
         <!-- <div class="row mb-4">
           <div class="col-6">
             <div class="card h-100">
@@ -74,15 +74,24 @@
 
         <div class="row mt-4">
           <div class="col-12">
+            <MultiSelect
+              id="unique-0"
+              :options="['one', 'two', 'three']"
+              v-model="multiSelect"
+              multiple
+            />
+
+            <FileUpload :max_size="5" upload_url="asdsad.com" name="asdas" />
+
             <Button id="unique-1" variant="info" size="lg">Info</Button>
             <Button id="unique-2" variant="warning" size="lg">Warning</Button>
-            <Button id="unique-3" variant="success" size="sm" @click="handleClick()">Success</Button>
+            <Button id="unique-3" variant="success" size="sm" @click="handleClick()" loading>Success</Button>
 
             <Button id="unique-4" variant="warning" size="lg" loading>Loading</Button>
 
             <TextBox
-              id="unique-1"
               type="text"
+              id="unique-1"
               v-model="val"
               label="Input here"
               placeholder="shh....."
@@ -90,7 +99,7 @@
 
             <DatePicker v-model="date" />
 
-            <br />
+            <!-- <br /> -->
           </div>
 
           <div class="col-12">
@@ -119,7 +128,7 @@
           </div>
           <div class="col-12">
             <Card>
-              <h2 slot="title">Hellow World!</h2>
+              <h2 slot="title">Hello World!</h2>
               <p
                 slot="body"
               >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, modi ipsam. Voluptate, eaque dolorum eum sequi alias soluta. Similique molestias nihil ad ab consequuntur harum tenetur! Quidem molestiae alias inventore!</p>
@@ -134,6 +143,8 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import MultiSelect from "@/components/core/MultiSelect";
+import FileUpload from "@/components/core/FileUpload";
 import Button from "@/components/core/Button";
 import DatePicker from "@/components/core/DatePicker";
 import NumberField from "@/components/core/NumberField";
@@ -150,10 +161,13 @@ export default {
     NumberField,
     RadioGroup,
     Select,
-    Card
+    Card,
+    MultiSelect,
+    FileUpload
   },
   data() {
     return {
+      multiSelect: null,
       val: null,
       date: null,
       select: null,
@@ -171,5 +185,6 @@ export default {
 };
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 </style>

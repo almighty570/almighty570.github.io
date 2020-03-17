@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -10,11 +10,25 @@
           </a>
         </li>
       </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-sign-out-alt"></i> Sign Out
+          </a>
+        </li>
+      </ul>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <img src="@/assets/logo.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8" />
+        <span class="brand-text font-weight-bold">Proship</span>
+      </a>
+
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -37,9 +51,9 @@
           >
             <li class="nav-item" v-for="(menuItem, index) in menus" :key="index">
               <router-link
-                :to="{name: menuItem.pathName}"
+                :to="{name: menuItem.pathName[0]}"
                 class="nav-link"
-                :class="{'active': currentRoute === menuItem.pathName}"
+                :class="{'active': menuItem.pathName.includes(currentRoute)}"
               >
                 <i class="nav-icon" :class="menuItem.icon"></i>
                 <p>{{menuItem.title}}</p>
@@ -71,7 +85,7 @@
         <b>Version</b> 1.0.0
       </div>
     </footer>
-    <div id="sidebar-overlay"></div>
+    <!-- <div id="sidebar-overlay"></div> -->
   </div>
 </template>
 
@@ -81,35 +95,38 @@ export default {
   data() {
     return {
       currentRoute: null,
+
+      // pathname can contain multiple values
+      // routed to the 1st one only
       menus: [
         {
           title: "Dashboard",
           icon: "fal fa-tachometer-fastest",
-          pathName: "Seller-Dashboard"
+          pathName: ["Seller-Dashboard", "Seller-Home"]
         },
 
         {
           title: "Products",
           icon: "fal fa-box-full",
-          pathName: "Seller-Product-List"
+          pathName: ["Seller-Product-List"]
         },
 
         {
           title: "Orders",
           icon: "fal fa-dolly",
-          pathName: "Order-Product-List"
+          pathName: ["Order-Product-List"]
         },
 
         {
           title: "Sales Agents",
           icon: "fal fa-users",
-          pathName: "Seller-Sales-Agents-List"
+          pathName: ["Seller-Sales-Agents-List"]
         },
 
         {
           title: "Settings",
           icon: "fal fa-cogs",
-          pathName: "Seller-Settings"
+          pathName: ["Seller-Settings"]
         }
       ]
     };

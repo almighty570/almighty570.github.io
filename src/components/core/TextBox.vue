@@ -22,11 +22,20 @@ export default {
       required: true
     },
 
+    type: {
+      type: String,
+      required: true
+    },
+
     value: {
       type: String
     },
 
     label: {
+      type: String
+    },
+
+    placeholder: {
       type: String
     }
   },
