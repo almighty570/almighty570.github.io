@@ -13,6 +13,20 @@
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          <button
+            type="button"
+            class="nav-link btn btn-default"
+            data-toggle="modal"
+            data-target="#addBalanceModal"
+            slot="handler"
+          >
+            <i class="fal fa-wallet"></i>
+            THB 12435.56
+            (Add)
+          </button>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fal fa-sign-out-alt"></i> Sign Out
           </a>
@@ -85,13 +99,45 @@
         <b>Version</b> 1.0.0
       </div>
     </footer>
-    <!-- <div id="sidebar-overlay"></div> -->
+
+    <Modal id="addBalanceModal">
+      <template slot="header">
+        <h5 class="modal-title" id="addBalanceModalLabel">
+          <i class="fal fa-wallet mr-2"></i>Add Balance
+        </h5>
+      </template>
+
+      <template slot="body">
+        <p
+          class="lead"
+        >Please add balance by transferring funds to our bank account. Fill up the details as follows:</p>
+
+        <form>
+          <DatePicker label="Date" />
+          <TextBox id="time" type="text" label="Time" />
+          <NumberField id="amount" label="Amount" />
+
+          <FileUpload :max_size="5" upload_url="asdsad.com" name="asdas" />
+
+          <hr />
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm">Submit</button>
+        </form>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/core/Modal";
+import TextBox from "@/components/core/TextBox";
+import NumberField from "@/components/core/NumberField";
+import DatePicker from "@/components/core/DatePicker";
+import FileUpload from "@/components/core/FileUpload";
+
 export default {
   name: "Seller",
+  components: { Modal, TextBox, DatePicker, NumberField, FileUpload },
   data() {
     return {
       currentRoute: null,

@@ -127,13 +127,13 @@
             />
           </div>
           <div class="col-12">
-            <Card>
+            <!-- <Card>
               <h2 slot="title">Hello World!</h2>
               <p
                 slot="body"
               >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, modi ipsam. Voluptate, eaque dolorum eum sequi alias soluta. Similique molestias nihil ad ab consequuntur harum tenetur! Quidem molestiae alias inventore!</p>
               <p slot="footer">yolo</p>
-            </Card>
+            </Card> -->
           </div>
         </div>
       </div>

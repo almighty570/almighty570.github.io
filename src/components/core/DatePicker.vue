@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="mb-2">
+    <label v-if="label">{{label}}</label>
     <vue-datepicker input-class="form-control" @selected="handleSelected"></vue-datepicker>
   </div>
 </template>
@@ -12,10 +13,9 @@ export default {
     VueDatepicker
   },
   props: {
-    // id: {
-    //   type: String,
-    //   required: true
-    // }
+    label: {
+      type: String
+    }
   },
 
   methods: {
