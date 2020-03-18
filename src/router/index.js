@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
 
 import SellerDashboard from '../views/Seller/Dashboard.vue'
 import SellerProductList from '../views/Seller/Products/List.vue'
@@ -13,6 +14,13 @@ const routes = [
     name: 'Seller-Home',
     meta: { layout: 'seller' },
     component: SellerDashboard
+  },
+
+  {
+    path: '/login',
+    name: 'Login',
+    meta: { layout: 'auth' },
+    component: Login
   },
 
   {

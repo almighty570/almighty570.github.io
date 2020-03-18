@@ -8,14 +8,14 @@
           :id="option.value"
           :value="option.value"
           :name="name"
-          v-model="radio_value"
-          @input="updateValue()"
+          v-model="radioValue"
+          @change="updateValue()"
         />
         <label :for="option.value">{{option.label}}</label>
       </div>
     </div>
   </div>
-</template>``
+</template>
 
 <script>
 export default {
@@ -34,13 +34,13 @@ export default {
 
   data: function() {
     return {
-      radio_value: null
+      radioValue: null
     };
   },
 
   methods: {
     updateValue() {
-      this.$emit("input", this.radio_value);
+      this.$emit("input", this.radioValue);
     }
   }
 };
@@ -54,7 +54,5 @@ export default {
 
 .radio-wrapper input {
   margin-right: 5px;
-  width: 20px;
-  height: 1em;
 }
 </style>

@@ -74,7 +74,7 @@
 
         <div class="row mt-4">
           <div class="col-12">
-            <ImageUpload />
+            <!-- <ImageUpload /> -->
 
             <MultiSelect
               id="unique-0"
@@ -116,7 +116,6 @@
               name="gender"
               v-model="radio_field_value"
             />
-            Radio: {{radio_field_value}}
           </div>
           <div class="col-12">
             <Select
@@ -135,6 +134,13 @@
               <p slot="footer">yolo</p>
             </Card>-->
           </div>
+          <div class="col-12">
+            <CheckBoxGroup
+              id="checkbox"
+              :options="[{value:'china',name:'China'},{value:'usa',name:'U.S.A'},{value:'egypt',name:'Egypt'}]"
+              v-model="checkBoxResults"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -152,6 +158,7 @@ import RadioGroup from "@/components/core/RadioGroup";
 import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
 import ImageUpload from "@/components/core/ImageUpload";
+import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 
 export default {
   name: "Dashbaord",
@@ -165,7 +172,8 @@ export default {
     Card,
     MultiSelect,
     FileUpload,
-    ImageUpload
+    ImageUpload,
+    CheckBoxGroup
   },
   data() {
     return {
@@ -175,7 +183,8 @@ export default {
       select: null,
       number_field_value: null,
       radio_field_value: null,
-      select_field_value: null
+      select_field_value: null,
+      checkBoxResults: null
     };
   },
 
