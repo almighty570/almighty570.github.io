@@ -1,21 +1,19 @@
 <template>
-  <div class="form-group">
-    <div class="radio-wrapper">
-      <div v-for="(option,i) in options" :key="i" class="radio-item">
+  <div :id="id" class="form-group">
+    <div class="checkbox-group-wrapper">
+      <div v-for="(option,i) in options" :key="i" class="checbox">
         <input
-          type="radio"
-          ref="input"
+          type="checkbox"
           :id="option.value"
           :value="option.value"
-          :name="name"
-          v-model="radioValue"
+          v-model="checkedValues"
           @change="updateValue()"
         />
-        <label :for="option.value">{{option.label}}</label>
+        <label :for="option.value">{{option.name}}</label>
       </div>
     </div>
   </div>
-</template>``
+</template>
 
 <script>
 export default {
@@ -26,7 +24,7 @@ export default {
       required: true
     },
 
-    name: {
+    id: {
       type: String,
       required: true
     }
@@ -34,25 +32,21 @@ export default {
 
   data: function() {
     return {
-      radioValue: null
+      checkedValues: []
     };
   },
 
   methods: {
     updateValue() {
-      this.$emit("input", this.radioValue);
+      this.$emit("input", this.checkedValues);
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
-.radio-wrapper {
+<style>
+.checkbox-group-wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.radio-wrapper input {
-  margin-right: 5px;
 }
 </style>

@@ -116,7 +116,6 @@
               name="gender"
               v-model="radio_field_value"
             />
-            Radio: {{radio_field_value}}
           </div>
           <div class="col-12">
             <Select
@@ -135,6 +134,13 @@
               <p slot="footer">yolo</p>
             </Card>
           </div>
+          <div class="col-12">
+            <CheckboxGroup
+              id="checkbox"
+              :options="[{value:'china',name:'China'},{value:'usa',name:'U.S.A'},{value:'egypt',name:'Egypt'}]"
+              v-model="checkBoxResults"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -151,6 +157,7 @@ import NumberField from "@/components/core/NumberField";
 import RadioGroup from "@/components/core/RadioGroup";
 import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
+import CheckboxGroup from "@/components/core/CheckboxGroup";
 
 export default {
   name: "Dashbaord",
@@ -163,7 +170,8 @@ export default {
     Select,
     Card,
     MultiSelect,
-    FileUpload
+    FileUpload,
+    CheckboxGroup
   },
   data() {
     return {
@@ -173,7 +181,8 @@ export default {
       select: null,
       number_field_value: null,
       radio_field_value: null,
-      select_field_value: null
+      select_field_value: null,
+      checkBoxResults: null
     };
   },
 
