@@ -2,21 +2,23 @@
   <div class="login">
     <div class="login-box">
       <div class="site-logo">
-        <a href><span class="font-weight-bold">Pro</span>Ship</a>
+        <a href>
+          <span class="font-weight-bold">Pro</span>Ship
+        </a>
       </div>
       <div class="login-box__body card">
         <p class="login-box-body__msg">Sign in to start your session</p>
         <form action method="post">
-          <TextBox type="text" id="email-textbox" placeholder="Email" />
-          <TextBox type="text" id="password-textbox" placeholder="Password" />
+          <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email"/>
+          <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password"/>
 
           <div class="login-box__cta-wrapper">
-            <CheckBoxGroup id="remember-me" :options="[{value:'remember',name:'Remember Me'}]" />
+            <CheckBoxGroup id="remember-me" :options="[{value:'remember',name:'Remember Me'}]" v-model="rememberMe"/>
             <Button id="submit-login-form-button" variant="info" size="md">Sign In</Button>
           </div>
         </form>
         <div class="forgot-password-msg">
-          <a href="">Forgot Password?</a>
+          <a href>Forgot Password?</a>
         </div>
       </div>
     </div>
@@ -34,6 +36,14 @@ export default {
     TextBox,
     Button,
     CheckBoxGroup
+  },
+
+  data: function() {
+    return {
+      email: null,
+      password: null,
+      rememberMe: false
+    };
   }
 };
 </script>
@@ -80,7 +90,7 @@ export default {
   margin-bottom: 0;
 }
 
-.forgot-password-msg{
+.forgot-password-msg {
   text-align: center;
   margin-top: 10px;
 }
