@@ -1,7 +1,7 @@
 <template>
   <div :id="id" class="form-group">
     <div class="checkbox-group-wrapper">
-      <div v-for="(option,i) in options" :key="i" class="checbox">
+      <div v-for="(option,i) in options" :key="i" class="checkbox">
         <input
           type="checkbox"
           :id="option.value"
@@ -9,7 +9,7 @@
           v-model="checkedValues"
           @change="updateValue()"
         />
-        <label :for="option.value">{{option.name}}</label>
+        <label class="checkbox" :for="option.value">{{option.name}}</label>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "RadioGroup",
+  name: "CheckBoxGroup",
   props: {
     options: {
       type: Array,
@@ -48,5 +48,14 @@ export default {
 .checkbox-group-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.checkbox input{
+    margin-right: 5px;
+}
+
+.checkbox label{
+  font-weight: 400;
+  cursor: pointer;
 }
 </style>

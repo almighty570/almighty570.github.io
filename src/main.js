@@ -11,6 +11,9 @@ import "./styles/main.scss";
 import Seller from "./layouts/Seller.vue";
 Vue.component('seller-layout', Seller);
 
+import Auth from "./layouts/Auth.vue";
+Vue.component('auth-layout',Auth);
+
 Vue.config.productionTip = false
 Vue.use(VueFormulate)
 

@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    meta: { layout: 'default' },
+    meta: { layout: 'auth' },
     component: Login
   },
 

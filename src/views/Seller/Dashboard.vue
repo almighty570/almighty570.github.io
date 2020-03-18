@@ -157,7 +157,7 @@ import NumberField from "@/components/core/NumberField";
 import RadioGroup from "@/components/core/RadioGroup";
 import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
-import CheckboxGroup from "@/components/core/CheckboxGroup";
+import CheckboxGroup from "@/components/core/CheckBoxGroup";
 
 export default {
   name: "Dashbaord",
