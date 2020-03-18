@@ -5,11 +5,15 @@
       type="number"
       ref="input"
       class="form-control"
+      :class="{'is-invalid': errors && errors.length}"
       :id="id"
       :placeholder="placeholder"
       :value="value"
       @input="updateValue()"
     />
+    <template v-if="errors">
+      <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+    </template>
   </div>
 </template>
 
@@ -32,6 +36,10 @@ export default {
 
     placeholder: {
       type: String
+    },
+
+    errors: {
+      type: Array
     }
   },
 

@@ -112,16 +112,40 @@
           class="lead"
         >Please add balance by transferring funds to our bank account. Fill up the details as follows:</p>
 
-        <form>
-          <DatePicker label="Date" />
-          <TextBox id="time" type="text" label="Time" />
-          <NumberField id="amount" label="Amount" />
+        <form @submit="handleBalanceAddSubmit">
+          <DatePicker
+            label="Date"
+            v-model="addBalanceForm.date"
+            :errors="addBalanceErrors && addBalanceErrors.date"
+          />
+          <TextBox
+            type="text"
+            id="time"
+            label="Time"
+            v-model="addBalanceForm.time"
+            :errors="addBalanceErrors && addBalanceErrors.time"
+          />
+          <NumberField
+            id="amount"
+            label="Amount"
+            v-model.number="addBalanceForm.amount"
+            :errors="addBalanceErrors && addBalanceErrors.amount"
+          />
 
-          <FileUpload :max_size="5" upload_url="asdsad.com" name="asdas" />
+          <FileUpload
+            :max_size="5"
+            upload_url="asdsad.com"
+            name="asdas"
+            label="Select file"
+            v-model="addBalanceForm.files"
+            :errors="addBalanceErrors && addBalanceErrors.files"
+          />
 
           <hr />
-          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm">Submit</button>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary btn-sm mr-2" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+          </div>
         </form>
       </template>
     </Modal>
@@ -134,6 +158,7 @@ import TextBox from "@/components/core/TextBox";
 import NumberField from "@/components/core/NumberField";
 import DatePicker from "@/components/core/DatePicker";
 import FileUpload from "@/components/core/FileUpload";
+import Swal from "sweetalert2";
 
 export default {
   name: "Seller",
@@ -141,6 +166,13 @@ export default {
   data() {
     return {
       currentRoute: null,
+      addBalanceErrors: null,
+      addBalanceForm: {
+        date: null,
+        time: null,
+        amount: null,
+        files: null
+      },
 
       // pathname can contain multiple values
       // routed to the 1st one only
@@ -185,6 +217,48 @@ export default {
   methods: {
     setCurrentRoute(route) {
       this.currentRoute = route.name;
+    },
+
+    handleBalanceAddSubmit(e) {
+      e.preventDefault();
+
+      if (!this.validateAddBalanceForm()) {
+        // Make API Call here
+        Swal.fire(
+          "",
+          "Once our team verifies your transaction, your account will be updated.",
+          "success"
+        ).then(() => {
+          $("#addBalanceModal").modal("hide");
+        });
+      }
+    },
+
+    validateAddBalanceForm() {
+      // setup error object
+      this.addBalanceErrors = {};
+      Object.keys(this.addBalanceForm).forEach(fieldName => {
+        this.addBalanceErrors[fieldName] = [];
+      });
+      let hasError = false;
+
+      if (!this.addBalanceForm.date) {
+        this.addBalanceErrors.date.push("Invalid date");
+        hasError = true;
+      }
+      if (!this.addBalanceForm.time) {
+        this.addBalanceErrors.time.push("Invalid time");
+        hasError = true;
+      }
+      if (!this.addBalanceForm.amount) {
+        this.addBalanceErrors.amount.push("Invalid amount");
+        hasError = true;
+      }
+      if (!(this.addBalanceForm.files && this.addBalanceForm.files.length)) {
+        this.addBalanceErrors.files.push("Invalid file");
+        hasError = true;
+      }
+      return hasError;
     }
   },
 

@@ -74,6 +74,8 @@
 
         <div class="row mt-4">
           <div class="col-12">
+            <ImageUpload />
+
             <MultiSelect
               id="unique-0"
               :options="['one', 'two', 'three']"
@@ -98,8 +100,6 @@
             />
 
             <DatePicker v-model="date" />
-
-            <!-- <br /> -->
           </div>
 
           <div class="col-12">
@@ -133,7 +133,7 @@
                 slot="body"
               >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, modi ipsam. Voluptate, eaque dolorum eum sequi alias soluta. Similique molestias nihil ad ab consequuntur harum tenetur! Quidem molestiae alias inventore!</p>
               <p slot="footer">yolo</p>
-            </Card> -->
+            </Card>-->
           </div>
         </div>
       </div>
@@ -151,6 +151,7 @@ import NumberField from "@/components/core/NumberField";
 import RadioGroup from "@/components/core/RadioGroup";
 import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
+import ImageUpload from "@/components/core/ImageUpload";
 
 export default {
   name: "Dashbaord",
@@ -163,7 +164,8 @@ export default {
     Select,
     Card,
     MultiSelect,
-    FileUpload
+    FileUpload,
+    ImageUpload
   },
   data() {
     return {

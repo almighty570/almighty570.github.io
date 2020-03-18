@@ -1,13 +1,14 @@
 <template>
   <div class="file-upload">
+    <label v-if="label">{{label}}</label>
     <input type="file" @change="onFileSelected" ref="fileInput" multiple />
 
     <div class="input-group file-upload-handle" @click="$refs.fileInput.click()">
-      <div class="form-control">
-        <label>{{selectedFiles && selectedFiles.length > 0 ? selectedFiles.length + " file(s) selected" : "None"}}</label>
+      <div class="form-control" :class="{'is-invalid': errors && errors.length}">
+        <label>{{labelText}}</label>
       </div>
       <div class="input-group-append">
-        <span class="input-group-text">
+        <span class="input-group-text" >
           <i class="fal fa-upload"></i>
         </span>
       </div>
@@ -22,8 +23,16 @@
         aria-valuemax="100"
       ></div>
     </div>
+    <template v-if="errors">
+      <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+    </template>
     <div class="mb-1"></div>
-    <button class="btn btn-success btn-sm" @click="onUpload()" :disabled="!selectedFiles">Upload</button>
+    <button
+      v-if="instant_upload"
+      class="btn btn-success btn-sm"
+      @click="onUpload()"
+      :disabled="!selectedFiles"
+    >Upload</button>
   </div>
 </template>
 
@@ -36,12 +45,26 @@ export default {
     max_size: {
       type: Number
     },
+
+    instant_upload: {
+      type: Boolean
+    },
+
     upload_url: {
       type: String
     },
+
     name: {
       type: String,
       required: true
+    },
+
+    label: {
+      type: String
+    },
+
+    errors: {
+      type: Array
     }
   },
   data() {
@@ -65,6 +88,7 @@ export default {
           this.selectedFiles = null;
         }
       });
+      this.$emit("input", Array.from(this.selectedFiles));
     },
 
     onUpload() {
@@ -88,6 +112,15 @@ export default {
       this.uploadPercent = Math.round(
         (uploadEvent.loaded / uploadEvent.total) * 100
       );
+    }
+  },
+
+  computed: {
+    labelText() {
+      if (!this.selectedFiles) return "None";
+      return this.selectedFiles.length > 1
+        ? this.selectedFiles.length + " file(s) selected"
+        : this.selectedFiles[0].name;
     }
   }
 };
