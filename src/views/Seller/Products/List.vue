@@ -21,15 +21,33 @@
     </div>
 
     <section class="content">
-      <div class="container-fluid"></div>
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <div class="toolbar d-flex">
+              <router-link
+                :to="{name: 'Seller-Product-Create'}"
+                class="btn btn-primary mr-2"
+              >Add New</router-link>
+              <button class="btn btn-primary mr-2">Import</button>
+              <button class="btn btn-primary mr-2">Export</button>
+            </div>
+
+            <hr />
+            <DataTable :columns="productColumns" :rows="productData" />
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
+import DataTable from "@/components/core/DataTable";
+
 export default {
   name: "Products-List",
-  components: {},
+  components: { DataTable },
   data() {
     return {
       breadcrumbLinks: [
@@ -43,8 +61,43 @@ export default {
           isActive: true,
           pathName: "Seller-Products"
         }
-      ]
+      ],
+
+      productsLoading: false,
+      productColumns: null,
+      productData: null
     };
+  },
+
+  beforeMount() {
+    // this.fetchProducts();
+  },
+
+  created() {
+    this.fetchProducts();
+  },
+
+  methods: {
+    fetchProducts() {
+      // make API Call here...
+      this.productColumns = [
+        { headerName: "Item Code", field: "item_code" },
+        { headerName: "Description", field: "description" },
+        { headerName: "Available", field: "available" },
+        { headerName: "Order", field: "order" },
+        { headerName: "Stock", field: "stock" },
+        { headerName: "View/Edit" }
+      ];
+      this.productData = [
+        {
+          item_code: 123213,
+          description: "Very short intro",
+          available: "Yes",
+          order: "00bsdf",
+          stock: "sdf"
+        }
+      ];
+    }
   }
 };
 </script>

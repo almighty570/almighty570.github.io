@@ -1,7 +1,7 @@
 <template>
   <div>
     <ag-grid-vue
-      style="width: 500px; height: 300px;"
+      style="width: 100%; height: 200px;"
       class="ag-theme-balham"
       :columnDefs="columns"
       :rowData="rows"
@@ -18,38 +18,27 @@ import { AgGridVue } from "ag-grid-vue";
 export default {
   name: "DataTable",
   props: {
-    columns: Array,
-    rows: Array,
-    hasMultipleRowSelection: Boolean
+    columns: {
+      type: Array,
+      required: true
+    },
+    rows: {
+      type: Array,
+      required: true
+    },
+    hasMultipleRowSelection: {
+      type: Boolean
+    }
   },
   data() {
-    return {
-      columnDefs: null,
-      rowData: null
-    };
+    return {};
   },
 
   components: {
     AgGridVue
   },
 
-  beforeMount() {
-    this.columnDefs = [
-      {
-        headerName: "Make",
-        field: "make",
-        sortable: true,
-        filter: true,
-        checkboxSelection: true
-      },
-      { headerName: "Model", field: "model", sortable: true, filter: true },
-      { headerName: "Price", field: "price", sortable: true, filter: true }
-    ];
-
-    fetch("https://api.myjson.com/bins/15psn9")
-      .then(result => result.json())
-      .then(rowData => (this.rowData = rowData));
-  },
+  beforeMount() {},
 
   methods: {}
 };
