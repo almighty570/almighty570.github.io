@@ -10,7 +10,7 @@
       <div class="container">
         <div class="row">
           <div class="col-6">
-            <Card custom_class="card-primary">
+            <Card custom_class="card-primary" id="products-details-card">
               <h2 slot="title">Products</h2>
               <div slot="body" class="info-box-wrapper">
                 <div class="row">
@@ -20,71 +20,227 @@
                         <h3>150</h3>
                         <p>Products</p>
                       </div>
-                      <i slot="icon" class="fas fa-shopping-cart"></i>
+                      <i slot="icon" class="icon fal fa-box-full"></i>
                     </SmallBox>
                   </div>
                   <div class="col-6">
-                    <div class="small-box">
-                      <div class="inner">
-                        <h3>2000</h3>
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>2323</h3>
                         <p>Items</p>
                       </div>
-                      <div class="icon">
-                        <i class="fas fa-shopping-cart"></i>
-                      </div>
-                    </div>
+                      <i slot="icon" class="icon far fa-sitemap"></i>
+                    </SmallBox>
                   </div>
                 </div>
               </div>
-              <p slot="footer">yolo</p>
             </Card>
           </div>
           <div class="col-6">
-            <div class="card h-100">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Orders</h3>
-                  <a href="javascript:void(0);">Details</a>
+            <Card custom_class="card-warning" id="shipping-details-card">
+              <h2 slot="title">Shipping</h2>
+              <div slot="body" class="info-box-wrapper">
+                <div class="row">
+                  <div class="col-4">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>12</h3>
+                        <p>To Ship</p>
+                      </div>
+                      <i slot="icon" class="icon far fa-box-alt"></i>
+                    </SmallBox>
+                  </div>
+                  <div class="col-4">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>8</h3>
+                        <p>In Transit</p>
+                      </div>
+                      <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
+                    </SmallBox>
+                  </div>
+                  <div class="col-4">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>112</h3>
+                        <p>Delivered</p>
+                      </div>
+                      <i slot="icon" class="icon far fa-box-check"></i>
+                    </SmallBox>
+                  </div>
                 </div>
               </div>
-              <div class="card-body">
-                <p>
-                  To Ship: XXX
-                  <br />Intransit: XXX
-                  <br />Delivered: XXX
-                  <br />
-                </p>
+            </Card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <Card custom_class="card-success" id="orders-details-card">
+              <h2 slot="title">Orders</h2>
+              <div slot="body" class="info-box-wrapper">
+                <div class="row">
+                  <div class="col-6">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>150</h3>
+                        <p>New Orders</p>
+                      </div>
+                      <i slot="icon" class="icon fal fa-dolly"></i>
+                    </SmallBox>
+                  </div>
+                  <div class="col-6">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>
+                          53
+                          <sup style="font-size: 20px">%</sup>
+                        </h3>
+                        <p>Growth</p>
+                      </div>
+                      <i slot="icon" class="icon fal fa-chart-line"></i>
+                    </SmallBox>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Card>
+          </div>
+
+          <div class="col-6">
+            <Card custom_class="card-danger" id="cod-details-card">
+              <h2 slot="title">COD</h2>
+              <div slot="body" class="info-box-wrapper">
+                <div class="row">
+                  <div class="col-12">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>1500</h3>
+                        <p>COD Value</p>
+                      </div>
+                      <i slot="icon" class="icon far fa-box-usd"></i>
+                    </SmallBox>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-6">
-            <div class="card h-100">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Products/Items</h3>
-                  <a href="javascript:void(0);">Details</a>
+        <h2 class="text-dark">Dashboard Long</h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <Card custom_class="card-primary" id="products-details-card">
+                <h2 slot="title">Products</h2>
+                <div slot="body" class="info-box-wrapper">
+                  <div class="row">
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>150</h3>
+                          <p>Products</p>
+                        </div>
+                        <i slot="icon" class="icon fal fa-box-full"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>2323</h3>
+                          <p>Items</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-sitemap"></i>
+                      </SmallBox>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <p>New Orders Today: XX</p>
-                <p>Growth: +20%</p>
-              </div>
+              </Card>
+            </div>
+            <div class="col-6">
+              <Card custom_class="card-warning" id="shipping-details-card">
+                <h2 slot="title">Shipping</h2>
+                <div slot="body" class="info-box-wrapper">
+                  <div class="row">
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>12</h3>
+                          <p>To Ship</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-box-alt"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>8</h3>
+                          <p>In Transit</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>112</h3>
+                          <p>Delivered</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-box-check"></i>
+                      </SmallBox>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
-          <div class="col-6">
-            <div class="card h-100">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Cod</h3>
-                  <a href="javascript:void(0);">Details</a>
+          <div class="row">
+            <div class="col-6">
+              <Card custom_class="card-success" id="orders-details-card">
+                <h2 slot="title">Orders</h2>
+                <div slot="body" class="info-box-wrapper">
+                  <div class="row">
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>150</h3>
+                          <p>New Orders</p>
+                        </div>
+                        <i slot="icon" class="icon fal fa-dolly"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>
+                            53
+                            <sup style="font-size: 20px">%</sup>
+                          </h3>
+                          <p>Growth</p>
+                        </div>
+                        <i slot="icon" class="icon fal fa-chart-line"></i>
+                      </SmallBox>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <p>COD Value: XXX</p>
-              </div>
+              </Card>
+            </div>
+
+            <div class="col-6">
+              <Card custom_class="card-danger" id="cod-details-card">
+                <h2 slot="title">COD</h2>
+                <div slot="body" class="info-box-wrapper">
+                  <div class="row">
+                    <div class="col-12">
+                      <SmallBox>
+                        <div slot="inner">
+                          <h3>1500</h3>
+                          <p>COD Value</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-box-usd"></i>
+                      </SmallBox>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -227,11 +383,22 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 .icon {
-  color: #007bff;
   font-size: 30px !important;
 }
 
-.fas {
-  font-size: 30px !important;
+#orders-details-card .icon {
+  color: #28a745;
+}
+
+#products-details-card .icon {
+  color: #007bff;
+}
+
+#shipping-details-card .icon {
+  color: #ffc107;
+}
+
+#cod-details-card .icon {
+  color: #dc3545;
 }
 </style>

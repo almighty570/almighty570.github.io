@@ -15,12 +15,12 @@ Vue.component('auth-layout', Auth);
 Vue.config.productionTip = false
 
 // vee validate
-import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
-Vue.component('ValidationProvider', ValidationProvider);
-Vue.component('ValidationObserver', ValidationObserver);
-import {applyValidators} from './helpers/validators';
-applyValidators();
+// import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
+// import { required, email } from 'vee-validate/dist/rules';
+// Vue.component('ValidationProvider', ValidationProvider);
+// Vue.component('ValidationObserver', ValidationObserver);
+// import {applyValidators} from './helpers/validators';
+// applyValidators();
 
 new Vue({
   router,
