@@ -8,19 +8,36 @@
 
     <div class="content">
       <div class="container">
-        <!-- <div class="row mb-4">
+        <div class="row">
           <div class="col-6">
-            <div class="card h-100">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Products/Items</h3>
-                  <a href="javascript:void(0);">Details</a>
+            <Card custom_class="card-primary">
+              <h2 slot="title">Products</h2>
+              <div slot="body" class="info-box-wrapper">
+                <div class="row">
+                  <div class="col-6">
+                    <SmallBox>
+                      <div slot="inner">
+                        <h3>150</h3>
+                        <p>Products</p>
+                      </div>
+                      <i slot="icon" class="fas fa-shopping-cart"></i>
+                    </SmallBox>
+                  </div>
+                  <div class="col-6">
+                    <div class="small-box">
+                      <div class="inner">
+                        <h3>2000</h3>
+                        <p>Items</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="card-body">
-                <p>You have XXX Products with YYY Items</p>
-              </div>
-            </div>
+              <p slot="footer">yolo</p>
+            </Card>
           </div>
           <div class="col-6">
             <div class="card h-100">
@@ -70,7 +87,7 @@
               </div>
             </div>
           </div>
-        </div>-->
+        </div>
 
         <div class="row mt-4">
           <div class="col-12">
@@ -159,6 +176,7 @@ import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
 import ImageUpload from "@/components/core/ImageUpload";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
+import SmallBox from "@/components/core/SmallBox";
 
 export default {
   name: "Dashbaord",
@@ -173,7 +191,8 @@ export default {
     MultiSelect,
     FileUpload,
     ImageUpload,
-    CheckBoxGroup
+    CheckBoxGroup,
+    SmallBox
   },
   data() {
     return {
@@ -198,4 +217,12 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
+.icon {
+  color: #007bff;
+  font-size: 30px !important;
+}
+
+.fas {
+  font-size: 30px !important;
+}
 </style>
