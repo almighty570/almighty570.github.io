@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="custom_class">
+  <div class="card" :class="custom_class" :id="id">
     <div class="card-header" v-if="hasCardToolsSlot || hasCardTitleSlot">
       <h3 class="card-title" v-if="hasCardTitleSlot">
         <slot name="title"></slot>
@@ -22,9 +22,10 @@ export default {
   name: "Card",
   props: {
     custom_class: String,
+    id: String
   },
   computed: {
-    hasFooterSolt() {
+    hasFooterSlot() {
       return !!this.$slots.footer;
     },
     hasCardBodySlot() {
