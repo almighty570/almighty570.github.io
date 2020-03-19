@@ -1,10 +1,10 @@
 <template>
   <div>
-    <label class="tvc_upload_input" v-for="i in instances" :key="i">
-      +
-      <input type="file" class="tvc_hidden" />
+    <label class="tvc_upload_input">
+      <i class="fal fa-plus"></i>
+      <input type="file" class="d-none" />
     </label>
-    <div class="tvc_image-list">
+    <div v-if="image" class="tvc_image-list">
       <image src="${e.target.result}" class="tvc_upload_image" />
       <button type="button" class="btn btn-default btn-sm">
         <i class="fas fa-trash"></i>
@@ -24,36 +24,19 @@ export default {
 
   data() {
     return {
-      files: []
+      image: null
     };
   },
 
   methods: {
-    handleFileInput(self, containerId, index) {
-      if (self.files && self.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(
-            `${containerId}_image_list_${index}`
-          ).innerHTML = `
-                    <image src="${e.target.result}" class="tvc_upload_image" id="${containerId}_image_${index}" />
-                    <button type="button" id="${containerId}_delete_btn_${index}" class="btn btn-default btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                  `;
-          document
-            .getElementById(`${containerId}_delete_btn_${index}`)
-            .addEventListener("click", function() {
-              document.getElementById(`${containerId}_image_${index}`).remove();
-              document.getElementById(
-                `${config.containerId}_input_${index}`
-              ).value = null;
-              document
-                .getElementById(`${containerId}_delete_btn_${index}`)
-                .remove();
-            });
-        };
-        reader.readAsDataURL(self.files[0]);
+    handleFileInput(e) {
+      if (e.target.files) {
+        console.log(e.target.files);
+
+        // var reader = new FileReader();
+        // reader.onload = (e) => {
+        // };
+        // reader.readAsDataURL(self.files[0]);
       }
     }
   }
@@ -61,10 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tvc_hidden {
-  display: none;
-}
-
 .tvc_upload_image {
   border: 2px black solid;
   height: 80px;
