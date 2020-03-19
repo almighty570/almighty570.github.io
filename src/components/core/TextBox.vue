@@ -1,19 +1,22 @@
 <template>
   <div class="form-group">
     <label v-if="label" :for="id">{{label}}</label>
-    <input
-      :type="type"
-      ref="input"
-      class="form-control"
-      :class="{'is-invalid': errors && errors.length}"
-      :id="id"
-      :placeholder="placeholder"
-      :value="value"
-      @input="updateValue()"
-    />
-    <template v-if="errors">
-      <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
-    </template>
+
+    <validation-provider :rules="rules" v-slot="{ errors }">
+      <input
+        :type="type"
+        ref="input"
+        class="form-control"
+        :class="{'is-invalid': errors && errors.length}"
+        :id="id"
+        :placeholder="placeholder"
+        :value="value"
+        @input="updateValue()"
+      />
+      <template v-if="errors.length">
+        <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+      </template>
+    </validation-provider>
   </div>
 </template>
   </div>
@@ -45,8 +48,8 @@ export default {
       type: String
     },
 
-    errors: {
-      type: Array
+    rules: {
+      type: String
     }
   },
 

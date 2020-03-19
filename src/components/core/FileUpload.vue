@@ -7,7 +7,7 @@
       <div class="form-control" :class="{'is-invalid': errors && errors.length}">
         <label>{{labelText}}</label>
       </div>
-      <div class="input-group-append">
+      <div class="input-group-append" :class="{'--danger': errors && errors.length}">
         <span class="input-group-text" >
           <i class="fal fa-upload"></i>
         </span>
