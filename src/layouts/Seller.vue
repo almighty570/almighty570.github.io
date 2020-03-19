@@ -183,7 +183,7 @@ export default {
         {
           title: "Products",
           icon: "fal fa-box-full",
-          pathName: ["Seller-Product-List"]
+          pathName: ["Seller-Product-List", "Seller-Product-Create"]
         },
 
         {

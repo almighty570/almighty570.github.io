@@ -69,22 +69,11 @@
                       rules="required"
                     />
 
-                    <!-- <TextBox
-                      type="text"
-                      id="image"
-                      label="Image"
-                      v-model="productCreateForm.image"
-                      rules="required"
-                    />-->
+                    <ImageUpload label="Image" />
 
-                    <ImageUpload :instances="1" />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex mt-4">
                       <button type="submit" class="btn btn-primary mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary">Cancel</button>
+                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -139,7 +128,11 @@ export default {
   },
 
   methods: {
-    handleFormSubmit() {}
+    handleFormSubmit() {},
+
+    cancel() {
+      this.$router.push({ name: "Seller-Product-List" });
+    }
   }
 };
 </script>

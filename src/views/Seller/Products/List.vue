@@ -81,12 +81,29 @@ export default {
     fetchProducts() {
       // make API Call here...
       this.productColumns = [
-        { headerName: "Item Code", field: "item_code" },
-        { headerName: "Description", field: "description" },
-        { headerName: "Available", field: "available" },
-        { headerName: "Order", field: "order" },
-        { headerName: "Stock", field: "stock" },
-        { headerName: "View/Edit" }
+        {
+          headerName: "Item Code",
+          field: "item_code",
+          sortable: true,
+          filter: true,
+          checkboxSelection: true,
+          width: 100
+        },
+        {
+          headerName: "Description",
+          field: "description",
+          sortable: true,
+          filter: true
+        },
+        {
+          headerName: "Available",
+          field: "available",
+          sortable: true,
+          filter: true
+        },
+        { headerName: "Order", field: "order", sortable: true, filter: true },
+        { headerName: "Stock", field: "stock", sortable: true, filter: true },
+        { headerName: "View/Edit", width: 100 }
       ];
       this.productData = [
         {
