@@ -93,6 +93,15 @@
           <div class="col-12">
             <!-- <ImageUpload /> -->
 
+            <TextBox
+              type="text"
+              id="unique-1.1"
+              v-model="val"
+              label="Input here"
+              placeholder="shh....."
+              rules="required"
+            />
+
             <MultiSelect
               id="unique-0"
               :options="['one', 'two', 'three']"

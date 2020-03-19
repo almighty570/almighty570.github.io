@@ -8,17 +8,23 @@
       </div>
       <div class="login-box__body card">
         <p class="login-box-body__msg">Sign in to start your session</p>
-        <form action method="post">
+        <form @submit="handleLogin">
           <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
           <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password" />
 
-          <div class="login-box__cta-wrapper">
-            <!-- <CheckBoxGroup id="remember-me" :options="[{value:'remember',name:'Remember Me'}]" v-model="rememberMe"/> -->
+          <div class="login-box__cta-wrapper d-flex justify-content-between">
+            <CheckBoxGroup
+              id="remember-me"
+              :options="[{value:'remember',name:'Remember Me'}]"
+              v-model="rememberMe"
+            />
+            <br />
             <Button id="submit-login-form-button" variant="info" size="md">Sign In</Button>
           </div>
         </form>
         <div class="forgot-password-msg">
-          <a href>Forgot Password?</a>
+          Don't have an account ?
+          <a href>Create one</a>
         </div>
       </div>
     </div>
@@ -34,16 +40,23 @@ export default {
   name: "Home",
   components: {
     TextBox,
-    Button
-    // CheckBoxGroup
+    Button,
+    CheckBoxGroup
   },
 
-  data: function() {
+  data() {
     return {
       email: null,
       password: null,
       rememberMe: false
     };
+  },
+
+  methods: {
+    handleLogin(e) {
+      e.preventDefault();
+      this.$router.push({ name: "Seller-Dashboard" });
+    }
   }
 };
 </script>
@@ -81,8 +94,8 @@ export default {
 }
 
 .login-box__cta-wrapper {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
   align-items: center;
 }
 

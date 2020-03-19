@@ -112,41 +112,38 @@
           class="lead"
         >Please add balance by transferring funds to our bank account. Fill up the details as follows:</p>
 
-        <form @submit="handleBalanceAddSubmit">
-          <DatePicker
-            label="Date"
-            v-model="addBalanceForm.date"
-            :errors="addBalanceErrors && addBalanceErrors.date"
-          />
-          <TextBox
-            type="text"
-            id="time"
-            label="Time"
-            v-model="addBalanceForm.time"
-            :errors="addBalanceErrors && addBalanceErrors.time"
-          />
-          <NumberField
-            id="amount"
-            label="Amount"
-            v-model.number="addBalanceForm.amount"
-            :errors="addBalanceErrors && addBalanceErrors.amount"
-          />
+        <ValidationObserver v-slot="{ invalid }">
+          <form @submit.prevent="handleBalanceAddSubmit">
+            <DatePicker label="Date" v-model="addBalanceForm.date" rules="required" />
+            <TextBox
+              type="text"
+              id="time"
+              label="Time"
+              v-model="addBalanceForm.time"
+              rules="required"
+            />
+            <NumberField
+              id="amount"
+              label="Amount"
+              v-model.number="addBalanceForm.amount"
+              rules="required"
+            />
 
-          <FileUpload
-            :max_size="5"
-            upload_url="asdsad.com"
-            name="asdas"
-            label="Select file"
-            v-model="addBalanceForm.files"
-            :errors="addBalanceErrors && addBalanceErrors.files"
-          />
+            <FileUpload
+              :max_size="5"
+              upload_url="asdsad.com"
+              name="asdas"
+              label="Select file"
+              v-model="addBalanceForm.files"
+            />
 
-          <hr />
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-secondary btn-sm mr-2" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success btn-sm">Submit</button>
-          </div>
-        </form>
+            <hr />
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-secondary btn-sm mr-2" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success btn-sm" :disabled="invalid">Submit</button>
+            </div>
+          </form>
+        </ValidationObserver>
       </template>
     </Modal>
   </div>
@@ -219,19 +216,15 @@ export default {
       this.currentRoute = route.name;
     },
 
-    handleBalanceAddSubmit(e) {
-      e.preventDefault();
-
-      if (!this.validateAddBalanceForm()) {
-        // Make API Call here
-        Swal.fire(
-          "",
-          "Once our team verifies your transaction, your account will be updated.",
-          "success"
-        ).then(() => {
-          $("#addBalanceModal").modal("hide");
-        });
-      }
+    handleBalanceAddSubmit() {
+      // Make API Call here
+      Swal.fire(
+        "",
+        "Once our team verifies your transaction, your account will be updated.",
+        "success"
+      ).then(() => {
+        $("#addBalanceModal").modal("hide");
+      });
     },
 
     validateAddBalanceForm() {
