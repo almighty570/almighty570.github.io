@@ -6,7 +6,6 @@
           type="checkbox"
           :id="id"
           :value="option.value"
-          :checked="option.value"
           v-model="checkedValues"
           @change="updateValue()"
         />
