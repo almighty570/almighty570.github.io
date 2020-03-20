@@ -7,6 +7,8 @@ import SellerDashboard from '../views/Seller/Dashboard.vue'
 import SellerProductList from '../views/Seller/Products/List.vue'
 import SellerProductCreate from '../views/Seller/Products/Create.vue'
 
+import SellerOrdersShow from "../views/Seller/Orders/Show.vue";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,6 +45,13 @@ const routes = [
     name: 'Seller-Product-Create',
     meta: { layout: 'seller' },
     component: SellerProductCreate
+  },
+
+  {
+    path: '/seller/orders/view',
+    name: 'Seller-Orders-View',
+    meta: { layout: 'seller' },
+    component: SellerOrdersShow
   },
 
 

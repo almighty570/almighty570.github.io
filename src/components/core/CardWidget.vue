@@ -1,6 +1,6 @@
 <template>
   <div class="card" :class="custom_class" :id="id">
-    <div class="card-header" v-if="hasCardToolsSlot || hasCardTitleSlot">
+    <div class="card-header" v-if="hasCardTitleSlot">
       <h3 class="card-title" v-if="hasCardTitleSlot">
         <slot name="title"></slot>
       </h3>
@@ -26,6 +26,10 @@ export default {
     custom_class: String,
     id: String,
     card_widget_type: String
+  },
+
+  mounted() {
+    //   $('.card').CardWidget('toggle');
   },
   computed: {
     hasFooterSlot() {
