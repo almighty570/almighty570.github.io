@@ -38,7 +38,11 @@ export default {
 
   methods: {
     updateValue() {
-      this.$emit("input", this.checkedValues);
+      let valueToReturn =
+        this.checkedValues.length === 0
+          ? this.checkedValues[0]
+          : this.checkedValues;
+      this.$emit("input", valueToReturn);
     }
   }
 };
@@ -50,11 +54,11 @@ export default {
   justify-content: space-between;
 }
 
-.checkbox input{
-    margin-right: 5px;
+.checkbox input {
+  margin-right: 5px;
 }
 
-.checkbox label{
+.checkbox label {
   font-weight: 400;
   cursor: pointer;
 }

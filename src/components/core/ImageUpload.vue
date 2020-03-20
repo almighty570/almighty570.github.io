@@ -1,30 +1,24 @@
 <template>
-  <div>
+  <div :class="custom_class">
     <label v-if="label">{{label}}</label>
-    <!-- <br />
-    <label class="tvc_upload_input">
-      <i class="fal fa-plus"></i>
-      <input type="file" class="d-none" @change="handleFileInput" />
-    </label>
-    <div v-if="image && imagePreview" class="tvc_image-list">
-      <image :src="imagePreview" class="tvc_upload_image" />
-      <button type="button" class="btn btn-default btn-sm">
-        <i class="fas fa-trash"></i>
-      </button>
-    </div>-->
-
-    <div class="image-upload-wrapper" @click="$refs.file.click()">
-      <div v-show="image && imagePreview" class="preview">
-        <img class="img-preview" :src="imagePreview" />
-        <button type="button" class="btn-remove" @click="removeImage()">
-          <i class="fal fa-trash-alt"></i>
-        </button>
+    <!-- Validation doesn't work for now -->
+    <validation-provider :rules="rules" v-slot="{ errors }">
+      <div class="image-upload-wrapper" @click="$refs.file.click()">
+        <div v-show="image && imagePreview" class="preview">
+          <img class="img-preview" :src="imagePreview" />
+          <button type="button" class="btn-remove" @click="removeImage()">
+            <i class="fal fa-trash-alt"></i>
+          </button>
+        </div>
+        <div v-show="!(image && imagePreview)" class="controls">
+          <i class="fal fa-plus"></i>
+          <input type="file" ref="file" @change="handleFileInput" />
+        </div>
       </div>
-      <div v-show="!(image && imagePreview)" class="controls">
-        <i class="fal fa-plus"></i>
-        <input type="file" ref="file" @change="handleFileInput" />
-      </div>
-    </div>
+      <template v-if="errors.length">
+        <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+      </template>
+    </validation-provider>
   </div>
 </template>
 
@@ -33,6 +27,12 @@ export default {
   name: "ImageUpload",
   props: {
     label: {
+      type: String
+    },
+    rules: {
+      type: String
+    },
+    custom_class: {
       type: String
     }
   },
@@ -65,15 +65,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$size: 80px;
+$border-size: 2px;
+$border-radius: 5px;
+
 .image-upload-wrapper {
-  width: 100px;
-  height: 100px;
-  border: 2px dotted grey;
-  border-radius: 5px;
+  width: $size;
+  height: $size;
+  border: $border-size dotted grey;
+  border-radius: $border-radius;
   color: grey;
   text-align: center;
-  line-height: 100px;
-  font-size: 40px;
+  line-height: $size;
+  font-size: calc(40 / 100 * #{$size});
   cursor: pointer;
 
   input[type="file"] {
@@ -85,12 +89,13 @@ export default {
     width: 100%;
     height: 100%;
     img.img-preview {
+      $img-size: calc(#{$size} - 2 * #{$border-size});
       position: absolute;
       top: 0;
       left: 0;
-      width: 96px;
-      height: 96px;
-      border-radius: 5px;
+      width: $img-size;
+      height: $img-size;
+      border-radius: $border-radius;
     }
 
     .btn-remove {
@@ -99,8 +104,8 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      height: 40px;
-      width: 40px;
+      height: calc(40 / 100 * #{$size});
+      width: calc(40 / 100 * #{$size});
       border-radius: 50%;
       background-color: white;
       font-size: 18px;
