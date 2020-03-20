@@ -71,7 +71,7 @@
                     <CheckBoxGroup
                       id="has-variations"
                       :options="[{value:true, name:'This product has variations'}]"
-                      :value="[productHasVariations]"
+                      :value="productHasVariations"
                       v-model="productHasVariations"
                     />
                     <div v-if="productHasVariations">

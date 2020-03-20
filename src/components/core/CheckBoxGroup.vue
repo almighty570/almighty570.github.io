@@ -4,12 +4,13 @@
       <div v-for="(option,i) in options" :key="i" class="checkbox">
         <input
           type="checkbox"
-          :id="id"
+          :id="id + '-' + i"
           :value="option.value"
+          :checked="option.value == value"
           v-model="checkedValues"
           @change="updateValue()"
         />
-        <label class="checkbox" :for="option.value">{{option.name}}</label>
+        <label class="checkbox" :for="id + '-' + i">{{option.name}}</label>
       </div>
     </div>
   </div>
@@ -27,6 +28,10 @@ export default {
     id: {
       type: String,
       required: true
+    },
+
+    value: {
+      type: null
     }
   },
 
@@ -34,6 +39,10 @@ export default {
     return {
       checkedValues: []
     };
+  },
+
+  created() {
+    this.checkedValues = this.value;
   },
 
   methods: {

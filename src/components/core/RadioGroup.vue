@@ -6,8 +6,8 @@
           type="radio"
           ref="input"
           :id="option.value"
-          :value="option.value"
           :name="name"
+          :value="value"
           v-model="radioValue"
           @change="updateValue()"
         />
