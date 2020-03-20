@@ -13,6 +13,7 @@
             slot="body"
           >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus veniam explicabo eum ut similique repudiandae optio ducimus. Esse, corrupti! Facere harum obcaecati animi fuga eligendi, maxime modi amet beatae soluta?</div>
         </CardWidget>
+        <Table thead_class="thead-dark" id="test-table" :values="[{name:'Roshan',caste:'Chapagain',age:'21',gender:'Male'},{name:'Simran',caste:'Panthi',age:'11'}]"></Table>
       </div>
     </div>
   </div>
@@ -20,11 +21,13 @@
 
 <script>
 import CardWidget from "@/components/core/CardWidget.vue";
+import Table from "@/components/core/Table.vue";
 
 export default {
   name: "Dashbaord",
   components: {
-    CardWidget
+    CardWidget,
+    Table
   }
 };
 </script>
