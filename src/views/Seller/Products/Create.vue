@@ -3,13 +3,13 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
-              <i class="nav-icon fal fa-box-full mr-2"></i>
+              <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
               Add New Product
             </h1>
           </div>
-          <div class="col-sm-6">
+          <div class="col-md-6 col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item" v-for="(item, index) in breadcrumbLinks" :key="index">
                 <router-link
@@ -30,7 +30,7 @@
             <ValidationObserver v-slot="{ invalid }">
               <form @submit.prevent="handleFormSubmit">
                 <div class="row">
-                  <div class="col">
+                  <div class="col-md-6 col-sm-12">
                     <TextBox
                       type="text"
                       id="item-code"
@@ -61,10 +61,13 @@
                     />
 
                     <div v-if="productHasVariations">
-                      <KeyValControls :config="variationKeyValConfig" />
+                      <KeyValControls
+                        :config="variationKeyValConfig"
+                        v-model="productCreateForm.variations"
+                      />
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-md-6 col-sm-12">
                     <NumberField
                       id="sale-price"
                       label="Sale Price"
@@ -169,7 +172,8 @@ export default {
         weightApprox: null,
         image: null,
         boxSize: null,
-        customBoxSize: null
+        customBoxSize: null,
+        variations: null
       },
 
       boxSizeOptions: [

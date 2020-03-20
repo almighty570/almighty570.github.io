@@ -29,6 +29,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+
+    value: {
+      type: String
     }
   },
 
@@ -36,6 +40,10 @@ export default {
     return {
       radioValue: null
     };
+  },
+
+  created() {
+    this.radioValue = value;
   },
 
   methods: {

@@ -6,6 +6,8 @@ import Login from '../views/Login.vue'
 import SellerDashboard from '../views/Seller/Dashboard.vue'
 import SellerProductList from '../views/Seller/Products/List.vue'
 import SellerProductCreate from '../views/Seller/Products/Create.vue'
+import SellerProductEdit from '../views/Seller/Products/Edit.vue'
+import SellerProductDetail from '../views/Seller/Products/Show.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,19 @@ const routes = [
     component: SellerProductCreate
   },
 
+  {
+    path: '/seller/products/:id/edit',
+    name: 'Seller-Product-Edit',
+    meta: { layout: 'seller' },
+    component: SellerProductEdit
+  },
+
+  {
+    path: '/seller/products/:id',
+    name: 'Seller-Product-Detail',
+    meta: { layout: 'seller' },
+    component: SellerProductDetail
+  },
 
   {
     path: '/about',

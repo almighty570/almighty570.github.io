@@ -18,7 +18,6 @@
             class="nav-link btn btn-default"
             data-toggle="modal"
             data-target="#addBalanceModal"
-            slot="handler"
           >
             <i class="fal fa-wallet"></i>
             THB 12435.56

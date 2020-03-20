@@ -29,8 +29,12 @@
                 :to="{name: 'Seller-Product-Create'}"
                 class="btn btn-primary mr-2"
               >Add New</router-link>
-              <button class="btn btn-primary mr-2">Import</button>
-              <button class="btn btn-primary mr-2">Export</button>
+              <button
+                class="btn btn-primary mr-2"
+                data-toggle="modal"
+                data-target="#import-products-modal"
+              >Import</button>
+              <button class="btn btn-primary mr-2" @click="exportProducts()">Export</button>
             </div>
 
             <hr />
@@ -39,15 +43,32 @@
         </div>
       </div>
     </section>
+
+    <Modal id="import-products-modal">
+      <template slot="header">
+        <h5 class="modal-title">
+          <i class="fal fa-file-import mr-2"></i>Import Products
+        </h5>
+      </template>
+      <template slot="body">
+        <p class="lead text-center">Drop the file here to upload it to the system</p>
+        <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
 import DataTable from "@/components/core/DataTable";
+import Modal from "@/components/core/Modal";
+import Button from "@/components/core/Button";
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import Swal from "sweetalert2";
 
 export default {
   name: "Products-List",
-  components: { DataTable },
+  components: { DataTable, Modal, vueDropzone: vue2Dropzone },
   data() {
     return {
       breadcrumbLinks: [
@@ -65,7 +86,14 @@ export default {
 
       productsLoading: false,
       productColumns: null,
-      productData: null
+      productData: null,
+
+      importDropzoneOptions: {
+        url: "https://httpbin.org/post",
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { "My-Awesome-Header": "header value" }
+      }
     };
   },
 
@@ -103,7 +131,10 @@ export default {
         },
         { headerName: "Order", field: "order", sortable: true, filter: true },
         { headerName: "Stock", field: "stock", sortable: true, filter: true },
-        { headerName: "View/Edit", width: 100 }
+        {
+          headerName: "View/Edit",
+          width: 100
+        }
       ];
       this.productData = [
         {
@@ -114,6 +145,10 @@ export default {
           stock: "sdf"
         }
       ];
+    },
+
+    exportProducts() {
+      Swal.fire("Export file", "File will download in a while", "info").then(() => {});
     }
   }
 };

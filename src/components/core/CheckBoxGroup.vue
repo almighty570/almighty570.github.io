@@ -4,8 +4,9 @@
       <div v-for="(option,i) in options" :key="i" class="checkbox">
         <input
           type="checkbox"
-          :id="option.value"
+          :id="id"
           :value="option.value"
+          :checked="option.value"
           v-model="checkedValues"
           @change="updateValue()"
         />

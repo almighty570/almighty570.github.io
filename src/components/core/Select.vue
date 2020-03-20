@@ -2,7 +2,12 @@
   <div class="form-group">
     <label v-if="label" :for="id">{{label}}</label>
     <select ref="input" class="form-control" :id="id" @change="updateValue()">
-      <option v-for="(option,i) in options" :key="i" :value="option.value">{{option.name}}</option>
+      <option
+        v-for="(option,i) in options"
+        :key="i"
+        :value="option.value"
+        :selected="value && value === option.value"
+      >{{option.name}}</option>
     </select>
   </div>
 </template>
@@ -23,9 +28,12 @@ export default {
 
     label: {
       type: String
+    },
+
+    value: {
+      type: null
     }
   },
-
 
   methods: {
     updateValue() {
