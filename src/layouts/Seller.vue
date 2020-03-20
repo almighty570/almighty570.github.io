@@ -199,6 +199,12 @@ export default {
         },
 
         {
+          title: "Reports",
+          icon: "fal fa-chart-line",
+          pathName: ["Seller-Reports"]
+        },
+
+        {
           title: "Settings",
           icon: "fal fa-cogs",
           pathName: ["Seller-Settings"]
