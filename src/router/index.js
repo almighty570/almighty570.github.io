@@ -9,7 +9,7 @@ import SellerProductCreate from '../views/Seller/Products/Create.vue'
 import SellerProductEdit from '../views/Seller/Products/Edit.vue'
 import SellerProductDetail from '../views/Seller/Products/Show.vue'
 
-import SellerOrdersShow from "../views/Seller/Orders/Show.vue";
+import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
 
 Vue.use(VueRouter)
 
@@ -65,9 +65,9 @@ const routes = [
 
   {
     path: '/seller/orders/view',
-    name: 'Seller-Orders-View',
+    name: 'Seller-Orders-Detail',
     meta: { layout: 'seller' },
-    component: SellerOrdersShow
+    component: SellerOrderDetail
   },
 
   {

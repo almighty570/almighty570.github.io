@@ -188,7 +188,7 @@ export default {
         {
           title: "Orders",
           icon: "fal fa-dolly",
-          pathName: ["Order-Product-List"]
+          pathName: ["Order-Product-List", "Seller-Orders-Detail"]
         },
 
         {
