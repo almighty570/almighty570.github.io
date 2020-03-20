@@ -7,13 +7,32 @@
     </div>
     <div class="content-body">
       <div class="container">
-        <CardWidget id="test-card-widget" class="card-primary" card_widget_type="collapse">
-          <div slot="title">Name</div>
-          <div
-            slot="body"
-          >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus veniam explicabo eum ut similique repudiandae optio ducimus. Esse, corrupti! Facere harum obcaecati animi fuga eligendi, maxime modi amet beatae soluta?</div>
+        <CardWidget id="test-card-widget" class="card-success" card_widget_type="collapse">
+          <div slot="title">Order Details</div>
+          <div slot="body">
+            <div class="row">
+              
+            </div>
+          </div>
         </CardWidget>
-        <Table thead_class="thead-dark" id="test-table" :values="[{name:'Roshan',caste:'Chapagain',age:'21',gender:'Male'},{name:'Simran',caste:'Panthi',age:'11'}]"></Table>
+        <CardWidget id="test-card-widget" class="card-info" card_widget_type="collapse">
+          <div slot="title">Order item(s)</div>
+          <div slot="body">
+            <Table
+              id="test-table"
+              :values="[{name:'Roshan',caste:'Chapagain',age:'21',gender:'Male'},{name:'Simran',caste:'Panthi',age:'11'}]"
+            ></Table>
+          </div>
+        </CardWidget>
+        <CardWidget id="test-card-widget" class="card-warning" card_widget_type="collapse">
+          <div slot="title">Order history</div>
+          <div slot="body">
+            <Table
+              id="test-table"
+              :values="[{name:'Roshan',caste:'Chapagain',age:'21',gender:'Male'},{name:'Simran',caste:'Panthi',age:'11'}]"
+            ></Table>
+          </div>
+        </CardWidget>
       </div>
     </div>
   </div>
