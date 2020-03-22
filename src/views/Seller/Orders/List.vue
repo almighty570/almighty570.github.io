@@ -35,7 +35,15 @@
             </div>
 
             <hr />
-
+            <div class="d-flex mb-2">
+              <button class="btn btn-sm btn-outline-info mr-2">All</button>
+              <button class="btn btn-sm btn-outline-info mr-2">New</button>
+              <button class="btn btn-sm btn-outline-info mr-2">Pending</button>
+              <button class="btn btn-sm btn-outline-info mr-2">Shipped</button>
+              <button class="btn btn-sm btn-outline-info mr-2">Delivered</button>
+              <button class="btn btn-sm btn-outline-info mr-2">Cancelled</button>
+              <button class="btn btn-sm btn-success mr-2">Date Select</button>
+            </div>
             <DataTable
               id="orders-list"
               :columns="orderColumns"
