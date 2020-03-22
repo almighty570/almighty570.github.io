@@ -1,50 +1,46 @@
 <template>
-  <div>
-    <ag-grid-vue
-      style="width: 100%; height: 200px;"
-      class="ag-theme-balham"
-      :columnDefs="columns"
-      :rowData="rows"
-      :rowSelection="hasMultipleRowSelection"
-    ></ag-grid-vue>
+  <div :class="{'table-responsive': responsive}">
+    <table :id="id" class="table" :class="custom_class"></table>
   </div>
 </template>
 
 <script>
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import { AgGridVue } from "ag-grid-vue";
-
 export default {
   name: "DataTable",
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+
     columns: {
       type: Array,
       required: true
     },
+
     rows: {
       type: Array,
       required: true
     },
-    hasMultipleRowSelection: {
+
+    custom_class: {
+      type: String
+    },
+
+    responsive: {
       type: Boolean
     }
   },
-  data() {
-    return {};
-  },
 
-  components: {
-    AgGridVue
-  },
-
-  beforeMount() {},
-
-  methods: {}
+  mounted() {
+    $("#" + this.id).DataTable({
+      data: this.rows,
+      responsive: this.responsive,
+      columns: this.columns
+    });
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import "../../../node_modules/ag-grid-community/src/styles/ag-grid.scss";
-@import "../../../node_modules/ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 </style>

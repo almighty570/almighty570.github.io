@@ -1,17 +1,17 @@
 <template>
   <div class="form-group">
+    <label v-if="label">{{label}}</label>
     <div class="radio-wrapper">
       <div v-for="(option,i) in options" :key="i" class="radio-item">
         <input
           type="radio"
           ref="input"
-          :id="option.value"
+          :id="id + '-' + i"
           :name="name"
-          :value="value"
           v-model="radioValue"
           @change="updateValue()"
         />
-        <label :for="option.value">{{option.label}}</label>
+        <label :for="id + '-' + i">{{option.label}}</label>
       </div>
     </div>
   </div>
@@ -26,12 +26,21 @@ export default {
       required: true
     },
 
+    id: {
+      type: String,
+      required: true
+    },
+
     name: {
       type: String,
       required: true
     },
 
     value: {
+      type: String
+    },
+
+    label: {
       type: String
     }
   },
@@ -43,7 +52,7 @@ export default {
   },
 
   created() {
-    this.radioValue = value;
+    if (this.value) this.radioValue = this.value;
   },
 
   methods: {

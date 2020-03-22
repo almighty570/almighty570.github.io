@@ -12,6 +12,7 @@
     "ag-grid-vue": "^23.0.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "datatables": "^1.10.18",
     "sweetalert2": "^9.10.2",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",

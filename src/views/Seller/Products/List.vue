@@ -21,7 +21,7 @@
     </div>
 
     <section class="content">
-      <div class="container">
+      <div class="container-fluid">
         <div class="card">
           <div class="card-body">
             <div class="toolbar d-flex">
@@ -38,7 +38,13 @@
             </div>
 
             <hr />
-            <DataTable :columns="productColumns" :rows="productData" />
+            <DataTable
+              id="products-list"
+              :columns="productColumns"
+              :rows="productData"
+              responsive
+              custom_class="table-striped table-sm"
+            />
           </div>
         </div>
       </div>
@@ -110,45 +116,101 @@ export default {
       // make API Call here...
       this.productColumns = [
         {
-          headerName: "Item Code",
-          field: "item_code",
-          sortable: true,
-          filter: true,
-          checkboxSelection: true,
-          width: 100
+          title: "Item Code"
         },
         {
-          headerName: "Description",
-          field: "description",
-          sortable: true,
-          filter: true
+          title: "Description"
         },
         {
-          headerName: "Available",
-          field: "available",
-          sortable: true,
-          filter: true
+          title: "Available"
         },
-        { headerName: "Order", field: "order", sortable: true, filter: true },
-        { headerName: "Stock", field: "stock", sortable: true, filter: true },
+        { title: "Order" },
+        { title: "Stock" },
         {
-          headerName: "View/Edit",
-          width: 100
+          title: "View/Edit",
+          sortable: false,
+          render: (data, type, row) => {
+            return `
+                <a href="#/seller/products/${data}" class="btn btn-info btn-sm"> View </a>
+                <a href="#/seller/products/${data}/edit" class="btn btn-info btn-sm"> Edit </a>
+            `;
+          }
         }
       ];
       this.productData = [
-        {
-          item_code: 123213,
-          description: "Very short intro",
-          available: "Yes",
-          order: "00bsdf",
-          stock: "sdf"
-        }
+        [
+          "I-45424",
+          "Short description 1...",
+          "No",
+          "O-2342",
+          "some stock 1",
+          1
+        ],
+        [
+          "I-21425",
+          "Short description 2...",
+          "Yes",
+          "O-2442",
+          "some stock 2",
+          2
+        ],
+        [
+          "I-20426",
+          "Short description 3...",
+          "No",
+          "O-5466",
+          "some stock 3",
+          3
+        ],
+        [
+          "I-21427",
+          "Short description 4...",
+          "Yes",
+          "O-9866",
+          "some stock 4",
+          4
+        ],
+        [
+          "I-28428",
+          "Short description 5...",
+          "Yes",
+          "O-4567",
+          "some stock 5",
+          5
+        ],
+        [
+          "I-23429",
+          "Short description 6...",
+          "No",
+          "O-0934",
+          "some stock 6",
+          6
+        ],
+        [
+          "I-26430",
+          "Short description 7...",
+          "No",
+          "O-1278",
+          "some stock 7",
+          7
+        ],
+        [
+          "I-24431",
+          "Short description 8...",
+          "Yes",
+          "O-0934",
+          "some stock 8",
+          8
+        ]
       ];
     },
 
     exportProducts() {
-      Swal.fire("Export file", "File will download in a while", "info").then(() => {});
+      Swal.fire(
+        "Export file",
+        "File will download in a while",
+        "info"
+      ).then(() => {});
     }
   }
 };

@@ -2,11 +2,14 @@
   <div>
     <div class="content-header">
       <div class="container">
-        <h1 class="text-dark">View Order</h1>
+        <h1 class="m-0 text-dark">
+          <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
+          View Order
+        </h1>
       </div>
     </div>
     <div class="content-body">
-      <div class="container">
+      <div class="container-fluid">
         <CardWidget id="order-details-card" class="card" card_widget_type="collapse">
           <div slot="body">
             <div class="row">
@@ -115,6 +118,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    cancel() {
+      this.$router.push({ name: "Seller-Order-List" });
+    }
   }
 };
 </script>

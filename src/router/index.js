@@ -9,6 +9,8 @@ import SellerProductCreate from '../views/Seller/Products/Create.vue'
 import SellerProductEdit from '../views/Seller/Products/Edit.vue'
 import SellerProductDetail from '../views/Seller/Products/Show.vue'
 
+import SellerOrderList from "../views/Seller/Orders/List.vue";
+import SellerOrderCreate from '../views/Seller/Orders/Create.vue'
 import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
 
 Vue.use(VueRouter)
@@ -35,6 +37,7 @@ const routes = [
     component: SellerDashboard
   },
 
+  // Products
   {
     path: '/seller/products',
     name: 'Seller-Product-List',
@@ -64,10 +67,25 @@ const routes = [
   },
 
   {
-    path: '/seller/orders/view',
+    path: '/seller/orders/:id',
     name: 'Seller-Orders-Detail',
     meta: { layout: 'seller' },
     component: SellerOrderDetail
+  },
+
+  // orders
+  {
+    path: '/seller/orders',
+    name: 'Seller-Order-List',
+    meta: { layout: 'seller' },
+    component: SellerOrderList
+  },
+
+  {
+    path: '/seller/orders/create',
+    name: 'Seller-Order-Create',
+    meta: { layout: 'seller' },
+    component: SellerOrderCreate
   },
 
   {

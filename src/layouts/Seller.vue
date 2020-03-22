@@ -182,13 +182,22 @@ export default {
         {
           title: "Products",
           icon: "fal fa-box-full",
-          pathName: ["Seller-Product-List", "Seller-Product-Create"]
+          pathName: [
+            "Seller-Product-List",
+            "Seller-Product-Create",
+            "Seller-Product-Edit",
+            "Seller-Product-Detail"
+          ]
         },
 
         {
           title: "Orders",
           icon: "fal fa-dolly",
-          pathName: ["Order-Product-List", "Seller-Orders-Detail"]
+          pathName: [
+            "Seller-Order-List",
+            "Seller-Order-Detail",
+            "Seller-Order-Create"
+          ]
         },
 
         {
