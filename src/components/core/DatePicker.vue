@@ -3,7 +3,12 @@
     <label v-if="label">{{label}}</label>
 
     <validation-provider :rules="rules" v-slot="{ errors }">
-      <vue-datepicker :input-class="input_class" @selected="handleSelected" v-model="data"></vue-datepicker>
+      <vue-datepicker
+        :input-class="input_class"
+        @selected="handleSelected"
+        v-model="data"
+        :placeholder="placeholder"
+      ></vue-datepicker>
       <template v-if="errors">
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </template>
@@ -34,7 +39,8 @@ export default {
 
     rules: {
       type: String
-    }
+    },
+    placeholder: String
   },
 
   methods: {
