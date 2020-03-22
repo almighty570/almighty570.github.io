@@ -10,20 +10,11 @@
         <CardWidget id="test-card-widget" class="card-success" card_widget_type="collapse">
           <div slot="title">Order Details</div>
           <div slot="body">
-            <div class="row">
-              <div class="col-md-6">
-                <TableLeft
-                  :values="[{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
-                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'}]"
-                />
-              </div>
-              <div class="col-md-6">
-                <TableLeft
-                  :values="[{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
-                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'}]"
-                />
-              </div>
-            </div>
+            <TwoColumnTableLeftLayout
+              :values="[{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
+                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'},{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
+                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'},{'Customer':'Daily'}]"
+            />
           </div>
         </CardWidget>
         <CardWidget id="order-items-card" class="card-info" card_widget_type="collapse">
@@ -53,13 +44,15 @@
 import CardWidget from "@/components/core/CardWidget.vue";
 import Table from "@/components/core/Table.vue";
 import TableLeft from "@/components/core/TableLeft.vue";
+import TwoColumnTableLeftLayout from "@/components/derived/TwoColumnTableLeftLayout.vue";
 
 export default {
   name: "Dashbaord",
   components: {
     CardWidget,
     Table,
-    TableLeft
+    TableLeft,
+    TwoColumnTableLeftLayout
   }
 };
 </script>
