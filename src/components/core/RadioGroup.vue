@@ -1,18 +1,23 @@
 <template>
   <div class="form-group">
     <div class="radio-wrapper">
-      <div v-for="(option,i) in options" :key="i" class="radio-item">
-        <input
-          type="radio"
-          ref="input"
-          :id="option.value"
-          :value="option.value"
-          :name="name"
-          v-model="radioValue"
-          @change="updateValue()"
-        />
-        <label :for="option.value">{{option.label}}</label>
-      </div>
+      <validation-provider :rules="rules" v-slot="{ errors }">
+        <div v-for="(option,i) in options" :key="i" class="radio-item">
+          <input
+            type="radio"
+            ref="input"
+            :id="option.value"
+            :value="option.value"
+            :name="name"
+            v-model="radioValue"
+            @change="updateValue()"
+          />
+          <label :for="option.value">{{option.label}}</label>
+        </div>
+        <template v-if="errors">
+          <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+        </template>
+      </validation-provider>
     </div>
   </div>
 </template>
@@ -29,7 +34,9 @@ export default {
     name: {
       type: String,
       required: true
-    }
+    },
+
+    rules: String
   },
 
   data: function() {
