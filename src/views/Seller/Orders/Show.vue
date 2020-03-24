@@ -12,29 +12,19 @@
       <div class="container-fluid">
         <CardWidget id="order-details-card" class="card" card_widget_type="collapse">
           <div slot="body">
-            <TwoColumnTableLeftLayout
-              :values="[{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
-                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'},{'Order Code': '2030-061-00006'},{'Customer Name':'Jacob'},{'Address':'123 Main Street, New York, NY 10030 is an example of an address.'}
-                  ,{'Address': 'Thailand'},{'District':'Some District'},{'Province':'Soe Province'},{'Customer':'Daily'}]"
-            />
+            <TwoColumnTableLeftLayout :values="orderDetails" />
           </div>
         </CardWidget>
         <CardWidget id="order-items-card" class="card-info" card_widget_type="collapse">
           <div slot="title">Order item(s)</div>
           <div slot="body">
-            <Table
-              id="order-items-table"
-              :values="[{'No':'1','ItemNumber':'008-asd','SakochanCode':'SO-se324','ItemName':'stf asd ','Quantity':'1'},{'No':'2','ItemNumber':'007-and','SakochanCode':'SO-de324','ItemName':'stf asd asdf','Quantity':'2'}]"
-            ></Table>
+            <Table id="order-items-table" custom_class="table-sm" :values="orderItemsData"></Table>
           </div>
         </CardWidget>
         <CardWidget id="order-history-card" class="card-warning" card_widget_type="collapse">
           <div slot="title">Order history</div>
           <div slot="body">
-            <Table
-              id="order-history-table"
-              :values="[{'No':'1','ItemNumber':'008-asd','SakochanCode':'SO-se324','ItemName':'stf asd ','Quantity':'1'},{'No':'2','ItemNumber':'007-and','SakochanCode':'SO-de324','ItemName':'stf asd asdf','Quantity':'2'}]"
-            ></Table>
+            <Table id="order-history-table" custom_class="table-sm" :values="orderHistoryData"></Table>
           </div>
         </CardWidget>
       </div>
@@ -55,6 +45,72 @@ export default {
     Table,
     TableLeft,
     TwoColumnTableLeftLayout
+  },
+  data() {
+    return {
+      orderDetails: [
+        { "Order Code": "2030-061-00006" },
+        { "Customer Name": "Jacob" },
+        { Address: "Thailand" },
+        { District: "Some District" },
+        { Province: "Soe Province" },
+        { "Postal Code": 10220 },
+        { Mobile: 6682422138 },
+        { Phone: null },
+        { "Customer Email": null },
+        { Country: "Thailand" },
+        { "Inter Shipping Method": null },
+        { "Inter Product Price": "0.00" },
+        { "External Id": null },
+        { "Order#": "SPE2002URD" },
+        { Representative: null },
+        { "Special Offer": null },
+        { Comment: null },
+        { Deliver: "EMS" },
+        { "COD Amount": 0.0 },
+        { "Change(THB)": 0 },
+        { "Package Size": null },
+        { Weight: null },
+        { "Tracking No": null },
+        { "Wrap Packaging": "No" },
+        { "INS Qty": 0 },
+        { "Created by User": "System" },
+        { "Created by User": "System" },
+        { "Order Status": 7 }
+      ],
+
+      orderItemsData: [
+        {
+          No: "1",
+          ItemNumber: "008-asd",
+          "Proship Code": "SO-se324",
+          ItemName: "stf asd ",
+          Quantity: "1"
+        },
+        {
+          No: "2",
+          ItemNumber: "007-and",
+          "Proship Code": "SO-de324",
+          ItemName: "stf asd asdf",
+          Quantity: "2"
+        }
+      ],
+
+      orderHistoryData: [
+        {
+          Time: "16/03/2563 21:00",
+          Status: "Order Created",
+          Remark: "2003-081-00034",
+          Agent: "System"
+        },
+        {
+          Time: "16/03/2563 08:01",
+          Status: "Order Processed",
+          Remark: "",
+          Agent: "Supervisor"
+        }
+      ]
+    };
   },
   methods: {
     cancel() {

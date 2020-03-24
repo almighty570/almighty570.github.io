@@ -11,7 +11,7 @@
             v-model="checkedValues"
             @change="updateValue()"
           />
-          <label class="checkbox" :for="option.value">{{option.name}}</label>
+          <label class="checkbox" :for="id + '-' + i">{{option.name}}</label>
         </div>
         <template v-if="errors">
           <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>

@@ -34,7 +34,7 @@
                     <TextBox
                       type="text"
                       id="item-code"
-                      label="Item Code"
+                      label="Item Code(SKU)"
                       v-model="productCreateForm.itemCode"
                       rules="required"
                     />
@@ -51,7 +51,7 @@
                       label="Description"
                       v-model="productCreateForm.description"
                       rules="required"
-                      rows="4"
+                      rows="5"
                     />
 
                     <CheckBoxGroup
@@ -61,8 +61,8 @@
                     />
 
                     <div v-if="productHasVariations">
-                      <KeyValControls
-                        :config="variationKeyValConfig"
+                      <RowControls
+                        :config="variationConfig"
                         v-model="productCreateForm.variations"
                       />
                     </div>
@@ -74,6 +74,19 @@
                       v-model.number="productCreateForm.salePrice"
                       rules="required"
                     />
+
+                    <CheckBoxGroup
+                      id="has-bundles"
+                      :options="[{value:true, name:'This product has bundle pricing'}]"
+                      v-model="productHasBundles"
+                    />
+
+                    <div v-if="productHasBundles">
+                      <RowControls
+                        :config="bundlePriceConfig"
+                        v-model="productCreateForm.bundlePrices"
+                      />
+                    </div>
 
                     <NumberField
                       id="weight-approx"
@@ -97,6 +110,14 @@
                           placeholder="Custom box size"
                           rules="required"
                           v-model="productCreateForm.customBoxSize"
+                        />
+
+                        <NumberField
+                          id="quantity"
+                          label="Quantity"
+                          placeholder="Product quantity"
+                          rules="required"
+                          v-model="productCreateForm.quantity"
                         />
                       </div>
                       <div class="col">
@@ -130,7 +151,7 @@ import NumberField from "@/components/core/NumberField";
 import ImageUpload from "@/components/core/ImageUpload";
 import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
-import KeyValControls from "@/components/core/KeyValControls";
+import RowControls from "@/components/core/RowControls";
 
 export default {
   name: "Seller-Product-Create",
@@ -141,7 +162,7 @@ export default {
     ImageUpload,
     Select,
     CheckBoxGroup,
-    KeyValControls
+    RowControls
   },
   data() {
     return {
@@ -173,7 +194,9 @@ export default {
         image: null,
         boxSize: null,
         customBoxSize: null,
-        variations: null
+        variations: null,
+        bundlePrices: null,
+        quantity: null
       },
 
       boxSizeOptions: [
@@ -182,20 +205,65 @@ export default {
         { name: "Custom", value: 0 }
       ],
       productHasVariations: false,
-      variationKeyValConfig: {
-        numInstances: 1,
-        key: {
-          type: "text",
-          rules: "required",
-          id: "variation-name",
-          label: "Name",
-          placeholder: "Name"
+      productHasBundles: false,
+      variationConfig: {
+        items: {
+          name: {
+            type: "text",
+            rules: "required",
+            id: "variation-name",
+            label: "Name",
+            placeholder: "Name"
+          },
+          description: {
+            type: "textarea",
+            rules: "required",
+            id: "variation-description",
+            label: "Description",
+            placeholder: "Description"
+          },
+          cost: {
+            type: "number",
+            id: "variation-cost",
+            label: "Cost",
+            placeholder: "Cost"
+          },
+          salePrice: {
+            type: "number",
+            id: "variation-sale-price",
+            label: "Sale price",
+            placeholder: "Sale price"
+          },
+          quantity: {
+            type: "number",
+            id: "variation-quantity",
+            label: "Quantity",
+            placeholder: "Quantity"
+          }
         },
-        val: {
-          type: "text",
-          id: "variation-value",
-          label: "Value",
-          placeholder: "Value"
+        hasControls: true
+      },
+
+      bundlePriceConfig: {
+        items: {
+          amount: {
+            type: "select",
+            rules: "required",
+            id: "bundle-amount",
+            placeholder: "Amount",
+            options: [
+              { name: "One", value: 1 },
+              { name: "Two", value: 2 },
+              { name: "Three", value: 3 }
+            ]
+          },
+
+          price: {
+            type: "number",
+            id: "bundle-price",
+            rules: "required",
+            placeholder: "Price"
+          }
         },
         hasControls: true
       }

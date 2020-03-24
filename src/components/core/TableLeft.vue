@@ -20,7 +20,7 @@ export default {
   },
   methods: {
    getKey: (pair) => Object.keys(pair)[0],
-   getValue: (pair) => Object.values(pair)[0]
+   getValue: (pair) => Object.values(pair)[0] || "Not Set"
   }
 };
 </script>

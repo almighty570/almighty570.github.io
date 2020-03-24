@@ -13,6 +13,7 @@ import SellerProductDetail from '../views/Seller/Products/Show.vue'
 import SellerOrderList from "../views/Seller/Orders/List.vue";
 import SellerOrderCreate from '../views/Seller/Orders/Create.vue'
 import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
+import SellerOrderEdit from "../views/Seller/Orders/Edit.vue";
 
 Vue.use(VueRouter)
 
@@ -74,13 +75,6 @@ const routes = [
     component: SellerProductDetail
   },
 
-  {
-    path: '/seller/orders/:id',
-    name: 'Seller-Orders-Detail',
-    meta: { layout: 'seller' },
-    component: SellerOrderDetail
-  },
-
   // orders
   {
     path: '/seller/orders',
@@ -94,6 +88,20 @@ const routes = [
     name: 'Seller-Order-Create',
     meta: { layout: 'seller' },
     component: SellerOrderCreate
+  },
+
+  {
+    path: '/seller/orders/:id',
+    name: 'Seller-Order-Detail',
+    meta: { layout: 'seller' },
+    component: SellerOrderDetail
+  },
+
+  {
+    path: '/seller/orders/:id/edit',
+    name: 'Seller-Order-Edit',
+    meta: { layout: 'seller' },
+    component: SellerOrderEdit
   },
 
   {

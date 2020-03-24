@@ -22,65 +22,47 @@
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="toolbar d-flex">
-              <router-link :to="{name: 'Seller-Order-Create'}" class="btn btn-primary mr-2">Add New</router-link>
-              <button
-                class="btn btn-primary mr-2"
-                data-toggle="modal"
-                data-target="#import-products-modal"
-              >Import</button>
-              <button class="btn btn-primary mr-2" @click="exportProducts()">Export</button>
-            </div>
-
-            <hr />
-            <div class="d-flex mb-2">
-              <button class="btn btn-sm btn-outline-info mr-2">All</button>
-              <button class="btn btn-sm btn-outline-info mr-2">New</button>
-              <button class="btn btn-sm btn-outline-info mr-2">Pending</button>
-              <button class="btn btn-sm btn-outline-info mr-2">Shipped</button>
-              <button class="btn btn-sm btn-outline-info mr-2">Delivered</button>
-              <button class="btn btn-sm btn-outline-info mr-2">Cancelled</button>
-              <button class="btn btn-sm btn-success mr-2">Date Select</button>
-            </div>
-            <DataTable
+        <Card>
+          <div slot="body">
+            <ListTable
               id="orders-list"
               :columns="orderColumns"
               :rows="orderData"
-              responsive
-              custom_class="table-striped table-sm"
-            />
+              create_path_name="Seller-Order-Create"
+              edit_path_name="Seller-Order-Edit"
+              detail_path_name="Seller-Order-Detail"
+              color_scheme="success"
+              sample_file_link="#"
+            >
+              <div slot="top">
+                <div class="order-status-list d-flex mt-4">
+                  <div
+                    class="order-status-list-item"
+                    :class="{'--active': status === activeOrderStatus}"
+                    v-for="(status, index) in orderStatusData"
+                    :key="index"
+                    @click="setActiveStatus(status)"
+                  >
+                    {{status.label}}
+                    <span>{{status.number}}</span>
+                  </div>
+                </div>
+              </div>
+            </ListTable>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
-
-    <Modal id="import-products-modal">
-      <template slot="header">
-        <h5 class="modal-title">
-          <i class="fal fa-file-import mr-2"></i>Import Products
-        </h5>
-      </template>
-      <template slot="body">
-        <p class="lead text-center">Drop the file here to upload it to the system</p>
-        <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
-      </template>
-    </Modal>
   </div>
 </template>
 
 <script>
-import DataTable from "@/components/core/DataTable";
-import Modal from "@/components/core/Modal";
-import Button from "@/components/core/Button";
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
-import Swal from "sweetalert2";
+import ListTable from "@/components/derived/ListTable";
+import Card from "@/components/core/Card";
 
 export default {
   name: "Orders-List",
-  components: { DataTable, Modal, vueDropzone: vue2Dropzone },
+  components: { ListTable, Card },
   data() {
     return {
       breadcrumbLinks: [
@@ -96,135 +78,75 @@ export default {
         }
       ],
 
-      productsLoading: false,
+      orderStatusData: [
+        { label: "All", number: 120 },
+        { label: "Pending", number: 18 },
+        { label: "Shipped", number: 32 },
+        { label: "Delivered", number: 35 },
+        { label: "Cancelled", number: 35 }
+      ],
+      activeOrderStatus: null,
 
       orderColumns: [
-        { title: "Order code", sortable: false },
-        { title: "Order No" },
-        { title: "Representative" },
-        { title: "Customer Name" },
-        { title: "Shipping" },
-        { title: "Qty" },
-        { title: "Order Status" },
-        { title: "Tracking No" },
-        { title: "Created by User" },
-        { title: "COD" },
-        { title: "Updated" },
+        { name: "order_code", title: "Order code", sortField: "order_code" },
+        { name: "order_no", title: "Order No", sortField: "order-no" },
         {
-          title: "",
-          sortable: false,
-          render: (data, type, row) => {
-            return `<a href="#/seller/orders/${data}" class="btn btn-info btn-sm"> View </a>`;
-          }
-        }
+          name: "representative",
+          title: "Representative",
+          sortField: "representative"
+        },
+        {
+          name: "customer_name",
+          title: "Customer Name",
+          sortField: "customer_name"
+        },
+        { name: "shipping", title: "Shipping", sortField: "shipping" },
+        { name: "qty", title: "Qty", sortField: "qty" },
+        {
+          name: "order_status",
+          title: "Order Status",
+          sortField: "order_status"
+        },
+        { name: "tracking_no", title: "Tracking No", sortField: "tracking_no" },
+        {
+          name: "created_by",
+          title: "Created by User",
+          sortField: "created_by"
+        },
+        { name: "cod", title: "COD", sortField: "cod" },
+        { name: "updated", title: "Updated", sortField: "updated" },
+        "actions"
       ],
       orderData: [
-        [
-          "O-23234",
-          "1232234",
-          "",
-          "Customer 1",
-          "SPP",
-          1,
-          "Inprocess",
-          "EBS234325463",
-          "System",
-          100.23,
-          "2020/02/12",
-          1
-        ],
-        [
-          "O-234534",
-          "90004",
-          "",
-          "Customer 2",
-          "EMO",
-          1,
-          "Pending",
-          "EBS234562423",
-          "System",
-          100.23,
-          "2020/34/12",
-          2
-        ],
-        [
-          "O-0294334",
-          "12345354",
-          "",
-          "Customer 3",
-          "FED",
-          1,
-          "Delivered",
-          "EBS2344523",
-          "System",
-          100.23,
-          "2020/03/12",
-          3
-        ],
-        [
-          "O-78234",
-          "1269154",
-          "",
-          "Customer 4",
-          "SPP",
-          1,
-          "Inprocess",
-          "EBS235623",
-          "System",
-          100.23,
-          "2020/06/23",
-          4
-        ],
-        [
-          "O-67867234",
-          "12334534",
-          "",
-          "Customer 5",
-          "SPP",
-          1,
-          "Inprocess",
-          "EBS234893",
-          "System",
-          100.23,
-          "2020/02/30",
-          5
-        ],
-        [
-          "O-232456",
-          "12345154",
-          "",
-          "Customer 6",
-          "SPP",
-          1,
-          "Inprocess",
-          "EBS27832423",
-          "System",
-          100.23,
-          "2020/02/12",
-          6
-        ],
-        [
-          "O-23234",
-          "1232154",
-          "",
-          "Customer 7",
-          "SPP",
-          1,
-          "Pending",
-          "EBS23432423",
-          "System",
-          100.23,
-          "2020/02/12",
-          7
-        ]
-      ],
-
-      importDropzoneOptions: {
-        url: "https://httpbin.org/post",
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
-      }
+        {
+          id: 1,
+          order_code: "O-1234",
+          order_no: "8024",
+          representative: "",
+          customer_name: "Customer 1",
+          shipping: "SPP",
+          qty: 1,
+          order_status: "Inprocess",
+          tracking_no: "EBS234325463",
+          created_by: "System",
+          cod: 100.23,
+          updated: "2020/02/12"
+        },
+        {
+          id: 2,
+          order_code: "O-23234",
+          order_no: "1232234",
+          representative: "",
+          customer_name: "Customer 1",
+          shipping: "SPP",
+          qty: 1,
+          order_status: "Inprocess",
+          tracking_no: "EBS234325463",
+          created_by: "System",
+          cod: 100.23,
+          updated: "2020/02/12"
+        }
+      ]
     };
   },
 
@@ -234,11 +156,12 @@ export default {
 
   created() {
     this.fetchProducts();
+    this.activeOrderStatus = this.orderStatusData[0];
   },
 
   methods: {
-    hello() {
-      alert("hello");
+    setActiveStatus(status) {
+      this.activeOrderStatus = status;
     },
 
     fetchProducts() {

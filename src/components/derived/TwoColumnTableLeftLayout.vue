@@ -2,11 +2,8 @@
   <div :id="id" :class="custom_class">
     <div class="row">
       <div class="col-md-6" v-for="(array,i) in divideArray(2,values)" :key="i">
-        <TableLeft
-          :values="array"
-        />
+        <TableLeft :values="array" custom_class="table-sm"/>
       </div>
-      
     </div>
   </div>
 </template>
@@ -30,16 +27,13 @@ export default {
       let chunks = [],
         i = 0,
         length = array.length;
-
       while (i < length) {
         chunks.push(array.slice(i, (i += itemsPerArray)));
       }
-
       return chunks;
     }
   }
 };
-</script>
 </script>
 
 <style>

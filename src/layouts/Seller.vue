@@ -15,7 +15,7 @@
         <li class="nav-item">
           <button
             type="button"
-            class="nav-link btn btn-default"
+            class="nav-link btn btn-default text-success"
             data-toggle="modal"
             data-target="#addBalanceModal"
           >
@@ -80,7 +80,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper pb-1">
       <slot></slot>
     </div>
     <!-- /.content-wrapper -->

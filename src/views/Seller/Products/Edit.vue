@@ -34,7 +34,7 @@
                     <TextBox
                       type="text"
                       id="item-code"
-                      label="Item Code"
+                      label="Item Code(SKU)"
                       v-model="productEditForm.itemCode"
                       rules="required"
                     />
@@ -75,7 +75,7 @@
                       v-model="productHasVariations"
                     />
                     <div v-if="productHasVariations">
-                      <KeyValControls
+                      <RowControls
                         :config="variationKeyValConfig"
                         :value="productEditForm.variations"
                       />
@@ -104,7 +104,7 @@
                       </div>
                     </div>
 
-                    <KeyValControls
+                    <RowControls
                       :config="dealPriceConfig"
                       :value="productEditForm.dealPrices"
                       title="Enter Deal Price"
@@ -136,7 +136,7 @@ import NumberField from "@/components/core/NumberField";
 import ImageUpload from "@/components/core/ImageUpload";
 import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
-import KeyValControls from "@/components/core/KeyValControls";
+import RowControls from "@/components/core/RowControls";
 
 export default {
   name: "Seller-Product-Edit",
@@ -147,7 +147,7 @@ export default {
     ImageUpload,
     Select,
     CheckBoxGroup,
-    KeyValControls
+    RowControls
   },
   data() {
     return {

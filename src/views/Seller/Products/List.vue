@@ -22,59 +22,32 @@
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card">
-          <div class="card-body">
-            <div class="toolbar d-flex">
-              <router-link
-                :to="{name: 'Seller-Product-Create'}"
-                class="btn btn-primary mr-2"
-              >Add New</router-link>
-              <button
-                class="btn btn-primary mr-2"
-                data-toggle="modal"
-                data-target="#import-products-modal"
-              >Import</button>
-              <button class="btn btn-primary mr-2" @click="exportProducts()">Export</button>
-            </div>
-
-            <hr />
-            <DataTable
+        <Card>
+          <div slot="body">
+            <ListTable
               id="products-list"
               :columns="productColumns"
               :rows="productData"
-              responsive
-              custom_class="table-striped table-sm"
+              create_path_name="Seller-Product-Create"
+              edit_path_name="Seller-Product-Edit"
+              detail_path_name="Seller-Product-Detail"
+              color_scheme="primary"
+              sample_file_link="#"
             />
           </div>
-        </div>
+        </Card>
       </div>
     </section>
-
-    <Modal id="import-products-modal">
-      <template slot="header">
-        <h5 class="modal-title">
-          <i class="fal fa-file-import mr-2"></i>Import Products
-        </h5>
-      </template>
-      <template slot="body">
-        <p class="lead text-center">Drop the file here to upload it to the system</p>
-        <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
-      </template>
-    </Modal>
   </div>
 </template>
 
 <script>
-import DataTable from "@/components/core/DataTable";
-import Modal from "@/components/core/Modal";
-import Button from "@/components/core/Button";
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
-import Swal from "sweetalert2";
+import ListTable from "@/components/derived/ListTable";
+import Card from "@/components/core/Card";
 
 export default {
   name: "Products-List",
-  components: { DataTable, Modal, vueDropzone: vue2Dropzone },
+  components: { ListTable, Card },
   data() {
     return {
       breadcrumbLinks: [
@@ -89,17 +62,9 @@ export default {
           pathName: "Seller-Products"
         }
       ],
-
       productsLoading: false,
       productColumns: null,
-      productData: null,
-
-      importDropzoneOptions: {
-        url: "https://httpbin.org/post",
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
-      }
+      productData: null
     };
   },
 
@@ -116,105 +81,115 @@ export default {
       // make API Call here...
       this.productColumns = [
         {
-          title: "Item Code"
+          name: "item_code",
+          title: "Item Code",
+          sortField: "item_code"
         },
+
         {
-          title: "Description"
+          name: "product_code",
+          title: "Product Code",
+          sortField: "product_code"
         },
+
         {
-          title: "Available"
+          name: "description",
+          title: "Description",
+          sortField: "description"
         },
-        { title: "Order" },
-        { title: "Stock" },
+
         {
-          title: "View/Edit",
-          sortable: false,
-          render: (data, type, row) => {
-            return `
-                <a href="#/seller/products/${data}" class="btn btn-info btn-sm"> View </a>
-                <a href="#/seller/products/${data}/edit" class="btn btn-info btn-sm"> Edit </a>
-            `;
+          name: "available",
+          title: "Available",
+          sortField: "available",
+          formatter(value) {
+            let status = {
+              Yes: "success",
+              No: "warning"
+            }[value];
+            return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
           }
+        },
+
+        {
+          name: "order",
+          title: "Order",
+          sortField: "order"
+        },
+
+        {
+          name: "stock",
+          title: "Stock",
+          sortField: "stock"
+        },
+        "actions"
+      ];
+
+      this.productData = [
+        {
+          id: 1,
+          item_code: "I-45424",
+          product_code: "P-45424",
+          description: "Short description 1...",
+          available: "No",
+          order: "O-2342",
+          stock: "some stock 1"
+        },
+
+        {
+          id: 2,
+          item_code: "I-123534",
+          product_code: "P-0234",
+          description: "Short description 2...",
+          available: "Yes",
+          order: "O-98934",
+          stock: "some stock 2"
+        },
+
+        {
+          id: 3,
+          item_code: "I-123534",
+          product_code: "P-0234",
+          description: "Short description 2...",
+          available: "Yes",
+          order: "O-98934",
+          stock: "some stock 2"
+        },
+
+        {
+          id: 4,
+          item_code: "I-123534",
+          product_code: "P-0234",
+          description: "Short description 2...",
+          available: "Yes",
+          order: "O-98934",
+          stock: "some stock 2"
+        },
+
+        {
+          id: 5,
+          item_code: "I-123534",
+          product_code: "P-0234",
+          description: "Short description 2...",
+          available: "Yes",
+          order: "O-98934",
+          stock: "some stock 2"
+        },
+
+        {
+          id: 6,
+          item_code: "I-123534",
+          product_code: "P-0234",
+          description: "Short description 2...",
+          available: "Yes",
+          order: "O-98934",
+          stock: "some stock 2"
         }
       ];
-      this.productData = [
-        [
-          "I-45424",
-          "Short description 1...",
-          "No",
-          "O-2342",
-          "some stock 1",
-          1
-        ],
-        [
-          "I-21425",
-          "Short description 2...",
-          "Yes",
-          "O-2442",
-          "some stock 2",
-          2
-        ],
-        [
-          "I-20426",
-          "Short description 3...",
-          "No",
-          "O-5466",
-          "some stock 3",
-          3
-        ],
-        [
-          "I-21427",
-          "Short description 4...",
-          "Yes",
-          "O-9866",
-          "some stock 4",
-          4
-        ],
-        [
-          "I-28428",
-          "Short description 5...",
-          "Yes",
-          "O-4567",
-          "some stock 5",
-          5
-        ],
-        [
-          "I-23429",
-          "Short description 6...",
-          "No",
-          "O-0934",
-          "some stock 6",
-          6
-        ],
-        [
-          "I-26430",
-          "Short description 7...",
-          "No",
-          "O-1278",
-          "some stock 7",
-          7
-        ],
-        [
-          "I-24431",
-          "Short description 8...",
-          "Yes",
-          "O-0934",
-          "some stock 8",
-          8
-        ]
-      ];
-    },
-
-    exportProducts() {
-      Swal.fire(
-        "Export file",
-        "File will download in a while",
-        "info"
-      ).then(() => {});
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 </style>

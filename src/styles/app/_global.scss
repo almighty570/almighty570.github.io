@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
+
+// body {
+//   font-family: "Roboto", sans-serif;
+//   font-size: 14px;
+// }
+
+// p,
+// label,
+// span {
+//   font-family: "Roboto", sans-serif;
+// }
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5 {
+//   font-family: "Roboto Condensed", sans-serif;
+// }
+
 //Label for Checkbox and Radio
 label.checkbox,
 label.radio {
@@ -19,4 +41,84 @@ label.radio {
 
 .btn-back:hover {
   color: black;
+}
+
+._datatable {
+  thead {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  tbody {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    td {
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+  }
+}
+
+a {
+  &.--no-styles {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+$warning: #ffc107;
+$success: #28a745;
+.status {
+  display: inline-block;
+  font-size: 14px;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.page-item {
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  cursor: pointer;
+
+  &.active {
+    color: #007bff !important;
+  }
+}
+
+.page-link {
+  cursor: pointer;
+}
+
+.order-status-list {
+  .order-status-list-item {
+    padding: 0.25rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+    transition: 0.5s all;
+
+    span {
+      margin-left: 0.5rem;
+      font-size: 12px;
+      padding: 0.12rem 0.5rem;
+      border-radius: 8px;
+      font-weight: 400;
+      background-color: lightgray;
+      transition: 0.5s all;
+    }
+
+    &.--active {
+      border-bottom-color: $success;
+
+      span {
+        background-color: $success;
+        color: white;
+      }
+    }
+  }
 }

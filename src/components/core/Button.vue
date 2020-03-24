@@ -1,7 +1,7 @@
 <template>
   <button
     class="btn"
-    :class="'btn-' + variant + ' btn-' + size"
+    :class="'btn-' + variant + ' btn-' + size + ' ' + custom_class"
     @click="$emit('click')"
     :disabled="loading"
   >
