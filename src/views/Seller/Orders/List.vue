@@ -35,7 +35,7 @@
               sample_file_link="#"
             >
               <div slot="top">
-                <div class="order-status-list d-flex mt-4">
+                <div class="order-status-list d-flex flex-wrap mt-4">
                   <div
                     class="order-status-list-item"
                     :class="{'--active': status === activeOrderStatus}"
@@ -46,6 +46,8 @@
                     {{status.label}}
                     <span>{{status.number}}</span>
                   </div>
+
+                  <DateRangePicker />
                 </div>
               </div>
             </ListTable>
@@ -58,11 +60,12 @@
 
 <script>
 import ListTable from "@/components/derived/ListTable";
+import DateRangePicker from "@/components/derived/DateRangePicker";
 import Card from "@/components/core/Card";
 
 export default {
   name: "Orders-List",
-  components: { ListTable, Card },
+  components: { ListTable, Card, DateRangePicker },
   data() {
     return {
       breadcrumbLinks: [
