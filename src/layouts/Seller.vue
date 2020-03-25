@@ -196,7 +196,8 @@ export default {
           pathName: [
             "Seller-Order-List",
             "Seller-Order-Detail",
-            "Seller-Order-Create"
+            "Seller-Order-Create",
+            "Seller-Order-Edit"
           ]
         },
 

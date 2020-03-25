@@ -219,6 +219,15 @@
                 <div v-else class="alert alert-warning" role="alert">No Products to show</div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <hr />
+                <div class="d-flex mt-4 justify-content-center">
+                  <button type="submit" class="btn btn-success mr-4" :disabled="invalid">Submit</button>
+                  <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
           </div>
         </Card>
       </div>
