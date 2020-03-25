@@ -68,7 +68,7 @@
                       rules="required"
                     />
                   </div>
-                  <div class="col-md-6 col-sm-12">
+                  <!-- <div class="col-md-6 col-sm-12">
                     <div class="row">
                       <div class="col">
                         <Select
@@ -91,22 +91,95 @@
                       </div>
                     </div>
 
-                    <RowControls
-                      :config="bundlePriceConfig"
-                      :value="productEditForm.dealPrices"
-                      title="Enter Deal Price"
+                    <Toggle
+                      id="has-bundles"
+                      :value="false"
+                      color="blue"
+                      v-model="productHasBundles"
+                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
                     />
+
+                    <div v-if="productHasBundles">
+                      <RowControls
+                        :config="bundlePriceConfig"
+                        :value="productEditForm.dealPrices"
+                        title="Enter Deal Price"
+                      />
+                    </div>
+                  </div>-->
+                  <div class="col-md-6 col-sm-12">
+                    <NumberField
+                      id="sale-price"
+                      label="Sale Price"
+                      v-model.number="productEditForm.salePrice"
+                      rules="required"
+                    />
+
+                    <Toggle
+                      id="has-bundles"
+                      :value="false"
+                      color="blue"
+                      v-model="productHasBundles"
+                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
+                    />
+
+                    <div v-if="productHasBundles">
+                      <RowControls
+                        :config="bundlePriceConfig"
+                        v-model="productEditForm.bundlePrices"
+                      />
+                    </div>
+
+                    <NumberField
+                      id="weight-approx"
+                      label="Weight Approx"
+                      v-model.number="productEditForm.weightApprox"
+                      rules="required"
+                    />
+
+                    <div class="row">
+                      <div class="col">
+                        <Select
+                          id="box-size"
+                          label="Box Size"
+                          :options="boxSizeOptions"
+                          v-model="productEditForm.boxSize"
+                        />
+
+                        <NumberField
+                          v-if="productEditForm.boxSize == 0"
+                          id="custom-box-size"
+                          placeholder="Custom box size"
+                          rules="required"
+                          v-model="productEditForm.customBoxSize"
+                        />
+
+                        <NumberField
+                          id="quantity"
+                          label="Quantity"
+                          placeholder="Product quantity"
+                          rules="required"
+                          v-model="productEditForm.quantity"
+                        />
+                      </div>
+                      <div class="col">
+                        <ImageUpload label="Image" custom_class="ml-4" />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Product Variations -->
                 <div class="row">
                   <div class="col-12">
-                    <CheckBoxGroup
+                    <Toggle
                       id="has-variations"
-                      :options="[{value:true, name:'This product has variations'}]"
+                      :value="false"
+                      color="blue"
                       v-model="productHasVariations"
+                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
                     />
+                    <div class="mb-2"></div>
 
                     <div v-if="productHasVariations">
                       <ProductVariation
@@ -145,6 +218,7 @@ import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
 import ProductVariation from "@/components/derived/ProductVariation";
+import Toggle from "@/components/core/Toggle";
 
 export default {
   name: "Seller-Product-Edit",
@@ -156,7 +230,8 @@ export default {
     Select,
     CheckBoxGroup,
     RowControls,
-    ProductVariation
+    ProductVariation,
+    Toggle
   },
   data() {
     return {
@@ -191,6 +266,7 @@ export default {
         { name: "Custom", value: 0 }
       ],
       productHasVariations: false,
+      productHasBundles: true,
 
       bundlePriceConfig: {
         items: {

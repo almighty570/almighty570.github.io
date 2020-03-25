@@ -62,10 +62,12 @@
                       rules="required"
                     />
 
-                    <CheckBoxGroup
+                    <Toggle
                       id="has-bundles"
-                      :options="[{value:true, name:'This product has bundle pricing'}]"
+                      :value="false"
+                      color="blue"
                       v-model="productHasBundles"
+                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
                     />
 
                     <div v-if="productHasBundles">
@@ -117,11 +119,14 @@
                 <!-- Product Variations -->
                 <div class="row">
                   <div class="col-12">
-                    <CheckBoxGroup
+                    <Toggle
                       id="has-variations"
-                      :options="[{value:true, name:'This product has variations'}]"
+                      :value="false"
+                      color="blue"
                       v-model="productHasVariations"
+                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
                     />
+                    <div class="mb-2"></div>
 
                     <div v-if="productHasVariations">
                       <ProductVariation color_scheme="primary" />
@@ -148,6 +153,7 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import Toggle from "@/components/core/Toggle";
 import TextArea from "@/components/core/TextArea";
 import NumberField from "@/components/core/NumberField";
 import ImageUpload from "@/components/core/ImageUpload";
@@ -166,7 +172,8 @@ export default {
     Select,
     CheckBoxGroup,
     RowControls,
-    ProductVariation
+    ProductVariation,
+    Toggle
   },
   data() {
     return {

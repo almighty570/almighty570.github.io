@@ -203,7 +203,7 @@ export default {
         {
           title: "Sales Agents",
           icon: "fal fa-users",
-          pathName: ["Seller-Sales-Agents-List"]
+          pathName: ["Seller-Sales-Agents"]
         },
 
         {

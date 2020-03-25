@@ -1,7 +1,7 @@
 <template>
   <div class="orders-page">
     <div class="content-header">
-      <div class="container">
+      <div class="container-fluid">
         <h1 class="m-0 text-dark">
           <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
           View Order

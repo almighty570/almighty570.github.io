@@ -27,53 +27,56 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <Card>
+            <CardWidget id="order-details-card" class="card card-success">
+              <div slot="title">Order Details</div>
               <div slot="body">
                 <TextBox
                   type="text"
                   id="agent"
                   label="Agent"
-                  v-model="orderCreateForm.agent"
+                  v-model="orderEditForm.agent"
                   rules="required"
                 />
                 <TextBox
                   type="text"
                   id="order"
                   label="Order #"
-                  v-model="orderCreateForm.order"
+                  v-model="orderEditForm.order"
                   rules="required"
                 />
                 <Select
                   id="shipper"
                   label="Shipper"
                   :options="shipperOptions"
-                  v-model="orderCreateForm.shipper"
+                  v-model="orderEditForm.shipper"
                 />
                 <TextBox
                   type="text"
                   id="cod"
                   label="COD"
-                  v-model="orderCreateForm.cod"
+                  v-model="orderEditForm.cod"
                   rules="required"
                 />
                 <TextArea
                   id="remark"
                   label="Remark"
-                  v-model="orderCreateForm.remark"
+                  v-model="orderEditForm.remark"
                   rules="required"
-                  rows="4"
+                  rows="5"
                 />
               </div>
-            </Card>
+            </CardWidget>
+          </div>
 
-            <CardWidget id="customer-details-card" class="card card-info">
+          <div class="col-md-6 col-sm-12">
+            <CardWidget id="customer-details-card" class="card card-success">
               <div slot="title">Customer Details</div>
               <div slot="body">
                 <TextBoxAddon
                   type="text"
                   id="customer-mobile"
                   label="Mobile"
-                  v-model="orderCreateForm.customerDetails.mobile"
+                  v-model="orderEditForm.customerDetails.mobile"
                   rules="required"
                   addon_btn_text="Check"
                   @addonClicked="checkPhoneNo()"
@@ -85,7 +88,7 @@
                       type="text"
                       id="customer-phone"
                       label="Phone"
-                      v-model="orderCreateForm.customerDetails.phone"
+                      v-model="orderEditForm.customerDetails.phone"
                       rules="required"
                     />
                   </div>
@@ -94,7 +97,7 @@
                       type="text"
                       id="customer-email"
                       label="Email"
-                      v-model="orderCreateForm.customerDetails.email"
+                      v-model="orderEditForm.customerDetails.email"
                       rules="required"
                     />
                   </div>
@@ -104,7 +107,7 @@
                   type="text"
                   id="customer-name"
                   label="Name"
-                  v-model="orderCreateForm.customerDetails.name"
+                  v-model="orderEditForm.customerDetails.name"
                   rules="required"
                 />
 
@@ -113,7 +116,7 @@
                     <TextArea
                       id="customer-address"
                       label="Address"
-                      v-model="orderCreateForm.customerDetails.address"
+                      v-model="orderEditForm.customerDetails.address"
                       rules="required"
                       rows="5"
                     />
@@ -123,14 +126,14 @@
                       type="text"
                       id="customer-postal-code"
                       label="Postal Code"
-                      v-model="orderCreateForm.customerDetails.postalCode"
+                      v-model="orderEditForm.customerDetails.postalCode"
                       rules="required"
                     />
                     <Select
                       id="customer-province"
                       label="Province"
                       :options="provinceOptions"
-                      v-model="orderCreateForm.customerDetails.province"
+                      v-model="orderEditForm.customerDetails.province"
                     />
                   </div>
                 </div>
@@ -141,7 +144,7 @@
                       id="customer-district"
                       label="District"
                       :options="districtOptions"
-                      v-model="orderCreateForm.customerDetails.district"
+                      v-model="orderEditForm.customerDetails.district"
                     />
                   </div>
                   <div class="col-md-6 col-sm-12">
@@ -149,29 +152,75 @@
                       id="customer-sub-district"
                       label="Sub-District"
                       :options="subDistrictOptions"
-                      v-model="orderCreateForm.customerDetails.subDistrict"
+                      v-model="orderEditForm.customerDetails.subDistrict"
                     />
                   </div>
                 </div>
               </div>
             </CardWidget>
           </div>
+        </div>
 
-          <div class="col-md-6 col-sm-12">
-            <Card>
-              <div slot="body">
-                <p class="lead">List of Products</p>
+        <Card>
+          <div slot="body">
+            <div class="row">
+              <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
+                <p class="lead font-weight-normal">All Products</p>
                 <DataTable
                   id="show-products"
                   :columns="product.columns"
                   :rows="product.rows"
-                  responsive
-                  custom_class="table-sm"
-                />
+                  :per_page="5"
+                >
+                  <div slot="actions" slot-scope="props">
+                    <Button
+                      :variant="'outline-success'"
+                      size="sm"
+                      custom_class="mr-1"
+                      id="btn-action-detail"
+                      @click="addProduct(props.props.rowData)"
+                    >
+                      <i class="fal fa-plus"></i>
+                    </Button>
+                  </div>
+                </DataTable>
               </div>
-            </Card>
+
+              <div class="col-md-6 col-sm-12">
+                <p class="lead font-weight-normal">Selected Products</p>
+
+                <table class="table table-bordered" v-if="selectedProductsCount">
+                  <thead>
+                    <th>Product Code</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(count, product_code) in product.selectedProducts"
+                      :key="product_code"
+                    >
+                      <td>{{product_code}}</td>
+                      <td>{{count}}</td>
+                      <td>
+                        <Button
+                          :variant="'outline-success'"
+                          size="sm"
+                          :id="'btn-delete-product-' + product_code"
+                          @click="removeProduct(product_code)"
+                        >
+                          <i class="fal fa-trash-alt"></i>
+                        </Button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div v-else class="alert alert-warning" role="alert">No Products to show</div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   </div>
@@ -179,6 +228,7 @@
 
 <script>
 import Card from "@/components/core/Card";
+import Button from "@/components/core/Button";
 import TextBox from "@/components/core/TextBox";
 import TextBoxAddon from "@/components/core/TextBoxAddon";
 import TextArea from "@/components/core/TextArea";
@@ -191,6 +241,7 @@ import CardWidget from "@/components/core/CardWidget.vue";
 import RadioGroup from "@/components/core/RadioGroup";
 import FileUpload from "@/components/core/FileUpload";
 import DataTable from "@/components/core/DataTable";
+import Vue from "vue";
 
 export default {
   name: "Seller-Order-Edit",
@@ -207,7 +258,8 @@ export default {
     RadioGroup,
     FileUpload,
     DataTable,
-    TextBoxAddon
+    TextBoxAddon,
+    Button
   },
   data() {
     return {
@@ -220,7 +272,7 @@ export default {
         {
           title: "Orders",
           isActive: false,
-          pathName: "Seller-Orders-List"
+          pathName: "Seller-Order-List"
         },
         {
           title: this.$route.params.id,
@@ -234,22 +286,22 @@ export default {
         }
       ],
 
-      orderCreateForm: {
-        agent: null,
-        orderCode: null,
-        shipper: null,
-        cod: null,
-        remark: null,
+      orderEditForm: {
+        agent: "Agent-1 ",
+        orderCode: "O-234HJ8",
+        shipper: 1,
+        cod: "345435",
+        remark: "This is a very short remark",
         customerDetails: {
-          name: null,
-          address: null,
-          postalCode: null,
-          district: null,
-          subDistrict: null,
-          province: null,
-          mobile: null,
-          phone: null,
-          email: null
+          name: "name 1",
+          address: "Address 1",
+          postalCode: "0089",
+          district: 2,
+          subDistrict: 3,
+          province: 4,
+          mobile: "664534129867",
+          phone: "660034567830",
+          email: "customer@email.com"
         }
       },
 
@@ -288,31 +340,60 @@ export default {
       product: {
         columns: [
           {
-            title: "Sn",
-            render: (data, type, row, meta) => {
-              return meta.row;
-            }
+            name: "item_code",
+            title: "Item Code",
+            sortField: "item_code"
           },
+
           {
-            title: "Product Code"
+            name: "product_code",
+            title: "Product Code",
+            sortField: "product_code"
           },
-          {
-            title: "Add",
-            render: data => {
-              let f = this.cancel;
-              return `
-                <button class="btn btn-sm btn-outline-success></button>"
-              `;
-            }
-          }
+          "actions"
         ],
         rows: [
-          [1, "P-232b23", 1],
-          [2, "P-0234fgh", 2],
-          [3, "P-023423sdf", 3],
-          [4, "P-086dfdf", 4],
-          [5, "P-6575v", 5]
-        ]
+          {
+            id: 1,
+            item_code: "I-45424",
+            product_code: "P-JI796"
+          },
+
+          {
+            id: 2,
+            item_code: "I-08243",
+            product_code: "P-LOY479"
+          },
+
+          {
+            id: 3,
+            item_code: "I-0883427",
+            product_code: "P-HJK4657"
+          },
+
+          {
+            id: 4,
+            item_code: "I-HVH564",
+            product_code: "P-GFHG962"
+          },
+
+          {
+            id: 5,
+            item_code: "I-09354",
+            product_code: "P-LXW594"
+          },
+
+          {
+            id: 6,
+            item_code: "I-6762KI",
+            product_code: "P-BOS0385"
+          }
+        ],
+
+        selectedProducts: {
+          "P-BOS0385": 2,
+          "P-GFHG962": 7
+        }
       }
     };
   },
@@ -326,6 +407,34 @@ export default {
 
     checkPhoneNo() {
       alert("Checking phone number for existing customer informations");
+    },
+
+    addProduct(product) {
+      if (product.product_code in this.product.selectedProducts)
+        Vue.set(
+          this.product.selectedProducts,
+          product.product_code,
+          ++this.product.selectedProducts[product.product_code]
+        );
+      else Vue.set(this.product.selectedProducts, product.product_code, 1);
+    },
+
+    removeProduct(product_code) {
+      if (product_code in this.product.selectedProducts) {
+        Vue.set(
+          this.product.selectedProducts,
+          product_code,
+          --this.product.selectedProducts[product_code]
+        );
+        if (this.product.selectedProducts[product_code] === 0)
+          Vue.delete(this.product.selectedProducts, product_code);
+      }
+    }
+  },
+
+  computed: {
+    selectedProductsCount() {
+      return Math.max(...Object.values(this.product.selectedProducts)) > 0;
     }
   }
 };

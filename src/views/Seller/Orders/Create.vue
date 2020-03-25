@@ -429,8 +429,6 @@ export default {
       return Math.max(...Object.values(this.product.selectedProducts)) > 0;
     }
   }
-
-
 };
 </script>
 

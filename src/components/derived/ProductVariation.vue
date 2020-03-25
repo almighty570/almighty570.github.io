@@ -68,7 +68,8 @@
               @click="removeVariation(index)"
             >
               <i class="fal fa-times"></i>
-            </Button>Variation
+            </Button>
+            <br />Variation
             <br />
             {{index+1}}
           </div>

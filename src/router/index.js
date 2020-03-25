@@ -15,6 +15,10 @@ import SellerOrderCreate from '../views/Seller/Orders/Create.vue'
 import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
 import SellerOrderEdit from "../views/Seller/Orders/Edit.vue";
 
+import SellerSettings from "../views/Seller/Settings.vue";
+import SellerReports from "../views/Seller/Reports.vue";
+import SellerSalesAgents from "../views/Seller/SalesAgents.vue";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -102,6 +106,27 @@ const routes = [
     name: 'Seller-Order-Edit',
     meta: { layout: 'seller' },
     component: SellerOrderEdit
+  },
+
+  {
+    path: '/seller/reports',
+    name: 'Seller-Reports',
+    meta: { layout: 'seller' },
+    component: SellerReports
+  },
+
+  {
+    path: '/seller/settings',
+    name: 'Seller-Settings',
+    meta: { layout: 'seller' },
+    component: SellerSettings
+  },
+
+  {
+    path: '/seller/sales-agents',
+    name: 'Seller-Sales-Agents',
+    meta: { layout: 'seller' },
+    component: SellerSalesAgents
   },
 
   {
