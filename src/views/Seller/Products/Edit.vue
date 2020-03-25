@@ -193,23 +193,27 @@ export default {
       productHasVariations: false,
 
       bundlePriceConfig: {
-        amount: {
-          type: "select",
-          rules: "required",
-          id: "deal-amount",
-          placeholder: "Amount",
-          options: [
-            { name: "One", value: 1 },
-            { name: "Two", value: 2 },
-            { name: "Three", value: 3 }
-          ]
+        items: {
+          amount: {
+            type: "select",
+            rules: "required",
+            id: "bundle-amount",
+            placeholder: "Amount",
+            options: [
+              { name: "One", value: 1 },
+              { name: "Two", value: 2 },
+              { name: "Three", value: 3 }
+            ]
+          },
+
+          price: {
+            type: "number",
+            id: "bundle-price",
+            rules: "required",
+            placeholder: "Price"
+          }
         },
-        price: {
-          type: "number",
-          id: "deal-price",
-          rules: "required",
-          placeholder: "Price"
-        },
+        numInstances: 1,
         hasControls: true
       }
     };

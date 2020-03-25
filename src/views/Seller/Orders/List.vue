@@ -35,7 +35,9 @@
               sample_file_link="#"
             >
               <div slot="top">
-                <div class="order-status-list d-flex flex-wrap mt-4">
+                <div
+                  class="order-status-list d-flex flex-wrap justify-content-center justify-content-md-start mt-4"
+                >
                   <div
                     class="order-status-list-item"
                     :class="{'--active': status === activeOrderStatus}"
@@ -47,7 +49,11 @@
                     <span>{{status.number}}</span>
                   </div>
 
-                  <DateRangePicker />
+                  <DateRangePicker
+                    custom_class="ml-0 ml-md-auto mr-0 mr-md-4 align-self-start mb-2 mb-md-0"
+                    color_scheme="success"
+                    date_format="MMM Do, YYYY"
+                  />
                 </div>
               </div>
             </ListTable>
