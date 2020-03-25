@@ -10,7 +10,7 @@
               :type="value.type"
               :id="value.id + '-' + index"
               :placeholder="value.placeholder"
-              v-model="dataItems[index].key"
+              v-model="dataItems[index][key]"
               :rules="value.rules"
               @input="emitChanges()"
             />
@@ -19,7 +19,7 @@
             <NumberField
               :id="value.id + '-' + index"
               :placeholder="value.placeholder"
-              v-model.number="dataItems[index].key"
+              v-model.number="dataItems[index][key]"
               :rules="value.rules"
               @input="emitChanges()"
             />
@@ -27,19 +27,19 @@
           <template v-else-if="value.type === 'select'">
             <Select
               :id="value.id + '-' + index"
-              v-model="dataItems[index].key"
+              v-model="dataItems[index][key]"
               :rules="value.rules"
               :options="value.options"
-              :value="dataItems[index].key"
+              :value="value.options[0].value"
               @input="emitChanges()"
             />
           </template>
           <template v-else-if="value.type === 'textarea'">
             <TextArea
               :id="value.id + '-' + index"
-              v-model="dataItems[index].key"
+              v-model="dataItems[index][key]"
               :rules="value.rules"
-              :value="dataItems[index].key"
+              :value="dataItems[index][key]"
               @input="emitChanges()"
               rows="2"
             />

@@ -67,19 +67,6 @@
                       v-model.number="productEditForm.weightApprox"
                       rules="required"
                     />
-
-                    <CheckBoxGroup
-                      id="has-variations"
-                      :options="[{value:true, name:'This product has variations'}]"
-                      :value="productHasVariations"
-                      v-model="productHasVariations"
-                    />
-                    <div v-if="productHasVariations">
-                      <RowControls
-                        :config="variationKeyValConfig"
-                        :value="productEditForm.variations"
-                      />
-                    </div>
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <div class="row">
@@ -105,12 +92,32 @@
                     </div>
 
                     <RowControls
-                      :config="dealPriceConfig"
+                      :config="bundlePriceConfig"
                       :value="productEditForm.dealPrices"
                       title="Enter Deal Price"
                     />
                   </div>
                 </div>
+
+                <!-- Product Variations -->
+                <div class="row">
+                  <div class="col-12">
+                    <CheckBoxGroup
+                      id="has-variations"
+                      :options="[{value:true, name:'This product has variations'}]"
+                      v-model="productHasVariations"
+                    />
+
+                    <div v-if="productHasVariations">
+                      <ProductVariation
+                        color_scheme="primary"
+                        v-model="productEditForm.variations"
+                        :value="productEditForm.variations"
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col">
                     <hr />
@@ -137,6 +144,7 @@ import ImageUpload from "@/components/core/ImageUpload";
 import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
+import ProductVariation from "@/components/derived/ProductVariation";
 
 export default {
   name: "Seller-Product-Edit",
@@ -147,7 +155,8 @@ export default {
     ImageUpload,
     Select,
     CheckBoxGroup,
-    RowControls
+    RowControls,
+    ProductVariation
   },
   data() {
     return {
@@ -174,19 +183,7 @@ export default {
         }
       ],
 
-      productEditForm: {
-        itemCode: null,
-        description: null,
-        stock: null,
-        cost: null,
-        salePrice: null,
-        weightApprox: null,
-        image: null,
-        boxSize: null,
-        customBoxSize: null,
-        variations: null,
-        dealPrices: null
-      },
+      productEditForm: null,
 
       boxSizeOptions: [
         { name: "Large", value: 1 },
@@ -194,25 +191,9 @@ export default {
         { name: "Custom", value: 0 }
       ],
       productHasVariations: false,
-      variationKeyValConfig: {
-        key: {
-          type: "text",
-          rules: "required",
-          id: "variation-name",
-          label: "Name",
-          placeholder: "Name"
-        },
-        val: {
-          type: "text",
-          id: "variation-value",
-          label: "Value",
-          placeholder: "Value"
-        },
-        hasControls: true
-      },
 
-      dealPriceConfig: {
-        key: {
+      bundlePriceConfig: {
+        amount: {
           type: "select",
           rules: "required",
           id: "deal-amount",
@@ -223,7 +204,7 @@ export default {
             { name: "Three", value: 3 }
           ]
         },
-        val: {
+        price: {
           type: "number",
           id: "deal-price",
           rules: "required",
@@ -258,16 +239,38 @@ export default {
         customBoxSize: null,
         variations: [
           {
-            key: "key-1",
-            val: "val-1"
+            name: "Size",
+            options: [
+              {
+                name: "Large",
+                price: 1000,
+                stock: 23,
+                SKU: "GH75OP"
+              },
+              {
+                name: "Md",
+                price: 800,
+                stock: 12,
+                SKU: "GH75OP"
+              }
+            ]
           },
           {
-            key: "key-2",
-            val: "val-2"
-          },
-          {
-            key: "key-3",
-            val: "val-3"
+            name: "Color",
+            options: [
+              {
+                name: "Dark",
+                price: 890,
+                stock: 5,
+                SKU: "YR93O"
+              },
+              {
+                name: "Light",
+                price: 500,
+                stock: 53,
+                SKU: "YR93O"
+              }
+            ]
           }
         ],
         dealPrices: [

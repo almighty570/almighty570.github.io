@@ -181,7 +181,7 @@ export default {
 
   created() {
     if (this.value) this.variations = this.value;
-    this.addVariation();
+    else this.addVariation();
   },
 
   methods: {
@@ -236,10 +236,10 @@ export default {
       font-size: 24px;
     }
 
-    .variation-detail {
+    .variation-details {
       .variation-options-list {
         border: 1px dotted lightgrey;
-        padding: 1rem;
+        padding: 0.5rem;
       }
     }
   }

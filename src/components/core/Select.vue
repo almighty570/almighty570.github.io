@@ -39,6 +39,10 @@ export default {
     updateValue() {
       this.$emit("input", this.$refs.input.value);
     }
+  },
+
+  mounted(){
+    this.updateValue();
   }
 };
 </script>

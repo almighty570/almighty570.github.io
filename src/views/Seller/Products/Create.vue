@@ -210,43 +210,6 @@ export default {
       ],
       productHasVariations: false,
       productHasBundles: false,
-      variationConfig: {
-        items: {
-          name: {
-            type: "text",
-            rules: "required",
-            id: "variation-name",
-            label: "Name",
-            placeholder: "Name"
-          },
-          description: {
-            type: "textarea",
-            rules: "required",
-            id: "variation-description",
-            label: "Description",
-            placeholder: "Description"
-          },
-          cost: {
-            type: "number",
-            id: "variation-cost",
-            label: "Cost",
-            placeholder: "Cost"
-          },
-          salePrice: {
-            type: "number",
-            id: "variation-sale-price",
-            label: "Sale price",
-            placeholder: "Sale price"
-          },
-          quantity: {
-            type: "number",
-            id: "variation-quantity",
-            label: "Quantity",
-            placeholder: "Quantity"
-          }
-        },
-        hasControls: true
-      },
 
       bundlePriceConfig: {
         items: {
@@ -269,6 +232,7 @@ export default {
             placeholder: "Price"
           }
         },
+        numInstances: 1,
         hasControls: true
       }
     };
