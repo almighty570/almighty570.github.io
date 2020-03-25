@@ -26,9 +26,9 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <router-link :to="{name: 'Login'}" class="nav-link">
             <i class="fal fa-sign-out-alt"></i> Sign Out
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>

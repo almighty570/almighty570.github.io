@@ -24,7 +24,7 @@
         </form>
         <div class="forgot-password-msg">
           Don't have an account ?
-          <a href>Create one</a>
+          <router-link :to="{name: 'Register'}">Create one</router-link>
         </div>
       </div>
     </div>
@@ -63,5 +63,4 @@ export default {
 
 
 <style scoped>
-
 </style>

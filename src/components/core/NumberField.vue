@@ -12,6 +12,7 @@
         :placeholder="placeholder"
         :value="value"
         @input="updateValue()"
+        :autocomplete="autocomplete ? 'on' : 'off'"
       />
       <template v-if="errors">
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
@@ -43,6 +44,10 @@ export default {
 
     rules: {
       type: String
+    },
+
+    autocomplete: {
+      type: Boolean
     }
   },
 

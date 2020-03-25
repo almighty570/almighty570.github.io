@@ -27,7 +27,8 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <Card>
+            <CardWidget id="order-details-card" class="card card-success">
+              <div slot="title">Order Details</div>
               <div slot="body">
                 <TextBox
                   type="text"
@@ -61,11 +62,13 @@
                   label="Remark"
                   v-model="orderCreateForm.remark"
                   rules="required"
-                  rows="4"
+                  rows="5"
                 />
               </div>
-            </Card>
+            </CardWidget>
+          </div>
 
+          <div class="col-md-6 col-sm-12">
             <CardWidget id="customer-details-card" class="card card-success">
               <div slot="title">Customer Details</div>
               <div slot="body">
@@ -156,11 +159,13 @@
               </div>
             </CardWidget>
           </div>
+        </div>
 
-          <div class="col-md-6 col-sm-12">
-            <Card>
-              <div slot="body">
-                <p class="lead">Add Products to List</p>
+        <Card>
+          <div slot="body">
+            <div class="row">
+              <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
+                <p class="lead font-weight-normal">All Products</p>
                 <DataTable
                   id="show-products"
                   :columns="product.columns"
@@ -179,30 +184,43 @@
                     </Button>
                   </div>
                 </DataTable>
-                <hr />
-                <p class="lead">Added Products</p>
-                <ul class="list-group">
-                  <li
-                    class="list-group-item"
-                    v-for="(count, product_code) in product.selectedProducts"
-                    :key="product_code"
-                  >
-                    {{product_code + '(' + count + ')'}}
-                    <Button
-                      :variant="'outline-success'"
-                      size="sm"
-                      custom_class="float-right"
-                      :id="'btn-delete-product-' + product_code"
-                      @click="removeProduct(product_code)"
-                    >
-                      <i class="fal fa-trash-alt"></i>
-                    </Button>
-                  </li>
-                </ul>
               </div>
-            </Card>
+
+              <div class="col-md-6 col-sm-12">
+                <p class="lead font-weight-normal">Selected Products</p>
+
+                <table class="table table-bordered" v-if="selectedProductsCount">
+                  <thead>
+                    <th>Product Code</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(count, product_code) in product.selectedProducts"
+                      :key="product_code"
+                    >
+                      <td>{{product_code}}</td>
+                      <td>{{count}}</td>
+                      <td>
+                        <Button
+                          :variant="'outline-success'"
+                          size="sm"
+                          :id="'btn-delete-product-' + product_code"
+                          @click="removeProduct(product_code)"
+                        >
+                          <i class="fal fa-trash-alt"></i>
+                        </Button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div v-else class="alert alert-warning" role="alert">No Products to show</div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   </div>
@@ -333,37 +351,37 @@ export default {
           {
             id: 1,
             item_code: "I-45424",
-            product_code: "P-45424"
+            product_code: "P-JI796"
           },
 
           {
             id: 2,
-            item_code: "I-123534",
-            product_code: "P-0234"
+            item_code: "I-08243",
+            product_code: "P-LOY479"
           },
 
           {
             id: 3,
-            item_code: "I-123534",
-            product_code: "P-0234"
+            item_code: "I-0883427",
+            product_code: "P-HJK4657"
           },
 
           {
             id: 4,
-            item_code: "I-123534",
-            product_code: "P-0234"
+            item_code: "I-HVH564",
+            product_code: "P-GFHG962"
           },
 
           {
             id: 5,
-            item_code: "I-123534",
-            product_code: "P-0234"
+            item_code: "I-09354",
+            product_code: "P-LXW594"
           },
 
           {
             id: 6,
-            item_code: "I-123534",
-            product_code: "P-0234"
+            item_code: "I-6762KI",
+            product_code: "P-BOS0385"
           }
         ],
 
@@ -404,7 +422,15 @@ export default {
           Vue.delete(this.product.selectedProducts, product_code);
       }
     }
+  },
+
+  computed:{
+    selectedProductsCount(){
+      return Math.max(...Object.values(this.product.selectedProducts)) > 0;
+    }
   }
+
+
 };
 </script>
 
