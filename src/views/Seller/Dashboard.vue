@@ -12,7 +12,7 @@
           <!-- Products -->
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
-              <Card custom_class="card-primary" id="products-details-card">
+              <!-- <Card custom_class="card-primary" id="products-details-card">
                 <h2 slot="title">Products</h2>
                 <div slot="body" class="info-box-wrapper">
                   <div class="row">
@@ -36,7 +36,30 @@
                     </div>
                   </div>
                 </div>
-              </Card>
+              </Card>-->
+
+              <div class="my-card">
+                <h1 class="title">Orders</h1>
+                <div class="content">
+                  <div class="row">
+                    <div class="col">
+                      <h3 class="text-weight-bold">
+                        <i class="icon fal fa-dolly text-success"></i>
+                        150
+                      </h3>
+                      <p>New Orders</p>
+                    </div>
+
+                    <div class="col">
+                      <h3>
+                        <i class="icon fal fa-chart-line text-success"></i>
+                        53 %
+                      </h3>
+                      <p>Growth</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </router-link>
           </div>
 
@@ -212,6 +235,27 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
+.my-card {
+  box-shadow: rgba(36, 37, 38, 0.08) 4px 4px 15px 0px;
+  width: 100%;
+  border: 1px solid rgba(36, 37, 38, 0.08);
+  border-radius: 0.9rem;
+  background-color: #fff;
+  color: #3a3a3a;
+  font-family: "Roboto", sans-serif;
+  padding: 0.5rem 1rem;
+
+  .title {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1.5rem;
+    color: #373737;
+  }
+
+  .content {
+    margin-top: 3rem;
+  }
+}
+
 .icon {
   font-size: 30px !important;
 }

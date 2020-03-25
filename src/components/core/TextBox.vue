@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group">
+  <div class="form-group" :class="wrapper_class">
     <label v-if="label" :for="id">{{label}}</label>
 
     <validation-provider :rules="rules" v-slot="{ errors }">
@@ -47,6 +47,10 @@ export default {
     },
 
     rules: {
+      type: String
+    },
+
+    wrapper_class: {
       type: String
     }
   },

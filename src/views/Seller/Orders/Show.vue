@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="orders-page">
     <div class="content-header">
       <div class="container">
         <h1 class="m-0 text-dark">

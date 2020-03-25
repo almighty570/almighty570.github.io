@@ -11,16 +11,8 @@
         <form @submit="handleRegister">
           <TextBox type="text" id="name-textbox" placeholder="Name" v-model="name" />
           <NumberField id="phone-textbox" placeholder="Phone Number" v-model="number" />
-          <DatePicker id="dob-datepicker" placeholder="Date of Birth" v-model="dateOfBirth" />
 
           <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
-          <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password" />
-          <TextBox
-            type="text"
-            id="confirm-password-textbox"
-            placeholder="Confirm Password"
-            v-model="confirm_password"
-          />
 
           <div class="auth-box__cta-wrapper d-flex justify-content-end">
             <Button id="register-form-button" variant="info" size="md">Register</Button>

@@ -53,19 +53,6 @@
                       rules="required"
                       rows="5"
                     />
-
-                    <CheckBoxGroup
-                      id="has-variations"
-                      :options="[{value:true, name:'This product has variations'}]"
-                      v-model="productHasVariations"
-                    />
-
-                    <div v-if="productHasVariations">
-                      <RowControls
-                        :config="variationConfig"
-                        v-model="productCreateForm.variations"
-                      />
-                    </div>
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <NumberField
@@ -126,6 +113,21 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Product Variations -->
+                <div class="row">
+                  <div class="col-12">
+                    <CheckBoxGroup
+                      id="has-variations"
+                      :options="[{value:true, name:'This product has variations'}]"
+                      v-model="productHasVariations"
+                    />
+
+                    <div v-if="productHasVariations">
+                      <ProductVariation color_scheme="primary" />
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col">
                     <hr />
@@ -152,6 +154,7 @@ import ImageUpload from "@/components/core/ImageUpload";
 import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
+import ProductVariation from "@/components/derived/ProductVariation";
 
 export default {
   name: "Seller-Product-Create",
@@ -162,7 +165,8 @@ export default {
     ImageUpload,
     Select,
     CheckBoxGroup,
-    RowControls
+    RowControls,
+    ProductVariation
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="orders-page">
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -89,6 +89,9 @@ export default {
         { label: "Cancelled", number: 35 }
       ],
       activeOrderStatus: null,
+
+      fromDate: null,
+      toDate: null,
 
       orderColumns: [
         { name: "order_code", title: "Order code", sortField: "order_code" },

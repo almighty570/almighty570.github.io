@@ -15,8 +15,7 @@ export default {
   name: "Button",
   props: {
     id: {
-      type: String,
-      required: true
+      type: String
     },
 
     type: {

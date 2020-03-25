@@ -4,7 +4,7 @@
       <slot name="date-range-picker-intro"></slot>
     </div>
     <DatePicker
-      class="date-range-picker__date-picker"
+      class="date-range-picker__date-picker mr-2"
       :placeholder="from_placeholder"
       v-model="fromDate"
       @selected="emitFromDate"
@@ -48,7 +48,7 @@ export default {
 <style>
 .date-range-picker-wrapper {
   display: flex;
-  max-width: 100px;
+  max-width: 250px;
 }
 .date-range-picker__intro {
   padding-top: 10px;

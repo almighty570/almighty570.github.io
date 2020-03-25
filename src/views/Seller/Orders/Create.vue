@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="orders-page">
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -66,7 +66,7 @@
               </div>
             </Card>
 
-            <CardWidget id="customer-details-card" class="card card-info">
+            <CardWidget id="customer-details-card" class="card card-success">
               <div slot="title">Customer Details</div>
               <div slot="body">
                 <TextBoxAddon
@@ -390,7 +390,7 @@ export default {
           product.product_code,
           ++this.product.selectedProducts[product.product_code]
         );
-      else Vue.set(this.product.selectedProducts, product.product_code, 0);
+      else Vue.set(this.product.selectedProducts, product.product_code, 1);
     },
 
     removeProduct(product_code) {
