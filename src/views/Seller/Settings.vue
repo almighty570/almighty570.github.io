@@ -118,108 +118,99 @@ export default {
       showInventory: false,
       productColumns: [
         {
-          name: "item_code",
-          title: "Item Code",
-          sortField: "item_code"
+          name: "sn",
+          title: "#",
+          sortField: "sn"
         },
 
         {
-          name: "product_code",
-          title: "Product Code",
-          sortField: "product_code"
+          name: "amount",
+          title: "Amount",
+          sortField: "amount"
         },
 
         {
-          name: "description",
-          title: "Description",
-          sortField: "description"
+          name: "created_at",
+          title: "Date Added",
+          sortField: "created_at"
         },
 
         {
-          name: "available",
-          title: "Available",
-          sortField: "available",
+          name: "status",
+          title: "Status",
+          sortField: "status",
           formatter(value) {
             let status = {
-              Yes: "success",
-              No: "warning"
+              Pending: "warning",
+              Active: "success",
+              Spent: "danger"
             }[value];
-            return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
+            return `<div class="setting-status-tag --${status}">${value}</div>`;
           }
-        },
-
-        {
-          name: "order",
-          title: "Order",
-          sortField: "order"
-        },
-
-        {
-          name: "stock",
-          title: "Stock",
-          sortField: "stock"
-        },
-        "actions"
+        }
       ],
       productData: [
         {
-          id: 1,
-          item_code: "I-45424",
-          product_code: "P-45424",
-          description: "Short description 1...",
-          available: "No",
-          order: "O-2342",
-          stock: "some stock 1"
+          sn: 1,
+          amount: "123 THB",
+          created_at: "2020-03-12",
+          status: "Pending"
         },
 
         {
-          id: 2,
-          item_code: "I-123534",
-          product_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          order: "O-98934",
-          stock: "some stock 2"
+          sn: 2,
+          amount: "343 THB",
+          created_at: "2020-03-16",
+          status: "Active"
         },
 
         {
-          id: 3,
-          item_code: "I-123534",
-          product_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          order: "O-98934",
-          stock: "some stock 2"
+          sn: 3,
+          amount: "1000 THB",
+          created_at: "2020-02-11",
+          status: "Spent"
         },
 
         {
-          id: 4,
-          item_code: "I-123534",
-          product_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          order: "O-98934",
-          stock: "some stock 2"
+          sn: 4,
+          amount: "1123 THB",
+          created_at: "2019-03-12",
+          status: "Spent"
         },
 
         {
-          id: 5,
-          item_code: "I-123534",
-          product_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          order: "O-98934",
-          stock: "some stock 2"
+          sn: 5,
+          amount: "890 THB",
+          created_at: "2020-03-12",
+          status: "Spent"
         },
 
         {
-          id: 6,
-          item_code: "I-123534",
-          product_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          order: "O-98934",
-          stock: "some stock 2"
+          sn: 6,
+          amount: "567 THB",
+          created_at: "2020-03-12",
+          status: "Spent"
+        },
+
+        {
+          sn: 7,
+          amount: "345345 THB",
+          created_at: "2020-03-12",
+          status: "Active"
+        },
+
+        {
+          sn: 8,
+          amount: "123423 THB",
+          created_at: "2020-03-12",
+          status: "Pending"
+        },
+
+        {
+          sn: 9,
+          amount: "123 THB",
+          created_at: "2020-03-12",
+          status: "Active"
         }
       ]
     };
@@ -281,12 +272,12 @@ export default {
   }
 
   &.--danger {
-    background-color: #DC3545;
+    background-color: #dc3545;
     color: white;
   }
 
   &.--info {
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
   }
 }

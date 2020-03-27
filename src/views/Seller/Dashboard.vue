@@ -49,7 +49,16 @@
                   class="info"
                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                 >
-                  <h3 class="p-3 pb-4">Orders</h3>
+                  <div class="toolbar d-flex justify-space-between p-3 pb-4">
+                    <h3 class="">Orders</h3>
+                    <select class="form-control form-control-sm ml-auto" style="width: 100px">
+                      <option value="1">This Week</option>
+                      <option value="1">This Month</option>
+                      <option value="1">Last 3 months</option>
+                      <option value="1">This year</option>
+                      <option value="1">Till Now</option>
+                    </select>
+                  </div>
                   <div class="row pl-2 pr-2 pl-md-3 pr-md-3">
                     <div class="col-6">
                       <h2 class="font-weight-bold">150</h2>New Orders
