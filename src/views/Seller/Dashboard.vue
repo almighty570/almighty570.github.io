@@ -172,6 +172,7 @@ import Card from "@/components/core/Card";
 import ImageUpload from "@/components/core/ImageUpload";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import SmallBox from "@/components/core/SmallBox";
+import { Toast } from "@/helpers/toastr";
 
 export default {
   name: "Dashbaord",
@@ -200,6 +201,13 @@ export default {
       select_field_value: null,
       checkBoxResults: null
     };
+  },
+
+  created() {
+    Toast("Created Successfully", "success");
+    Toast("Information", "info");
+    Toast("Warn", "warning");
+    Toast("Oops! unsuccessful transaction", "danger");
   },
 
   methods: {

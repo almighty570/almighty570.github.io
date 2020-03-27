@@ -7,20 +7,18 @@ import store from './store'
 import "./styles/main.scss";
 
 // layouts
-import Seller from "./layouts/Seller.vue";
-Vue.component('seller-layout', Seller);
-import Auth from "./layouts/Auth.vue";
-Vue.component('auth-layout', Auth);
+import { registerLayouts } from './helpers/layouts';
+registerLayouts();
 
 Vue.config.productionTip = false
 
-// vee validate
-import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
-Vue.component('ValidationProvider', ValidationProvider);
-Vue.component('ValidationObserver', ValidationObserver);
-import {applyValidators} from './helpers/validators';
+// form validator
+import { applyValidators } from './helpers/validators';
 applyValidators();
+
+// Toast
+import { initToastr } from './helpers/toastr';
+initToastr();
 
 new Vue({
   router,
