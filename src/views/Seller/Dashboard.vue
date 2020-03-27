@@ -11,7 +11,7 @@
         <div class="row">
           <!-- Products -->
           <div class="col-md-6 col-sm-12">
-            <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
+            <!-- <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
               <Card custom_class="card-primary" id="products-details-card">
                 <h2 slot="title">Products</h2>
                 <div slot="body" class="info-box-wrapper">
@@ -37,7 +37,33 @@
                   </div>
                 </div>
               </Card>
-            </router-link>
+            </router-link>-->
+            <!-- <Card>
+              <div slot="body">
+                <LineChart :chartdata="datacollection" :options="{}" />
+              </div>
+            </Card>-->
+            <div class="card">
+              <div class="card-body p-0" style="position:relative">
+                <div
+                  class="info"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                >
+                  <h3 class="p-3 pb-4">Orders</h3>
+                  <div class="row pl-2 pr-2 pl-md-3 pr-md-3">
+                    <div class="col-6">
+                      <h2 class="font-weight-bold">150</h2>New Orders
+                    </div>
+                    <div class="col-6">
+                      <h2 class="font-weight-bold">64%</h2>Growth
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-4" style="border-radius: 5px">
+                  <LineChart :chartdata="datacollection" :options="{}" />
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Orders -->
@@ -173,6 +199,7 @@ import ImageUpload from "@/components/core/ImageUpload";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import SmallBox from "@/components/core/SmallBox";
 import { Toast } from "@/helpers/toastr";
+import LineChart from "@/components/derived/charts/LineChart";
 
 export default {
   name: "Dashbaord",
@@ -188,7 +215,8 @@ export default {
     FileUpload,
     ImageUpload,
     CheckBoxGroup,
-    SmallBox
+    SmallBox,
+    LineChart
   },
   data() {
     return {
@@ -199,22 +227,53 @@ export default {
       number_field_value: null,
       radio_field_value: null,
       select_field_value: null,
-      checkBoxResults: null
+      checkBoxResults: null,
+      datacollection: null
     };
   },
 
   created() {},
 
+  mounted() {
+    this.fillData();
+  },
+
   methods: {
     handleClick() {
       alert("clicked");
+    },
+
+    fillData() {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          },
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      };
+    },
+
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
   }
 };
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
+.small {
+  max-width: 600px;
+  margin: 150px auto;
+}
+
 .icon {
   font-size: 30px !important;
 }
