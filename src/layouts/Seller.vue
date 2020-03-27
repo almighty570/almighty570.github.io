@@ -154,7 +154,8 @@ import TextBox from "@/components/core/TextBox";
 import NumberField from "@/components/core/NumberField";
 import DatePicker from "@/components/core/DatePicker";
 import FileUpload from "@/components/core/FileUpload";
-import Swal from "sweetalert2";
+import { Alert } from "@/helpers/alert";
+// import Swal from "sweetalert2";
 
 export default {
   name: "Seller",
@@ -224,6 +225,7 @@ export default {
 
   created() {
     this.setCurrentRoute(this.$route);
+    Alert(null, "asdasdsad", "warning");
   },
 
   methods: {
@@ -233,13 +235,14 @@ export default {
 
     handleBalanceAddSubmit() {
       // Make API Call here
-      Swal.fire(
-        "",
+      Alert(
+        null,
         "Once our team verifies your transaction, your account will be updated.",
-        "success"
-      ).then(() => {
-        $("#addBalanceModal").modal("hide");
-      });
+        "success",
+        () => {
+          $("#addBalanceModal").modal("hide");
+        }
+      );
     },
 
     validateAddBalanceForm() {
