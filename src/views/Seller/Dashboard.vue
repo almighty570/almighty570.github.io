@@ -203,12 +203,7 @@ export default {
     };
   },
 
-  created() {
-    Toast("Created Successfully", "success");
-    Toast("Information", "info");
-    Toast("Warn", "warning");
-    Toast("Oops! unsuccessful transaction", "danger");
-  },
+  created() {},
 
   methods: {
     handleClick() {

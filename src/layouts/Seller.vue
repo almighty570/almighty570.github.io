@@ -155,7 +155,6 @@ import NumberField from "@/components/core/NumberField";
 import DatePicker from "@/components/core/DatePicker";
 import FileUpload from "@/components/core/FileUpload";
 import { Alert } from "@/helpers/alert";
-// import Swal from "sweetalert2";
 
 export default {
   name: "Seller",
@@ -225,7 +224,6 @@ export default {
 
   created() {
     this.setCurrentRoute(this.$route);
-    Alert(null, "asdasdsad", "warning");
   },
 
   methods: {
