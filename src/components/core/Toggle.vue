@@ -4,7 +4,7 @@
       <input type="checkbox" :id="id" v-model="val" @change="updateValue" />
       <span :style="changeBackground()" class="slider round"></span>
     </label>
-    <label class="align-self-center font-weight-normal">{{label}}</label>
+    <!-- <label class="align-self-center font-weight-normal">{{label}}</label> -->
   </div>
 </template>
 

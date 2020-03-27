@@ -1,13 +1,15 @@
 <template>
-  <div class="tabs-wrapper" :id="id" :class="custom_class">
-    <ul class="ul tabs">
-      <li v-for="(tab,i) in tabs" :key="i" class="tab" v-bind:class="{ 'is-active': tab.active }">
-        <div>
-          <div class="tab__name">{{tab.name}}</div>
-          <div class="tab__tag">{{tab.quantity}}</div>
-        </div>
-      </li>
-    </ul>
+  <div class="tabs__wrapper justify-content-md-start mt-4" :id="id" :class="custom_class">
+    <div
+      class="tab-list-item"
+      :class="{'--active': tab === activeOrderStatus}"
+      v-for="(tab, index) in tabs"
+      :key="index"
+      @click="setActiveStatus(tab)"
+    >
+      {{tab.label}}
+      <span v-if="tab.number">{{tab.number}}</span>
+    </div>
   </div>
 </template>
 
@@ -17,132 +19,102 @@ export default {
   props: {
     custom_class: String,
     id: String,
-    tabs: Array
+    tabs: Array,
+    show_quantity: true
+  },
+  created() {
+    this.activeOrderStatus = this.tabs[0];
+  },
+  data() {
+    return {
+      activeOrderStatus: false
+    };
+  },
+  methods: {
+    setActiveStatus(status) {
+      this.activeOrderStatus = status;
+    }
   }
 };
 </script>
 
-<style>
-ul {
-  list-style: none;
+<style lang="scss" scoped>
+$warning: #ffc107;
+$success: #28a745;
+$danger: #dc3545;
+$primary: #006cdf;
+
+.tabs__wrapper {
   display: flex;
-  padding-inline-start: 0;
-}
+  justify-content: center;
+  .tab-list-item {
+    padding: 0.25rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+    transition: 0.5s all;
 
-li {
-  display: inline-block;
-  margin-right: 15px;
-}
+    span {
+      margin-left: 0.5rem;
+      font-size: 12px;
+      padding: 0.12rem 0.5rem;
+      border-radius: 8px;
+      font-weight: 400;
+      background-color: lightgray;
+      transition: 0.5s all;
+    }
+  }
 
-.tab__name {
-  display: inline-block;
-  margin-right: 6px;
-  font-size: 24px;
-  text-transform: capitalize;
-}
+  &.is-primary {
+    .tab-list-item {
+      &.--active {
+        border-bottom-color: $primary;
 
-.tab__tag {
-  font-size: 10px;
-  display: inline-block;
-  border-radius: 10px;
-  background-color: #c4c4c4;
-  padding: 1px 8px;
-}
+        span {
+          background-color: $primary;
+          color: white;
+        }
+      }
+    }
+  }
 
-.tab {
-  cursor: pointer;
-  border-bottom: 6px transparent solid;
-}
+  &.is-success {
+    .tab-list-item {
+      &.--active {
+        border-bottom-color: $success;
 
-/* Primary */
-.tabs-wrapper.is-primary .tab.is-active {
-  border-bottom: 6px #007bff solid;
-}
+        span {
+          background-color: $success;
+          color: white;
+        }
+      }
+    }
+  }
 
-.tabs-wrapper.is-primary .tab.is-active .tab__tag {
-  background-color: #007bff;
-  color: #fff;
-}
+  &.is-danger {
+    .tab-list-item {
+      &.--active {
+        border-bottom-color: $danger;
 
-.tabs-wrapper.is-primary .tab:hover {
-  border-bottom: 6px #007bff solid;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
+        span {
+          background-color: $danger;
+          color: white;
+        }
+      }
+    }
+  }
 
-.tabs-wrapper.is-primary .tab:hover .tab__tag {
-  background-color: #007bff;
-  color: #fff;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
+  &.is-warning {
+    .tab-list-item {
+      &.--active {
+        border-bottom-color: $warning;
 
-/* Warning */
-.tabs-wrapper.is-warning .tab.is-active {
-  border-bottom: 6px #ffc107 solid;
-}
-
-.tabs-wrapper.is-warning .tab.is-active .tab__tag {
-  background-color: #ffc107;
-  color: #000;
-}
-
-.tabs-wrapper.is-warning .tab:hover {
-  border-bottom: 6px #ffc107 solid;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-
-.tabs-wrapper.is-warning .tab:hover .tab__tag {
-  background-color: #ffc107;
-  color: #000;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-/* Danger */
-.tabs-wrapper.is-danger .tab.is-active {
-  border-bottom: 6px #dc3545 solid;
-}
-
-.tabs-wrapper.is-danger .tab.is-active .tab__tag {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.tabs-wrapper.is-danger .tab:hover {
-  border-bottom: 6px #dc3545 solid;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-
-.tabs-wrapper.is-danger .tab:hover .tab__tag {
-  background-color: #dc3545;
-  color: #fff;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-/* Success */
-.tabs-wrapper.is-success .tab.is-active {
-  border-bottom: 6px #28a745 solid;
-}
-
-.tabs-wrapper.is-success .tab.is-active .tab__tag {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.tabs-wrapper.is-success .tab:hover {
-  border-bottom: 6px #28a745 solid;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-
-.tabs-wrapper.is-success .tab:hover .tab__tag {
-  background-color: #28a745;
-  color: #fff;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+        span {
+          background-color: $warning;
+          color: black;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -38,17 +38,7 @@
                 <div
                   class="order-status-list d-flex flex-wrap justify-content-center justify-content-md-start mt-4"
                 >
-                  <div
-                    class="order-status-list-item"
-                    :class="{'--active': status === activeOrderStatus}"
-                    v-for="(status, index) in orderStatusData"
-                    :key="index"
-                    @click="setActiveStatus(status)"
-                  >
-                    {{status.label}}
-                    <span>{{status.number}}</span>
-                  </div>
-
+                  <Tabs id="order-list-tabs" class="is-success" :tabs="orderStatusData"/>
                   <DateRangePicker
                     custom_class="ml-0 ml-md-auto mr-0 mr-md-4 align-self-start mb-2 mb-md-0"
                     color_scheme="success"
@@ -68,10 +58,11 @@
 import ListTable from "@/components/derived/ListTable";
 import DateRangePicker from "@/components/derived/DateRangePicker";
 import Card from "@/components/core/Card";
+import Tabs from "@/components/core/Tabs";
 
 export default {
   name: "Orders-List",
-  components: { ListTable, Card, DateRangePicker },
+  components: { ListTable, Card, DateRangePicker, Tabs },
   data() {
     return {
       breadcrumbLinks: [
@@ -94,7 +85,6 @@ export default {
         { label: "Delivered", number: 35 },
         { label: "Cancelled", number: 35 }
       ],
-      activeOrderStatus: null,
 
       fromDate: null,
       toDate: null,
@@ -168,14 +158,9 @@ export default {
 
   created() {
     this.fetchProducts();
-    this.activeOrderStatus = this.orderStatusData[0];
   },
 
   methods: {
-    setActiveStatus(status) {
-      this.activeOrderStatus = status;
-    },
-
     fetchProducts() {
       // make API Call here...
       this.productColumns = [
