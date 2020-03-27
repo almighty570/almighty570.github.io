@@ -2,7 +2,7 @@
   <div class="d-flex">
     <label class="switch align-self-center mr-2">
       <input type="checkbox" :id="id" v-model="val" @change="updateValue" />
-      <span class="slider round"></span>
+      <span :style="changeBackground()" class="slider round"></span>
     </label>
     <label class="align-self-center font-weight-normal">{{label}}</label>
   </div>
@@ -47,6 +47,12 @@ export default {
   methods: {
     updateValue(data) {
       this.$emit("input", this.val);
+    },
+    changeBackground(){
+      if(this.val)
+        return "backgroundColor:" + this.color;
+      else 
+        return "backgroundColor:#ccc";
     }
   },
 
@@ -101,13 +107,13 @@ $switch-height: 15px;
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-input:checked + .slider {
-  background-color: #2196f3;
-}
+// input:checked + .slider {
+//   background-color: #2196f3;
+// }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
+// input:focus + .slider {
+//   box-shadow: 0 0 1px #2196f3;
+// }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(35px);
