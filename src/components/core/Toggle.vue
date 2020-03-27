@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <label class="switch align-self-center mr-2">
+    <label class="switch align-self-center mr-2" :class="'--' + variant">
       <input type="checkbox" :id="id" v-model="val" @change="updateValue" />
       <span :style="changeBackground()" class="slider round"></span>
     </label>
@@ -22,8 +22,9 @@ export default {
       type: Object
     },
 
-    color: {
-      type: String
+    variant: {
+      type: String,
+      default: "primary"
     },
 
     id: {
@@ -48,11 +49,9 @@ export default {
     updateValue(data) {
       this.$emit("input", this.val);
     },
-    changeBackground(){
-      if(this.val)
-        return "backgroundColor:" + this.color;
-      else 
-        return "backgroundColor:#ccc";
+    changeBackground() {
+      if (this.val) return "backgroundColor:" + this.color;
+      else return "backgroundColor:#ccc";
     }
   },
 
@@ -68,11 +67,32 @@ export default {
 $switch-width: 55px;
 $switch-height: 15px;
 
+$variants: (
+  primary: #007bff,
+  success: #28a745,
+  info: #17a2b8,
+  warning: #ffc107,
+  danger: #dc3545
+);
+
 .switch {
   position: relative;
   display: inline-block;
   width: $switch-width;
   height: $switch-height;
+
+  // apply color according to variant
+  @each $variant, $color in $variants {
+    &.--#{$variant} {
+      input:checked + .slider {
+        background-color: lighten($color, 40%) !important;
+      }
+
+      input:checked + .slider:before {
+        background-color: $color !important;
+      }
+    }
+  }
 }
 
 .switch input {
@@ -106,14 +126,6 @@ $switch-height: 15px;
   box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-
-// input:checked + .slider {
-//   background-color: #2196f3;
-// }
-
-// input:focus + .slider {
-//   box-shadow: 0 0 1px #2196f3;
-// }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(35px);

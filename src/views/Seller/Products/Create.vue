@@ -65,7 +65,7 @@
                     <Toggle
                       id="has-bundles"
                       :value="false"
-                      color="#2196f3"
+                      variant="primary"
                       v-model="productHasBundles"
                       :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
                     />
@@ -122,7 +122,7 @@
                     <Toggle
                       id="has-variations"
                       :value="false"
-                      color="#2196f3"
+                      variant="primary"
                       v-model="productHasVariations"
                       :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
                     />
