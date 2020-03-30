@@ -50,7 +50,7 @@
                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                 >
                   <div class="toolbar d-flex justify-space-between p-3 pb-4">
-                    <h3 class="">Orders</h3>
+                    <h3 class>Orders</h3>
                     <select class="form-control form-control-sm ml-auto" style="width: 100px">
                       <option value="1">This Week</option>
                       <option value="1">This Month</option>
@@ -113,40 +113,22 @@
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <Card custom_class="card-warning" id="shipping-details-card">
-                <h2 slot="title">Shipping</h2>
-                <div slot="body" class="info-box-wrapper">
-                  <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>12</h3>
-                          <p>To Ship</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>8</h3>
-                          <p>In Transit</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>112</h3>
-                          <p>Delivered</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-check"></i>
-                      </SmallBox>
-                    </div>
+              <div class="card">
+                <div class="card-body p-0" style="position:relative">
+                  <div class="toolbar d-flex justify-space-between p-3">
+                    <h3 class>Shipping</h3>
+                    <select class="form-control form-control-sm ml-auto" style="width: 100px">
+                      <option value="1">This Week</option>
+                      <option value="1">This Month</option>
+                      <option value="1">Last 3 months</option>
+                      <option value="1">This year</option>
+                      <option value="1">Till Now</option>
+                    </select>
                   </div>
+
+                  <DoughnutChart v-if="shippingdata" :chartdata="shippingdata" />
                 </div>
-              </Card>
+              </div>
             </router-link>
           </div>
 
@@ -209,6 +191,7 @@ import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import SmallBox from "@/components/core/SmallBox";
 import { Toast } from "@/helpers/toastr";
 import LineChart from "@/components/derived/charts/LineChart";
+import DoughnutChart from "@/components/derived/charts/DoughnutChart";
 
 export default {
   name: "Dashbaord",
@@ -225,7 +208,8 @@ export default {
     ImageUpload,
     CheckBoxGroup,
     SmallBox,
-    LineChart
+    LineChart,
+    DoughnutChart
   },
   data() {
     return {
@@ -237,7 +221,8 @@ export default {
       radio_field_value: null,
       select_field_value: null,
       checkBoxResults: null,
-      datacollection: null
+      datacollection: null,
+      shippingdata: null,
     };
   },
 
@@ -245,13 +230,27 @@ export default {
 
   mounted() {
     this.fillData();
+    this.fillShippingData();
   },
 
   methods: {
     handleClick() {
       alert("clicked");
     },
-
+    fillShippingData() {
+      this.shippingdata = {
+        data: {
+          labels: ["To Ship", "In Transit", "Delivered"],
+          datasets: [
+            {
+              data: [12, 8, 112],
+              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
+            }
+          ]
+        },
+        icons:['fa-box-alt','fa-dolly-flatbed-alt','fa-box-check']
+      };
+    },
     fillData() {
       this.datacollection = {
         labels: [this.getRandomInt(), this.getRandomInt()],
@@ -303,3 +302,33 @@ export default {
   color: #dc3545;
 }
 </style>
+
+// <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                      <SmallBox custom_class="mb-0">
+                        <div slot="inner">
+                          <h3>12</h3>
+                          <p>To Ship</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-box-alt"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                      <SmallBox custom_class="mb-0">
+                        <div slot="inner">
+                          <h3>8</h3>
+                          <p>In Transit</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
+                      </SmallBox>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                      <SmallBox custom_class="mb-0">
+                        <div slot="inner">
+                          <h3>112</h3>
+                          <p>Delivered</p>
+                        </div>
+                        <i slot="icon" class="icon far fa-box-check"></i>
+                      </SmallBox>
+                    </div>
+                  </div>
