@@ -81,15 +81,15 @@ export default {
       // make API Call here...
       this.productColumns = [
         {
-          name: "item_code",
-          title: "Item Code",
-          sortField: "item_code"
+          name: "sku",
+          title: "SKU",
+          sortField: "sku"
         },
 
         {
-          name: "product_code",
-          title: "Product Code",
-          sortField: "product_code"
+          name: "proship_code",
+          title: "Proship Code",
+          sortField: "proship_code"
         },
 
         {
@@ -112,12 +112,6 @@ export default {
         },
 
         {
-          name: "order",
-          title: "Order",
-          sortField: "order"
-        },
-
-        {
           name: "stock",
           title: "Stock",
           sortField: "stock"
@@ -128,61 +122,55 @@ export default {
       this.productData = [
         {
           id: 1,
-          item_code: "I-45424",
-          product_code: "P-45424",
+          sku: "I-45424",
+          proship_code: "P-45424",
           description: "Short description 1...",
           available: "No",
-          order: "O-2342",
           stock: "some stock 1"
         },
 
         {
           id: 2,
-          item_code: "I-123534",
-          product_code: "P-0234",
+          sku: "I-123534",
+          proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          order: "O-98934",
           stock: "some stock 2"
         },
 
         {
           id: 3,
-          item_code: "I-123534",
-          product_code: "P-0234",
+          sku: "I-123534",
+          proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          order: "O-98934",
           stock: "some stock 2"
         },
 
         {
           id: 4,
-          item_code: "I-123534",
-          product_code: "P-0234",
+          sku: "I-123534",
+          proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          order: "O-98934",
           stock: "some stock 2"
         },
 
         {
           id: 5,
-          item_code: "I-123534",
-          product_code: "P-0234",
+          sku: "I-123534",
+          proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          order: "O-98934",
           stock: "some stock 2"
         },
 
         {
           id: 6,
-          item_code: "I-123534",
-          product_code: "P-0234",
+          sku: "I-123534",
+          proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          order: "O-98934",
           stock: "some stock 2"
         }
       ];

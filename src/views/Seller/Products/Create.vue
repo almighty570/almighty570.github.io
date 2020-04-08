@@ -137,8 +137,8 @@
                   <div class="col">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-primary mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                      <button type="submit" class="btn btn-primary btn-lg mr-4" :disabled="invalid">Submit</button>
+                      <button type="button" class="btn btn-secondary btn-lg" @click="cancel()">Cancel</button>
                     </div>
                   </div>
                 </div>
