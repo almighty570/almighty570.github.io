@@ -56,10 +56,10 @@ $primary: #006cdf;
 
     span {
       margin-left: 0.5rem;
-      font-size: 12px;
+      font-size: 14px;
       padding: 0.12rem 0.5rem;
       border-radius: 8px;
-      font-weight: 400;
+      font-weight: 600;
       background-color: lightgray;
       transition: 0.5s all;
     }
@@ -82,6 +82,7 @@ $primary: #006cdf;
     .tab-list-item {
       &.--active {
         border-bottom-color: $success;
+        color: $success;
 
         span {
           background-color: $success;

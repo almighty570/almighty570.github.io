@@ -92,40 +92,15 @@
 
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <Card custom_class="card-danger" id="cod-details-card">
-                <h2 slot="title">COD</h2>
-                <div slot="body" class="info-box-wrapper">
-                  <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>1500</h3>
-                          <p>To Ship</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>1500</h3>
-                          <p>In Transit</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>1500</h3>
-                          <p>Delivered</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-check"></i>
-                      </SmallBox>
-                    </div>
+              <div class="card">
+                <div class="card-body p-0" style="position:relative">
+                  <div class="toolbar d-flex justify-space-between pt-3 pr-3 pl-3 pb-1">
+                    <h3 class="pb-0">Cash On Delivery</h3>
                   </div>
+
+                  <CodDoughnutChart v-if="shippingdata" :chartdata="shippingdata" />
                 </div>
-              </Card>
+              </div>
             </router-link>
           </div>
         </div>
@@ -150,6 +125,7 @@ import SmallBox from "@/components/core/SmallBox";
 import { Toast } from "@/helpers/toastr";
 import OrdersLineChart from "@/components/derived/charts/OrdersLineChart";
 import ShippingDoughnutChart from "@/components/derived/charts/ShippingDoughnutChart";
+import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
 
 export default {
   name: "Dashbaord",
@@ -167,7 +143,8 @@ export default {
     CheckBoxGroup,
     SmallBox,
     OrdersLineChart,
-    ShippingDoughnutChart
+    ShippingDoughnutChart,
+    CodDoughnutChart
   },
   data() {
     return {

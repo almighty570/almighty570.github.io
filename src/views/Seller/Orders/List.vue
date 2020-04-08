@@ -39,11 +39,11 @@
                   class="order-status-list d-flex flex-wrap justify-content-center justify-content-md-start mt-4"
                 >
                   <Tabs id="order-list-tabs" class="is-success" :tabs="orderStatusData"/>
-                  <DateRangePicker
+                  <!-- <DateRangePicker
                     custom_class="ml-0 ml-md-auto mr-0 mr-md-4 align-self-start mb-2 mb-md-0"
                     color_scheme="success"
                     date_format="MMM Do, YYYY"
-                  />
+                  /> -->
                 </div>
               </div>
             </ListTable>
@@ -110,11 +110,6 @@ export default {
           sortField: "order_status"
         },
         { name: "tracking_no", title: "Tracking No", sortField: "tracking_no" },
-        {
-          name: "created_by",
-          title: "Created by User",
-          sortField: "created_by"
-        },
         { name: "cod", title: "COD", sortField: "cod" },
         { name: "updated", title: "Updated", sortField: "updated" },
         "actions"
@@ -130,7 +125,6 @@ export default {
           qty: 1,
           order_status: "Inprocess",
           tracking_no: "EBS234325463",
-          created_by: "System",
           cod: 100.23,
           updated: "2020/02/12"
         },
@@ -144,7 +138,6 @@ export default {
           qty: 1,
           order_status: "Inprocess",
           tracking_no: "EBS234325463",
-          created_by: "System",
           cod: 100.23,
           updated: "2020/02/12"
         }

@@ -62,21 +62,6 @@
                       rules="required"
                     />
 
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      variant="primary"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        v-model="productCreateForm.bundlePrices"
-                      />
-                    </div>
-
                     <NumberField
                       id="weight-approx"
                       label="Weight Approx"
@@ -86,13 +71,6 @@
 
                     <div class="row">
                       <div class="col">
-                        <Select
-                          id="box-size"
-                          label="Box Size"
-                          :options="boxSizeOptions"
-                          v-model="productCreateForm.boxSize"
-                        />
-
                         <NumberField
                           v-if="productCreateForm.boxSize == 0"
                           id="custom-box-size"
@@ -112,6 +90,22 @@
                       <div class="col">
                         <ImageUpload label="Image" custom_class="ml-4" />
                       </div>
+                    </div>
+
+                    <div class="mt-4"></div>
+                    <Toggle
+                      id="has-bundles"
+                      :value="false"
+                      variant="primary"
+                      v-model="productHasBundles"
+                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
+                    />
+
+                    <div v-if="productHasBundles">
+                      <RowControls
+                        :config="bundlePriceConfig"
+                        v-model="productCreateForm.bundlePrices"
+                      />
                     </div>
                   </div>
                 </div>
@@ -137,8 +131,16 @@
                   <div class="col">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-primary btn-lg mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary btn-lg" @click="cancel()">Cancel</button>
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg mr-4"
+                        :disabled="invalid"
+                      >Submit</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary btn-lg"
+                        @click="cancel()"
+                      >Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -203,7 +205,6 @@ export default {
         salePrice: null,
         weightApprox: null,
         image: null,
-        boxSize: null,
         customBoxSize: null,
         variations: null,
         bundlePrices: null,
@@ -221,15 +222,10 @@ export default {
       bundlePriceConfig: {
         items: {
           amount: {
-            type: "select",
+            type: "number",
             rules: "required",
             id: "bundle-amount",
-            placeholder: "Amount",
-            options: [
-              { name: "One", value: 1 },
-              { name: "Two", value: 2 },
-              { name: "Three", value: 3 }
-            ]
+            placeholder: "Amount"
           },
 
           price: {
