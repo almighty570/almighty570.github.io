@@ -37,6 +37,7 @@ import CardWidget from "@/components/core/CardWidget.vue";
 import Table from "@/components/core/Table.vue";
 import TableLeft from "@/components/core/TableLeft.vue";
 import TwoColumnTableLeftLayout from "@/components/derived/TwoColumnTableLeftLayout.vue";
+import { getOrderStatus } from "@/helpers/core";
 
 export default {
   name: "Dashbaord",
@@ -59,24 +60,19 @@ export default {
         { Phone: null },
         { "Customer Email": null },
         { Country: "Thailand" },
-        { "Inter Shipping Method": null },
-        { "Inter Product Price": "0.00" },
-        { "External Id": null },
         { "Order#": "SPE2002URD" },
-        { Representative: null },
-        { "Special Offer": null },
+        { Agent: null },
         { Comment: null },
         { Deliver: "EMS" },
         { "COD Amount": 0.0 },
-        { "Change(THB)": 0 },
         { "Package Size": null },
         { Weight: null },
         { "Tracking No": null },
-        { "Wrap Packaging": "No" },
-        { "INS Qty": 0 },
-        { "Created by User": "System" },
-        { "Created by User": "System" },
-        { "Order Status": 7 }
+        {
+          "Order Status": `<span class='badge badge-${
+            getOrderStatus(1).variation
+          }'>${getOrderStatus(1).title}</span>`
+        }
       ],
 
       orderItemsData: [
@@ -112,6 +108,9 @@ export default {
       ]
     };
   },
+
+  created() {},
+
   methods: {
     cancel() {
       this.$router.push({ name: "Seller-Order-List" });

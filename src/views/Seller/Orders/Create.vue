@@ -24,214 +24,217 @@
     </div>
 
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 col-sm-12">
-            <CardWidget id="order-details-card" class="card card-success">
-              <div slot="title">Order Details</div>
-              <div slot="body">
-                <TextBox
-                  type="text"
-                  id="agent"
-                  label="Agent"
-                  v-model="orderCreateForm.agent"
-                  rules="required"
-                />
-                <TextBox
-                  type="text"
-                  id="order"
-                  label="Order #"
-                  v-model="orderCreateForm.order"
-                  rules="required"
-                />
-                <Select
-                  id="shipper"
-                  label="Shipper"
-                  :options="shipperOptions"
-                  v-model="orderCreateForm.shipper"
-                />
-                <TextBox
-                  type="text"
-                  id="cod"
-                  label="COD"
-                  v-model="orderCreateForm.cod"
-                  rules="required"
-                />
-                <TextArea
-                  id="remark"
-                  label="Remark"
-                  v-model="orderCreateForm.remark"
-                  rules="required"
-                  rows="5"
-                />
-              </div>
-            </CardWidget>
-          </div>
-
-          <div class="col-md-6 col-sm-12">
-            <CardWidget id="customer-details-card" class="card card-success">
-              <div slot="title">Customer Details</div>
-              <div slot="body">
-                <TextBoxAddon
-                  type="text"
-                  id="customer-mobile"
-                  label="Mobile"
-                  v-model="orderCreateForm.customerDetails.mobile"
-                  rules="required"
-                  addon_btn_text="Check"
-                  @addonClicked="checkPhoneNo()"
-                />
-
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
+      <ValidationObserver v-slot="{ invalid }">
+        <form @submit.prevent="handleFormSubmit">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <CardWidget id="order-details-card" class="card card-success">
+                  <div slot="title">Order Details</div>
+                  <div slot="body">
+                    <Select
+                      id="agent"
+                      label="Agent"
+                      :options="agentOptions"
+                      v-model="orderCreateForm.agent"
+                    />
                     <TextBox
                       type="text"
-                      id="customer-phone"
-                      label="Phone"
-                      v-model="orderCreateForm.customerDetails.phone"
+                      id="order"
+                      label="Order #"
+                      v-model="orderCreateForm.order"
                       rules="required"
                     />
-                  </div>
-                  <div class="col-md-6 col-sm-12">
+                    <Select
+                      id="shipper"
+                      label="Shipper"
+                      :options="shipperOptions"
+                      v-model="orderCreateForm.shipper"
+                    />
                     <TextBox
                       type="text"
-                      id="customer-email"
-                      label="Email"
-                      v-model="orderCreateForm.customerDetails.email"
+                      id="cod"
+                      label="COD"
+                      v-model="orderCreateForm.cod"
                       rules="required"
                     />
-                  </div>
-                </div>
-
-                <TextBox
-                  type="text"
-                  id="customer-name"
-                  label="Name"
-                  v-model="orderCreateForm.customerDetails.name"
-                  rules="required"
-                />
-
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
                     <TextArea
-                      id="customer-address"
-                      label="Address"
-                      v-model="orderCreateForm.customerDetails.address"
+                      id="remark"
+                      label="Remark"
+                      v-model="orderCreateForm.remark"
                       rules="required"
                       rows="5"
                     />
                   </div>
-                  <div class="col-md-6 col-sm-12">
+                </CardWidget>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                <CardWidget id="customer-details-card" class="card card-success">
+                  <div slot="title">Customer Details</div>
+                  <div slot="body">
+                    <TextBoxAddon
+                      type="text"
+                      id="customer-mobile"
+                      label="Mobile"
+                      v-model="orderCreateForm.customerDetails.mobile"
+                      rules="required"
+                      addon_btn_text="Check"
+                      @addonClicked="checkPhoneNo()"
+                    />
+
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12">
+                        <TextBox
+                          type="text"
+                          id="customer-phone"
+                          label="Phone"
+                          v-model="orderCreateForm.customerDetails.phone"
+                          rules="required"
+                        />
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <TextBox
+                          type="text"
+                          id="customer-email"
+                          label="Email"
+                          v-model="orderCreateForm.customerDetails.email"
+                          rules="required"
+                        />
+                      </div>
+                    </div>
+
                     <TextBox
                       type="text"
-                      id="customer-postal-code"
-                      label="Postal Code"
-                      v-model="orderCreateForm.customerDetails.postalCode"
+                      id="customer-name"
+                      label="Name"
+                      v-model="orderCreateForm.customerDetails.name"
                       rules="required"
                     />
-                    <Select
-                      id="customer-province"
-                      label="Province"
-                      :options="provinceOptions"
-                      v-model="orderCreateForm.customerDetails.province"
-                    />
+
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12">
+                        <TextArea
+                          id="customer-address"
+                          label="Address"
+                          v-model="orderCreateForm.customerDetails.address"
+                          rules="required"
+                          rows="5"
+                        />
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <TextBox
+                          type="text"
+                          id="customer-postal-code"
+                          label="Postal Code"
+                          v-model="orderCreateForm.customerDetails.postalCode"
+                          rules="required"
+                        />
+                        <Select
+                          id="customer-sub-district"
+                          label="Sub-District"
+                          :options="subDistrictOptions"
+                          v-model="orderCreateForm.customerDetails.subDistrict"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12">
+                        <Select
+                          id="customer-district"
+                          label="District"
+                          :options="districtOptions"
+                          v-model="orderCreateForm.customerDetails.district"
+                        />
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <Select
+                          id="customer-province"
+                          label="Province"
+                          :options="provinceOptions"
+                          v-model="orderCreateForm.customerDetails.province"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CardWidget>
+              </div>
+            </div>
+
+            <Card>
+              <div slot="body">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
+                    <p class="lead font-weight-normal">All Products</p>
+                    <DataTable
+                      id="show-products"
+                      :columns="product.columns"
+                      :rows="product.rows"
+                      :per_page="5"
+                    >
+                      <div slot="actions" slot-scope="props">
+                        <Button
+                          :variant="'outline-success'"
+                          size="sm"
+                          custom_class="mr-1"
+                          id="btn-action-detail"
+                          @click="addProduct(props.props.rowData)"
+                        >
+                          <i class="fal fa-plus"></i>
+                        </Button>
+                      </div>
+                    </DataTable>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12">
+                    <p class="lead font-weight-normal">Selected Products</p>
+
+                    <table class="table table-bordered" v-if="selectedProductsCount">
+                      <thead>
+                        <th>Product Code</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody>
+                        <tr
+                          v-for="(count, product_code) in product.selectedProducts"
+                          :key="product_code"
+                        >
+                          <td>{{product_code}}</td>
+                          <td>{{count}}</td>
+                          <td>
+                            <Button
+                              :variant="'outline-success'"
+                              size="sm"
+                              :id="'btn-delete-product-' + product_code"
+                              @click="removeProduct(product_code)"
+                            >
+                              <i class="fal fa-trash-alt"></i>
+                            </Button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div v-else class="alert alert-warning" role="alert">No Products to show</div>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <Select
-                      id="customer-district"
-                      label="District"
-                      :options="districtOptions"
-                      v-model="orderCreateForm.customerDetails.district"
-                    />
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <Select
-                      id="customer-sub-district"
-                      label="Sub-District"
-                      :options="subDistrictOptions"
-                      v-model="orderCreateForm.customerDetails.subDistrict"
-                    />
+                  <div class="col">
+                    <hr />
+                    <div class="d-flex mt-4 justify-content-center">
+                      <button type="submit" class="btn btn-success mr-4" :disabled="invalid">Submit</button>
+                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </CardWidget>
+            </Card>
           </div>
-        </div>
-
-        <Card>
-          <div slot="body">
-            <div class="row">
-              <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
-                <p class="lead font-weight-normal">All Products</p>
-                <DataTable
-                  id="show-products"
-                  :columns="product.columns"
-                  :rows="product.rows"
-                  :per_page="5"
-                >
-                  <div slot="actions" slot-scope="props">
-                    <Button
-                      :variant="'outline-success'"
-                      size="sm"
-                      custom_class="mr-1"
-                      id="btn-action-detail"
-                      @click="addProduct(props.props.rowData)"
-                    >
-                      <i class="fal fa-plus"></i>
-                    </Button>
-                  </div>
-                </DataTable>
-              </div>
-
-              <div class="col-md-6 col-sm-12">
-                <p class="lead font-weight-normal">Selected Products</p>
-
-                <table class="table table-bordered" v-if="selectedProductsCount">
-                  <thead>
-                    <th>Product Code</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                  </thead>
-                  <tbody>
-                    <tr
-                      v-for="(count, product_code) in product.selectedProducts"
-                      :key="product_code"
-                    >
-                      <td>{{product_code}}</td>
-                      <td>{{count}}</td>
-                      <td>
-                        <Button
-                          :variant="'outline-success'"
-                          size="sm"
-                          :id="'btn-delete-product-' + product_code"
-                          @click="removeProduct(product_code)"
-                        >
-                          <i class="fal fa-trash-alt"></i>
-                        </Button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <div v-else class="alert alert-warning" role="alert">No Products to show</div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <hr>
-                <div class="d-flex mt-4 justify-content-center">
-                  <button type="submit" class="btn btn-success mr-4" :disabled="invalid">Submit</button>
-                  <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
+        </form>
+      </ValidationObserver>
     </section>
   </div>
 </template>
@@ -252,6 +255,7 @@ import RadioGroup from "@/components/core/RadioGroup";
 import FileUpload from "@/components/core/FileUpload";
 import DataTable from "@/components/core/DataTable";
 import Vue from "vue";
+import { generateOrderCode } from "@/helpers/core";
 
 export default {
   name: "Seller-Order-Create",
@@ -293,7 +297,7 @@ export default {
 
       orderCreateForm: {
         agent: null,
-        orderCode: null,
+        orderCode: generateOrderCode(5),
         shipper: null,
         cod: null,
         remark: null,
@@ -309,6 +313,14 @@ export default {
           email: null
         }
       },
+
+      agentOptions: [
+        { name: "Agent 1", value: 1 },
+        { name: "Agent 2", value: 2 },
+        { name: "Agent 3", value: 3 },
+        { name: "Agent 4", value: 4 },
+        { name: "Agent 5", value: 5 }
+      ],
 
       shipperOptions: [
         { name: "Shipper 1", value: 1 },
@@ -399,6 +411,8 @@ export default {
       }
     };
   },
+
+  created() {},
 
   methods: {
     handleFormSubmit() {},

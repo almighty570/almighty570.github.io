@@ -3,7 +3,7 @@
     <tbody>
       <tr v-for="(value,i) in values" :key="i">
         <th scope="row" :class="thead_class">{{getKey(value)}}</th>
-        <td>{{getValue(value)}}</td>
+        <td v-html="getValue(value)"></td>
       </tr>
     </tbody>
   </table>
@@ -19,8 +19,8 @@ export default {
     values: Array
   },
   methods: {
-   getKey: (pair) => Object.keys(pair)[0],
-   getValue: (pair) => Object.values(pair)[0] || "Not Set"
+    getKey: pair => Object.keys(pair)[0],
+    getValue: pair => Object.values(pair)[0] || "Not Set"
   }
 };
 </script>

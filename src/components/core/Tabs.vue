@@ -39,10 +39,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$warning: #ffc107;
-$success: #28a745;
-$danger: #dc3545;
-$primary: #006cdf;
+
+$variants: (
+  primary: #007bff,
+  success: #28a745,
+  info: #17a2b8,
+  warning: #ffc107,
+  danger: #dc3545
+);
 
 .tabs__wrapper {
   display: flex;
@@ -65,54 +69,16 @@ $primary: #006cdf;
     }
   }
 
-  &.is-primary {
-    .tab-list-item {
-      &.--active {
-        border-bottom-color: $primary;
+  @each $variant, $color in $variants {
+    &.is-#{$variant} {
+      .tab-list-item {
+        &.--active {
+          border-bottom-color: $color;
 
-        span {
-          background-color: $primary;
-          color: white;
-        }
-      }
-    }
-  }
-
-  &.is-success {
-    .tab-list-item {
-      &.--active {
-        border-bottom-color: $success;
-        color: $success;
-
-        span {
-          background-color: $success;
-          color: white;
-        }
-      }
-    }
-  }
-
-  &.is-danger {
-    .tab-list-item {
-      &.--active {
-        border-bottom-color: $danger;
-
-        span {
-          background-color: $danger;
-          color: white;
-        }
-      }
-    }
-  }
-
-  &.is-warning {
-    .tab-list-item {
-      &.--active {
-        border-bottom-color: $warning;
-
-        span {
-          background-color: $warning;
-          color: black;
+          span {
+            background-color: $color;
+            color: white;
+          }
         }
       }
     }

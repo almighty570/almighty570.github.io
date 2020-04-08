@@ -15,9 +15,13 @@ import SellerOrderCreate from '../views/Seller/Orders/Create.vue'
 import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
 import SellerOrderEdit from "../views/Seller/Orders/Edit.vue";
 
+import SellerSalesAgentList from "../views/Seller/SalesAgents/List.vue";
+import SellerSalesAgentCreate from '../views/Seller/SalesAgents/Create.vue'
+import SellerSalesAgentDetail from "../views/Seller/SalesAgents/Show.vue";
+import SellerSalesAgentEdit from "../views/Seller/SalesAgents/Edit.vue";
+
 import SellerSettings from "../views/Seller/Settings.vue";
 import SellerReports from "../views/Seller/Reports.vue";
-import SellerSalesAgents from "../views/Seller/SalesAgents.vue";
 
 Vue.use(VueRouter)
 
@@ -108,6 +112,35 @@ const routes = [
     component: SellerOrderEdit
   },
 
+  // Sales Agents
+  {
+    path: '/seller/sales-agents',
+    name: 'Seller-Sales-Agents-List',
+    meta: { layout: 'seller' },
+    component: SellerSalesAgentList
+  },
+
+  {
+    path: '/seller/sales-agents/create',
+    name: 'Seller-Sales-Agents-Create',
+    meta: { layout: 'seller' },
+    component: SellerSalesAgentCreate
+  },
+
+  {
+    path: '/seller/sales-agents/:id',
+    name: 'Seller-Sales-Agents-Detail',
+    meta: { layout: 'seller' },
+    component: SellerSalesAgentDetail
+  },
+
+  {
+    path: '/seller/sales-agents/:id/edit',
+    name: 'Seller-Sales-Agents-Edit',
+    meta: { layout: 'seller' },
+    component: SellerSalesAgentEdit
+  },
+
   {
     path: '/seller/reports',
     name: 'Seller-Reports',
@@ -120,13 +153,6 @@ const routes = [
     name: 'Seller-Settings',
     meta: { layout: 'seller' },
     component: SellerSettings
-  },
-
-  {
-    path: '/seller/sales-agents',
-    name: 'Seller-Sales-Agents',
-    meta: { layout: 'seller' },
-    component: SellerSalesAgents
   },
 
   {
