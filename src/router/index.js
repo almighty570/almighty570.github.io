@@ -115,28 +115,28 @@ const routes = [
   // Sales Agents
   {
     path: '/seller/sales-agents',
-    name: 'Seller-Sales-Agents-List',
+    name: 'Seller-Sales-Agent-List',
     meta: { layout: 'seller' },
     component: SellerSalesAgentList
   },
 
   {
     path: '/seller/sales-agents/create',
-    name: 'Seller-Sales-Agents-Create',
+    name: 'Seller-Sales-Agent-Create',
     meta: { layout: 'seller' },
     component: SellerSalesAgentCreate
   },
 
   {
     path: '/seller/sales-agents/:id',
-    name: 'Seller-Sales-Agents-Detail',
+    name: 'Seller-Sales-Agent-Detail',
     meta: { layout: 'seller' },
     component: SellerSalesAgentDetail
   },
 
   {
     path: '/seller/sales-agents/:id/edit',
-    name: 'Seller-Sales-Agents-Edit',
+    name: 'Seller-Sales-Agent-Edit',
     meta: { layout: 'seller' },
     component: SellerSalesAgentEdit
   },
@@ -153,16 +153,6 @@ const routes = [
     name: 'Seller-Settings',
     meta: { layout: 'seller' },
     component: SellerSettings
-  },
-
-  {
-    path: '/about',
-    name: 'About',
-    meta: { layout: 'default' },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 

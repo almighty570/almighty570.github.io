@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content-header">
-      <div class="container">
+      <div class="container-fluid">
         <h1 class="text-dark">Dashboard</h1>
       </div>
     </div>
@@ -12,9 +12,12 @@
           <!-- Products -->
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
-              <Card custom_class="card-primary" id="products-details-card">
-                <h2 slot="title">Products</h2>
-                <div slot="body" class="info-box-wrapper">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="toolbar d-flex justify-space-between">
+                    <h3 class>Products</h3>
+                  </div>
+
                   <div class="row">
                     <div class="col-md-6 col-sm-12">
                       <SmallBox custom_class="mb-0">
@@ -22,7 +25,7 @@
                           <h3>150</h3>
                           <p>Products</p>
                         </div>
-                        <i slot="icon" class="icon fal fa-box-full"></i>
+                        <i slot="icon" class="icon fal fa-box-full text-primary"></i>
                       </SmallBox>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -31,18 +34,13 @@
                           <h3>2323</h3>
                           <p>Items</p>
                         </div>
-                        <i slot="icon" class="icon far fa-sitemap"></i>
+                        <i slot="icon" class="icon far fa-sitemap text-primary"></i>
                       </SmallBox>
                     </div>
                   </div>
                 </div>
-              </Card>
-            </router-link>
-            <!-- <Card>
-              <div slot="body">
-                <LineChart :chartdata="datacollection" :options="{}" />
               </div>
-            </Card>-->
+            </router-link>
           </div>
 
           <!-- Orders -->
@@ -67,7 +65,7 @@
                     </div>
                   </div>
                   <div class="pt-4" style="border-radius: 5px">
-                    <OrdersLineChart :chartdata="datacollection" :options="{}" />
+                    <OrdersLineChart :chartdata="ordersChartData" :options="{}" />
                   </div>
                 </div>
               </div>
@@ -79,12 +77,8 @@
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
               <div class="card">
-                <div class="card-body p-0" style="position:relative">
-                  <div class="toolbar d-flex justify-space-between pt-3 pr-3 pl-3 pb-1">
-                    <h3 class="pb-0">Shipping</h3>
-                  </div>
-
-                  <ShippingDoughnutChart v-if="shippingdata" :chartdata="shippingdata" />
+                <div class="card-body p-3" style="position:relative">
+                  <ShippingDoughnutChart v-if="shippingChartData" :chartdata="shippingChartData" />
                 </div>
               </div>
             </router-link>
@@ -93,12 +87,8 @@
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
               <div class="card">
-                <div class="card-body p-0" style="position:relative">
-                  <div class="toolbar d-flex justify-space-between pt-3 pr-3 pl-3 pb-1">
-                    <h3 class="pb-0">Cash On Delivery</h3>
-                  </div>
-
-                  <CodDoughnutChart v-if="shippingdata" :chartdata="shippingdata" />
+                <div class="card-body p-3" style="position:relative">
+                  <CodDoughnutChart v-if="codChartData" :chartdata="codChartData" />
                 </div>
               </div>
             </router-link>
@@ -110,19 +100,8 @@
 </template>
 
 <script>
-import TextBox from "@/components/core/TextBox";
-import MultiSelect from "@/components/core/MultiSelect";
-import FileUpload from "@/components/core/FileUpload";
-import Button from "@/components/core/Button";
-import DatePicker from "@/components/core/DatePicker";
-import NumberField from "@/components/core/NumberField";
-import RadioGroup from "@/components/core/RadioGroup";
-import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
-import ImageUpload from "@/components/core/ImageUpload";
-import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import SmallBox from "@/components/core/SmallBox";
-import { Toast } from "@/helpers/toastr";
 import OrdersLineChart from "@/components/derived/charts/OrdersLineChart";
 import ShippingDoughnutChart from "@/components/derived/charts/ShippingDoughnutChart";
 import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
@@ -130,64 +109,43 @@ import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
 export default {
   name: "Dashbaord",
   components: {
-    TextBox,
-    Button,
-    DatePicker,
-    NumberField,
-    RadioGroup,
-    Select,
     Card,
-    MultiSelect,
-    FileUpload,
-    ImageUpload,
-    CheckBoxGroup,
-    SmallBox,
     OrdersLineChart,
     ShippingDoughnutChart,
-    CodDoughnutChart
+    CodDoughnutChart,
+    SmallBox
   },
   data() {
     return {
-      multiSelect: null,
-      val: null,
-      date: null,
-      select: null,
-      number_field_value: null,
-      radio_field_value: null,
-      select_field_value: null,
-      checkBoxResults: null,
-      datacollection: null,
-      shippingdata: null
+      statsData: null
     };
   },
 
   created() {},
 
   mounted() {
-    this.fillData();
-    this.fillShippingData();
+    // this.fillData();
+    // this.fillShippingData();
   },
 
   methods: {
-    handleClick() {
-      alert("clicked");
-    },
-    fillShippingData() {
-      this.shippingdata = {
-        data: {
-          labels: ["To Ship", "In Transit", "Delivered"],
-          datasets: [
-            {
-              data: [12, 8, 112],
-              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
-            }
-          ]
-        },
-        icons: ["fa-box-alt", "fa-dolly-flatbed-alt", "fa-box-check"]
+    getDashboardData() {
+      this.statsData = {
+        products: null,
+        orders: null,
+        shipping: null,
+        cod: null
       };
     },
-    fillData() {
-      this.datacollection = {
+
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    }
+  },
+
+  computed: {
+    ordersChartData() {
+      return {
         labels: [this.getRandomInt(), this.getRandomInt()],
         datasets: [
           {
@@ -204,8 +162,34 @@ export default {
       };
     },
 
-    getRandomInt() {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    shippingChartData() {
+      return {
+        data: {
+          labels: ["To Ship", "In Transit", "Delivered"],
+          datasets: [
+            {
+              data: [12, 8, 112],
+              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
+            }
+          ]
+        },
+        icons: ["fa-box-alt", "fa-dolly-flatbed-alt", "fa-box-check"]
+      };
+    },
+
+    codChartData() {
+      return {
+        data: {
+          labels: ["Pending", "In Transit", "Delivered", "Cancelled"],
+          datasets: [
+            {
+              data: [119, 134, 112, 50],
+              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
+            }
+          ]
+        },
+        icons: ["fa-box-alt", "fa-dolly-flatbed-alt", "fa-box-check", "fa-box-check"]
+      };
     }
   }
 };
@@ -237,33 +221,3 @@ export default {
   color: #dc3545;
 }
 </style>
-
-// <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>12</h3>
-                          <p>To Ship</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>8</h3>
-                          <p>In Transit</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-dolly-flatbed-alt"></i>
-                      </SmallBox>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                      <SmallBox custom_class="mb-0">
-                        <div slot="inner">
-                          <h3>112</h3>
-                          <p>Delivered</p>
-                        </div>
-                        <i slot="icon" class="icon far fa-box-check"></i>
-                      </SmallBox>
-                    </div>
-                  </div>

@@ -205,10 +205,10 @@ export default {
           title: "Sales Agents",
           icon: "fal fa-users",
           pathName: [
-            "Seller-Sales-Agents-List",
-            "Seller-Sales-Agents-Detail",
-            "Seller-Sales-Agents-Create",
-            "Seller-Sales-Agents-Edit"
+            "Seller-Sales-Agent-List",
+            "Seller-Sales-Agent-Detail",
+            "Seller-Sales-Agent-Create",
+            "Seller-Sales-Agent-Edit"
           ]
         },
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Variation Information -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
         <label>Variation Information</label>
         <br />
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <hr />
+    <hr /> -->
 
     <!-- Variation List -->
     <div class="variation-list">

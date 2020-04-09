@@ -29,106 +29,79 @@
           <div class="card-body">
             <ValidationObserver v-slot="{ invalid }">
               <form @submit.prevent="handleFormSubmit">
+                <!-- Name & Email -->
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <TextBox
                       type="text"
-                      id="item-code"
-                      label="Item Code(SKU)"
-                      v-model="productCreateForm.itemCode"
+                      id="name"
+                      label="Name"
+                      v-model="salesAgentCreateForm.name"
                       rules="required"
-                    />
-
-                    <NumberField
-                      id="cost"
-                      label="Cost"
-                      v-model.number="productCreateForm.cost"
-                      rules="required"
-                    />
-
-                    <TextArea
-                      id="description"
-                      label="Description"
-                      v-model="productCreateForm.description"
-                      rules="required"
-                      rows="5"
                     />
                   </div>
                   <div class="col-md-6 col-sm-12">
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productCreateForm.salePrice"
+                    <TextBox
+                      type="email"
+                      id="email"
+                      label="Email"
+                      v-model="salesAgentCreateForm.email"
                       rules="required"
                     />
-
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productCreateForm.weightApprox"
-                      rules="required"
-                    />
-
-                    <div class="row">
-                      <div class="col">
-                        <NumberField
-                          v-if="productCreateForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productCreateForm.customBoxSize"
-                        />
-
-                        <NumberField
-                          id="quantity"
-                          label="Quantity"
-                          placeholder="Product quantity"
-                          rules="required"
-                          v-model="productCreateForm.quantity"
-                        />
-                      </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
-                      </div>
-                    </div>
-
-                    <div class="mt-4"></div>
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      variant="primary"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        v-model="productCreateForm.bundlePrices"
-                      />
-                    </div>
                   </div>
                 </div>
 
-                <!-- Product Variations -->
+                <!-- Phone Line Id -->
                 <div class="row">
-                  <div class="col-12">
-                    <Toggle
-                      id="has-variations"
-                      :value="false"
-                      variant="primary"
-                      v-model="productHasVariations"
-                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
+                  <div class="col-md-6 col-sm-12">
+                    <NumberField
+                      id="phone-no"
+                      label="Phone No."
+                      v-model="salesAgentCreateForm.phoneNo"
+                      rules="required"
                     />
-                    <div class="mb-2"></div>
-
-                    <div v-if="productHasVariations">
-                      <ProductVariation color_scheme="primary" />
-                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="line-id"
+                      label="Line ID"
+                      v-model="salesAgentCreateForm.lineId"
+                      rules="required"
+                    />
                   </div>
                 </div>
+
+                <!-- Id Card & Address -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <FileUpload name="id_card" label="Id Card" />
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="address"
+                      label="Address"
+                      v-model="salesAgentCreateForm.address"
+                      rules="required"
+                    />
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col">
+                    <CheckBoxGroup
+                      label="Permissions"
+                      :options="permissionOptions"
+                      id="permission"
+                      name="permission"
+                      v-model="salesAgentCreateForm.permissions"
+                    />
+                  </div>
+                </div>
+                <!-- Submit & Cancel Buttons -->
+                <div class="row">
+                  <div class="col text-center">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
                       <button
@@ -158,8 +131,9 @@ import TextBox from "@/components/core/TextBox";
 import Toggle from "@/components/core/Toggle";
 import TextArea from "@/components/core/TextArea";
 import NumberField from "@/components/core/NumberField";
-import ImageUpload from "@/components/core/ImageUpload";
+import FileUpload from "@/components/core/FileUpload";
 import Select from "@/components/core/Select";
+import RadioGroup from "@/components/core/RadioGroup";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
 import ProductVariation from "@/components/derived/ProductVariation";
@@ -170,12 +144,13 @@ export default {
     TextBox,
     NumberField,
     TextArea,
-    ImageUpload,
+    FileUpload,
     Select,
     CheckBoxGroup,
     RowControls,
     ProductVariation,
-    Toggle
+    Toggle,
+    RadioGroup
   },
   data() {
     return {
@@ -195,49 +170,23 @@ export default {
           isActive: true,
           pathName: "Seller-Sales-Agent-Create"
         }
-      ] ,
+      ],
 
-      productCreateForm: {
-        itemCode: null,
-        description: null,
-        stock: null,
-        cost: null,
-        salePrice: null,
-        weightApprox: null,
-        image: null,
-        customBoxSize: null,
-        variations: null,
-        bundlePrices: null,
-        quantity: null
+      salesAgentCreateForm: {
+        name: null,
+        email: null,
+        phoneNo: null,
+        lineId: null,
+        idCard: null,
+        address: null,
+        permissions: []
       },
 
-      boxSizeOptions: [
-        { name: "Large", value: 1 },
-        { name: "Small", value: 2 },
-        { name: "Custom", value: 0 }
-      ],
-      productHasVariations: false,
-      productHasBundles: false,
-
-      bundlePriceConfig: {
-        items: {
-          amount: {
-            type: "number",
-            rules: "required",
-            id: "bundle-amount",
-            placeholder: "Amount"
-          },
-
-          price: {
-            type: "number",
-            id: "bundle-price",
-            rules: "required",
-            placeholder: "Price"
-          }
-        },
-        numInstances: 1,
-        hasControls: true
-      }
+      permissionOptions: [
+        { name: "Manage only products", value: 0 },
+        { name: "Manage only orders", value: 1 },
+        { name: "Manage both orders & products", value: 2 }
+      ]
     };
   },
 
@@ -245,7 +194,7 @@ export default {
     handleFormSubmit() {},
 
     cancel() {
-      this.$router.push({ name: "Seller-Product-List" });
+      this.$router.push({ name: "Seller-Sales-Agent-List" });
     }
   }
 };

@@ -59,7 +59,7 @@ export default {
         {
           title: "Sales Agents",
           isActive: true,
-          pathName: "Sales-Agents"
+          pathName: "Seller-Sales-Agent-List"
         }
       ],
       salesAgentsLoading: false,
@@ -114,6 +114,7 @@ export default {
 
       this.salesAgentsData = [
         {
+          id: 1,
           name: "Seller 1",
           email: "seller1@proship.com",
           phone_no: "2342342342",
@@ -122,6 +123,7 @@ export default {
         },
 
         {
+          id: 2,
           name: "Seller 2",
           email: "seller2@proship.com",
           phone_no: "456423342",
@@ -130,6 +132,7 @@ export default {
         },
 
         {
+          id: 3,
           name: "Seller 3",
           email: "seller3@proship.com",
           phone_no: "896423342",
@@ -138,6 +141,7 @@ export default {
         },
 
         {
+          id: 4,
           name: "Seller 4",
           email: "seller4@proship.com",
           phone_no: "666423342",
@@ -146,6 +150,7 @@ export default {
         },
 
         {
+          id: 5,
           name: "Seller 5",
           email: "seller5@proship.com",
           phone_no: "23423342",
@@ -154,6 +159,7 @@ export default {
         },
 
         {
+          id: 6,
           name: "Seller 6",
           email: "seller6@proship.com",
           phone_no: "89423342",

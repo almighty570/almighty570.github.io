@@ -12,7 +12,7 @@
             v-model="radioValue"
             @change="updateValue()"
           />
-          <label :for="option.value">{{option.label}}</label>
+          <label :for="id + '-' + i" class="font-weight-normal">{{option.label}}</label>
         </div>
         <template v-if="errors">
           <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>

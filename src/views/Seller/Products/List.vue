@@ -114,7 +114,17 @@ export default {
         {
           name: "stock",
           title: "Stock",
-          sortField: "stock"
+          sortField: "stock.remaining",
+          formatter(value) {
+            let percent = Math.floor((value.remaining / value.total) * 100);
+            return `
+            <div class="progress" style="height: 4px;">
+              <div class="progress-bar" role="progressbar" style="width: ${percent}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <small> ${value.remaining} out of ${value.total} </small>
+            `;
+            return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
+          }
         },
         "actions"
       ];
@@ -126,7 +136,10 @@ export default {
           proship_code: "P-45424",
           description: "Short description 1...",
           available: "No",
-          stock: "some stock 1"
+          stock: {
+            total: 156,
+            remaining: 34
+          }
         },
 
         {
@@ -135,7 +148,10 @@ export default {
           proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          stock: "some stock 2"
+          stock: {
+            total: 16,
+            remaining: 3
+          }
         },
 
         {
@@ -144,7 +160,10 @@ export default {
           proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          stock: "some stock 2"
+          stock: {
+            total: 56,
+            remaining: 34
+          }
         },
 
         {
@@ -153,7 +172,10 @@ export default {
           proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          stock: "some stock 2"
+          stock: {
+            total: 546,
+            remaining: 334
+          }
         },
 
         {
@@ -162,7 +184,10 @@ export default {
           proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          stock: "some stock 2"
+          stock: {
+            total: 163,
+            remaining: 134
+          }
         },
 
         {
@@ -171,7 +196,10 @@ export default {
           proship_code: "P-0234",
           description: "Short description 2...",
           available: "Yes",
-          stock: "some stock 2"
+          stock: {
+            total: 689,
+            remaining: 394
+          }
         }
       ];
     }

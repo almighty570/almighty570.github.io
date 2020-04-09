@@ -47,7 +47,8 @@ export default {
     },
 
     instant_upload: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
 
     upload_url: {
@@ -119,7 +120,7 @@ export default {
     labelText() {
       if (!this.selectedFiles) return "None";
       return this.selectedFiles.length > 1
-        ? this.selectedFiles.length + " file(s) selected"
+        ? this.selectedFiles.length + " files selected"
         : this.selectedFiles[0].name;
     }
   }

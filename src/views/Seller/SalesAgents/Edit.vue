@@ -6,7 +6,7 @@
           <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
               <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-              Edit Product
+              Edit Sales Agent
             </h1>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -29,174 +29,92 @@
           <div class="card-body">
             <ValidationObserver v-slot="{ invalid }">
               <form @submit.prevent="handleFormSubmit">
+                <!-- Name & Email -->
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <TextBox
                       type="text"
-                      id="item-code"
-                      label="Item Code(SKU)"
-                      v-model="productEditForm.itemCode"
-                      rules="required"
-                    />
-
-                    <NumberField
-                      id="cost"
-                      label="Cost"
-                      v-model.number="productEditForm.cost"
-                      rules="required"
-                    />
-
-                    <TextArea
-                      id="description"
-                      label="Description"
-                      v-model="productEditForm.description"
-                      rules="required"
-                      rows="4"
-                    />
-
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productEditForm.salePrice"
-                      rules="required"
-                    />
-
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productEditForm.weightApprox"
+                      id="name"
+                      label="Name"
+                      v-model="salesAgentEditForm.name"
                       rules="required"
                     />
                   </div>
-                  <!-- <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                      <div class="col">
-                        <Select
-                          id="box-size"
-                          label="Box Size"
-                          :options="boxSizeOptions"
-                          v-model="productEditForm.boxSize"
-                        />
-
-                        <NumberField
-                          v-if="productEditForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productEditForm.customBoxSize"
-                        />
-                      </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
-                      </div>
-                    </div>
-
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        :value="productEditForm.dealPrices"
-                        title="Enter Deal Price"
-                      />
-                    </div>
-                  </div>-->
                   <div class="col-md-6 col-sm-12">
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productEditForm.salePrice"
+                    <TextBox
+                      type="email"
+                      id="email"
+                      label="Email"
+                      v-model="salesAgentEditForm.email"
                       rules="required"
                     />
-
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        v-model="productEditForm.bundlePrices"
-                      />
-                    </div>
-
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productEditForm.weightApprox"
-                      rules="required"
-                    />
-
-                    <div class="row">
-                      <div class="col">
-                        <Select
-                          id="box-size"
-                          label="Box Size"
-                          :options="boxSizeOptions"
-                          v-model="productEditForm.boxSize"
-                        />
-
-                        <NumberField
-                          v-if="productEditForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productEditForm.customBoxSize"
-                        />
-
-                        <NumberField
-                          id="quantity"
-                          label="Quantity"
-                          placeholder="Product quantity"
-                          rules="required"
-                          v-model="productEditForm.quantity"
-                        />
-                      </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
-                      </div>
-                    </div>
                   </div>
                 </div>
 
-                <!-- Product Variations -->
+                <!-- Phone Line Id -->
                 <div class="row">
-                  <div class="col-12">
-                    <Toggle
-                      id="has-variations"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasVariations"
-                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
+                  <div class="col-md-6 col-sm-12">
+                    <NumberField
+                      id="phone-no"
+                      label="Phone No."
+                      v-model="salesAgentEditForm.phoneNo"
+                      rules="required"
                     />
-                    <div class="mb-2"></div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="line-id"
+                      label="Line ID"
+                      v-model="salesAgentEditForm.lineId"
+                      rules="required"
+                    />
+                  </div>
+                </div>
 
-                    <div v-if="productHasVariations">
-                      <ProductVariation
-                        color_scheme="primary"
-                        v-model="productEditForm.variations"
-                        :value="productEditForm.variations"
-                      />
-                    </div>
+                <!-- Id Card & Address -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <FileUpload name="id_card" label="Id Card" />
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="address"
+                      label="Address"
+                      v-model="salesAgentEditForm.address"
+                      rules="required"
+                    />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col">
+                    <CheckBoxGroup
+                      label="Permissions"
+                      :options="permissionOptions"
+                      id="permission"
+                      name="permission"
+                      :value="salesAgentEditForm.permissions"
+                      v-model="salesAgentEditForm.permissions"
+                    />
+                  </div>
+                </div>
+                <!-- Submit & Cancel Buttons -->
+                <div class="row">
+                  <div class="col text-center">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-primary mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg mr-4"
+                        :disabled="invalid"
+                      >Submit</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary btn-lg"
+                        @click="cancel()"
+                      >Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -211,22 +129,22 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import Toggle from "@/components/core/Toggle";
 import TextArea from "@/components/core/TextArea";
 import NumberField from "@/components/core/NumberField";
-import ImageUpload from "@/components/core/ImageUpload";
+import FileUpload from "@/components/core/FileUpload";
 import Select from "@/components/core/Select";
 import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
 import ProductVariation from "@/components/derived/ProductVariation";
-import Toggle from "@/components/core/Toggle";
 
 export default {
-  name: "Seller-Product-Edit",
+  name: "Seller-Product-Create",
   components: {
     TextBox,
     NumberField,
     TextArea,
-    ImageUpload,
+    FileUpload,
     Select,
     CheckBoxGroup,
     RowControls,
@@ -242,133 +160,48 @@ export default {
           pathName: "Seller-Dashboard"
         },
         {
-          title: "Products",
+          title: "Sales Agents",
           isActive: false,
-          pathName: "Seller-Product-List"
+          pathName: "Seller-Sales-Agents"
         },
         {
-          title: this.$route.params.id,
+          title: "New Sales Agent",
           isActive: true,
-          pathName: "Seller-Product-Detail"
-        },
-        {
-          title: "Edit",
-          isActive: false,
-          pathName: "Seller-Product-Edit"
+          pathName: "Seller-Sales-Agent-Create"
         }
       ],
 
-      productEditForm: null,
+      salesAgentEditForm: null,
 
-      boxSizeOptions: [
-        { name: "Large", value: 1 },
-        { name: "Small", value: 2 },
-        { name: "Custom", value: 0 }
-      ],
-      productHasVariations: false,
-      productHasBundles: true,
-
-      bundlePriceConfig: {
-        items: {
-          amount: {
-            type: "select",
-            rules: "required",
-            id: "bundle-amount",
-            placeholder: "Amount",
-            options: [
-              { name: "One", value: 1 },
-              { name: "Two", value: 2 },
-              { name: "Three", value: 3 }
-            ]
-          },
-
-          price: {
-            type: "number",
-            id: "bundle-price",
-            rules: "required",
-            placeholder: "Price"
-          }
-        },
-        numInstances: 1,
-        hasControls: true
-      }
+      permissionOptions: [
+        { name: "Manage only products", value: 0 },
+        { name: "Manage only orders", value: 1 },
+        { name: "Manage both orders & products", value: 2 }
+      ]
     };
   },
 
   created() {
-    this.fetchProduct();
+    this.fetchSalesAgentData();
   },
 
   methods: {
+    fetchSalesAgentData() {
+      this.salesAgentEditForm = {
+        name: "Sales agent 1",
+        email: "salesagent@proship.com",
+        phoneNo: 345345345,
+        lineId: "sales-agent-line",
+        idCard: null,
+        address: "Bangkok, Thailand",
+        permissions: [0]
+      };
+    },
+
     handleFormSubmit() {},
 
     cancel() {
-      this.$router.push({ name: "Seller-Product-List" });
-    },
-
-    fetchProduct() {
-      this.productEditForm = {
-        itemCode: "123213",
-        description: "descriptio ksdfa fas d as",
-        stock: "asda",
-        cost: 12312,
-        salePrice: 234,
-        weightApprox: 345.456,
-        image: "asdasd",
-        boxSize: 1,
-        customBoxSize: null,
-        variations: [
-          {
-            name: "Size",
-            options: [
-              {
-                name: "Large",
-                price: 1000,
-                stock: 23,
-                SKU: "GH75OP"
-              },
-              {
-                name: "Md",
-                price: 800,
-                stock: 12,
-                SKU: "GH75OP"
-              }
-            ]
-          },
-          {
-            name: "Color",
-            options: [
-              {
-                name: "Dark",
-                price: 890,
-                stock: 5,
-                SKU: "YR93O"
-              },
-              {
-                name: "Light",
-                price: 500,
-                stock: 53,
-                SKU: "YR93O"
-              }
-            ]
-          }
-        ],
-        dealPrices: [
-          {
-            key: 1,
-            val: 100
-          },
-          {
-            key: 2,
-            val: 150
-          },
-          {
-            key: 3,
-            val: 200
-          }
-        ]
-      };
-      this.productHasVariations = true;
+      this.$router.push({ name: "Seller-Sales-Agent-List" });
     }
   }
 };
