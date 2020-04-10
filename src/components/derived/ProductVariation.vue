@@ -231,7 +231,7 @@ export default {
     generateVariationSku() {
       for (let i = 0; i < this.variations.length; i++) {
         const variation = this.variations[i];
-        if (!(variation.name && variation.name.length)) continue;
+        if (!variation.name) continue;
         for (let j = 0; j < variation.options.length; j++) {
           const option = variation.options[j];
           if (option.name)

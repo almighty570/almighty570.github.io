@@ -31,3 +31,14 @@ export const generateOrderCode = (length) => {
 
     return result;
 }
+
+export const navigateObj = (obj, prop) => {
+    if (prop.includes('.')) {
+        let keys = prop.split('.');
+        let val = obj[keys[0]];
+        for (let i = 0; i < keys.length; i++) {
+            val = val[keys[i]]
+        }
+        return val;
+    } else return obj[prop];
+}

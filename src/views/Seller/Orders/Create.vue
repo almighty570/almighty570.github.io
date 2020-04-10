@@ -167,11 +167,14 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
                     <p class="lead font-weight-normal">All Products</p>
+
                     <DataTable
                       id="show-products"
                       :columns="product.columns"
                       :rows="product.rows"
                       :per_page="5"
+                      searchable
+                      :search_fields="['item_code', 'product_code']"
                     >
                       <div slot="actions" slot-scope="props">
                         <Button

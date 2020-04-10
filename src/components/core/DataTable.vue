@@ -1,5 +1,14 @@
 <template>
   <div>
+    <TextBox
+      type="text"
+      v-if="searchable"
+      :id="id + '-search-input'"
+      v-model="searchKeyword"
+      placeholder="Search Keyword"
+      @input="refreshTable()"
+    />
+
     <vuetable
       ref="datatable"
       :api-mode="false"
@@ -29,10 +38,11 @@
 import _ from "lodash";
 import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
+import TextBox from "@/components/core/TextBox";
 
 export default {
   name: "DataTable",
-  components: { Vuetable, VuetablePagination },
+  components: { Vuetable, VuetablePagination, TextBox },
   props: {
     id: {
       type: String,
@@ -59,11 +69,21 @@ export default {
 
     per_page: {
       type: Number
+    },
+
+    searchable: {
+      type: Boolean,
+      default: false
+    },
+
+    search_fields: {
+      type: Array
     }
   },
 
   data() {
     return {
+      searchKeyword: null,
       cssConfig: {
         table: {
           tableWrapper: "table-responsive",
@@ -111,7 +131,27 @@ export default {
     },
     dataManager(sortOrder, pagination) {
       if (this.rows.length < 1) return;
-      let local = this.rows;
+      var local = this.rows;
+
+      // search
+      if (
+        this.searchable &&
+        this.searchKeyword &&
+        this.searchKeyword.length > 0
+      ) {
+        local = this.rows.filter(row => {
+          let exists = false;
+          for (let i = 0; i < this.search_fields.length; i++) {
+            const field = this.search_fields[i];
+            exists =
+              row[field]
+                .toLowerCase()
+                .indexOf(this.searchKeyword.toLowerCase()) >= 0;
+            if(exists) return exists;
+          }
+          return exists;
+        });
+      }
 
       // sortOrder can be empty, so we have to check for that as well
       if (sortOrder.length > 0) {
@@ -139,6 +179,10 @@ export default {
 
     onActionClicked(action, data) {
       console.log("slot actions: on-click", data.name);
+    },
+
+    refreshTable() {
+      this.$refs.datatable.refresh();
     }
   }
 };
