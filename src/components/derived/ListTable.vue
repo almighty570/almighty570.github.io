@@ -38,10 +38,19 @@
         <Button
           :variant="'outline-' + color_scheme"
           size="sm"
+          custom_class="mr-1"
           id="btn-action-edit"
           @click="goto('Edit', props.props.rowData.id)"
         >
           <i class="fal fa-pen"></i>
+        </Button>
+        <Button
+          :variant="'outline-' + color_scheme"
+          size="sm"
+          id="btn-action-delete"
+          @click="deleteItem(props.props.rowData.id)"
+        >
+          <i class="fal fa-trash-alt"></i>
         </Button>
       </div>
     </DataTable>
@@ -71,6 +80,7 @@ import Button from "@/components/core/Button";
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import Swal from "sweetalert2";
+import { Alert } from "@/helpers/alert";
 
 export default {
   name: "ListTable",
@@ -130,6 +140,12 @@ export default {
         this.$router.push({ name: this.detail_path_name, params: { id } });
       else if (type === "Edit")
         this.$router.push({ name: this.edit_path_name, params: { id } });
+    },
+
+    deleteItem(id) {
+      Alert("Delete", "Are you sure you want to delete this item ?", null, () => {
+        // Make Delete API call here
+      });
     }
   },
 

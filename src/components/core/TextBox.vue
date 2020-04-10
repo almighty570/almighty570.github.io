@@ -12,6 +12,8 @@
         :placeholder="placeholder"
         :value="value"
         @input="updateValue()"
+        @change="handleChange()"
+        :disabled="disabled"
       />
       <template v-if="errors.length">
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
@@ -52,12 +54,21 @@ export default {
 
     wrapper_class: {
       type: String
+    },
+
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
   methods: {
     updateValue() {
       this.$emit("input", this.$refs.input.value);
+    },
+
+    handleChange() {
+      this.$emit("change", this.$refs.input.value);
     }
   }
 };

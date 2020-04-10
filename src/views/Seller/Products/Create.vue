@@ -35,7 +35,7 @@
                       type="text"
                       id="item-code"
                       label="Item Code(SKU)"
-                      v-model="productCreateForm.itemCode"
+                      v-model="productCreateForm.sku"
                       rules="required"
                     />
 
@@ -123,7 +123,7 @@
                     <div class="mb-2"></div>
 
                     <div v-if="productHasVariations">
-                      <ProductVariation color_scheme="primary" />
+                      <ProductVariation color_scheme="primary" :product="productCreateForm" />
                     </div>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export default {
       ],
 
       productCreateForm: {
-        itemCode: null,
+        sku: null,
         description: null,
         stock: null,
         cost: null,

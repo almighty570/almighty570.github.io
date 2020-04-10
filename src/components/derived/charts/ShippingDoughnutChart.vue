@@ -12,7 +12,7 @@
       </p>
     </div>
 
-    <div class="chart ml-auto">
+    <div class="chart ml-auto align-self-center">
       <canvas id="doughnutChart" class="canvas-doughnut"></canvas>
     </div>
   </div>

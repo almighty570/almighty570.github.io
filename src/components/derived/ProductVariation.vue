@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <hr /> -->
+    <hr />-->
 
     <!-- Variation List -->
     <div class="variation-list">
@@ -83,6 +83,7 @@
             :id="'variation-name-' + index"
             v-model="variations[index].name"
             placeholder="Enter Variation Name"
+            @input="generateVariationSku()"
           />
 
           <div class="variation-options-list d-flex flex-column">
@@ -97,21 +98,22 @@
                 v-model="variations[index].options[index2].name"
                 placeholder="Option"
                 wrapper_class="mr-2"
+                @input="generateVariationSku()"
               />
 
-              <TextBox
+              <!-- <TextBox
                 type="text"
                 :id="'variation-' + index + '-option-price-' + index2"
                 v-model="variations[index].options[index2].price"
                 placeholder="Price"
                 wrapper_class="mr-2"
-              />
+              />-->
 
               <TextBox
                 type="text"
-                :id="'variation-' + index + '-option-stock-' + index2"
+                :id="'variation-' + index + '-option-quantity-' + index2"
                 v-model="variations[index].options[index2].stock"
-                placeholder="Stock"
+                placeholder="Quantity"
                 wrapper_class="mr-2"
               />
 
@@ -121,6 +123,7 @@
                 v-model="variations[index].options[index2].sku"
                 placeholder="SKU"
                 wrapper_class="mr-2"
+                disabled
               />
 
               <Button
@@ -161,6 +164,7 @@ import TextBox from "@/components/core/TextBox.vue";
 export default {
   name: "ProductVariation",
   props: {
+    product: Object,
     color_scheme: String,
     value: Array
   },
@@ -171,12 +175,12 @@ export default {
 
   data() {
     return {
-      variations: [],
-      variationInfo: {
-        price: null,
-        stock: null,
-        sku: null
-      }
+      variations: []
+      // variationInfo: {
+      //   price: null,
+      //   stock: null,
+      //   sku: null
+      // }
     };
   },
 
@@ -199,8 +203,8 @@ export default {
     addVariationOption(variationIndex) {
       this.variations[variationIndex].options.push({
         name: null,
-        price: null,
-        stock: null,
+        // price: null,
+        quantity: null,
         sku: null
       });
     },
@@ -209,19 +213,40 @@ export default {
       this.variations[variationIndex].options.splice(optionIndex, 1);
     },
 
-    applyToAll() {
-      // apply variation information to all variations
-      this.variations.forEach(variation => {
-        variation.options.forEach(option => {
-          if (this.variationInfo.price) option.price = this.variationInfo.price;
-          if (this.variationInfo.stock) option.stock = this.variationInfo.stock;
-          if (this.variationInfo.sku) option.sku = this.variationInfo.sku;
-        });
-      });
+    // applyToAll() {
+    //   // apply variation information to all variations
+    //   this.variations.forEach(variation => {
+    //     variation.options.forEach(option => {
+    //       if (this.variationInfo.price) option.price = this.variationInfo.price;
+    //       if (this.variationInfo.stock) option.stock = this.variationInfo.stock;
+    //       if (this.variationInfo.sku) option.sku = this.variationInfo.sku;
+    //     });
+    //   });
+    // },
+
+    emitInput() {
+      this.$emit("input", this.variations);
     },
 
-    emitInnput() {
-      this.$emit("input", this.variations);
+    generateVariationSku() {
+      for (let i = 0; i < this.variations.length; i++) {
+        const variation = this.variations[i];
+        if (!(variation.name && variation.name.length)) continue;
+        for (let j = 0; j < variation.options.length; j++) {
+          const option = variation.options[j];
+          if (option.name)
+            option.sku =
+              this.product.sku + "-" + variation.name + "-" + option.name;
+        }
+      }
+    }
+  },
+
+  computed: {},
+
+  watch: {
+    product() {
+      this.generateVariationSku();
     }
   }
 };

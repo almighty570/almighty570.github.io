@@ -12,7 +12,7 @@
           <!-- Products -->
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
-              <div class="card">
+              <div class="card m-2">
                 <div class="card-body p-3">
                   <div class="toolbar d-flex justify-space-between">
                     <h3 class>Products</h3>
@@ -46,7 +46,7 @@
           <!-- Orders -->
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card">
+              <div class="card m-2">
                 <div class="card-body p-0" style="position:relative">
                   <div
                     class="info"
@@ -76,7 +76,7 @@
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card">
+              <div class="card m-2">
                 <div class="card-body p-3" style="position:relative">
                   <ShippingDoughnutChart v-if="shippingChartData" :chartdata="shippingChartData" />
                 </div>
@@ -86,7 +86,7 @@
 
           <div class="col-md-6 col-sm-12">
             <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card">
+              <div class="card m-2">
                 <div class="card-body p-3" style="position:relative">
                   <CodDoughnutChart v-if="codChartData" :chartdata="codChartData" />
                 </div>
@@ -165,15 +165,20 @@ export default {
     shippingChartData() {
       return {
         data: {
-          labels: ["To Ship", "In Transit", "Delivered"],
+          labels: ["Pending", "In Transit", "Delivered", "Cancelled"],
           datasets: [
             {
-              data: [12, 8, 112],
-              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
+              data: [12, 8, 12, 34],
+              backgroundColor: ["#f56954", "#00a65a", "#f39c12", "#26A69A"]
             }
           ]
         },
-        icons: ["fa-box-alt", "fa-dolly-flatbed-alt", "fa-box-check"]
+        icons: [
+          "fa-box-alt",
+          "fa-dolly-flatbed-alt",
+          "fa-box-check",
+          "fa-box-check"
+        ]
       };
     },
 
@@ -184,11 +189,16 @@ export default {
           datasets: [
             {
               data: [119, 134, 112, 50],
-              backgroundColor: ["#f56954", "#00a65a", "#f39c12"]
+              backgroundColor: ["#f56954", "#00a65a", "#f39c12", "#26A69A"]
             }
           ]
         },
-        icons: ["fa-box-alt", "fa-dolly-flatbed-alt", "fa-box-check", "fa-box-check"]
+        icons: [
+          "fa-box-alt",
+          "fa-dolly-flatbed-alt",
+          "fa-box-check",
+          "fa-box-check"
+        ]
       };
     }
   }
