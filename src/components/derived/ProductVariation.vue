@@ -205,7 +205,7 @@ export default {
         name: null,
         // price: null,
         quantity: null,
-        sku: null
+        sku: "Not Set"
       });
     },
 
@@ -229,14 +229,15 @@ export default {
     },
 
     generateVariationSku() {
+      console.log("Called");
       for (let i = 0; i < this.variations.length; i++) {
         const variation = this.variations[i];
-        if (!variation.name) continue;
         for (let j = 0; j < variation.options.length; j++) {
           const option = variation.options[j];
-          if (option.name)
+          if (option.name && this.product.sku && variation.name)
             option.sku =
               this.product.sku + "-" + variation.name + "-" + option.name;
+          else option.sku = "Not Set";
         }
       }
     }
@@ -245,8 +246,11 @@ export default {
   computed: {},
 
   watch: {
-    product() {
-      this.generateVariationSku();
+    product: {
+      handler() {
+        this.generateVariationSku();
+      },
+      deep: true
     }
   }
 };

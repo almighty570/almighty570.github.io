@@ -1,16 +1,17 @@
 <template>
   <div class="card" :class="custom_class" :id="id">
-    <div class="card-header" v-if="hasCardTitleSlot">
+    <div class="card-header pb-2" v-if="hasCardTitleSlot">
       <h3 class="card-title" v-if="hasCardTitleSlot">
         <slot name="title"></slot>
       </h3>
       <div class="card-tools">
-        <button type="button" class="btn btn-tool" :data-card-widget="card_widget_type">
-          <i class="fas fa-minus"></i>
+        <!-- :data-card-widget="card_widget_type" -->
+        <button type="button" class="btn btn-tool" @click="toggle()">
+          <i class="fas" :class="{'fa-minus': state, 'fa-plus': !state}"></i>
         </button>
       </div>
     </div>
-    <div class="card-body" v-if="hasCardBodySlot">
+    <div class="card-body" v-if="hasCardBodySlot && state">
       <slot name="body"></slot>
     </div>
     <div class="card-footer" v-if="hasFooterSlot">
@@ -26,6 +27,18 @@ export default {
     custom_class: String,
     id: String,
     card_widget_type: String
+  },
+
+  data() {
+    return {
+      state: true
+    };
+  },
+
+  methods: {
+    toggle() {
+      this.state = !this.state;
+    }
   },
 
   mounted() {
@@ -45,5 +58,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+// .card-body {
+//   overflow: hidden;
+//   transition: all 0.2s ease-in-out;
+//   &.--hidden {
+//     height: 0px;
+//   }
+// }
 </style>

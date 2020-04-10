@@ -29,11 +29,12 @@
                 :value="false"
                 color="blue"
                 v-model="showInventory"
+                :show_label="false"
                 :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
               />
             </div>
           </div>
-          <div class="setting --table">
+          <!-- <div class="setting --table">
             <div class="setting__text">
               <div class="setting__header">Balance History</div>
             </div>
@@ -49,8 +50,8 @@
                 sample_file_link="#"
               />
             </div>
-          </div>
-          <div class="setting --inline">
+          </div>-->
+          <!-- <div class="setting --inline">
             <div class="setting__text">
               <div class="setting__header">Balance Status</div>
               <div class="setting__description">Balance Payment Status for your account</div>
@@ -94,7 +95,7 @@
             <div class="setting__toggle">
               <div class="setting-status-tag --success">Good</div>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

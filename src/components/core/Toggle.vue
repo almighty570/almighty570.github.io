@@ -4,7 +4,7 @@
       <input type="checkbox" :id="id" v-model="val" @change="updateValue" />
       <span :style="changeBackground()" class="slider round"></span>
     </label>
-    <label class="align-self-center font-weight-normal">{{label}}</label>
+    <label class="align-self-center font-weight-normal" v-if="show_label">{{label}}</label>
   </div>
 </template>
 
@@ -30,6 +30,11 @@ export default {
     id: {
       type: String,
       required: true
+    },
+
+    show_label: {
+      type: Boolean,
+      default: true
     },
 
     value: {

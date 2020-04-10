@@ -2,7 +2,20 @@
   <div>
     <div class="content-header">
       <div class="container-fluid">
-        <h1 class="text-dark">Dashboard</h1>
+        <div class="d-flex">
+          <h1 class="text-dark align-self-center">Dashboard</h1>
+
+          <select
+            class="form-control form-control-sm ml-auto align-self-center"
+            style="width: 150px;"
+          >
+            <option value="1">This Week</option>
+            <option value="1">This Month</option>
+            <option value="1">Last 3 months</option>
+            <option value="1">This year</option>
+            <option value="1">Till Now</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -11,8 +24,8 @@
         <div class="row">
           <!-- Products -->
           <div class="col-md-6 col-sm-12">
-            <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
-              <div class="card m-2">
+            <div class="card m-2">
+              <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
                 <div class="card-body p-3">
                   <div class="toolbar d-flex justify-space-between">
                     <h3 class>Products</h3>
@@ -39,14 +52,14 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
 
           <!-- Orders -->
           <div class="col-md-6 col-sm-12">
-            <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card m-2">
+            <div class="card m-2">
+              <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
                 <div class="card-body p-0" style="position:relative">
                   <div
                     class="info"
@@ -68,30 +81,30 @@
                     <OrdersLineChart :chartdata="ordersChartData" :options="{}" />
                   </div>
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card m-2">
+            <div class="card m-2">
+              <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
                 <div class="card-body p-3" style="position:relative">
                   <ShippingDoughnutChart v-if="shippingChartData" :chartdata="shippingChartData" />
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
 
           <div class="col-md-6 col-sm-12">
-            <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
-              <div class="card m-2">
+            <div class="card m-2">
+              <router-link :to="{name: 'Seller-Order-List'}" class="--no-styles">
                 <div class="card-body p-3" style="position:relative">
                   <CodDoughnutChart v-if="codChartData" :chartdata="codChartData" />
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -177,7 +190,7 @@ export default {
           "fa-box-alt",
           "fa-dolly-flatbed-alt",
           "fa-box-check",
-          "fa-box-check"
+          "fa-times-square"
         ]
       };
     },
@@ -197,7 +210,7 @@ export default {
           "fa-box-alt",
           "fa-dolly-flatbed-alt",
           "fa-box-check",
-          "fa-box-check"
+          "fa-times-square"
         ]
       };
     }
