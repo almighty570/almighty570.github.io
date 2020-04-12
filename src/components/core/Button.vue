@@ -3,7 +3,7 @@
     class="btn"
     :class="'btn-' + variant + ' btn-' + size + ' ' + custom_class"
     @click="$emit('click')"
-    :disabled="loading"
+    :disabled="loading || disabled"
   >
     <i class="fal fa-spinner-third spin mr-1" v-if="loading"></i>
     <slot></slot>
@@ -32,6 +32,10 @@ export default {
     },
 
     loading: {
+      type: Boolean
+    },
+
+    disabled: {
       type: Boolean
     },
 

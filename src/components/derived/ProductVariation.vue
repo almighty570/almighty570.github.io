@@ -84,6 +84,7 @@
             v-model="variations[index].name"
             placeholder="Enter Variation Name"
             @input="generateVariationSku()"
+            rules="required"
           />
 
           <div class="variation-options-list d-flex flex-column">
@@ -98,6 +99,7 @@
                 v-model="variations[index].options[index2].name"
                 placeholder="Option"
                 wrapper_class="mr-2"
+                rules="required"
                 @input="generateVariationSku()"
               />
 
@@ -115,6 +117,8 @@
                 v-model="variations[index].options[index2].stock"
                 placeholder="Quantity"
                 wrapper_class="mr-2"
+                rules="required"
+                @input="emitInput()"
               />
 
               <TextBox
@@ -191,14 +195,13 @@ export default {
 
   methods: {
     addVariation() {
-      this.variations.push({
-        name: null,
-        options: []
-      });
+      this.variations.push({ name: null, options: [] });
       this.addVariationOption(this.variations.length - 1);
+      this.emitInput();
     },
     removeVariation(variationIndex) {
       this.variations.splice(variationIndex, 1);
+      this.emitInput();
     },
     addVariationOption(variationIndex) {
       this.variations[variationIndex].options.push({
@@ -207,10 +210,12 @@ export default {
         quantity: null,
         sku: "Not Set"
       });
+      this.emitInput();
     },
 
     removeVariationOption(variationIndex, optionIndex) {
       this.variations[variationIndex].options.splice(optionIndex, 1);
+      this.emitInput();
     },
 
     // applyToAll() {
@@ -229,7 +234,6 @@ export default {
     },
 
     generateVariationSku() {
-      console.log("Called");
       for (let i = 0; i < this.variations.length; i++) {
         const variation = this.variations[i];
         for (let j = 0; j < variation.options.length; j++) {
@@ -240,6 +244,7 @@ export default {
           else option.sku = "Not Set";
         }
       }
+      this.emitInput();
     }
   },
 

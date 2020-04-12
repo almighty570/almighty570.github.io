@@ -68,7 +68,7 @@ export default {
   },
 
   created() {
-    setTimeout(() => this.fetchProducts(), 1000);
+    setTimeout(() => this.fetchProducts(), 500);
 
     this.productColumns = [
       {

@@ -72,19 +72,11 @@
                     <div class="row">
                       <div class="col">
                         <NumberField
-                          v-if="productCreateForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productCreateForm.customBoxSize"
-                        />
-
-                        <NumberField
                           id="quantity"
                           label="Quantity"
                           placeholder="Product quantity"
                           rules="required"
-                          v-model="productCreateForm.quantity"
+                          v-model.number="productCreateForm.quantity"
                         />
                       </div>
                       <div class="col">
@@ -123,7 +115,11 @@
                     <div class="mb-2"></div>
 
                     <div v-if="productHasVariations">
-                      <ProductVariation color_scheme="primary" :product="productCreateForm" />
+                      <ProductVariation
+                        color_scheme="primary"
+                        :product="productCreateForm"
+                        v-model="productCreateForm.variations"
+                      />
                     </div>
                   </div>
                 </div>
@@ -131,16 +127,30 @@
                   <div class="col">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-lg mr-4"
+                      <Button
+                        id="btn-submit"
+                        type="button"
+                        variant="primary"
+                        custom_class="mr-4"
+                        size="lg"
                         :disabled="invalid"
-                      >Submit</button>
-                      <button
+                        :loading="loading"
+                      >Submit</Button>
+
+                      <Button
+                        id="btn-cancel"
+                        type="button"
+                        variant="secondary"
+                        custom_class="mr-4"
+                        size="lg"
+                        @click="cancel()"
+                      >Cancel</Button>
+
+                      <!-- <button
                         type="button"
                         class="btn btn-secondary btn-lg"
                         @click="cancel()"
-                      >Cancel</button>
+                      >Cancel</button> -->
                     </div>
                   </div>
                 </div>
@@ -155,6 +165,7 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import Button from "@/components/core/Button";
 import Toggle from "@/components/core/Toggle";
 import TextArea from "@/components/core/TextArea";
 import NumberField from "@/components/core/NumberField";
@@ -175,7 +186,8 @@ export default {
     CheckBoxGroup,
     RowControls,
     ProductVariation,
-    Toggle
+    Toggle,
+    Button
   },
   data() {
     return {
@@ -197,6 +209,7 @@ export default {
         }
       ],
 
+      loading: false,
       productCreateForm: {
         sku: null,
         description: null,
@@ -205,7 +218,6 @@ export default {
         salePrice: null,
         weightApprox: null,
         image: null,
-        customBoxSize: null,
         variations: null,
         bundlePrices: null,
         quantity: null
@@ -242,10 +254,22 @@ export default {
   },
 
   methods: {
-    handleFormSubmit() {},
+    handleFormSubmit() {
+      console.log(this.productCreateForm);
+      this.loading = true;
+      return;
+      this.$store.dispatch("products/createProduct", {
+        product: this.productCreateForm,
+        callback: data => {}
+      });
+    },
 
     cancel() {
-      this.$router.push({ name: "Seller-Product-List" });
+      if (
+        confirm("Are you sure you want to cancel ? All the data will be lost.")
+      ) {
+        this.$router.push({ name: "Seller-Product-List" });
+      }
     }
   }
 };

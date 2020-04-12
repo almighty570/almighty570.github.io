@@ -46,6 +46,12 @@ export default {
             http.get("/products/" + payload.id).then(response => {
                 payload.callback(response.data);
             })
+        },
+
+        createProduct({ state, commit, rootState }, payload) {
+            http.post("/products/", payload.product).then(response => {
+                payload.callback(response.data);
+            })
         }
     }
 }
