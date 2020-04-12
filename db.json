@@ -1,0 +1,79 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "sku": "I-45424",
+      "proship_code": "P-45424",
+      "description": "Short description 1...",
+      "available": "No",
+      "stock": {
+        "total": 156,
+        "remaining": 34
+      }
+    },
+
+    {
+      "id": 2,
+      "sku": "I-123534",
+      "proship_code": "P-0234",
+      "description": "Short description 2...",
+      "available": "Yes",
+      "stock": {
+        "total": 16,
+        "remaining": 3
+      }
+    },
+
+    {
+      "id": 3,
+      "sku": "I-123534",
+      "proship_code": "P-0234",
+      "description": "Short description 2...",
+      "available": "Yes",
+      "stock": {
+        "total": 56,
+        "remaining": 34
+      }
+    },
+
+    {
+      "id": 4,
+      "sku": "I-123534",
+      "proship_code": "P-0234",
+      "description": "Short description 2...",
+      "available": "Yes",
+      "stock": {
+        "total": 546,
+        "remaining": 334
+      }
+    },
+
+    {
+      "id": 5,
+      "sku": "I-123534",
+      "proship_code": "P-0234",
+      "description": "Short description 2...",
+      "available": "Yes",
+      "stock": {
+        "total": 163,
+        "remaining": 134
+      }
+    },
+
+    {
+      "id": 6,
+      "sku": "I-123534",
+      "proship_code": "P-0234",
+      "description": "Short description 2...",
+      "available": "Yes",
+      "stock": {
+        "total": 689,
+        "remaining": 394
+      }
+    }
+  ],
+  "orders": [],
+  "sales_agents": [],
+  "users": [],
+  "settings": []
+}

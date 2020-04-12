@@ -27,7 +27,7 @@
             <ListTable
               id="products-list"
               :columns="productColumns"
-              :rows="productData"
+              :rows="products"
               create_path_name="Seller-Product-Create"
               edit_path_name="Seller-Product-Edit"
               detail_path_name="Seller-Product-Detail"
@@ -44,6 +44,7 @@
 <script>
 import ListTable from "@/components/derived/ListTable";
 import Card from "@/components/core/Card";
+import { mapState } from "vuex";
 
 export default {
   name: "Products-List",
@@ -62,147 +63,72 @@ export default {
           pathName: "Seller-Products"
         }
       ],
-      productsLoading: false,
-      productColumns: null,
-      productData: null
+      productColumns: null
     };
   },
 
-  beforeMount() {
-    // this.fetchProducts();
-  },
-
   created() {
-    this.fetchProducts();
-  },
+    setTimeout(() => this.fetchProducts(), 1000);
 
-  methods: {
-    fetchProducts() {
-      // make API Call here...
-      this.productColumns = [
-        {
-          name: "sku",
-          title: "SKU",
-          sortField: "sku"
-        },
+    this.productColumns = [
+      {
+        name: "sku",
+        title: "SKU",
+        sortField: "sku"
+      },
 
-        {
-          name: "proship_code",
-          title: "Proship Code",
-          sortField: "proship_code"
-        },
+      {
+        name: "proship_code",
+        title: "Proship Code",
+        sortField: "proship_code"
+      },
 
-        {
-          name: "description",
-          title: "Description",
-          sortField: "description"
-        },
+      {
+        name: "description",
+        title: "Description",
+        sortField: "description"
+      },
 
-        {
-          name: "available",
-          title: "Available",
-          sortField: "available",
-          formatter(value) {
-            let status = {
-              Yes: "success",
-              No: "warning"
-            }[value];
-            return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
-          }
-        },
+      {
+        name: "available",
+        title: "Available",
+        sortField: "available",
+        formatter(value) {
+          let status = {
+            Yes: "success",
+            No: "warning"
+          }[value];
+          return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
+        }
+      },
 
-        {
-          name: "stock",
-          title: "Stock",
-          sortField: "stock.remaining",
-          formatter(value) {
-            let percent = Math.floor((value.remaining / value.total) * 100);
-            return `
+      {
+        name: "stock",
+        title: "Stock",
+        sortField: "stock.remaining",
+        formatter(value) {
+          let percent = Math.floor((value.remaining / value.total) * 100);
+          return `
             <div class="progress" style="height: 4px;">
               <div class="progress-bar" role="progressbar" style="width: ${percent}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <small> ${value.remaining} out of ${value.total} </small>
             `;
-            return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
-          }
-        },
-        "actions"
-      ];
-
-      this.productData = [
-        {
-          id: 1,
-          sku: "I-45424",
-          proship_code: "P-45424",
-          description: "Short description 1...",
-          available: "No",
-          stock: {
-            total: 156,
-            remaining: 34
-          }
-        },
-
-        {
-          id: 2,
-          sku: "I-123534",
-          proship_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          stock: {
-            total: 16,
-            remaining: 3
-          }
-        },
-
-        {
-          id: 3,
-          sku: "I-123534",
-          proship_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          stock: {
-            total: 56,
-            remaining: 34
-          }
-        },
-
-        {
-          id: 4,
-          sku: "I-123534",
-          proship_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          stock: {
-            total: 546,
-            remaining: 334
-          }
-        },
-
-        {
-          id: 5,
-          sku: "I-123534",
-          proship_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          stock: {
-            total: 163,
-            remaining: 134
-          }
-        },
-
-        {
-          id: 6,
-          sku: "I-123534",
-          proship_code: "P-0234",
-          description: "Short description 2...",
-          available: "Yes",
-          stock: {
-            total: 689,
-            remaining: 394
-          }
+          return `<span class="status text-${status}"> <i class="fas fa-circle mr-1"></i> ${value} </span>`;
         }
-      ];
+      },
+      "actions"
+    ];
+  },
+
+  methods: {
+    fetchProducts() {
+      this.$store.dispatch("seller/fetchProducts");
     }
+  },
+
+  computed: {
+    ...mapState("seller", ["products"])
   }
 };
 </script>

@@ -46,7 +46,7 @@ import ListTable from "@/components/derived/ListTable";
 import Card from "@/components/core/Card";
 
 export default {
-  name: "Products-List",
+  name: "Sales-Agent-List",
   components: { ListTable, Card },
   data() {
     return {

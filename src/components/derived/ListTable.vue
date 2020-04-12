@@ -1,75 +1,80 @@
 <template>
   <div>
-    <div class="toolbar d-flex mb-2">
-      <router-link :to="{name: create_path_name}" :class="buttonClass">
-        <i class="fal fa-plus mr-2"></i>
-        Add New
-      </router-link>
-      <button :class="buttonClass" data-toggle="modal" :data-target="'#' + modalId">
-        <i class="fal fa-file-import mr-2"></i>
-        Import
-      </button>
-      <button :class="buttonClass" @click="exportData()">
-        <i class="fal fa-file-download mr-2"></i>
-        Export
-      </button>
-    </div>
-
-    <slot name="top"></slot>
-
-    <DataTable
-      :id="id"
-      :columns="columns"
-      :rows="rows"
-      :per_page="5"
-      responsive
-      custom_class="table-sm"
-    >
-      <div slot="actions" slot-scope="props">
-        <Button
-          :variant="'outline-' + color_scheme"
-          size="sm"
-          custom_class="mr-1"
-          id="btn-action-detail"
-          @click="goto('Detail', props.props.rowData.id)"
-        >
-          <i class="fal fa-eye"></i>
-        </Button>
-        <Button
-          :variant="'outline-' + color_scheme"
-          size="sm"
-          custom_class="mr-1"
-          id="btn-action-edit"
-          @click="goto('Edit', props.props.rowData.id)"
-        >
-          <i class="fal fa-pen"></i>
-        </Button>
-        <Button
-          :variant="'outline-' + color_scheme"
-          size="sm"
-          id="btn-action-delete"
-          @click="deleteItem(props.props.rowData.id)"
-        >
-          <i class="fal fa-trash-alt"></i>
-        </Button>
+    <div v-if="rows">
+      <div class="toolbar d-flex mb-2">
+        <router-link :to="{name: create_path_name}" :class="buttonClass">
+          <i class="fal fa-plus mr-2"></i>
+          Add New
+        </router-link>
+        <button :class="buttonClass" data-toggle="modal" :data-target="'#' + modalId">
+          <i class="fal fa-file-import mr-2"></i>
+          Import
+        </button>
+        <button :class="buttonClass" @click="exportData()">
+          <i class="fal fa-file-download mr-2"></i>
+          Export
+        </button>
       </div>
-    </DataTable>
 
-    <Modal :id="modalId">
-      <template slot="header">
-        <h5 class="modal-title">
-          <i class="fal fa-file-import mr-2"></i>Import File
-        </h5>
-      </template>
-      <template slot="body">
-        <p class="lead text-center">Drop the file here to upload it to the system</p>
-        <p class="text-center" v-if="sample_file_link">
-          Please Make sure the format matches this
-          <a :href="sample_file_link">sample file</a>
-        </p>
-        <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
-      </template>
-    </Modal>
+      <slot name="top"></slot>
+
+      <DataTable
+        :id="id"
+        :columns="columns"
+        :rows="rows"
+        :per_page="5"
+        responsive
+        custom_class="table-sm"
+      >
+        <div slot="actions" slot-scope="props">
+          <Button
+            :variant="'outline-' + color_scheme"
+            size="sm"
+            custom_class="mr-1"
+            id="btn-action-detail"
+            @click="goto('Detail', props.props.rowData.id)"
+          >
+            <i class="fal fa-eye"></i>
+          </Button>
+          <Button
+            :variant="'outline-' + color_scheme"
+            size="sm"
+            custom_class="mr-1"
+            id="btn-action-edit"
+            @click="goto('Edit', props.props.rowData.id)"
+          >
+            <i class="fal fa-pen"></i>
+          </Button>
+          <Button
+            :variant="'outline-' + color_scheme"
+            size="sm"
+            id="btn-action-delete"
+            @click="deleteItem(props.props.rowData.id)"
+          >
+            <i class="fal fa-trash-alt"></i>
+          </Button>
+        </div>
+      </DataTable>
+
+      <Modal :id="modalId">
+        <template slot="header">
+          <h5 class="modal-title">
+            <i class="fal fa-file-import mr-2"></i>Import File
+          </h5>
+        </template>
+        <template slot="body">
+          <p class="lead text-center">Drop the file here to upload it to the system</p>
+          <p class="text-center" v-if="sample_file_link">
+            Please Make sure the format matches this
+            <a :href="sample_file_link">sample file</a>
+          </p>
+          <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
+        </template>
+      </Modal>
+    </div>
+    <div v-else>
+      <Spinner :variant="color_scheme" size="lg" />
+    </div>
   </div>
 </template>
 
@@ -81,10 +86,11 @@ import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import Swal from "sweetalert2";
 import { Alert } from "@/helpers/alert";
+import Spinner from "@/components/core/Spinner";
 
 export default {
   name: "ListTable",
-  components: { DataTable, Modal, vueDropzone: vue2Dropzone, Button },
+  components: { DataTable, Modal, vueDropzone: vue2Dropzone, Button, Spinner },
   props: {
     id: {
       type: String,
@@ -95,7 +101,7 @@ export default {
       required: true
     },
     rows: {
-      type: Array,
+      type: null,
       required: true
     },
     create_path_name: {
@@ -143,9 +149,14 @@ export default {
     },
 
     deleteItem(id) {
-      Alert("Delete", "Are you sure you want to delete this item ?", null, () => {
-        // Make Delete API call here
-      });
+      Alert(
+        "Delete",
+        "Are you sure you want to delete this item ?",
+        null,
+        () => {
+          // Make Delete API call here
+        }
+      );
     }
   },
 
