@@ -14,9 +14,7 @@
           <form @submit.prevent="onRegister">
             <TextBox type="text" id="name-textbox" placeholder="Name" v-model="name" />
             <NumberField id="phone-textbox" placeholder="Phone Number" v-model="number" />
-
             <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
-
             <div class="auth-box__cta-wrapper d-flex justify-content-end">
               <Button id="register-form-button" variant="primary" size="md">Register</Button>
             </div>
@@ -59,11 +57,11 @@
             <router-link :to="{name: 'Login'}">login now.</router-link>
           </p>
         </div>
+        
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import Button from "@/components/core/Button";
 import TextBox from "@/components/core/TextBox";
@@ -82,7 +80,8 @@ export default {
     NumberField,
     DatePicker,
     Stepper,
-    OTPField
+    OTPField,
+
   },
 
   data() {

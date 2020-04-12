@@ -24,6 +24,7 @@
         <div class="row">
           <!-- Products -->
           <PhoneNumber/>
+          <OTPField/>
           <div class="col-md-6 col-sm-12">
             <div class="card m-2">
               <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
@@ -120,6 +121,7 @@ import OrdersLineChart from "@/components/derived/charts/OrdersLineChart";
 import ShippingDoughnutChart from "@/components/derived/charts/ShippingDoughnutChart";
 import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
 import PhoneNumber from "@/components/derived/PhoneNumber";
+import OTPField from "@/components/derived/OTPField";
 
 export default {
   name: "Dashbaord",
@@ -129,7 +131,8 @@ export default {
     ShippingDoughnutChart,
     CodDoughnutChart,
     SmallBox,
-    PhoneNumber
+    PhoneNumber,
+    OTPField
   },
   data() {
     return {
