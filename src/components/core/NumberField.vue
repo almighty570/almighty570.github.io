@@ -13,6 +13,7 @@
         :placeholder="placeholder"
         :value="value"
         @input="updateValue()"
+        @keyup="$emit('keyup', $event)"
         :autocomplete="autocomplete ? 'on' : 'off'"
       />
       <template v-if="errors">
@@ -57,6 +58,7 @@ export default {
   methods: {
     updateValue() {
       this.$emit("input", this.$refs.input.value);
+      this.$emit("_input", this.$refs.input);
     },
     limitKeypress(value, maxLength) {
       if (value != undefined && value.toString().length >= maxLength) {
