@@ -23,6 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- Products -->
+          <PhoneNumber/>
           <div class="col-md-6 col-sm-12">
             <div class="card m-2">
               <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
@@ -118,6 +119,7 @@ import SmallBox from "@/components/core/SmallBox";
 import OrdersLineChart from "@/components/derived/charts/OrdersLineChart";
 import ShippingDoughnutChart from "@/components/derived/charts/ShippingDoughnutChart";
 import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
+import PhoneNumber from "@/components/derived/PhoneNumber";
 
 export default {
   name: "Dashbaord",
@@ -126,7 +128,8 @@ export default {
     OrdersLineChart,
     ShippingDoughnutChart,
     CodDoughnutChart,
-    SmallBox
+    SmallBox,
+    PhoneNumber
   },
   data() {
     return {
