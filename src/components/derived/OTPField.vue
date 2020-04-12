@@ -51,8 +51,8 @@ export default {
   methods: {
     movetoNext(current, nextFieldID) {
       var otp = document.getElementById(current);
-      if (otp != null && otp.value.length >= 1) {
-        document.getElementById(nextFieldID).focus();
+      if (otp != null && otp.value.length >= 1 && otp.value !="\b") {              
+          document.getElementById(nextFieldID).focus();        
       }
     }
   }
