@@ -145,12 +145,6 @@
                         size="lg"
                         @click="cancel()"
                       >Cancel</Button>
-
-                      <!-- <button
-                        type="button"
-                        class="btn btn-secondary btn-lg"
-                        @click="cancel()"
-                      >Cancel</button> -->
                     </div>
                   </div>
                 </div>
@@ -255,12 +249,21 @@ export default {
 
   methods: {
     handleFormSubmit() {
-      console.log(this.productCreateForm);
       this.loading = true;
-      return;
-      this.$store.dispatch("products/createProduct", {
-        product: this.productCreateForm,
-        callback: data => {}
+      let data = {
+        ...this.productCreateForm,
+        stock: {
+          total: this.productCreateForm.quantity,
+          remaining: this.productCreateForm.quantity
+        },
+        available: "Yes"
+      };
+      this.$store.dispatch("seller/createProduct", {
+        product: data,
+        callback: data => {
+          this.loading = false;
+          this.$router.push({ name: "Seller-Product-List" });
+        }
       });
     },
 
