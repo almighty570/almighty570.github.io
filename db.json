@@ -3,7 +3,7 @@
     {
       "id": 1,
       "sku": "I-45424",
-      "proship_code": "P-45424",
+      "proshipCode": "P-45424",
       "description": "Short description 1...",
       "available": "No",
       "stock": {
@@ -82,6 +82,32 @@
       "quantity": 538,
       "available": "Yes",
       "id": 7
+    },
+    {
+      "sku": "Veniam sed id volup",
+      "description": "Nostrum dolore sed s",
+      "stock": {
+        "total": 108,
+        "remaining": 108
+      },
+      "cost": 68,
+      "salePrice": 103,
+      "weightApprox": 38,
+      "image": null,
+      "variations": null,
+      "bundlePrices": [
+        {
+          "amount": 32423,
+          "price": 234234234
+        },
+        {
+          "amount": 2,
+          "price": 324
+        }
+      ],
+      "quantity": 108,
+      "available": "Yes",
+      "id": 8
     }
   ],
   "orders": [],

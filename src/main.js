@@ -10,6 +10,10 @@ import "./styles/main.scss";
 import { registerLayouts } from './helpers/layouts';
 registerLayouts();
 
+// axios setup
+import { setup } from './helpers/http';
+setup();
+
 Vue.config.productionTip = false
 
 // form validator

@@ -307,68 +307,79 @@ export default {
     },
 
     fetchProduct() {
-      this.productEditForm = {
-        itemCode: "123213",
-        description: "descriptio ksdfa fas d as",
-        stock: "asda",
-        cost: 12312,
-        salePrice: 234,
-        weightApprox: 345.456,
-        image: "asdasd",
-        boxSize: 1,
-        customBoxSize: null,
-        variations: [
-          {
-            name: "Size",
-            options: [
-              {
-                name: "Large",
-                price: 1000,
-                stock: 23,
-                SKU: "GH75OP"
-              },
-              {
-                name: "Md",
-                price: 800,
-                stock: 12,
-                SKU: "GH75OP"
-              }
-            ]
-          },
-          {
-            name: "Color",
-            options: [
-              {
-                name: "Dark",
-                price: 890,
-                stock: 5,
-                SKU: "YR93O"
-              },
-              {
-                name: "Light",
-                price: 500,
-                stock: 53,
-                SKU: "YR93O"
-              }
-            ]
-          }
-        ],
-        dealPrices: [
-          {
-            key: 1,
-            val: 100
-          },
-          {
-            key: 2,
-            val: 150
-          },
-          {
-            key: 3,
-            val: 200
-          }
-        ]
-      };
-      this.productHasVariations = true;
+      this.$store.dispatch("seller/fetchProductDetail", {
+        id: this.$route.params.id,
+        callback: data => {
+          console.log(data);
+          this.productEditForm = data;
+          if (data.variations && data.variations.length)
+            this.productHasVariations = true;
+          if (data.bundlePrices && data.bundlePrices.length)
+            this.productHasBundles = true;
+        }
+      });
+
+      // this.productEditForm = {
+      //   itemCode: "123213",
+      //   description: "descriptio ksdfa fas d as",
+      //   stock: "asda",
+      //   cost: 12312,
+      //   salePrice: 234,
+      //   weightApprox: 345.456,
+      //   image: "asdasd",
+      //   boxSize: 1,
+      //   customBoxSize: null,
+      //   variations: [
+      //     {
+      //       name: "Size",
+      //       options: [
+      //         {
+      //           name: "Large",
+      //           price: 1000,
+      //           stock: 23,
+      //           SKU: "GH75OP"
+      //         },
+      //         {
+      //           name: "Md",
+      //           price: 800,
+      //           stock: 12,
+      //           SKU: "GH75OP"
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: "Color",
+      //       options: [
+      //         {
+      //           name: "Dark",
+      //           price: 890,
+      //           stock: 5,
+      //           SKU: "YR93O"
+      //         },
+      //         {
+      //           name: "Light",
+      //           price: 500,
+      //           stock: 53,
+      //           SKU: "YR93O"
+      //         }
+      //       ]
+      //     }
+      //   ],
+      //   dealPrices: [
+      //     {
+      //       key: 1,
+      //       val: 100
+      //     },
+      //     {
+      //       key: 2,
+      //       val: 150
+      //     },
+      //     {
+      //       key: 3,
+      //       val: 200
+      //     }
+      //   ]
+      // };
     }
   }
 };

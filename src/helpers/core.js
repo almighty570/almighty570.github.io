@@ -42,3 +42,15 @@ export const navigateObj = (obj, prop) => {
         return val;
     } else return obj[prop];
 }
+
+export const camelToSnake = (string) => {
+    return string.replace(/[\w]([A-Z])/g, function (m) {
+        return m[0] + "_" + m[1];
+    }).toLowerCase();
+}
+
+export const snakeToCamel = (string) => {
+    return string.replace(/(_\w)/g, function (m) {
+        return m[1].toUpperCase();
+    });
+}
