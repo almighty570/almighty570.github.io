@@ -23,8 +23,6 @@
       <div class="container-fluid">
         <div class="row">
           <!-- Products -->
-          <PhoneNumber />
-          <OTPField />
           <div class="col-md-6 col-sm-12">
             <div class="card m-2">
               <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
