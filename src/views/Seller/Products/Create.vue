@@ -129,7 +129,7 @@
                     <div class="d-flex mt-4 justify-content-center">
                       <Button
                         id="btn-submit"
-                        type="button"
+                        type="submit"
                         variant="primary"
                         custom_class="mr-4"
                         size="lg"

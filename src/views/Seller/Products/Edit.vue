@@ -27,181 +27,137 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <ValidationObserver v-slot="{ invalid }">
-              <form @submit.prevent="handleFormSubmit">
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <TextBox
-                      type="text"
-                      id="item-code"
-                      label="Item Code(SKU)"
-                      v-model="productEditForm.itemCode"
-                      rules="required"
-                    />
+            <div v-if="productEditForm">
+              <ValidationObserver v-slot="{ invalid }">
+                <form @submit.prevent="handleFormSubmit">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <TextBox
+                        type="text"
+                        id="item-code"
+                        label="Item Code(SKU)"
+                        v-model="productEditForm.sku"
+                        rules="required"
+                      />
 
-                    <NumberField
-                      id="cost"
-                      label="Cost"
-                      v-model.number="productEditForm.cost"
-                      rules="required"
-                    />
+                      <NumberField
+                        id="cost"
+                        label="Cost"
+                        v-model.number="productEditForm.cost"
+                        rules="required"
+                      />
 
-                    <TextArea
-                      id="description"
-                      label="Description"
-                      v-model="productEditForm.description"
-                      rules="required"
-                      rows="4"
-                    />
-
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productEditForm.salePrice"
-                      rules="required"
-                    />
-
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productEditForm.weightApprox"
-                      rules="required"
-                    />
-                  </div>
-                  <!-- <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                      <div class="col">
-                        <Select
-                          id="box-size"
-                          label="Box Size"
-                          :options="boxSizeOptions"
-                          v-model="productEditForm.boxSize"
-                        />
-
-                        <NumberField
-                          v-if="productEditForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productEditForm.customBoxSize"
-                        />
-                      </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
-                      </div>
-                    </div>
-
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        :value="productEditForm.dealPrices"
-                        title="Enter Deal Price"
+                      <TextArea
+                        id="description"
+                        label="Description"
+                        v-model="productEditForm.description"
+                        rules="required"
+                        rows="4"
                       />
                     </div>
-                  </div>-->
-                  <div class="col-md-6 col-sm-12">
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productEditForm.salePrice"
-                      rules="required"
-                    />
-
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        v-model="productEditForm.bundlePrices"
+                    <div class="col-md-6 col-sm-12">
+                      <NumberField
+                        id="sale-price"
+                        label="Sale Price"
+                        v-model.number="productEditForm.salePrice"
+                        rules="required"
                       />
-                    </div>
 
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productEditForm.weightApprox"
-                      rules="required"
-                    />
+                      <NumberField
+                        id="weight-approx"
+                        label="Weight Approx"
+                        v-model.number="productEditForm.weightApprox"
+                        rules="required"
+                      />
 
-                    <div class="row">
-                      <div class="col">
-                        <Select
-                          id="box-size"
-                          label="Box Size"
-                          :options="boxSizeOptions"
-                          v-model="productEditForm.boxSize"
-                        />
-
-                        <NumberField
-                          v-if="productEditForm.boxSize == 0"
-                          id="custom-box-size"
-                          placeholder="Custom box size"
-                          rules="required"
-                          v-model="productEditForm.customBoxSize"
-                        />
-
-                        <NumberField
-                          id="quantity"
-                          label="Quantity"
-                          placeholder="Product quantity"
-                          rules="required"
-                          v-model="productEditForm.quantity"
-                        />
+                      <div class="row">
+                        <div class="col">
+                          <NumberField
+                            id="quantity"
+                            label="Quantity"
+                            placeholder="Product quantity"
+                            rules="required"
+                            v-model.number="productEditForm.quantity"
+                          />
+                        </div>
+                        <div class="col">
+                          <ImageUpload label="Image" custom_class="ml-4" />
+                        </div>
                       </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
+
+                      <div class="mt-4"></div>
+                      <Toggle
+                        id="has-bundles"
+                        :value="false"
+                        color="blue"
+                        v-model="productHasBundles"
+                        :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
+                      />
+
+                      <div v-if="productHasBundles">
+                        <RowControls
+                          :config="bundlePriceConfig"
+                          v-model="productEditForm.bundlePrices"
+                        />
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- Product Variations -->
-                <div class="row">
-                  <div class="col-12">
-                    <Toggle
-                      id="has-variations"
-                      :value="false"
-                      color="blue"
-                      v-model="productHasVariations"
-                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
-                    />
-                    <div class="mb-2"></div>
-
-                    <div v-if="productHasVariations">
-                      <ProductVariation
-                        color_scheme="primary"
-                        v-model="productEditForm.variations"
-                        :value="productEditForm.variations"
+                  <!-- Product Variations -->
+                  <div class="row">
+                    <div class="col-12">
+                      <Toggle
+                        id="has-variations"
+                        :value="false"
+                        color="blue"
+                        v-model="productHasVariations"
+                        :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
                       />
-                    </div>
-                  </div>
-                </div>
+                      <div class="mb-2"></div>
 
-                <div class="row">
-                  <div class="col">
-                    <hr />
-                    <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-primary mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                      <div v-if="productHasVariations">
+                        <ProductVariation
+                          color_scheme="primary"
+                          v-model="productEditForm.variations"
+                          :value="productEditForm.variations"
+                          :product="productEditForm"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
-            </ValidationObserver>
+
+                  <div class="row">
+                    <div class="col">
+                      <hr />
+                      <div class="d-flex mt-4 justify-content-center">
+                        <Button
+                          id="btn-submit"
+                          type="submit"
+                          variant="primary"
+                          custom_class="mr-4"
+                          size="lg"
+                          :disabled="invalid"
+                          :loading="loading"
+                        >Submit</Button>
+
+                        <Button
+                          id="btn-cancel"
+                          type="button"
+                          variant="secondary"
+                          custom_class="mr-4"
+                          size="lg"
+                          @click="cancel()"
+                        >Cancel</Button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </ValidationObserver>
+            </div>
+
+            <div v-else>
+              <Spinner size="lg" variation="primary" />
+            </div>
           </div>
         </div>
       </div>
@@ -211,6 +167,7 @@
 
 <script>
 import TextBox from "@/components/core/TextBox";
+import Button from "@/components/core/Button";
 import TextArea from "@/components/core/TextArea";
 import NumberField from "@/components/core/NumberField";
 import ImageUpload from "@/components/core/ImageUpload";
@@ -219,11 +176,13 @@ import CheckBoxGroup from "@/components/core/CheckBoxGroup";
 import RowControls from "@/components/core/RowControls";
 import ProductVariation from "@/components/derived/ProductVariation";
 import Toggle from "@/components/core/Toggle";
+import Spinner from "@/components/core/Spinner";
 
 export default {
   name: "Seller-Product-Edit",
   components: {
     TextBox,
+    Button,
     NumberField,
     TextArea,
     ImageUpload,
@@ -231,7 +190,8 @@ export default {
     CheckBoxGroup,
     RowControls,
     ProductVariation,
-    Toggle
+    Toggle,
+    Spinner
   },
   data() {
     return {
@@ -259,6 +219,7 @@ export default {
       ],
 
       productEditForm: null,
+      loading: false,
 
       boxSizeOptions: [
         { name: "Large", value: 1 },
@@ -271,15 +232,10 @@ export default {
       bundlePriceConfig: {
         items: {
           amount: {
-            type: "select",
+            type: "number",
             rules: "required",
             id: "bundle-amount",
-            placeholder: "Amount",
-            options: [
-              { name: "One", value: 1 },
-              { name: "Two", value: 2 },
-              { name: "Three", value: 3 }
-            ]
+            placeholder: "Amount"
           },
 
           price: {
@@ -300,7 +256,19 @@ export default {
   },
 
   methods: {
-    handleFormSubmit() {},
+    handleFormSubmit() {
+      this.loading = true;
+      let data = {
+        ...this.productEditForm
+      };
+      this.$store.dispatch("seller/updateProduct", {
+        product: data,
+        callback: data => {
+          this.loading = false;
+          this.$router.push({ name: "Seller-Product-List" });
+        }
+      });
+    },
 
     cancel() {
       this.$router.push({ name: "Seller-Product-List" });
@@ -318,68 +286,6 @@ export default {
             this.productHasBundles = true;
         }
       });
-
-      // this.productEditForm = {
-      //   itemCode: "123213",
-      //   description: "descriptio ksdfa fas d as",
-      //   stock: "asda",
-      //   cost: 12312,
-      //   salePrice: 234,
-      //   weightApprox: 345.456,
-      //   image: "asdasd",
-      //   boxSize: 1,
-      //   customBoxSize: null,
-      //   variations: [
-      //     {
-      //       name: "Size",
-      //       options: [
-      //         {
-      //           name: "Large",
-      //           price: 1000,
-      //           stock: 23,
-      //           SKU: "GH75OP"
-      //         },
-      //         {
-      //           name: "Md",
-      //           price: 800,
-      //           stock: 12,
-      //           SKU: "GH75OP"
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       name: "Color",
-      //       options: [
-      //         {
-      //           name: "Dark",
-      //           price: 890,
-      //           stock: 5,
-      //           SKU: "YR93O"
-      //         },
-      //         {
-      //           name: "Light",
-      //           price: 500,
-      //           stock: 53,
-      //           SKU: "YR93O"
-      //         }
-      //       ]
-      //     }
-      //   ],
-      //   dealPrices: [
-      //     {
-      //       key: 1,
-      //       val: 100
-      //     },
-      //     {
-      //       key: 2,
-      //       val: 150
-      //     },
-      //     {
-      //       key: 3,
-      //       val: 200
-      //     }
-      //   ]
-      // };
     }
   }
 };

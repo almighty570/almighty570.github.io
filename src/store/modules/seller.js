@@ -1,4 +1,5 @@
 import { http } from "@/helpers/http";
+import Vue from 'vue'
 
 export default {
     namespaced: true,
@@ -23,7 +24,8 @@ export default {
         },
 
         setProducts(state, products) {
-            state.products = products;
+            Vue.set(state, 'products', products);
+            // state.products = products;
         },
 
         setOrders(state, orders) {
@@ -51,6 +53,21 @@ export default {
         createProduct({ state, commit, rootState }, payload) {
             http.post("/products/", payload.product).then(response => {
                 payload.callback(response.data);
+            })
+        },
+
+        updateProduct({ state, commit, rootState }, payload) {
+            http.put("/products/" + payload.product.id, payload.product).then(response => {
+                payload.callback(response.data);
+            })
+        },
+
+        deleteProduct({ state, commit, rootState }, payload) {
+            http.delete("/products/" + payload.id).then(response => {
+                let products = state.products;
+                let index = products.findIndex(item => item.id == payload.id);
+                products.splice(index, 1);
+                commit('setProducts', products);
             })
         }
     }

@@ -155,6 +155,8 @@ export default {
         null,
         () => {
           // Make Delete API call here
+          this.$store.dispatch("seller/deleteProduct", { id });
+          this.$emit("deleted", id);
         }
       );
     }

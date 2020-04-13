@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     class="btn"
     :class="'btn-' + variant + ' btn-' + size + ' ' + custom_class"
     @click="$emit('click')"

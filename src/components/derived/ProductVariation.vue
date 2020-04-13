@@ -27,7 +27,7 @@
             placeholder="SKU"
             wrapper_class="mr-1  mb-0"
           />
-          <Button
+          <Button type="button"
             id="btn-apply-all"
             :variant="'outline-' + color_scheme"
             custom_class="align-self-center text-nowrap"
@@ -52,6 +52,7 @@
             <span class="float-left">Variation {{index + 1}}</span>
 
             <Button
+              type="button"
               variant="outline-primary"
               custom_class="--circle ml-3 float-left"
               @click="removeVariation(index)"
@@ -63,6 +64,7 @@
           <!-- Desktop -->
           <div class="d-none d-sm-block">
             <Button
+              type="button"
               variant="outline-primary"
               custom_class="--circle"
               @click="removeVariation(index)"
@@ -131,6 +133,7 @@
               />
 
               <Button
+                type="button"
                 variant="default"
                 custom_class="align-self-start ml-2"
                 @click="removeVariationOption(index, index2)"
@@ -141,6 +144,7 @@
 
             <div class="mt-1 mb-1">
               <Button
+                type="button"
                 :variant="'outline-' + color_scheme"
                 size="sm"
                 @click="addVariationOption(index)"
@@ -154,7 +158,7 @@
       </div>
     </div>
     <div class="text-center mt-3 mb-3">
-      <Button :variant="'outline-' + color_scheme" @click="addVariation()">
+      <Button type="button" :variant="'outline-' + color_scheme" @click="addVariation()">
         <i class="fal fa-plus mr-2"></i> Add new variation
       </Button>
     </div>

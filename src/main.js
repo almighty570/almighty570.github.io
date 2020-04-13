@@ -11,8 +11,8 @@ import { registerLayouts } from './helpers/layouts';
 registerLayouts();
 
 // axios setup
-import { setup } from './helpers/http';
-setup();
+// import { appplyInterceptors } from './helpers/http';
+// appplyInterceptors();
 
 Vue.config.productionTip = false
 

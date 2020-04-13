@@ -33,6 +33,7 @@
               detail_path_name="Seller-Product-Detail"
               color_scheme="primary"
               sample_file_link="#"
+              @deleted="handleDelete()"
             />
           </div>
         </Card>
@@ -44,7 +45,7 @@
 <script>
 import ListTable from "@/components/derived/ListTable";
 import Card from "@/components/core/Card";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "Products-List",
@@ -86,7 +87,10 @@ export default {
       {
         name: "description",
         title: "Description",
-        sortField: "description"
+        sortField: "description",
+        formatter(value) {
+          return value.length > 20 ? value.substring(0, 20) + "..." : value;
+        }
       },
 
       {
@@ -124,11 +128,16 @@ export default {
   methods: {
     fetchProducts() {
       this.$store.dispatch("seller/fetchProducts");
+    },
+
+    handleDelete() {
+      // debugger;
+      this.$forceUpdate();
     }
   },
 
   computed: {
-    ...mapState("seller", ["products"])
+    ...mapGetters("seller", ["products"])
   }
 };
 </script>

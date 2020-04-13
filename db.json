@@ -9,12 +9,27 @@
       "stock": {
         "total": 156,
         "remaining": 34
-      }
+      },
+      "bundlePrices": [
+        {
+          "amount": "1",
+          "price": 123
+        },
+        {
+          "amount": "3",
+          "price": 456
+        }
+      ],
+      "cost": 123,
+      "salePrice": 123,
+      "weightApprox": 123,
+      "quantity": 123,
+      "variations": []
     },
     {
       "id": 2,
       "sku": "I-123534",
-      "proship_code": "P-0234",
+      "proshipCode": "P-0234",
       "description": "Short description 2...",
       "available": "Yes",
       "stock": {
@@ -25,7 +40,7 @@
     {
       "id": 3,
       "sku": "I-123534",
-      "proship_code": "P-0234",
+      "proshipCode": "P-0234",
       "description": "Short description 2...",
       "available": "Yes",
       "stock": {
@@ -36,7 +51,7 @@
     {
       "id": 4,
       "sku": "I-123534",
-      "proship_code": "P-0234",
+      "proshipCode": "P-0234",
       "description": "Short description 2...",
       "available": "Yes",
       "stock": {
@@ -47,7 +62,7 @@
     {
       "id": 5,
       "sku": "I-123534",
-      "proship_code": "P-0234",
+      "proshipCode": "P-0234",
       "description": "Short description 2...",
       "available": "Yes",
       "stock": {
@@ -58,7 +73,7 @@
     {
       "id": 6,
       "sku": "I-123534",
-      "proship_code": "P-0234",
+      "proshipCode": "P-0234",
       "description": "Short description 2...",
       "available": "Yes",
       "stock": {
