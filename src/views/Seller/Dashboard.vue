@@ -118,6 +118,8 @@ import SmallBox from "@/components/core/SmallBox";
 import OrdersLineChart from "@/components/derived/charts/OrdersLineChart";
 import ShippingDoughnutChart from "@/components/derived/charts/ShippingDoughnutChart";
 import CodDoughnutChart from "@/components/derived/charts/CodDoughnutChart";
+import PhoneNumber from "@/components/derived/PhoneNumber";
+import OTPField from "@/components/derived/OTPField";
 
 export default {
   name: "Dashbaord",
@@ -126,7 +128,9 @@ export default {
     OrdersLineChart,
     ShippingDoughnutChart,
     CodDoughnutChart,
-    SmallBox
+    SmallBox,
+    PhoneNumber,
+    OTPField
   },
   data() {
     return {

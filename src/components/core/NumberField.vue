@@ -4,6 +4,7 @@
 
     <validation-provider :rules="rules" v-slot="{ errors }">
       <input
+        v-on:keypress="limitKeypress(value, maxval)"
         type="number"
         ref="input"
         class="form-control"
@@ -12,6 +13,7 @@
         :placeholder="placeholder"
         :value="value"
         @input="updateValue()"
+        @keyup="$emit('keyup', $event)"
         :autocomplete="autocomplete ? 'on' : 'off'"
       />
       <template v-if="errors">
@@ -33,7 +35,9 @@ export default {
     value: {
       type: Number
     },
-
+    maxval: {
+      type: Number
+    },
     label: {
       type: String
     },
@@ -54,6 +58,12 @@ export default {
   methods: {
     updateValue() {
       this.$emit("input", this.$refs.input.value);
+      this.$emit("_input", this.$refs.input);
+    },
+    limitKeypress(value, maxLength) {
+      if (value != undefined && value.toString().length >= maxLength) {
+        event.preventDefault();
+      }
     }
   }
 };
