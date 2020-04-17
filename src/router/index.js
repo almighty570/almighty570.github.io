@@ -20,7 +20,11 @@ import SellerSalesAgentCreate from '../views/Seller/SalesAgents/Create.vue'
 import SellerSalesAgentDetail from "../views/Seller/SalesAgents/Show.vue";
 import SellerSalesAgentEdit from "../views/Seller/SalesAgents/Edit.vue";
 
-import SellerSettings from "../views/Seller/Settings.vue";
+import SellerSettings from "../views/Seller/Settings/index.vue";
+import SellerSettingsGeneral from "../views/Seller/Settings/general.vue";
+import SellerSettingsAccount from "../views/Seller/Settings/account.vue";
+
+
 import SellerReports from "../views/Seller/Reports.vue";
 
 Vue.use(VueRouter)
@@ -150,9 +154,25 @@ const routes = [
 
   {
     path: '/seller/settings',
-    name: 'Seller-Settings',
     meta: { layout: 'seller' },
-    component: SellerSettings
+    component: SellerSettings,
+    children: [
+      {
+        path: '',
+        name: 'Seller-Settings',
+        component: SellerSettingsGeneral
+      },
+      {
+        path: '/general',
+        name: 'Seller-Settings-General',
+        component: SellerSettingsGeneral
+      }, {
+        path: '/account',
+        name: 'Seller-Settings-Account',
+        component: SellerSettingsAccount
+      }
+
+    ]
   }
 ]
 

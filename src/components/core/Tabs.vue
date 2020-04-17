@@ -2,10 +2,10 @@
   <div class="tabs__wrapper justify-content-md-start mt-4" :id="id" :class="custom_class">
     <div
       class="tab-list-item"
-      :class="{'--active': tab === activeOrderStatus}"
+      :class="{'--active': tab === activeTab}"
       v-for="(tab, index) in tabs"
       :key="index"
-      @click="setActiveStatus(tab)"
+      @click="setActiveTab(tab)"
     >
       {{tab.label}}
       <span v-if="tab.number">{{tab.number}}</span>
@@ -22,24 +22,27 @@ export default {
     tabs: Array,
     show_quantity: true
   },
-  created() {
-    this.activeOrderStatus = this.tabs[0];
-  },
+
   data() {
     return {
-      activeOrderStatus: false
+      activeTab: false
     };
   },
+
+  created() {
+    this.setActiveTab(this.tabs[0]);
+  },
+
   methods: {
-    setActiveStatus(status) {
-      this.activeOrderStatus = status;
+    setActiveTab(tab) {
+      this.activeTab = tab;
+      this.$emit("tabSelected", tab);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 $variants: (
   primary: #007bff,
   success: #28a745,
