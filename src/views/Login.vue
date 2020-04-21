@@ -3,11 +3,11 @@
     <div class="auth-box">
       <div class="site-logo">
         <a href>
-          <span class="font-weight-bold">Pro</span>Ship
+          <span class="font-weight-bold">{{$t('pro')}}</span>{{$t('ship')}}
         </a>
       </div>
       <div class="auth-box__body card">
-        <p class="auth-box-body__msg">Sign in to start your session</p>
+        <p class="auth-box-body__msg">{{$t('login.description')}}</p>
         <form @submit="handleLogin">
           <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
           <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password" />
@@ -19,12 +19,12 @@
               v-model="rememberMe"
             />
             <br />
-            <Button id="submit-login-form-button" variant="info" size="md">Sign In</Button>
+            <Button id="submit-login-form-button" variant="info" size="md">{{$t('login.sign_in')}}</Button>
           </div>
         </form>
         <div class="forgot-password-msg">
-          Don't have an account ?
-          <router-link :to="{name: 'Register'}">Create one</router-link>
+         {{$t('login.no_account')}}
+          <router-link :to="{name: 'Register'}">{{$t('login.create')}}</router-link>
         </div>
       </div>
     </div>

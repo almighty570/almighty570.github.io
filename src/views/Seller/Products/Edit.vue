@@ -138,7 +138,7 @@
                           size="lg"
                           :disabled="invalid"
                           :loading="loading"
-                        >Submit</Button>
+                        >{{$t('buttons.submit')}}</Button>
 
                         <Button
                           id="btn-cancel"
@@ -147,7 +147,7 @@
                           custom_class="mr-4"
                           size="lg"
                           @click="cancel()"
-                        >Cancel</Button>
+                        >{{$t('buttons.cancel')}}</Button>
                       </div>
                     </div>
                   </div>

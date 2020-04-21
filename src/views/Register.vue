@@ -3,20 +3,20 @@
     <div class="auth-box">
       <div class="site-logo">
         <a href>
-          <span class="font-weight-bold">Pro</span>Ship
+          <span class="font-weight-bold">{{$t('pro')}}</span>{{$t('ship')}}
         </a>
       </div>
       <div class="auth-box__body card">
         <!-- Step 1 -->
         <div class="initial-register" v-if="initialRegister">
           <Stepper :steps="3" :currentStepIndex="1" />
-          <p class="auth-box-body__msg">Register to start your session</p>
+          <p class="auth-box-body__msg">{{$t('register.description')}}</p>
           <form @submit.prevent="onRegister">
             <TextBox type="text" id="name-textbox" placeholder="Name" v-model="name" />
             <NumberField id="phone-textbox" placeholder="Phone Number" v-model="number" />
             <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
             <div class="auth-box__cta-wrapper d-flex justify-content-end">
-              <Button id="register-form-button" variant="primary" size="md">Register</Button>
+              <Button id="register-form-button" variant="primary" size="md">{{$t('register.label')}}</Button>
             </div>
           </form>
         </div>
@@ -25,14 +25,14 @@
         <div class="otp-verification" v-if="otpVerification">
           <Stepper :steps="3" :currentStepIndex="2" />
           <p class="auth-box-body__msg">
-            Please type the verification code sent to
+            {{$t('register.message')}}
             <span class="font-weight-bold">+66 22134567</span>
           </p>
           <form @submit="handleRegister">
             <OTPField />
-            <p class="auth-box-body__msg">Didn't recieve the OTP?</p>
+            <p class="auth-box-body__msg">{{$t('register.otp_message')}}</p>
             <p class="auth-box-body__msg">
-              <a href="#" class="otp-resend">Resend OTP</a>
+              <a href="#" class="otp-resend">{{$t('register.resend')}}</a>
             </p>
             <div class="auth-box__cta-wrapper d-flex justify-content-end">
               <Button
@@ -40,7 +40,7 @@
                 variant="primary"
                 size="md"
                 @click="onVerification"
-              >Verify</Button>
+              >{{$t('register.verify')}}</Button>
             </div>
           </form>
         </div>
@@ -51,10 +51,10 @@
           <div class="sucess-icon">
             <i class="fal fa-check-circle"></i>
           </div>
-          <p class="auth-box-body__msg sucessfully-registered-messege">Successfully Registered</p>
+          <p class="auth-box-body__msg sucessfully-registered-messege">{{$t('register.success_message')}}</p>
           <p class="auth-box-body__msg">
-            You can
-            <router-link :to="{name: 'Login'}">login now.</router-link>
+            {{$t('register.you_can')}}
+            <router-link :to="{name: 'Login'}">{{$t('register.login_now')}}</router-link>
           </p>
         </div>
         

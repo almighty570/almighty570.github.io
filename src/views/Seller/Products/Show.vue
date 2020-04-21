@@ -6,7 +6,7 @@
           <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
               <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-              Product Details
+             {{$t('products.show.label')}}
             </h1>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -30,49 +30,49 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6 col-sm-12">
-                  <p class="lead">Product description</p>
+                  <p class="lead">{{$t('products.show.detail_card.label')}}</p>
                   <table class="table table-striped table-sm">
                     <tr>
                       <td>
-                        <label>Item Code:</label>
+                        <label>{{$t('products.show.detail_card.code')}}:</label>
                       </td>
                       <td>{{productDetail.sku}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Description:</label>
+                        <label>{{$t('products.show.detail_card.description')}}:</label>
                       </td>
                       <td>{{productDetail.description}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Stock:</label>
+                        <label>{{$t('products.show.detail_card.stock')}}:</label>
                       </td>
                       <td>{{productDetail.stock.remaining}}/{{productDetail.stock.total}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Cost:</label>
+                        <label>{{$t('products.show.detail_card.cost')}}:</label>
                       </td>
                       <td>{{productDetail.cost}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Sale Price:</label>
+                        <label>{{$t('products.show.detail_card.sale_price')}}:</label>
                       </td>
                       <td>{{productDetail.salePrice}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Weight Approx:</label>
+                        <label>{{$t('products.show.detail_card.weight')}}:</label>
                       </td>
                       <td>{{productDetail.weightApprox}}</td>
                     </tr>
                     <tr>
                       <td>
-                        <label>Box Size:</label>
+                        <label>{{$t('products.show.detail_card.box_size')}}:</label>
                       </td>
-                      <td>Large</td>
+                      <td>{{$t('products.show.detail_card.large')}}</td>
                     </tr>
                   </table>
                 </div>
@@ -95,13 +95,13 @@
                     <hr />
                   </div>
 
-                  <p class="lead">Deal prices</p>
+                  <p class="lead">{{$t('products.show.deal_price.label')}}</p>
                   <table class="table table-striped table-sm">
                     <tr v-for="bundlePrice in productDetail.bundlePrices" :key="bundlePrice.key">
                       <td>
-                        <label>{{bundlePrice.amount}} item(s)</label>
+                        <label>{{bundlePrice.amount}} {{$t('products.show.deal_price.items')}}</label>
                       </td>
-                      <td>{{bundlePrice.price}} Bhatt</td>
+                      <td>{{bundlePrice.price}} {{$t('products.show.deal_price.bhatt')}}</td>
                     </tr>
                   </table>
                 </div>
@@ -113,13 +113,13 @@
             <div class="col-md-6 col-sm-12">
               <div class="card">
                 <div class="card-body">
-                  <p class="lead">Product History</p>
+                  <p class="lead">{{$t('products.show.history.product')}}</p>
                   <div class="toolbar d-flex mb-2">
-                    <button class="btn btn-primary btn-sm mr-2">Import</button>
+                    <button class="btn btn-primary btn-sm mr-2">{{$t('products.show.history.import')}}</button>
                     <button
                       class="btn btn-primary btn-sm mr-2"
                       @click="exportProductHistory()"
-                    >Export</button>
+                    >{{$t('products.show.history.export')}}</button>
                   </div>
 
                   <DataTable id="product-history" :columns="historyColumns" :rows="historyData" />
@@ -129,10 +129,10 @@
             <div class="col-md-6 col-sm-12">
               <div class="card">
                 <div class="card-body">
-                  <p class="lead">Sales History</p>
+                  <p class="lead">{{$t('products.show.history.sales')}}</p>
                   <div class="toolbar d-flex mb-2">
-                    <button class="btn btn-primary btn-sm mr-2">Import</button>
-                    <button class="btn btn-primary btn-sm mr-2" @click="exportSalesHistory()">Export</button>
+                    <button class="btn btn-primary btn-sm mr-2">{{$t('products.show.history.import')}}</button>
+                    <button class="btn btn-primary btn-sm mr-2" @click="exportSalesHistory()">{{$t('products.show.history.export')}}</button>
                   </div>
 
                   <DataTable id="product-history" :columns="historyColumns" :rows="historyData" />

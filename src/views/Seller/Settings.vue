@@ -2,7 +2,7 @@
   <div>
     <div class="content-header">
       <div class="container">
-        <h1 class="text-dark">Settings</h1>
+        <h1 class="text-dark">{{$t('settings.label')}}</h1>
       </div>
     </div>
 
@@ -20,8 +20,8 @@
         <div class="settings-wrapper">
           <div class="setting --inline">
             <div class="setting__text">
-              <div class="setting__header">Inventory Management Feature</div>
-              <div class="setting__description">Activate or Deactivate Inventory Managment Feature</div>
+              <div class="setting__header">{{$t('settings.feature.inventory')}}</div>
+              <div class="setting__description">{{$t('settings.feature.activate_deactivate')}}</div>
             </div>
             <div class="setting__toggle">
               <Toggle
