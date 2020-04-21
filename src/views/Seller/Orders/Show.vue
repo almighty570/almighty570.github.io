@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <h1 class="m-0 text-dark">
           <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-          View Order
+          {{$t('orders.show.label')}}
         </h1>
       </div>
     </div>
@@ -16,13 +16,13 @@
           </div>
         </CardWidget>
         <CardWidget id="order-items-card" class="card-info" card_widget_type="collapse">
-          <div slot="title">Order item(s)</div>
+          <div slot="title">{{$t('orders.show.card_order_items_label')}}</div>
           <div slot="body">
             <Table id="order-items-table" custom_class="table-sm" :values="orderItemsData"></Table>
           </div>
         </CardWidget>
         <CardWidget id="order-history-card" class="card-warning" card_widget_type="collapse">
-          <div slot="title">Order history</div>
+          <div slot="title">{{$t('orders.show.card_order_history_label')}}</div>
           <div slot="body">
             <Table id="order-history-table" custom_class="table-sm" :values="orderHistoryData"></Table>
           </div>

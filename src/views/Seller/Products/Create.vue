@@ -6,7 +6,7 @@
           <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
               <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-              Add New Product
+              {{$t('products.create_label')}}
             </h1>
           </div>
           <div class="col-md-6 col-sm-12">

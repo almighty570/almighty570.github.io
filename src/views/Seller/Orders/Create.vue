@@ -6,7 +6,7 @@
           <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
               <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-              Add New Order
+              {{$t('orders.create_edit.create_label')}}
             </h1>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <CardWidget id="order-details-card" class="card card-success">
-                  <div slot="title">Order Details</div>
+                  <div slot="title">{{$t('orders.create_edit.card_order_title')}}</div>
                   <div slot="body">
                     <Select
                       id="agent"
@@ -71,7 +71,7 @@
 
               <div class="col-md-6 col-sm-12">
                 <CardWidget id="customer-details-card" class="card card-success">
-                  <div slot="title">Customer Details</div>
+                  <div slot="title">{{$t('orders.create_edit.card_customer_title')}}</div>
                   <div slot="body">
                     <TextBoxAddon
                       type="text"
@@ -166,7 +166,7 @@
               <div slot="body">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
-                    <p class="lead font-weight-normal">All Products</p>
+                    <p class="lead font-weight-normal">{{$t('orders.create_edit.card_product_title.all_products')}}</p>
 
                     <DataTable
                       id="show-products"
@@ -191,13 +191,13 @@
                   </div>
 
                   <div class="col-md-6 col-sm-12">
-                    <p class="lead font-weight-normal">Selected Products</p>
+                    <p class="lead font-weight-normal">{{$t('orders.create_edit.card_product_title.selected_products')}}</p>
 
                     <table class="table table-bordered" v-if="selectedProductsCount">
                       <thead>
-                        <th>Product Code</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
+                        <th>{{$t('orders.create_edit.card_product_title.table.product_code')}}</th>
+                        <th>{{$t('orders.create_edit.card_product_title.table.qty')}}</th>
+                        <th>{{$t('orders.create_edit.card_product_title.table.action')}}</th>
                       </thead>
                       <tbody>
                         <tr
@@ -220,7 +220,7 @@
                       </tbody>
                     </table>
 
-                    <div v-else class="alert alert-warning" role="alert">No Products to show</div>
+                    <div v-else class="alert alert-warning" role="alert">{{$t('orders.create_edit.card_product_title.no_products')}}</div>
                   </div>
                 </div>
 
@@ -228,8 +228,8 @@
                   <div class="col">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-success mr-4" :disabled="invalid">Submit</button>
-                      <button type="button" class="btn btn-secondary" @click="cancel()">Cancel</button>
+                      <button type="submit" class="btn btn-success mr-4" :disabled="invalid">{{$t('buttons.submit')}}</button>
+                      <button type="button" class="btn btn-secondary" @click="cancel()">{{$t('buttons.cancel')}}</button>
                     </div>
                   </div>
                 </div>
