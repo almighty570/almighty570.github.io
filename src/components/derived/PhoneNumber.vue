@@ -1,7 +1,7 @@
 <template>
   <div class="phone-wrapper">
     <ValidationProvider rules="max|start" v-slot="{errors}">
-      <NumberField :maxval="10" type="text" id="phone-number" label="Phone Number" v-model="phone" />
+      <NumberField :maxval="10" type="text" id="phone-number" :label=label v-model="phone" />
       <template v-if="errors.length">
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </template>
@@ -18,6 +18,11 @@ export default {
   components: {
     NumberField,
     ValidationProvider
+  },
+  props:{
+    label:{
+      type:String
+    }
   },
   data() {
     return {
