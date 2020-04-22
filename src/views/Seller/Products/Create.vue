@@ -6,7 +6,7 @@
           <div class="col-md-6 col-sm-12">
             <h1 class="m-0 text-dark">
               <i class="nav-icon fal fa-arrow-circle-left mr-2 btn-back" @click="cancel()"></i>
-              Add New Product
+              {{$t('products.create_label')}}
             </h1>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -135,7 +135,7 @@
                         size="lg"
                         :disabled="invalid"
                         :loading="loading"
-                      >Submit</Button>
+                      >{{$t('buttons.submit')}}</Button>
 
                       <Button
                         id="btn-cancel"
@@ -144,7 +144,7 @@
                         custom_class="mr-4"
                         size="lg"
                         @click="cancel()"
-                      >Cancel</Button>
+                      >{{$t('buttons.cancel')}}</Button>
                     </div>
                   </div>
                 </div>

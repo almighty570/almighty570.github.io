@@ -3,17 +3,17 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="d-flex">
-          <h1 class="text-dark align-self-center">Dashboard</h1>
+          <h1 class="text-dark align-self-center">{{$t('dashboard.dashboard_label')}}</h1>
 
           <select
             class="form-control form-control-sm ml-auto align-self-center"
             style="width: 150px;"
           >
-            <option value="1">This Week</option>
-            <option value="1">This Month</option>
-            <option value="1">Last 3 months</option>
-            <option value="1">This year</option>
-            <option value="1">Till Now</option>
+            <option value="1">{{$t('dashboard.options.this_week')}}</option>
+            <option value="1">{{$t('dashboard.options.this_month')}}</option>
+            <option value="1">{{$t('dashboard.options.last_3_months')}}</option>
+            <option value="1">{{$t('dashboard.options.this_year')}}</option>
+            <option value="1">{{$t('dashboard.options.till_now')}}</option>
           </select>
         </div>
       </div>
@@ -28,15 +28,15 @@
               <router-link :to="{name: 'Seller-Product-List'}" class="--no-styles">
                 <div class="card-body p-3">
                   <div class="toolbar d-flex justify-space-between">
-                    <h3 class>Products</h3>
+                    <h3 class>{{$t('dashboard.products_card.title')}}</h3>
                   </div>
 
                   <div class="row">
                     <div class="col-md-6 col-sm-12">
                       <SmallBox custom_class="mb-0">
                         <div slot="inner">
-                          <h3>150</h3>
-                          <p>Products</p>
+                          <h3>{{$t('dashboard.products_card.values.products_qty')}}</h3>
+                          <p>{{$t('dashboard.products_card.values.label_products')}}</p>
                         </div>
                         <i slot="icon" class="icon fal fa-box-full text-primary"></i>
                       </SmallBox>
@@ -44,8 +44,8 @@
                     <div class="col-md-6 col-sm-12">
                       <SmallBox custom_class="mb-0">
                         <div slot="inner">
-                          <h3>2323</h3>
-                          <p>Items</p>
+                          <h3>{{$t('dashboard.products_card.values.items_qty')}}</h3>
+                          <p>{{$t('dashboard.products_card.values.label_items')}}</p>
                         </div>
                         <i slot="icon" class="icon far fa-sitemap text-primary"></i>
                       </SmallBox>
@@ -66,14 +66,14 @@
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                   >
                     <div class="toolbar d-flex justify-space-between p-3 pb-4">
-                      <h3 class>Orders</h3>
+                      <h3 class>{{$t('dashboard.orders_card.title')}}</h3>
                     </div>
                     <div class="row pl-2 pr-2 pl-md-3 pr-md-3">
                       <div class="col-6">
-                        <h2 class="font-weight-bold">150</h2>New Orders
+                        <h2 class="font-weight-bold">{{$t('dashboard.orders_card.values.new_orders_qty')}}</h2>{{$t('dashboard.orders_card.values.label_new_orders')}}
                       </div>
                       <div class="col-6">
-                        <h2 class="font-weight-bold">64%</h2>Growth
+                        <h2 class="font-weight-bold">{{$t('dashboard.orders_card.values.growth_qty')}}</h2>{{$t('dashboard.orders_card.values.label_growth')}}
                       </div>
                     </div>
                   </div>

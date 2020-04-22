@@ -1,0 +1,130 @@
+{
+  "dashboard": {
+    "dashboard_label": "Dashboard",
+    "options": {
+      "this_week": "This Week",
+      "this_month": "This Month",
+      "last_3_months": "Last Three Months",
+      "this_year": "This Year",
+      "till_now": "Till Now"
+    },
+    "products_card": {
+      "title": "Products",
+      "values": {
+        "products_qty": "150",
+        "label_products": "Products",
+        "items_qty": "2323",
+        "label_items": "Items"
+      }
+    },
+    "orders_card": {
+      "title": "Orders",
+      "values": {
+        "new_orders_qty": "150",
+        "label_new_orders": "New Orders",
+        "growth_qty": "64%",
+        "label_growth": "Growth"
+      }
+    }
+  },
+  "orders": {
+    "create_edit": {
+      "edit_label": "Edit Order",
+      "create_label": "Add New Order",
+      "card_order_title": "Order Details",
+      "card_customer_title": "Customer Details",
+      "card_product_title": {
+        "all_products": "All Products",
+        "selected_products": "Selected Products",
+        "table": {
+          "product_code": "Product Code",
+          "qty": "Quantity",
+          "action": "Action"
+        },
+        "no_products": "No Products to Show"
+      }
+    },
+    "list": {
+      "label": "All Orders"
+    },
+    "show": {
+      "label": "View Order",
+      "card_order_items_label": "Order item(s)",
+      "card_order_history_label": "Order History"
+    }
+  },
+  "products": {
+    "edit_label": "Edit Product",
+    "create_label": "Add New Product",
+    "list_label": "All Products",
+    "show": {
+      "label": "Product Details",
+      "detail_card": {
+        "label": "Product description",
+        "code": "Item Code",
+        "description": "Description",
+        "stock": "Stock",
+        "cost": "Cost",
+        "sale_price": "Sale Price",
+        "weight": "Weight Approx",
+        "box_size": "Box Size",
+        "large": "Large"
+      },
+      "product_variations": {
+        "label":"Product Variations"
+      },
+      "deal_price":{
+        "label": "Deal Price",
+        "items":"item(s)",
+        "bhatt":"Bhatt"
+      },
+      "history":{
+        "product":"Product History",
+        "sales":"Sales History",
+        "import":"Import",
+        "export":"Export"
+      }
+    }
+  },
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "reports":{
+    "label":"Reports",
+    "balance_history_title":"Balance History"
+  },
+  "settings":{
+    "label":"Settings",
+    "feature":{
+      "inventory":"Inventory Management Feature",
+      "activate_deactivate":"Activate or Deactivate Inventory Managment Feature"
+    }
+  },
+  "about":{
+    "label":"This is an about page"
+  },
+  "home":{
+    "label":"Home"
+  },
+  "login":{
+    "description":"Sign in to start your session",
+    "sign_in":"Sign In",
+    "no_account":"Don't have an account ?",
+    "create":"Create one"
+  },
+  "pro":"Pro",
+  "ship":"Ship",
+  "register":{
+    
+    "description":"Register to start your session",
+    "label":"Register",
+    "message":"Please type the verification code sent to",
+    "otp_message":"Didn't recieve the OTP?",
+    "resend":"Resend OTP",
+    "verify":"Verify",
+    "success_message":"Successfully Registered",
+    "you_can":"You can",
+    "login_now":"login now."
+  }
+}

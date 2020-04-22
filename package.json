@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
     "admin-lte": "^3.0.2",
@@ -22,6 +23,7 @@
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
+    "vue-i18n": "^8.0.0",
     "vue-js-toggle-button": "^1.3.3",
     "vue-multiselect": "^2.1.6",
     "vue-property-decorator": "^8.4.1",
@@ -40,6 +42,7 @@
     "@vue/cli-service": "^4.2.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "vue-cli-plugin-i18n": "~0.6.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

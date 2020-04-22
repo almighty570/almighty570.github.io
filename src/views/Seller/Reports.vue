@@ -2,7 +2,7 @@
   <div>
     <div class="content-header">
       <div class="container-fluid">
-        <h1 class="text-dark">Reports</h1>
+        <h1 class="text-dark">{{$t('reports.label')}}</h1>
       </div>
     </div>
 
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <CardWidget id="balance-history" class="card card-success" card_widget_type="collapse">
-              <div slot="title">Balance History</div>
+              <div slot="title">{{$t('reports.balance_history_title')}}</div>
               <div slot="body">
                 <DataTable
                   id="balance-history"
