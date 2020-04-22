@@ -24,6 +24,13 @@ import SellerSettings from "../views/Seller/Settings/index.vue";
 import SellerSettingsGeneral from "../views/Seller/Settings/general.vue";
 import SellerSettingsAccount from "../views/Seller/Settings/account.vue";
 
+import Onboard from "../views/Onboard/index.vue";
+import OnboardWelcome from "../views/Onboard/welcome.vue";
+import OnboardDetails from "../views/Onboard/details.vue";
+import OnboardOptions from "../views/Onboard/options.vue";
+import OnboardProduct from "../views/Onboard/product.vue";
+import OnboardShipping from "../views/Onboard/shipping.vue";
+import OnboardFinal from "../views/Onboard/final.vue";
 
 import SellerReports from "../views/Seller/Reports.vue";
 
@@ -173,7 +180,67 @@ const routes = [
       }
 
     ]
+  },
+
+  {
+    path: '/onboard',
+    component: Onboard,
+    children: [
+      {
+        path: '',
+        meta: { layout: 'onboard' },
+        name: 'Onboard',
+        component: OnboardWelcome
+      },
+
+      {
+        path: '',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Welcome',
+        component: OnboardWelcome
+      },
+
+      {
+        path: 'details',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Details',
+        component: OnboardDetails
+      },
+
+      {
+        path: 'options',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Options',
+        component: OnboardOptions
+      },
+
+      {
+        path: 'product',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Product',
+        component: OnboardProduct
+      },
+
+      {
+        path: 'shipping',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Shipping',
+        component: OnboardShipping
+      },
+
+      {
+        path: 'final',
+        meta: { layout: 'onboard' },
+        name: 'Onboard-Final',
+        component: OnboardFinal
+      },
+
+
+    ]
   }
+
+
+
 ]
 
 const router = new VueRouter({
