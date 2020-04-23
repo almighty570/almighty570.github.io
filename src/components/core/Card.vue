@@ -1,7 +1,7 @@
 <template>
   <div class="card" :class="custom_class" :id="id">
     <div class="card-header" v-if="hasCardToolsSlot || hasCardTitleSlot">
-      <h3 class="card-title" v-if="hasCardTitleSlot">
+      <h3 class="card-title w-100" v-if="hasCardTitleSlot">
         <slot name="title"></slot>
       </h3>
       <div class="card-tools" v-if="hasCardToolsSlot">

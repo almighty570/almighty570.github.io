@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="onboard">
     <slot></slot>
   </div>
 </template>
@@ -10,5 +10,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.onboard {
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+}
 </style>

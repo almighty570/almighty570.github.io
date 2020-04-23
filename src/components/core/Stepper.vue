@@ -1,19 +1,24 @@
 <template>
-  <div class="sub-nav mb-4 pt-2">
+  <div class="sub-nav pt-2">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <div class="steps mb-2">
+          <div class="steps mb-2" :class="'--' + variant">
             <div class="d-flex justify-content-around">
               <template v-for="(step, i) in steps">
                 <div
                   class="step"
-                  :class="{'active': currentStepIndex - 1 === i, 'completed': i < currentStepIndex - 1}"
+                  :class="{'--active': currentStepIndex - 1 === i, '--completed': i < currentStepIndex - 1}"
                   :key="i"
-                >{{i+1}}</div>
+                >
+                  <span v-if="i < currentStepIndex - 1">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span v-else>{{i+1}}</span>
+                </div>
                 <div
                   class="line align-self-center"
-                  :class="{'line-complete': i < currentStepIndex - 1}"
+                  :class="{'--complete': i < currentStepIndex - 1}"
                   v-if="i < steps - 1"
                   :key="'line-' + i"
                 ></div>
@@ -29,26 +34,44 @@
 <script>
 export default {
   name: "Stepper",
-  props: ["steps", "currentStepIndex"]
+  props: {
+    steps: {
+      type: Number,
+      required: true
+    },
+    currentStepIndex: {
+      type: Number,
+      required: true
+    },
+    variant: {
+      type: String,
+      default: "primary"
+    }
+  }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $step-size: 30px;
 $step-incomplete-color: lightgrey;
-$step-complete-color: #007bff;
+$step-complete-color: map-get($variants, "success");
 $white: whitesmoke;
 
 .steps {
-  .line {
-    flex: 1;
-    height: 1px;
-    width: 100%;
-    background: $step-incomplete-color;
+  @each $variant, $color in $variants {
+    &.--#{$variant} {
+      $step-complete-color: $color;
+    }
   }
 
-  .line-complete {
-    background: $step-complete-color;
+  .line {
+    flex: 1;
+    height: 2px;
+    width: 100%;
+    background: $step-incomplete-color;
+    &.--complete {
+      background: $step-complete-color;
+    }
   }
 
   .step {
@@ -60,21 +83,20 @@ $white: whitesmoke;
     line-height: $step-size;
     font-size: 16px;
     font-weight: 600;
-    background-color: $white;
+    background-color: white;
     border: solid 2px $step-incomplete-color;
     color: $step-incomplete-color;
-  }
 
-  .step.completed {
-    border: solid 2px $step-complete-color;
-    background-color: white;
-    color: $step-complete-color;
-  }
+    &.--completed {
+      border-color: $step-complete-color;
+      background-color: $step-complete-color;
+      color: white;
+    }
 
-  .step.active {
-    border: solid 2px $step-complete-color;
-    background-color: $step-complete-color;
-    color: $white;
+    &.--active {
+      border-color: $step-complete-color;
+      color: $step-complete-color;
+    }
   }
 }
 </style>

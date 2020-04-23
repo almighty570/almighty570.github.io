@@ -1,71 +1,84 @@
 <template>
-  <div>
-    <h1>Details</h1>
+  <div class="container">
+    <h2 class="text-center">Let us get your details</h2>
     <ValidationObserver>
-      <div class="container">
-        <Card class="card-detail">
-          <div slot="body">
-            <form  @submit.prevent="handleFormSubmit">              
-                <div class="row">
-                  <div class="col">
-                    <TextBox
-                      type="text"
-                      id="shop-name"
-                      label="Shop Name"
-                      rules="required"
-                      v-model="detailForm.name"
-                    />
-                    <NumberField
-                      label="Shop Phone Number"
-                      id="shop-phone-number"
-                      v-model.number="detailForm.phone"
-                    />
-                    <TextBox
-                      type="text"
-                      id="shipping-address"
-                      label="Your Shipping Address ('From')"
-                      rules="required"
-                      v-model="detailForm.address"
-                    />
-                    <TextBox
-                      type="text"
-                      id="zip-code"
-                      label="Zip Code"
-                      rules="required"
-                      v-model="detailForm.zip"
-                    />
-                  </div>
-                  <div class="col">
-                    <Select
-                      id="district"
-                      label="District"
-                      :options="districtOptions"
-                      v-model="detailForm.district"
-                    />
-                    <Select
-                      id="sub-district"
-                      label="Sub-District"
-                      :options="subDistrictOptions"
-                      v-model="detailForm.subdistrict"
-                    />
-                    <Select
-                      id="province"
-                      label="Province"
-                      :options="provinceOptions"
-                      v-model="detailForm.province"
-                    />
-                    
-                  </div>
-               
-                </div>
-               
-              <div class="row">
-                  <button type="submit" class="btn btn-success">Options</button>
-               </div>
-            </form>
+      <form @submit.prevent="handleFormSubmit">
+        <div class="row">
+          <div class="col-md-6 sol-sm-12">
+            <TextBox
+              type="text"
+              size="sm"
+              id="shop-name"
+              label="Shop Name"
+              rules="required"
+              v-model="detailForm.name"
+            />
           </div>
-        </Card>
-      </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 sol-sm-12">
+            <NumberField
+              label="Shop Phone Number"
+              id="shop-phone-number"
+              v-model.number="detailForm.phone"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <TextBox
+              type="text"
+              id="shipping-address"
+              label="Shipping from"
+              rules="required"
+              placeholder="Address"
+              v-model="detailForm.address"
+            />
+          </div>
+
+          <div class="col">
+            <TextBox
+              type="text"
+              id="zip-code"
+              label="Zip Code"
+              rules="required"
+              v-model="detailForm.zip"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <Select
+              id="district"
+              label="District"
+              :options="districtOptions"
+              v-model="detailForm.district"
+            />
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <Select
+              id="sub-district"
+              label="Sub-District"
+              :options="subDistrictOptions"
+              v-model="detailForm.subdistrict"
+            />
+          </div>
+        </div>
+
+        <Select
+          id="province"
+          label="Province"
+          :options="provinceOptions"
+          v-model="detailForm.province"
+        />
+
+        <div class="row">
+          <button type="submit" class="btn btn-success pl-4 pr-4">Add more options</button>
+        </div>
+      </form>
     </ValidationObserver>
   </div>
 </template>
@@ -120,26 +133,25 @@ export default {
       ]
     };
   },
-   methods: {
+  methods: {
     handleFormSubmit() {
       let data = {
-        ...this.detailForm      
+        ...this.detailForm
       };
-       this.$store.dispatch("onboard/storeDetails", {
-          details: data,
-          callback: data => {
+      this.$store.dispatch("onboard/storeDetails", {
+        details: data,
+        callback: data => {
           this.$router.push({ name: "Onboard-Options" });
-          }         
+        }
       });
     }
-   }
-
+  }
 };
 </script>
 
 <style>
-.card-detail {
+/* .card-detail {
   height: 450px;
   width: 500px;
-}
+} */
 </style>
