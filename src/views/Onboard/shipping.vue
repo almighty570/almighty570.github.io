@@ -1,25 +1,18 @@
 <template>
-  <div>
-    <h1>Shipping</h1>
-    <ValidationObserver v-slot>
-      <div class="container">
-        <Card class="card-shipping">
-          <div slot="body">
-            <form @submit.prevent="handleFormSubmit">
-              <div class="row">
-                <div class="container-fluid">
-                  <h4>Pick a Shipping method</h4>
-                  <Select id="shipping-method" :options="shippingMethods" v-model="shippingMethod" />
-                </div>
-              </div>
-              <div class="row">
-                    <button type="submit" class="btn btn-success">Proceed</button>
-              </div>
-            </form>
-          </div>
-        </Card>
-      </div>
-    </ValidationObserver>
+  <div class="text-center">
+    <h2>Pick a shipping method</h2>
+
+    <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
+      <div
+        class="shipping-method"
+        :class="{'--disabled': !sm.available, '--active': sm === shippingMethod}"
+        v-for="(sm, index) in shippingMethods"
+        :key="index"
+        @click="selectShippingMethod(sm)"
+      >{{sm.name}}</div>
+    </div>
+
+    <button @click="next()" class="btn btn-success pl-4 pr-4" :disabled="!shippingMethod">Continue</button>
   </div>
 </template>
 
@@ -32,37 +25,63 @@ export default {
     Select,
     Card
   },
+
   data() {
     return {
       shippingMethod: null,
       shippingMethods: [
-        { name: "EMS", value: 1 },
-        { name: "KERRY", value: 2 },
-        { name: "ALPHA", value: 3 },
-        { name: "FLASH", value: 4 },
-        { name: "BEST", value: 5 },
-        { name: "J&T", value: 6 },
-        { name: "SCG", value: 7 }
+        { name: "EMS", available: true },
+        { name: "KERRY", available: false },
+        { name: "ALPHA", available: false },
+        { name: "FLASH", available: true },
+        { name: "BEST", available: false },
+        { name: "J&T", available: true },
+        { name: "SCG", available: true }
       ]
     };
   },
-  methods:{
-    handleFormSubmit(){
-      let data = this.shippingMethod;
-      this.$store.dispatch('onboard/storeShipping',{
-        shipping:data,
-        callback:data=>{
-          this.$router.push({name:"Onboard-Final"});
-        }
-      });
+
+  methods: {
+    selectShippingMethod(sm) {
+      if (sm.available) this.shippingMethod = sm;
+    },
+
+    next() {
+      if (this.shippingMethod) {
+        let data = this.shippingMethod;
+        this.$store.dispatch("onboard/storeshippingMethod", {
+          shipping: data,
+          callback: data => {
+            this.$router.push({ name: "Onboard-Final" });
+          }
+        });
+      }
     }
   }
 };
 </script>
 
-<style>
-.card-shipping{
-  height: 450px;
-  width:500px;
+<style lang="scss" scoped>
+.shipping-method {
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  border: 2px solid map-get($variants, "success");
+  border-radius: 5px;
+  color: map-get($variants, "success");
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  min-width: 100px;
+
+  &.--disabled {
+    background-color: whitesmoke;
+    border-color: lightgrey;
+    color: lightgrey;
+  }
+
+  &.--active {
+    background-color: map-get($variants, "success");
+    // border-color: lightgrey;
+    color: white;
+  }
 }
 </style>

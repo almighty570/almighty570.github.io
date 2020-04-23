@@ -1,39 +1,39 @@
 <template>
   <div class="container">
-    <h2 class="text-center">Let us get your details</h2>
-    <ValidationObserver>
+    <h3 class="text-center mb-4">Let us get your details</h3>
+    <ValidationObserver v-slot="{ invalid }">
       <form @submit.prevent="handleFormSubmit">
+        <!-- Shop Name && Phone Number -->
         <div class="row">
           <div class="col-md-6 sol-sm-12">
             <TextBox
               type="text"
               size="sm"
               id="shop-name"
-              label="Shop Name"
+              placeholder="Shop Name"
               rules="required"
               v-model="detailForm.name"
             />
           </div>
-        </div>
 
-        <div class="row">
           <div class="col-md-6 sol-sm-12">
             <NumberField
-              label="Shop Phone Number"
+              placeholder="Shop Phone Number"
               id="shop-phone-number"
+              rules="required"
               v-model.number="detailForm.phone"
             />
           </div>
         </div>
 
+        <!-- Shipping Address && Zip Code -->
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <TextBox
               type="text"
               id="shipping-address"
-              label="Shipping from"
+              placeholder="Shipping from (address)"
               rules="required"
-              placeholder="Address"
               v-model="detailForm.address"
             />
           </div>
@@ -42,15 +42,16 @@
             <TextBox
               type="text"
               id="zip-code"
-              label="Zip Code"
+              placeholder="Zip Code"
               rules="required"
               v-model="detailForm.zip"
             />
           </div>
         </div>
 
+        <!-- District and SubDistrict -->
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-6">
             <Select
               id="district"
               label="District"
@@ -58,7 +59,7 @@
               v-model="detailForm.district"
             />
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div class="col-6">
             <Select
               id="sub-district"
               label="Sub-District"
@@ -73,10 +74,11 @@
           label="Province"
           :options="provinceOptions"
           v-model="detailForm.province"
+          rules="required"
         />
 
-        <div class="row">
-          <button type="submit" class="btn btn-success pl-4 pr-4">Add more options</button>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success pl-4 pr-4" :disabled="invalid">Continue</button>
         </div>
       </form>
     </ValidationObserver>

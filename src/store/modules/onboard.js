@@ -7,7 +7,7 @@ export default {
         details: null,
         options: null,
         product: null,
-        shipping: null
+        shippingMethod: null
     },
 
     getters: {
@@ -20,8 +20,8 @@ export default {
         product(state) {
             return state.product;
         },
-        shipping(state) {
-            return state.shipping;
+        shippingMethod(state) {
+            return state.shippingMethod;
         },
     },
 
@@ -32,30 +32,33 @@ export default {
         },
 
         setOptions(state, options) {
-            Vue.set(state, 'options', options);            
+            Vue.set(state, 'options', options);
         },
 
         setProduct(state, product) {
             Vue.set(state, 'product', product);
         },
 
-        setShipping(state, shipping) {
-            Vue.set(state, 'shipping', shipping);
-        },
-
+        setshippingMethod(state, shippingMethod) {
+            Vue.set(state, 'shippingMethod', shippingMethod);
+        }
     },
     actions: {
-        storeDetails({ state, commit, rootState },payload) {                       
-            commit('setDetails',payload.details);
-            payload.callback();                               
+        storeDetails({ state, commit, rootState }, payload) {
+            commit('setDetails', payload.details);
+            if (payload.callback) payload.callback();
         },
-        storeProduct({state,commit, rootState},payload){
-            commit('setProduct',payload.product);
-            payload.callback();
+        storeOptions({ state, commit, rootState }, payload) {
+            commit('setOptions', payload.options);
+            if (payload.callback) payload.callback();
         },
-        storeShipping({state,commit, rootState},payload){
-            commit('setShipping',payload.shipping);
-            payload.callback();
+        storeProduct({ state, commit, rootState }, payload) {
+            commit('setProduct', payload.product);
+            if (payload.callback) payload.callback();
+        },
+        storeshippingMethod({ state, commit, rootState }, payload) {
+            commit('setshippingMethod', payload.shippingMethod);
+            if (payload.callback) payload.callback();
         }
     }
 }
