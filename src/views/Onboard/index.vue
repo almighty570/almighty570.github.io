@@ -1,18 +1,12 @@
 <template>
-  <div class="h-100 p-2">
-    <Card custom_class="h-100">
-      <div slot="title" class="w-100">
-        <Stepper :steps="5" :currentStepIndex="2" variant="success" />
-      </div>
-      <div slot="body" style="overflow: scroll">
-        <router-view></router-view>
-      </div>
-    </Card>
-
-    <!-- <div class="stepper p-3">
+  <Card custom_class="onboard-card">
+    <div slot="title" class="w-100">
       <Stepper :steps="5" :currentStepIndex="2" variant="success" />
-    </div>-->
-  </div>
+    </div>
+    <div slot="body" style="overflow: auto">
+      <router-view></router-view>
+    </div>
+  </Card>
 </template>
 
 <script>
@@ -28,5 +22,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.onboard-card {
+  width: 100%;
+  min-height: 100%;
+}
 </style>
