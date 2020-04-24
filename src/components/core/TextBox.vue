@@ -4,6 +4,7 @@
 
     <validation-provider :rules="rules" v-slot="{ errors }">
       <input
+        v-on:keypress="limitKeypress(value, maxval)"
         :type="type"
         ref="input"
         class="form-control"
@@ -35,7 +36,9 @@ export default {
       type: String,
       required: true
     },
-
+    maxval: {
+      type: Number
+    },
     value: {
       type: String
     },
@@ -69,7 +72,13 @@ export default {
 
     handleChange() {
       this.$emit("change", this.$refs.input.value);
-    }
+    },
+
+    limitKeypress(value, maxLength) {
+      if (value != undefined && value.toString().length >= maxLength) {
+        event.preventDefault();
+      }
+  }
   }
 };
 </script>

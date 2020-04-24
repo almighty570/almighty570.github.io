@@ -139,7 +139,7 @@ export default {
     },
 
     next() {
-      this.$router.push({ name: "Onboard-Product" });
+      this.$router.push({ name: "Onboard-Shipping" });
     }
   }
 };

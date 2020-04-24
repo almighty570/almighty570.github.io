@@ -1,7 +1,14 @@
 <template>
   <div class="phone-wrapper">
     <ValidationProvider rules="max|start" v-slot="{errors}">
-      <NumberField :maxval="10" type="text" id="phone-number" :label=label v-model="phone" />
+      <TextBox
+        type="Number"
+        :maxval="10"
+        :placeholder="placeholder"
+        :id="id"
+        :label="label"
+        v-model="phone"
+      />
       <template v-if="errors.length">
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </template>
@@ -10,18 +17,24 @@
 </template>
 
 <script>
-import NumberField from "@/components/core/NumberField";
+import TextBox from "@/components/core/TextBox";
 import { extend } from "vee-validate";
 import { ValidationProvider } from "vee-validate";
 export default {
   name: "PhoneNumber",
   components: {
-    NumberField,
+    TextBox,
     ValidationProvider
   },
-  props:{
-    label:{
-      type:String
+  props: {
+    label: {
+      type: String
+    },
+    placeholder: {
+      type: String
+    },
+    id: {
+      type: String
     }
   },
   data() {

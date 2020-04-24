@@ -17,11 +17,11 @@
           </div>
 
           <div class="col-md-6 sol-sm-12">
-            <NumberField
+            <PhoneNumber
               placeholder="Shop Phone Number"
               id="shop-phone-number"
               rules="required"
-              v-model.number="detailForm.phone"
+              v-model="detailForm.phone"
             />
           </div>
         </div>
@@ -89,15 +89,15 @@
 import Card from "@/components/core/Card";
 import TextBox from "@/components/core/TextBox";
 import Select from "@/components/core/Select";
-import NumberField from "@/components/core/NumberField";
+import PhoneNumber from "@/components/derived/PhoneNumber";
 import Vue from "vue";
 export default {
   name: "Onboard-Details",
   components: {
     TextBox,
-    NumberField,
     Select,
-    Card
+    Card,
+    PhoneNumber
   },
   data() {
     return {

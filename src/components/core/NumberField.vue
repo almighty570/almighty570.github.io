@@ -4,7 +4,7 @@
 
     <validation-provider :rules="rules" v-slot="{ errors }">
       <input
-        v-on:keypress="limitKeypress(value, maxval)"
+        
         type="number"
         ref="input"
         class="form-control"
@@ -35,9 +35,7 @@ export default {
     value: {
       type: Number
     },
-    maxval: {
-      type: Number
-    },
+    
     label: {
       type: String
     },
