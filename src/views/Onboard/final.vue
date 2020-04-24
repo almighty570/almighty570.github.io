@@ -48,6 +48,8 @@
       </div>
     </div>
 
+    {{shippingMethod}}
+
     <div class="d-flex flex-column mt-4">
       <Button id="btn-more" variant="success">
         <i class="fal fa-list mr-1"></i>

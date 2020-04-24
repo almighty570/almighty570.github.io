@@ -48,9 +48,9 @@ export default {
 
     next() {
       if (this.shippingMethod) {
-        let data = this.shippingMethod;
+        let data = this.shippingMethod.name;
         this.$store.dispatch("onboard/storeshippingMethod", {
-          shipping: data,
+          shippingMethod: data,
           callback: data => {
             this.$router.push({ name: "Onboard-Final" });
           }
