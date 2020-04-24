@@ -12,6 +12,7 @@ export default {
 
     getters: {
         details(state) {
+            console.log(state);
             return state.details;
         },
         options(state) {

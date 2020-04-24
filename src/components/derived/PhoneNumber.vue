@@ -1,7 +1,8 @@
 <template>
-  <div class="phone-wrapper">
+  <div class="form-group">
     <ValidationProvider rules="max|start" v-slot="{errors}">
       <TextBox
+        :derived="true"
         type="Number"
         :maxval="10"
         :placeholder="placeholder"
@@ -9,9 +10,9 @@
         :label="label"
         v-model="phone"
       />
-      <template v-if="errors.length">
-        <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
-      </template>
+      <div class="template-error" >
+        <span class="text-danger  text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+      </div>
     </ValidationProvider>
   </div>
 </template>
@@ -63,4 +64,5 @@ export default {
 </script>
 
 <style>
+
 </style>

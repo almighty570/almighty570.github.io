@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group" :class="wrapper_class">
+  <div v-bind:class="{'wrapper_class':true, 'form-group':(!derived)}">
     <label v-if="label" :for="id">{{label}}</label>
 
     <validation-provider :rules="rules" v-slot="{ errors }">
@@ -42,7 +42,9 @@ export default {
     value: {
       type: String
     },
-
+    derived:{
+      type:Boolean
+    },
     label: {
       type: String
     },

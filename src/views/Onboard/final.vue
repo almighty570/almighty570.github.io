@@ -7,7 +7,23 @@
       and drop it off, at the POST OFFICE
     </p>
 
-    <div class="shipping-label">Design of shipping label goes here</div>
+    <div class="shipping-label">
+    <div v-if="details">
+      <div>
+        <p>{{details}}</p>
+        <p>{{details.name}}</p>
+        <p>{{details.district}}, {{details.subdistrict}}</p>
+        <p>{{details.province}}, {{details.zip}}</p>
+      </div>
+       <div>
+        <p>To:</p>
+        <p>{{details.name}}</p>
+        <p>{{details.district}}, {{details.subdistrict}}</p>
+        <p>{{details.province}}, {{details.zip}}</p>
+      </div>
+    </div>
+      
+    </div>
 
     <div class="d-flex flex-column mt-4">
       <Button id="btn-more" variant="success">
@@ -39,7 +55,7 @@ export default {
 
 <style>
 .shipping-label {
-  background-color: lightgrey;
+  background-color: lightgrey;  
   border-radius: 5px;
   height: 200px;
   width: 100%;
