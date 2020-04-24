@@ -33,10 +33,10 @@ export default {
         { name: "EMS", available: true },
         { name: "KERRY", available: false },
         { name: "ALPHA", available: false },
-        { name: "FLASH", available: true },
+        { name: "FLASH", available: false },
         { name: "BEST", available: false },
-        { name: "J&T", available: true },
-        { name: "SCG", available: true }
+        { name: "J&T", available: false },
+        { name: "SCG", available: false }
       ]
     };
   },
