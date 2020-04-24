@@ -8,14 +8,15 @@
     </p>
 
     <div class="shipping-label">
-    <div v-if="details">
-      <div>
-        <p>{{details}}</p>
+
+    <div class="row" v-if="details">
+      <div class="col-6 col-left">
+        <p>From:</p>
         <p>{{details.name}}</p>
         <p>{{details.district}}, {{details.subdistrict}}</p>
         <p>{{details.province}}, {{details.zip}}</p>
       </div>
-       <div>
+       <div class="col-6 col-right">
         <p>To:</p>
         <p>{{details.name}}</p>
         <p>{{details.district}}, {{details.subdistrict}}</p>
@@ -59,7 +60,9 @@ export default {
   border-radius: 5px;
   height: 200px;
   width: 100%;
-  text-align: center;
-  line-height: 200px;
+  text-align: center; 
+}
+.col-left, .col-right {  
+    justify-content: center;
 }
 </style>

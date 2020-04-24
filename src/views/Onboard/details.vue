@@ -111,34 +111,34 @@ export default {
         province: null
       },
       districtOptions: [
-        { name: "District 1", value: 1 },
-        { name: "District 2", value: 2 },
-        { name: "District 3", value: 3 },
-        { name: "District 4", value: 4 },
-        { name: "District 5", value: 5 }
+        { name: "District 1", value: "District 1" },
+        { name: "District 2", value: "District 2" },
+        { name: "District 3", value: "District 3" },
+        { name: "District 4", value: "District 4" },
+        { name: "District 5", value: "District 5" }
       ],
 
       subDistrictOptions: [
-        { name: "Sub District 1", value: 1 },
-        { name: "Sub District 2", value: 2 },
-        { name: "Sub District 3", value: 3 },
-        { name: "Sub District 4", value: 4 },
-        { name: "Sub District 5", value: 5 }
+        { name: "Sub District 1", value: "Sub District 1" },
+        { name: "Sub District 2", value: "Sub District 2" },
+        { name: "Sub District 3", value: "Sub District 3" },
+        { name: "Sub District 4", value: "Sub District 4" },
+        { name: "Sub District 5", value: "Sub District 5" }
       ],
 
       provinceOptions: [
-        { name: "Province 1", value: 1 },
-        { name: "Province 2", value: 2 },
-        { name: "Province 3", value: 3 },
-        { name: "Province 4", value: 4 },
-        { name: "Province 5", value: 5 }
+        { name: "Province 1", value: "Province 1" },
+        { name: "Province 2", value: "Province 2" },
+        { name: "Province 3", value: "Province 3" },
+        { name: "Province 4", value: "Province 4" },
+        { name: "Province 5", value: "Province 5" }
       ]
     };
   },
   methods: {
     handleFormSubmit() {
       let data = {
-        ...this.detailForm
+        ...this.detailForm,        
       };
       this.$store.dispatch("onboard/storeDetails", {
         details: data,
