@@ -10,18 +10,26 @@
     <div class="shipping-label">
 
     <div class="row" v-if="details">
-      <div class="col-6 col-left">
+      <div class="col-3 ">
         <p>From:</p>
         <p>{{details.name}}</p>
         <p>{{details.district}}, {{details.subdistrict}}</p>
         <p>{{details.province}}, {{details.zip}}</p>
       </div>
-       <div class="col-6 col-right">
+      <div class="col-6"> 
+        <p>Product:</p>
+      <p>Name: {{product.item}}</p>
+      <p>Price: Rs.{{product.price}}</p>
+      <p>Stock: {{product.stock}}</p>
+      </div>
+      
+       <div class="col-3 ">
         <p>To:</p>
         <p>{{details.name}}</p>
         <p>{{details.district}}, {{details.subdistrict}}</p>
         <p>{{details.province}}, {{details.zip}}</p>
       </div>
+
     </div>
       
     </div>
@@ -49,7 +57,7 @@ export default {
     Button
   },
   computed: {
-    ...mapGetters("onboard", ["details"])
+    ...mapGetters("onboard", ['details','product','shippingMethod'])
   }
 };
 </script>

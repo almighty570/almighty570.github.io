@@ -16,12 +16,15 @@ export default {
             return state.details;
         },
         options(state) {
+            console.log(state);
             return state.options;
         },
         product(state) {
+            console.log(state);
             return state.product;
         },
         shippingMethod(state) {
+            console.log(state);
             return state.shippingMethod;
         },
     },

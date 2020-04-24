@@ -130,16 +130,18 @@ export default {
     setProductMgt(val) {
       this.productMgt = val;
       if (val) this.showInventoryMgtOption = true;
-      else this.next();
+      else this.$router.push({ name: "Onboard-Shipping" });
     },
 
     setInventoryMgt(val) {
       this.inventoryMgt = val;
-      this.next();
+      if (val) this.next();
+      else this.$router.push({ name: "Onboard-Shipping" });
+      
     },
 
     next() {
-      this.$router.push({ name: "Onboard-Shipping" });
+      this.$router.push({ name: "Onboard-Product" });
     }
   }
 };
