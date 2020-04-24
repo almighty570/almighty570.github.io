@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <ValidationProvider rules="max|start" v-slot="{errors}">
+    <ValidationProvider rules="min|start" v-slot="{errors}">
       <TextBox
         :derived="true"
         type="Number"
@@ -10,8 +10,8 @@
         :label="label"
         v-model="phone"
       />
-      <div class="template-error" >
-        <span class="text-danger  text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+      <div class="template-error">
+        <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </div>
     </ValidationProvider>
   </div>
@@ -44,25 +44,17 @@ export default {
     };
   },
   mounted() {
-    extend("max", value => {
-      if (value.length <= 10) {
-        return true;
-      }
-
-      return "This field can have maximum 10 digits.";
+    extend("min", value => {
+      if (value.length !== 10) return "Phone number must have 10 digits.";
+      return true;
     });
     extend("start", value => {
-      if (value[0] == "0") {
-        return true;
-      }
-
-      return "This field must start with 0.";
+      if (value[0] !== "0") return "Phone number must start with 0.";
+      return true;
     });
-  },
-  methods: {}
+  }
 };
 </script>
 
 <style>
-
 </style>

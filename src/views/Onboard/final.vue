@@ -7,31 +7,45 @@
       and drop it off, at the POST OFFICE
     </p>
 
-    <div class="shipping-label">
+    <div class="shipping-label p-4">
+      <div class="row">
+        <div class="col-12 col-md-3 text-center text-md-left" v-if="details">
+          <h5>From</h5>
+          <p>
+            {{details.name}}
+            <br />
+            {{details.district}}, {{details.subdistrict}}
+            <br />
+            {{details.province}}, {{details.zip}}
+          </p>
+        </div>
+        <div class="col-12 col-md-6">
+          <div v-if="product">
+            <h5>Product</h5>
+            <p>
+              Name: {{product.item}}
+              <br />
+              Price: Rs.{{product.price}}
+              <br />
+              Stock: {{product.stock}}
+            </p>
+          </div>
+          <div v-else>
+            <h5>No Product found</h5>
+          </div>
+        </div>
 
-    <div class="row" v-if="details">
-      <div class="col-3 ">
-        <p>From:</p>
-        <p>{{details.name}}</p>
-        <p>{{details.district}}, {{details.subdistrict}}</p>
-        <p>{{details.province}}, {{details.zip}}</p>
+        <div class="col-12 col-md-3 text-center text-md-left" v-if="details">
+          <h5>To</h5>
+          <p>
+            {{details.name}}
+            <br />
+            {{details.district}}, {{details.subdistrict}}
+            <br />
+            {{details.province}}, {{details.zip}}
+          </p>
+        </div>
       </div>
-      <div class="col-6"> 
-        <p>Product:</p>
-      <p>Name: {{product.item}}</p>
-      <p>Price: Rs.{{product.price}}</p>
-      <p>Stock: {{product.stock}}</p>
-      </div>
-      
-       <div class="col-3 ">
-        <p>To:</p>
-        <p>{{details.name}}</p>
-        <p>{{details.district}}, {{details.subdistrict}}</p>
-        <p>{{details.province}}, {{details.zip}}</p>
-      </div>
-
-    </div>
-      
     </div>
 
     <div class="d-flex flex-column mt-4">
@@ -57,20 +71,22 @@ export default {
     Button
   },
   computed: {
-    ...mapGetters("onboard", ['details','product','shippingMethod'])
+    ...mapGetters("onboard", ["details", "product", "shippingMethod"])
   }
 };
 </script>
 
 <style>
 .shipping-label {
-  background-color: lightgrey;  
+  background-color: lightgrey;
   border-radius: 5px;
   height: 200px;
   width: 100%;
-  text-align: center; 
+  text-align: center;
+  overflow-y: auto;
 }
-.col-left, .col-right {  
-    justify-content: center;
+.col-left,
+.col-right {
+  justify-content: center;
 }
 </style>
