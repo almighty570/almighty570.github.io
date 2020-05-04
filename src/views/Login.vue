@@ -13,13 +13,7 @@
           <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password" />
 
           <div class="auth-box__cta-wrapper d-flex justify-content-between">
-            <CheckBoxGroup
-              id="remember-me"
-              :options="[{value:'remember',name:'Remember Me'}]"
-              v-model="rememberMe"
-            />
-            <br />
-            <Button id="submit-login-form-button" variant="info" size="md">{{$t('login.sign_in')}}</Button>
+            <Button id="submit-login-form-button" class="btn-block" variant="info" size="md">{{$t('login.sign_in')}}</Button>
           </div>
         </form>
         <div class="forgot-password-msg">
@@ -63,4 +57,7 @@ export default {
 
 
 <style scoped>
+#submit-login-form-button{
+  width: 100%;
+}
 </style>
