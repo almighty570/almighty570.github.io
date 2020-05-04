@@ -47,13 +47,11 @@
         </div>
       </div>
     </div>
-
     {{shippingMethod}}
-
     <div class="d-flex flex-column mt-4">
-      <Button id="btn-more" variant="success">
-        <i class="fal fa-list mr-1"></i>
-        Show More
+      <Button id="btn-more" variant="success" @click="onContinue">
+        <i class="fal fa-arrow-right"></i>
+        Continue
       </Button>
 
       <Button id="btn-more" variant="success" custom_class="mt-2">
@@ -71,6 +69,11 @@ export default {
   name: "Onboard-Final",
   components: {
     Button
+  },
+  methods: {
+    onContinue() {
+      return this.$router.push({ name: "Seller-Settings" });
+    }
   },
   computed: {
     ...mapGetters("onboard", ["details", "product", "shippingMethod"])
