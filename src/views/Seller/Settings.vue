@@ -11,9 +11,11 @@
         <div class="tabs">
           <Tabs
             :tabs="[
-        { label: 'General'},
-        { label: 'Balance'},
-      ]"
+            { label: 'Shops'},
+            { label: 'Payment'},
+            {label:'Shipping'},
+            {label:'Account Settings'}
+            ]"
             custom_class="is-primary"
           />
         </div>

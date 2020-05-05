@@ -221,7 +221,12 @@ export default {
         {
           title: "Settings",
           icon: "fal fa-cogs",
-          pathName: ["Seller-Settings"]
+          pathName: [
+            "Seller-Settings-Shops",
+            "Seller-Settings-Payment",
+            "Seller-Settings-Shipping",
+            "Seller-Settings-Account",
+          ]
         }
       ]
     };

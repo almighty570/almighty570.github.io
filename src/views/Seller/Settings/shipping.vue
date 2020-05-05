@@ -2,7 +2,7 @@
   <div>
     <Card>
       <div slot="body">
-        <p class="lead">General Settings goes here</p>
+        <p class="lead">Shipping Settings goes here</p>
       </div>
     </Card>
   </div>
@@ -12,7 +12,7 @@
 import Card from "@/components/core/Card";
 
 export default {
-  name: "SellerSettingsGeneral",
+  name: "SellerSettingsShipping",
   components: {
     Card
   },
