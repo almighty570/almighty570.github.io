@@ -38,9 +38,9 @@ export default {
   data() {
     return {
       productForm: {
-        item: null,
-        price: null,
-        stock: null
+        item: "Example Product",
+        price: 20,
+        stock: 30
       }
     };
   },
