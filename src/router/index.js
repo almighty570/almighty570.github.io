@@ -5,11 +5,14 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
 import SellerDashboard from '../views/Seller/Dashboard.vue'
+
+import SellerProduct from "../views/Seller/Products/index.vue";
 import SellerProductList from '../views/Seller/Products/List.vue'
 import SellerProductCreate from '../views/Seller/Products/Create.vue'
 import SellerProductEdit from '../views/Seller/Products/Edit.vue'
 import SellerProductDetail from '../views/Seller/Products/Show.vue'
 
+import SellerOrder from "../views/Seller/Orders/index.vue";
 import SellerOrderList from "../views/Seller/Orders/List.vue";
 import SellerOrderCreate from '../views/Seller/Orders/Create.vue'
 import SellerOrderDetail from "../views/Seller/Orders/Show.vue";
@@ -68,60 +71,67 @@ const routes = [
   // Products
   {
     path: '/seller/products',
-    name: 'Seller-Product-List',
     meta: { layout: 'seller' },
-    component: SellerProductList
+    component: SellerProduct,
+    children: [
+      {
+        path: '',
+        name: 'Seller-Product-List',
+        component: SellerProductList
+      },
+
+      {
+        path: 'create',
+        name: 'Seller-Product-Create',
+        component: SellerProductCreate
+      },
+
+      {
+        path: ':id',
+        name: 'Seller-Product-Detail',
+        component: SellerProductDetail
+      },
+      {
+        path: ':id/edit',
+        name: 'Seller-Product-Edit',
+        component: SellerProductEdit
+      },
+    ]
   },
 
-  {
-    path: '/seller/products/create',
-    name: 'Seller-Product-Create',
-    meta: { layout: 'seller' },
-    component: SellerProductCreate
-  },
-
-  {
-    path: '/seller/products/:id/edit',
-    name: 'Seller-Product-Edit',
-    meta: { layout: 'seller' },
-    component: SellerProductEdit
-  },
-
-  {
-    path: '/seller/products/:id',
-    name: 'Seller-Product-Detail',
-    meta: { layout: 'seller' },
-    component: SellerProductDetail
-  },
 
   // orders
   {
     path: '/seller/orders',
-    name: 'Seller-Order-List',
     meta: { layout: 'seller' },
-    component: SellerOrderList
+    component: SellerOrder,
+    children: [
+      {
+        path: '',
+        name: 'Seller-Order-List',
+        component: SellerOrderList
+      },
+
+      {
+        path: 'create',
+        name: 'Seller-Order-Create',
+        component: SellerOrderCreate
+      },
+
+      {
+        path: ':id',
+        name: 'Seller-Order-Detail',
+        component: SellerOrderDetail
+      },
+      {
+        path: ':id/edit',
+        name: 'Seller-Order-Edit',
+        component: SellerOrderEdit
+      },
+    ]
   },
 
-  {
-    path: '/seller/orders/create',
-    name: 'Seller-Order-Create',
-    meta: { layout: 'seller' },
-    component: SellerOrderCreate
-  },
-
-  {
-    path: '/seller/orders/:id',
-    name: 'Seller-Order-Detail',
-    meta: { layout: 'seller' },
-    component: SellerOrderDetail
-  },
-
-  {
-    path: '/seller/orders/:id/edit',
-    name: 'Seller-Order-Edit',
-    meta: { layout: 'seller' },
-    component: SellerOrderEdit
-  },
+ 
 
   // Sales Agents
   {
