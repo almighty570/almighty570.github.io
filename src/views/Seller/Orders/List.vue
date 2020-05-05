@@ -38,12 +38,12 @@
                 <div
                   class="order-status-list d-flex flex-wrap justify-content-center justify-content-md-start mt-4"
                 >
-                  <Tabs id="order-list-tabs" class="is-success" :tabs="orderStatusData"/>
+                  <Tabs id="order-list-tabs" class="is-success" :tabs="orderStatusData" />
                   <!-- <DateRangePicker
                     custom_class="ml-0 ml-md-auto mr-0 mr-md-4 align-self-start mb-2 mb-md-0"
                     color_scheme="success"
                     date_format="MMM Do, YYYY"
-                  /> -->
+                  />-->
                 </div>
               </div>
             </ListTable>
@@ -90,8 +90,13 @@ export default {
       toDate: null,
 
       orderColumns: [
-        { name: "order_code", title: "Order code", sortField: "order_code" },
-        { name: "order_no", title: "Order No", sortField: "order-no" },
+        {
+          name: "order_code",
+          title: "Order code",
+          sortField: "order_code",
+          hideMobile: true
+        },
+        { name: "order_no", title: "Order No", sortField: "order-no", hideMobile: true },
         {
           name: "representative",
           title: "Representative",

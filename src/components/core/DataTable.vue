@@ -12,7 +12,7 @@
     <vuetable
       ref="datatable"
       :api-mode="false"
-      :fields="columns"
+      :fields="responsiveColumns"
       :per-page="per_page"
       :data-manager="dataManager"
       :css="cssConfig.table"
@@ -147,7 +147,7 @@ export default {
               row[field]
                 .toLowerCase()
                 .indexOf(this.searchKeyword.toLowerCase()) >= 0;
-            if(exists) return exists;
+            if (exists) return exists;
           }
           return exists;
         });
@@ -183,6 +183,13 @@ export default {
 
     refreshTable() {
       this.$refs.datatable.refresh();
+    }
+  },
+
+  computed: {
+    responsiveColumns() {
+      if (window.isMobile) return this.columns.filter(col => !col.hideMobile);
+      return this.columns;
     }
   }
 };
