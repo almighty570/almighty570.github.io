@@ -2,7 +2,72 @@
   <div>
     <Card>
       <div slot="body">
-        <p class="lead">Account Settings goes here</p>
+               <ValidationObserver v-slot="{ invalid }">
+              <form @submit.prevent="handleFormSubmit">
+                <!-- Name & Email -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="account-name"
+                      label="Company  Name"
+                      v-model="accountSettingsForm.name"
+                      rules="required"
+                    />
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="email"
+                      id="account-email"
+                      label="Email"
+                      v-model="accountSettingsForm.email"
+                      rules="required"
+                    />
+                  </div>
+                </div>
+
+                <!-- Phone Line Id -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <PhoneNumber
+                      id="account-phone-no"
+                      label="Phone No."
+                      v-model="accountSettingsForm.phoneNo"
+                      rules="required"
+                    />
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <TextBox
+                      type="text"
+                      id="account-address"
+                      label="Address"
+                      v-model="accountSettingsForm.address"
+                      rules="required"
+                    />
+                  </div>
+                </div>
+
+          
+                <!-- Submit & Cancel Buttons -->
+                <div class="row">
+                  <div class="col text-center">
+                    <hr />
+                    <div class="d-flex mt-4 justify-content-center">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-md mr-4"
+                        :disabled="invalid"
+                      >Update</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary btn-md"
+                        @click="cancel()"
+                      >Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </ValidationObserver>
       </div>
     </Card>
   </div>
@@ -10,17 +75,56 @@
 
 <script>
 import Card from "@/components/core/Card";
+import TextBox from "@/components/core/TextBox";
+import PhoneNumber from "@/components/derived/PhoneNumber";
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "SellerSettingsAccount",
   components: {
-    Card
+    Card,
+    TextBox,
+    PhoneNumber
+  },
+   computed: {
+    ...mapGetters("onboard", ["details", "product", "shippingMethod"])
+    
+  },
+  created(){
+        this.accountSettingsForm.name=this.details.name;
+        this.accountSettingsForm.email=this.details.email;
+        this.accountSettingsForm.phoneNo=this.details.phone;
+        this.accountSettingsForm.address=this.details.address;
+        console.log(this.details);
   },
   data() {
-    return {};
+    return {
+      accountSettingsForm:{
+          name:null,
+          email:null,
+          phoneNo:null,
+          address:null
+      }
+    };
   },
-
-  methods: {}
+mounted(){
+  
+ 
+},
+  methods: {
+    handleFormSubmit() {
+      let data = {
+        ...this.accountSettingsForm,        
+      };
+      this.$store.dispatch("onboard/storeDetails", {
+        details: data,
+        callback: data => {
+          this.$router.push({ name: "Seller-Settings-Shops" });
+        }
+      });
+    }
+      }
 };
 </script>
 

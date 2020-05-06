@@ -5,7 +5,7 @@
     <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
       <div
         class="shipping-method"
-        :class="{'--disabled': !sm.available, '--active': sm === shippingMethod}"
+        :class="{'--disabled': !sm.available, '--active': shippingMethod.includes(sm)}"
         v-for="(sm, index) in shippingMethods"
         :key="index"
         @click="selectShippingMethod(sm)"
@@ -28,11 +28,11 @@ export default {
 
   data() {
     return {
-      shippingMethod: null,
+      shippingMethod: [],
       shippingMethods: [
         { name: "EMS", available: true },
-        { name: "KERRY", available: false },
-        { name: "ALPHA", available: false },
+        { name: "KERRY", available: true },
+        { name: "ALPHA", available: true },
         { name: "FLASH", available: false },
         { name: "BEST", available: false },
         { name: "J&T", available: false },
@@ -43,12 +43,12 @@ export default {
 
   methods: {
     selectShippingMethod(sm) {
-      if (sm.available) this.shippingMethod = sm;
+      if (sm.available) this.shippingMethod.push(sm);
     },
 
     next() {
       if (this.shippingMethod) {
-        let data = this.shippingMethod.name;
+        let data = this.shippingMethod;
         this.$store.dispatch("onboard/storeshippingMethod", {
           shippingMethod: data,
           callback: data => {
