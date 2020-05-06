@@ -35,6 +35,8 @@ import OnboardProduct from "../views/Onboard/product.vue";
 import OnboardShipping from "../views/Onboard/shipping.vue";
 import OnboardFinal from "../views/Onboard/final.vue";
 
+import PaymentDetails from "../views/Buyer/PaymentDetails.vue";
+
 import SellerReports from "../views/Seller/Reports.vue";
 
 Vue.use(VueRouter)
@@ -131,7 +133,7 @@ const routes = [
     ]
   },
 
- 
+
 
   // Sales Agents
   {
@@ -247,6 +249,14 @@ const routes = [
 
 
     ]
+  },
+
+  //Buyer
+  {
+    path: '/payment-details',
+    meta: { layout: 'buyer' },
+    name: 'Payment-Details',
+    component: PaymentDetails
   }
 
 
