@@ -135,7 +135,7 @@
           >Share This Page / Make Payment Later</button>
         </div>
         <div class="col-md-6">
-          <button type="button" class="mb-2 btn btn-outline-success">Back To Shop</button>
+          <button type="button" class="mb-2 btn btn-outline-success">Some other action here</button>
         </div>
       </div>
     </div>
