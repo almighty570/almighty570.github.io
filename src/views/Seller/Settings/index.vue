@@ -31,7 +31,7 @@ export default {
         { label: "Shops", pathName: "Seller-Settings-Shops" },
         { label: "Payment", pathName: "Seller-Settings-Payment" },
         { label: "Shipping", pathName: "Seller-Settings-Shipping" },
-         { label: "Account Settings", pathName: "Seller-Settings-Account" }
+         { label: "Account", pathName: "Seller-Settings-Account" }
       ]
     };
   },

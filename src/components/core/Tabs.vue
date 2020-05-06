@@ -54,6 +54,7 @@ $variants: (
 .tabs__wrapper {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   .tab-list-item {
     padding: 0.25rem 1rem;
     margin-bottom: 0.5rem;

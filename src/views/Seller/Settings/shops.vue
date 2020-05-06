@@ -3,7 +3,7 @@
     <Card>
       <div slot="body">
         <div class="text-center">
-          <h3>List of your shops</h3>
+          <h5>Manage Shops</h5>
         </div>
         <CardWidget id="order-details-card" class="card card-primary">
           <div slot="title">{{details.name}}</div>
@@ -12,40 +12,20 @@
               <div class="col-6">
                 <table>
                   <tbody>
-                     <tr>
+                    <tr>
                       <th>Shop Address:</th>
                       <td>{{details.address}}</td>
                     </tr>
                     <tr>
                       <th>Shipping:</th>
-                      <td ><span v-for="(ship,index) in shippingMethod" :key="index">{{ship.name}},</span></td>
+                      <td>
+                        <span v-for="(ship,index) in shippingMethod" :key="index">{{ship.name}},</span>
+                      </td>
                     </tr>
-                   
-                    
                     <tr>
                       <th>Phone:</th>
                       <td>{{details.phone}}</td>
                     </tr>
-                                       
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-6">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>Product Name:</th>
-                      <td>{{product.item}}</td>
-                    </tr>
-                    <tr>
-                      <th>Price:</th>
-                      <td>Rs.{{product.price}}</td>
-                    </tr>
-                    <tr>
-                      <th>In Stock:</th>
-                      <td>{{product.stock}}</td>
-                    </tr>
-                     
                   </tbody>
                 </table>
               </div>
@@ -55,8 +35,8 @@
       </div>
     </Card>
     <div class="text-center">
-      <Button id="btn-cancel" @click="addNewShop()" type="button" variant="primary" size="lg">
-        Add a Shop
+      <Button id="btn-cancel" @click="addNewShop()" type="button" variant="primary" size="sm">
+        Add New Shop
         <i class="mr-1 ml-2 mt-1 fas fa-plus"></i>
       </Button>
     </div>
@@ -79,7 +59,9 @@ export default {
   computed: {
     ...mapGetters("onboard", ["details", "product", "shippingMethod"])
   },
-  created(){console.log(this.shippingMethod)},
+  created() {
+    console.log(this.shippingMethod);
+  },
   data() {
     return {};
   },

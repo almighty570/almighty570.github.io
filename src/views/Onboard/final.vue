@@ -48,13 +48,12 @@
       </div>
     </div>
 
-    
-
     <div class="d-flex flex-column mt-4">
-      <Button id="btn-more" variant="success">
-        <i class="fal fa-list mr-1"></i>
-        Show More
-      </Button>
+      <Button
+        id="btn-more"
+        variant="success"
+        @click="$router.push({name: 'Seller-Settings-Shops'})"
+      >Continue</Button>
 
       <Button id="btn-more" variant="success" custom_class="mt-2">
         <i class="fal fa-print mr-1"></i>
