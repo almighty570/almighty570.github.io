@@ -24,7 +24,9 @@ import SellerSalesAgentDetail from "../views/Seller/SalesAgents/Show.vue";
 import SellerSalesAgentEdit from "../views/Seller/SalesAgents/Edit.vue";
 
 import SellerSettings from "../views/Seller/Settings/index.vue";
-import SellerSettingsGeneral from "../views/Seller/Settings/general.vue";
+import SellerSettingsShops from "../views/Seller/Settings/shops.vue";
+import SellerSettingsPayment from "../views/Seller/Settings/payment.vue";
+import SellerSettingsShipping from "../views/Seller/Settings/shipping.vue";
 import SellerSettingsAccount from "../views/Seller/Settings/account.vue";
 
 import Onboard from "../views/Onboard/index.vue";
@@ -175,19 +177,26 @@ const routes = [
     component: SellerSettings,
     children: [
       {
-        path: '',
-        name: 'Seller-Settings',
-        component: SellerSettingsGeneral
-      },
-      {
-        path: '/general',
-        name: 'Seller-Settings-General',
-        component: SellerSettingsGeneral
-      }, {
-        path: '/account',
+        path: 'account',
         name: 'Seller-Settings-Account',
         component: SellerSettingsAccount
-      }
+      },      
+      {
+        path: 'shops',
+        name: 'Seller-Settings-Shops',
+        component: SellerSettingsShops
+      }, 
+      {
+        path: 'payment',
+        name: 'Seller-Settings-Payment',
+        component: SellerSettingsPayment
+      },
+      {
+        path: 'shipping',
+        name: 'Seller-Settings-Shipping',
+        component: SellerSettingsShipping
+      },
+      
 
     ]
   },

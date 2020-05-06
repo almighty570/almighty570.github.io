@@ -28,8 +28,10 @@ export default {
     return {
       showInventory: false,
       tabs: [
-        { label: "General", pathName: "Seller-Settings-General" },
-        { label: "Account", pathName: "Seller-Settings-Account" }
+        { label: "Shops", pathName: "Seller-Settings-Shops" },
+        { label: "Payment", pathName: "Seller-Settings-Payment" },
+        { label: "Shipping", pathName: "Seller-Settings-Shipping" },
+         { label: "Account", pathName: "Seller-Settings-Account" }
       ]
     };
   },

@@ -47,12 +47,13 @@
         </div>
       </div>
     </div>
-    {{shippingMethod}}
+
     <div class="d-flex flex-column mt-4">
-      <Button id="btn-more" variant="success" @click="onContinue">
-        <i class="fal fa-arrow-right"></i>
-        Continue
-      </Button>
+      <Button
+        id="btn-more"
+        variant="success"
+        @click="$router.push({name: 'Seller-Settings-Shops'})"
+      >Continue</Button>
 
       <Button id="btn-more" variant="success" custom_class="mt-2">
         <i class="fal fa-print mr-1"></i>

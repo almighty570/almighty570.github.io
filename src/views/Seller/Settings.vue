@@ -11,9 +11,11 @@
         <div class="tabs">
           <Tabs
             :tabs="[
-        { label: 'General'},
-        { label: 'Balance'},
-      ]"
+            { label: 'Shops'},
+            { label: 'Payment'},
+            {label:'Shipping'},
+            {label:'Account Settings'}
+            ]"
             custom_class="is-primary"
           />
         </div>
@@ -34,68 +36,6 @@
               />
             </div>
           </div>
-          <!-- <div class="setting --table">
-            <div class="setting__text">
-              <div class="setting__header">Balance History</div>
-            </div>
-            <div class="setting_body">
-              <ListTable
-                id="products-list"
-                :columns="productColumns"
-                :rows="productData"
-                create_path_name="Seller-Product-Create"
-                edit_path_name="Seller-Product-Edit"
-                detail_path_name="Seller-Product-Detail"
-                color_scheme="primary"
-                sample_file_link="#"
-              />
-            </div>
-          </div>-->
-          <!-- <div class="setting --inline">
-            <div class="setting__text">
-              <div class="setting__header">Balance Status</div>
-              <div class="setting__description">Balance Payment Status for your account</div>
-            </div>
-            <div class="setting__toggle">
-              <div class="setting-status-tag --danger">Pending</div>
-            </div>
-          </div>
-          <div class="setting --inline">
-            <div class="setting__text">
-              <div class="setting__header">Balance Status</div>
-              <div class="setting__description">Balance Payment Status for your account</div>
-            </div>
-            <div class="setting__toggle">
-              <div class="setting-status-tag --success">Active</div>
-            </div>
-          </div>
-          <div class="setting --inline">
-            <div class="setting__text">
-              <div class="setting__header">Balance Information</div>
-              <div class="setting__description">Your current balance status.</div>
-            </div>
-            <div class="setting__toggle">
-              <div class="setting-status-tag --danger">Poor</div>
-            </div>
-          </div>
-          <div class="setting --inline">
-            <div class="setting__text">
-              <div class="setting__header">Balance Information</div>
-              <div class="setting__description">Your current balance status.</div>
-            </div>
-            <div class="setting__toggle">
-              <div class="setting-status-tag --warning">Average</div>
-            </div>
-          </div>
-          <div class="setting --inline">
-            <div class="setting__text">
-              <div class="setting__header">Balance Information</div>
-              <div class="setting__description">Your current balance status.</div>
-            </div>
-            <div class="setting__toggle">
-              <div class="setting-status-tag --success">Good</div>
-            </div>
-          </div>-->
         </div>
       </div>
     </div>
