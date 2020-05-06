@@ -6,11 +6,11 @@
           <div class="number-orderdate-wrapper">
             <table>
               <tr>
-                <th>Number:</th>
+                <th>Order#:</th>
                 <td>#0R00041445</td>
               </tr>
               <tr>
-                <th>Order Date:</th>
+                <th>Date:</th>
                 <td>2020-05-03</td>
               </tr>
             </table>
@@ -39,13 +39,13 @@
           <div class="row pr-2">
             <div class="col-2 text-left">
               <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfqP7d5KfnDuavP1WcqrrSwdFUw2CMmZ5U1Bla18ryilngE_Sz&usqp=CAU"
                 class="rounded"
-                style="max-height: 100px; max-width: 100%;"
+                style="max-height: 100px; max-width: 100%;margin-top: 5px;"
               />
             </div>
             <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
+              <div class="product-name font-weight-bold">Courier 1 KG</div>
             </div>
             <div class="col-3 d-flex align-items-center">
               <div class="amount">x 1</div>
@@ -61,13 +61,13 @@
           <div class="row pr-2">
             <div class="col-2 text-left">
               <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfqP7d5KfnDuavP1WcqrrSwdFUw2CMmZ5U1Bla18ryilngE_Sz&usqp=CAU"
                 class="rounded"
-                style="max-height: 100px; max-width: 100%;"
+                style="max-height: 100px; max-width: 100%;margin-top: 5px;"
               />
             </div>
             <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
+              <div class="product-name font-weight-bold">Courier 2 KG</div>
             </div>
             <div class="col-3 d-flex align-items-center">
               <div class="amount">x 1</div>
@@ -83,13 +83,13 @@
           <div class="row pr-2">
             <div class="col-2 text-left">
               <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfqP7d5KfnDuavP1WcqrrSwdFUw2CMmZ5U1Bla18ryilngE_Sz&usqp=CAU"
                 class="rounded"
-                style="max-height: 100px; max-width: 100%;"
+                style="max-height: 100px; max-width: 100%;margin-top: 5px;"
               />
             </div>
             <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
+              <div class="product-name font-weight-bold">Courier 3 KG</div>
             </div>
             <div class="col-3 d-flex align-items-center">
               <div class="amount">x 1</div>
@@ -129,14 +129,16 @@
     <div class="cta">
       <div class="row">
         <div class="col-md-6">
-          <button type="button" class="mb-2 btn btn-md btn-outline-primary">Share This Page / Make Payment Later</button>
+          <button
+            type="button"
+            class="mb-2 btn btn-md btn-outline-success"
+          >Share This Page / Make Payment Later</button>
         </div>
         <div class="col-md-6">
-          <button type="button" class="mb-2 btn btn-outline-primary">Back To Shop</button>
+          <button type="button" class="mb-2 btn btn-outline-success">Back To Shop</button>
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -157,7 +159,7 @@ export default {
   background-color: #e1e1e1;
 }
 
-.btn{
-    width: 100%;
+.btn {
+  width: 100%;
 }
 </style>
