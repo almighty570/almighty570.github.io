@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import SellerModule from '@/store/modules/seller';
 import OnboardModule from '@/store/modules/onboard';
+import UserModule from '@/store/modules/user';
 import VuexPersistence from 'vuex-persist'
 
 
@@ -18,9 +19,10 @@ export default new Vuex.Store({
   },
   modules: {
     seller: SellerModule,
-    onboard:OnboardModule,
+    onboard: OnboardModule,
+    user: UserModule,
   },
-  plugins:[vuexLocal.plugin]
+  plugins: [vuexLocal.plugin]
 })
 
 

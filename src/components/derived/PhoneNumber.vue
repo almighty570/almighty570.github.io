@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <ValidationProvider rules="min|start" v-slot="{errors}">
+    <ValidationProvider :rules="'phone|' + rules" v-slot="{errors}">
       <TextBox
         :derived="true"
         type="Number"
@@ -8,6 +8,7 @@
         :placeholder="placeholder"
         :id="id"
         :label="label"
+        @input="emitUpdate()"
         v-model="phone"
       />
       <div class="template-error">
@@ -36,23 +37,43 @@ export default {
     },
     id: {
       type: String
+    },
+    value: {
+      type: null
+    },
+    rules: {
+      type: String,
+      default: ""
     }
   },
+
+  created() {
+    this.phone = this.value;
+    this.emitUpdate();
+  },
+
   data() {
     return {
       phone: null
     };
   },
-  mounted() {
-    extend("min", value => {
-      if (value.length !== 10) return "Phone number must have 10 digits.";
-      return true;
-    });
-    extend("start", value => {
-      if (value[0] !== "0") return "Phone number must start with 0.";
-      return true;
-    });
+
+  methods: {
+    emitUpdate() {
+      this.$emit("input", this.phone);
+    }
   }
+
+  // mounted() {
+  //   extend("min", value => {
+  //     if (value.length !== 10) return "Phone number must have 10 digits.";
+  //     return true;
+  //   });
+  //   extend("start", value => {
+  //     if (value[0] !== "0") return "Phone number must start with 0.";
+  //     return true;
+  //   });
+  // }
 };
 </script>
 

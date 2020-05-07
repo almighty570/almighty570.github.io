@@ -12,7 +12,7 @@
               id="shop-name"
               placeholder="Shop Name"
               rules="required"
-              v-model="detailForm.name"
+              v-model="detailForm.shopName"
             />
           </div>
 
@@ -55,7 +55,6 @@
               size="sm"
               id="district"
               placeholder="District"
-              rules="required"
               v-model="detailForm.district"
             />
           </div>
@@ -72,7 +71,6 @@
               size="sm"
               id="sub-district"
               placeholder="Sub District"
-              rules="required"
               v-model="detailForm.subdistrict"
             />
           </div>
@@ -81,13 +79,7 @@
         <!-- Zipcode && Province -->
         <div class="row">
           <div class="col">
-            <TextBox
-              type="text"
-              id="zip-code"
-              placeholder="Zip Code"
-              rules="required"
-              v-model="detailForm.zipcode"
-            />
+            <TextBox type="text" id="zip-code" placeholder="Zip Code" v-model="detailForm.zipcode" />
           </div>
           <div class="col">
             <!-- <Select
@@ -102,7 +94,6 @@
               size="sm"
               id="province"
               placeholder="Province"
-              rules="required"
               v-model="detailForm.province"
             />
           </div>
@@ -124,6 +115,7 @@ import PhoneNumber from "@/components/derived/PhoneNumber";
 import Vue from "vue";
 import TextArea from "@/components/core/TextArea";
 import { http } from "@/helpers/http";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Onboard-Details",
@@ -137,7 +129,7 @@ export default {
   data() {
     return {
       detailForm: {
-        name: null,
+        shopName: null,
         phone: null,
         address: null,
         zip: null,
@@ -170,6 +162,12 @@ export default {
       ]
     };
   },
+
+  created() {
+    this.detailForm.shopName = this.registrationData.name;
+    this.detailForm.phone = this.registrationData.phone;
+  },
+
   methods: {
     handleFormSubmit() {
       let data = {
@@ -195,20 +193,11 @@ export default {
         if (d.subdistrictMatched)
           this.detailForm.subdistrict = d.subdistrictName;
       });
-    },
-
-    fetchAddress() {
-      let input = "some address here";
-      return {
-        districtAvailable: true,
-        subDistrictAvailable: true,
-        proviceAvailable: false,
-        zipcodeAvailable: true,
-        district: "District 3",
-        subDistrict: "Sub District 2",
-        zipcode: "1234"
-      };
     }
+  },
+
+  computed: {
+    ...mapGetters("user", ["registrationData"])
   }
 };
 </script>

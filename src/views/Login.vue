@@ -3,21 +3,43 @@
     <div class="auth-box">
       <div class="site-logo">
         <a href>
-          <span class="font-weight-bold">{{$t('pro')}}</span>{{$t('ship')}}
+          <span class="font-weight-bold">{{$t('pro')}}</span>
+          {{$t('ship')}}
         </a>
       </div>
       <div class="auth-box__body card">
         <p class="auth-box-body__msg">{{$t('login.description')}}</p>
-        <form @submit="handleLogin">
-          <TextBox type="text" id="email-textbox" placeholder="Email" v-model="email" />
-          <TextBox type="text" id="password-textbox" placeholder="Password" v-model="password" />
 
-          <div class="auth-box__cta-wrapper d-flex justify-content-between">
-            <Button id="submit-login-form-button" class="btn-block" variant="info" size="md">{{$t('login.sign_in')}}</Button>
-          </div>
-        </form>
+        <ValidationObserver v-slot="{ invalid }">
+          <form @submit="handleLogin">
+            <TextBox
+              type="text"
+              id="email-textbox"
+              placeholder="Email"
+              rules="required"
+              v-model="email"
+            />
+            <TextBox
+              type="password"
+              id="password-textbox"
+              placeholder="Password"
+              rules="required"
+              v-model="password"
+            />
+
+            <div class="auth-box__cta-wrapper d-flex justify-content-between">
+              <Button
+                id="submit-login-form-button"
+                :disabled="invalid"
+                class="btn-block"
+                variant="info"
+                size="md"
+              >{{$t('login.sign_in')}}</Button>
+            </div>
+          </form>
+        </ValidationObserver>
         <div class="forgot-password-msg">
-         {{$t('login.no_account')}}
+          {{$t('login.no_account')}}
           <router-link :to="{name: 'Register'}">{{$t('login.create')}}</router-link>
         </div>
       </div>
@@ -49,7 +71,7 @@ export default {
   methods: {
     handleLogin(e) {
       e.preventDefault();
-      this.$router.push({ name: "Seller-Dashboard" });
+      this.$router.push({ name: "Onboard" });
     }
   }
 };
@@ -57,7 +79,7 @@ export default {
 
 
 <style scoped>
-#submit-login-form-button{
+#submit-login-form-button {
   width: 100%;
 }
 </style>

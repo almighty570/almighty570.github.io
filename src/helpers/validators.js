@@ -19,4 +19,10 @@ export const applyValidators = function () {
         ...email,
         message: 'This field must be a valid digit'
     });
+
+    extend('phone', (value) => {
+        if (value.length !== 10) return "Phone number must have 10 digits.";
+        if (value[0] !== "0") return "Phone number must start with 0.";
+        return true;
+    });
 }
