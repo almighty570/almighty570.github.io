@@ -28,6 +28,7 @@ import SellerSettingsShops from "../views/Seller/Settings/shops.vue";
 import SellerSettingsPayment from "../views/Seller/Settings/payment.vue";
 import SellerSettingsShipping from "../views/Seller/Settings/shipping.vue";
 import SellerSettingsAccount from "../views/Seller/Settings/account.vue";
+import SellerSettingsSalesAgents from "../views/Seller/Settings/salesAgents.vue";
 
 import Onboard from "../views/Onboard/index.vue";
 import OnboardWelcome from "../views/Onboard/welcome.vue";
@@ -198,6 +199,12 @@ const routes = [
         name: 'Seller-Settings-Shipping',
         component: SellerSettingsShipping
       },
+      {
+        path: 'sales-agents',
+        name: 'Seller-Settings-Sales-Agents',
+        component: SellerSettingsSalesAgents
+      },
+      
       
 
     ]

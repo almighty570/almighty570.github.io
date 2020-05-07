@@ -1,48 +1,26 @@
 <template>
   <div>
-    <div class="content-header">
-      <div class="container-fluid">
-        <h1 class="text-dark">Settings</h1>
+    <Card>
+      <div slot="body">
+        <p class="lead">Sales Agents goes here</p>
       </div>
-    </div>
-
-    <div class="content">
-      <div class="container-fluid">
-        <div class="tabs">
-          <Tabs :tabs="tabs" custom_class="is-primary" @tabSelected="handleTabSelected" />
-        </div>
-
-        <router-view />
-      </div>
-    </div>
+    </Card>
   </div>
 </template>
 
 <script>
-import Tabs from "@/components/core/Tabs";
+import Card from "@/components/core/Card";
 
 export default {
-  name: "Settings",
-  components: { Tabs },
+  name: "SellerSettingsPayment",
+  components: {
+    Card
+  },
   data() {
-    return {
-      showInventory: false,
-      tabs: [
-        { label: "Shops", pathName: "Seller-Settings-Shops" },
-        { label: "Payment", pathName: "Seller-Settings-Payment" },
-        { label: "Shipping", pathName: "Seller-Settings-Shipping" },
-        { label: "Account", pathName: "Seller-Settings-Account" },
-        { label: "Sales Agents", pathName: "Seller-Settings-Sales-Agents" }
-
-      ]
-    };
+    return {};
   },
 
-  methods: {
-    handleTabSelected(tab) {
-        this.$router.push({name: tab.pathName})
-    }
-  }
+  methods: {}
 };
 </script>
 

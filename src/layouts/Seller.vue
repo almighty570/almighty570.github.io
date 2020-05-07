@@ -225,7 +225,7 @@ export default {
             "Seller-Settings-Shops",
             "Seller-Settings-Payment",
             "Seller-Settings-Shipping",
-            "Seller-Settings-Account",
+            "Seller-Settings-Account"
           ]
         }
       ]
