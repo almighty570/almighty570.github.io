@@ -1,10 +1,16 @@
 <template>
-  <div class="payment-details-wrapper p-3">
-    <Stepper :steps="2" :currentStepIndex="1" />
-    <div class="payment-details-summary mb-4 mt-4">
+  <div class="payment-details-wrapper p-3 text-sm-xm">
+    <Stepper :steps="2" :currentStepIndex="2" />
+    <div class="thanks-message-wrapper mb-4 mt-4 text-center">
+      <div>
+        <i class="text-success thanks__icon mb-2 fal fa-check-circle"></i>
+      </div>
+      <div class="thanks-message text-success">Thanks for shopping with us</div>
+    </div>
+    <div class="payment-details-summary mb-4 mt-4 text-sm-mobile">
       <div class="row">
         <div class="col-6">
-          <div class="number-orderdate-wrapper text-sm-mobile">
+          <div class="number-orderdate-wrapper">
             <div class="number">
               <span>
                 <span class="text-bold">Number:</span> #0R00041445
@@ -15,29 +21,59 @@
                 <span class="text-bold">Order Date:</span> 2020-05-03
               </span>
             </div>
+            <div class="order-status">
+              <span>
+                <span class="text-bold">Status:</span>
+                <span class="text-danger">Pending Payments</span>
+              </span>
+            </div>
           </div>
         </div>
         <div class="col-6 text-right">
-          <span class="text-lg text-success text-bold">฿ 640.00</span>
+          <span class="text-success text-bold text-lg">฿ 640.00</span>
         </div>
       </div>
     </div>
     <hr />
-    <div class="payment-method mb-4 mt-4">
-      <h5 class="header-sm-mobile">Choose a payment method</h5>
-      <label class="card mt-1 mb-1 pointer selected">
-        <div class="card-body p-3 ">
-          <div>
-            <input type="radio" name="method" id="method" value="transfer" checked="checked" class="mr-1" />
-            <span class="text-sm-mobile">Transfer money</span>
+    <div class="operation-steps mb-4 mt-4">
+      <h5 class="header-sm-mobile">An Operation</h5>
+      <ul class="operations clearfix text-sm-mobile">
+        <li class="mb-3">
+          <div class="operation-wrapper d-flex align-items-center">
+            <div>
+              <i class="operation__icon text-success mb-2 fal fa-check-circle"></i>
+            </div>
+            <div class="operation__text ml-2">
+              <div class="operation__name">
+                <span>Order</span>
+              </div>
+              <div class="operation__date">
+                <span class="text-sm text-secondary">2020-05-03 13:05:56</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </label>
+        </li>
+        <li class="mb-3">
+          <div class="operation-wrapper d-flex align-items-center">
+            <div>
+              <i class="operation__icon text-success mb-2 fal fa-check-circle"></i>
+            </div>
+            <div class="operation__text ml-2">
+              <div class="operation__name">
+                <span>Waiting Review</span>
+              </div>
+              <div class="operation__date">
+                <span class="text-sm text-secondary">2020-05-03 13:05:56</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
     <hr />
-    <div class="product-list mb-4 mt-4 text-sm-mobile">
+    <div class="product-list mb-4 mt-4">
       <h5 class="header-sm-mobile">Product List</h5>
-      <div class="products">
+      <div class="products text-sm-mobile">
         <div class="product p-3 mb-3">
           <div class="row pr-2">
             <div class="col-2 text-left">
@@ -105,7 +141,7 @@
           </div>
         </div>
       </div>
-      <div class="price-details text-sm-mobile text-right">
+      <div class="price-details text-right text-sm-mobile">
         <div>
           <div class="cost-of-goods">Cost of Goods: ฿ 590.00</div>
           <div class="delivery-charge">Delievery Fee: ฿ 590.00</div>
@@ -114,10 +150,10 @@
       </div>
     </div>
     <hr />
-    <div class="shipping-information mb-4 mt-4">
+    <div class="shipping-information mb-4 mt-4 text-sm-mobile">
       <h5 class="header-sm-mobile">Shipping information</h5>
       <div class="card mt-3">
-        <div class="card-body text-sm-mobile">
+        <div class="card-body">
           <div class="recipient">
             <span>Recipient: TEST</span>
           </div>
@@ -130,101 +166,50 @@
         </div>
       </div>
     </div>
-
-    <div class="cta">
-      <div class="row">
-        <div class="col-md-6">
-          <button
-            type="button"
-            class="mb-2 btn btn-md btn-outline-primary"
-          >Share This Page / Make Payment Later</button>
-        </div>
-        <div class="col-md-6">
-          <button type="button" class="mb-2 btn btn-primary btn-block">Back To Shop</button>
-        </div>
+    <hr />
+    <div class="payment-notification mb-4 mt-4">
+      <h5 class="header-sm-mobile">Payment Notification</h5>
+      <div class="payment-slip-wrapper text-center">
+        <img
+          class="payment-slip"
+          src="https://i.pinimg.com/originals/8b/1a/03/8b1a03731976a8bffd52a9aac98e1a58.png"
+          alt
+        />
       </div>
     </div>
     <div class="fixed-footer p-2">
-      <div style>
-        <div>
-          <div class="row">
-            <div class="col-12 pt-1">
-              <h5 class="text-center header-sm-mobile">Account for money transfer</h5>
-            </div>
-            <div class="col-12">
-              <div class="card mt-1 mb-1">
-                <div class="card-body p-2">
-                  <div class="d-flex flex-row text-sm-mobile">
-                    <div>
-                      <i class="fa fas-check" aria-hidden="true"></i>
-                    </div>
-                    <div class="pl-2">
-                      <span>9672278122 Kolvacharawong Derm,</span>
-
-                      <br />
-
-                      <span>Siam Commercial Bank</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="cta">
+        <div class="row">
+          <div class="col-md-6">
+            <button
+              type="button"
+              class="mb-2 btn btn-md btn-outline-primary"
+            >Share This Page / Make Payment Later</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="mb-2 btn btn-primary btn-block">Back To Shop</button>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <button
-            class="btn btn-success btn-block"
-            data-toggle="modal"
-            data-target="#uploadPaymentSlipImage"
-          >
-            <span>Payment slip notification</span>
-          </button>
-        </div>
-      </div>
     </div>
-    <Modal id="uploadPaymentSlipImage">
-      <template slot="header">
-        <h5 class="modal-title">
-          <i class="fas fa-upload"></i>Upload File
-        </h5>
-      </template>
-      <template slot="body">
-        <p class="lead text-center">Drop or tap to upload Pay Slip</p>
-        <vue-dropzone ref="importDropZone" id="import-dropzone" :options="importDropzoneOptions"></vue-dropzone>
-      </template>
-    </Modal>
+
+    <!-- Modal -->
+  
   </div>
 </template>
 
 <script>
 import Stepper from "@/components/core/Stepper.vue";
-import Modal from "@/components/core/Modal.vue";
-import vue2Dropzone from "vue2-dropzone";
 
 export default {
-  components: {
-    Stepper,
-    Modal,
-    vueDropzone: vue2Dropzone
-  },
-  data() {
-    return {
-      showUploadModal: false,
-      importDropzoneOptions: {
-        url: "https://httpbin.org/post",
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
-      }
-    };
-  }
+  components: { Stepper }
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.selected {
+  border-color: #218838;
+}
 
 .product {
   background-color: #e1e1e1;
@@ -234,7 +219,21 @@ export default {
   width: 100%;
 }
 
-.selected{
-  border: 1px solid #218838 !important;
+.payment-slip {
+  height: 400px;
+  max-width: 100%;
+}
+
+.thanks__icon {
+  font-size: 60px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.operation__icon {
+  font-size: 24px;
 }
 </style>

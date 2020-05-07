@@ -1,6 +1,6 @@
 <template>
   <div class="buyer">
-    <div class="container">
+    <div class="container buyer-container">
       <slot></slot>
     </div>
   </div>
@@ -8,18 +8,19 @@
 
 <script>
 export default {
-    name: "Buyer"
+  name: "Buyer"
 };
 </script>
 
-<style scoped >
-.buyer{
-    background-color: #DCDCDC;
+<style scoped lang="scss">
+.buyer {
+  background-color: #dcdcdc;
 }
-.container{
-    background-color: #ffffff;
-        min-height: 100vh;
-    
+.buyer-container {
+  background-color: #ffffff;
+  min-height: 100vh;
+  max-width: 800px;
+  padding-bottom: 160px;
 }
 
 </style>

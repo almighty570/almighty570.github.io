@@ -116,3 +116,29 @@ $success: #28a745;
     line-height: 1.42857;
   }
 }
+
+// Buyers
+.text-sm-mobile {
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
+}
+
+.header-sm-mobile {
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
+}
+
+.fixed-footer {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 800px;
+  width: 100%;
+  -webkit-box-shadow: 0px -8px 52px 3px rgba(204, 204, 204, 1);
+  -moz-box-shadow: 0px -8px 52px 3px rgba(204, 204, 204, 1);
+  box-shadow: 0px -8px 52px 3px rgba(204, 204, 204, 1);
+}
