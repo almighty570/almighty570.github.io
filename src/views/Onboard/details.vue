@@ -112,6 +112,7 @@ import Card from "@/components/core/Card";
 import TextBox from "@/components/core/TextBox";
 import Select from "@/components/core/Select";
 import PhoneNumber from "@/components/derived/PhoneNumber";
+import { Alert } from "@/helpers/alert";
 import Vue from "vue";
 import TextArea from "@/components/core/TextArea";
 import { http } from "@/helpers/http";

@@ -4,7 +4,7 @@
       <Stepper :steps="6" :currentStepIndex="currentStep" variant="success" />
     </div>
     <div slot="body">
-      <div class="h-100">
+      <div class="h-100" style="max-width: 400px; margin: 0 auto">
         <router-view></router-view>
       </div>
     </div>
