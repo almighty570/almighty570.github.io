@@ -1,80 +1,20 @@
 <template>
   <div class="d-flex flex-column justify-content-center text-center h-100">
-    <!-- <ValidationObserver v-slot>
-      <div class="container">
-        <Card class="card-options">
-          <div slot="body">
-            <div class="row">
-              <form>
-                <div>
-                  <h4>Do you want to use Product Management?</h4>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-success mr-3">
-                      <input
-                        v-model="product_mgt"
-                        value="1"
-                        type="radio"
-                        name="product-mgt"
-                        id="product-mgt-yes"
-                        autocomplete="off"
-                      /> Yes
-                    </label>
-                    <label class="btn btn-danger">
-                      <input
-                        type="radio"
-                        name="product-mgt"
-                        v-model="product_mgt"
-                        value="0"
-                        id="product-mgt-no"
-                        autocomplete="off"
-                      /> No
-                    </label>
-                  
-                  </div>
-                </div>
-                <div>
-                  <h4>Do you need help managing inventory and quantities?</h4>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-success mr-3">
-                      <input
-                      
-                        value="1"
-                        type="radio"
-                        name="inventory-mgt"
-                        id="inventory-mgt-yes"
-                   
-                      /> Yes
-                    </label>
-                    <label class="btn btn-danger">
-                      <input
-                       
-                        value="0"
-                        type="radio"
-                        name="inventory-mgt"
-                        id="inventory-mgt-no"                       
-                      /> No
-                    </label>
-                  </div>
-                </div>
-              </form>
-            </div>
-              <p>hello{{inventory_mgt}}</p>
-              <p>{{product_mgt}}</p>
-            <div class="row">
-              <router-link :to="{name: 'Onboard-Product'}" class="btn btn-success">Add product</router-link>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </ValidationObserver>-->
-
     <div class="option" v-if="!showInventoryMgtOption">
       <h3>Do you want to use Product Management ?</h3>
+
+      <div class="description-container mt-4">
+        <img
+          src="https://www.teamgate.com/wp-content/uploads/2018/10/Crm-product-management-featured.png"
+          class="img-fluid mb-4"
+        />
+        Product management is one of the hardest jobs to define in any organization, partially because it’s different in every company
+      </div>
 
       <div class="buttons d-flex flex-column">
         <Button
           variant="success"
-          custom_class="mt-5"
+          custom_class="mt-4"
           id="product-mgt-yes"
           @click="setProductMgt(true)"
         >YES</Button>
@@ -90,6 +30,11 @@
 
     <div class="option animated bounceInRight fast" v-else>
       <h3>Do you need help managing inventory &amp; quantities?</h3>
+
+      <div class="description-container mt-4">
+        <img src="@/assets/images/inventory-mgmt.jpg" class="img-fluid mb-4" />
+        Inventory management is the supervision of non-capitalized assets, or inventory, and stock items.
+      </div>
 
       <div class="buttons d-flex flex-column">
         <Button
@@ -137,7 +82,6 @@ export default {
       this.inventoryMgt = val;
       if (val) this.next();
       else this.$router.push({ name: "Onboard-Shipping" });
-      
     },
 
     next() {
@@ -147,5 +91,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.description-container {
+  background-color: lightgrey;
+  border-radius: 5px;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  overflow-y: auto;
+  padding: 1rem;
+}
 </style>
