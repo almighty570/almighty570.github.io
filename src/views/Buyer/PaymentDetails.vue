@@ -237,4 +237,5 @@ export default {
 .selected{
   border: 1px solid #218838 !important;
 }
+
 </style>

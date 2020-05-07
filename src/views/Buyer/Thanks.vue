@@ -56,7 +56,7 @@
         <li class="mb-3">
           <div class="operation-wrapper d-flex align-items-center">
             <div>
-              <i class="operation__icon text-success mb-2 fal fa-check-circle"></i>
+              <i class="operation__icon fal fa-circle text-success"></i>
             </div>
             <div class="operation__text ml-2">
               <div class="operation__name">
@@ -194,7 +194,6 @@
     </div>
 
     <!-- Modal -->
-  
   </div>
 </template>
 
@@ -235,5 +234,10 @@ ul {
 
 .operation__icon {
   font-size: 24px;
+}
+
+.-modal-open .fixed,
+.-modal-open .content {
+  overflow-y:scroll;
 }
 </style>
