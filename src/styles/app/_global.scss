@@ -134,7 +134,7 @@ $success: #28a745;
   background-color: #fff;
   position: fixed;
   bottom: 0;
-  left: 50%;
+  left: calc(50%);
   transform: translateX(-50%);
   max-width: 800px;
   width: 100%;
@@ -142,3 +142,7 @@ $success: #28a745;
   -moz-box-shadow: 0px -8px 52px 3px rgba(204, 204, 204, 1);
   box-shadow: 0px -8px 52px 3px rgba(204, 204, 204, 1);
 }
+
+// .modal-open .fixed-footer {
+//   left: calc(49% + 12px);
+// }

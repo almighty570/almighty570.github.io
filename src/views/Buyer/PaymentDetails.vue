@@ -145,8 +145,8 @@
       </div>
     </div>
     <div class="fixed-footer p-2">
-      <div style>
-        <div>
+      <div>
+        <div class="bank-info">
           <div class="row">
             <div class="col-12 pt-1">
               <h5 class="text-center header-sm-mobile">Account for money transfer</h5>
@@ -160,9 +160,7 @@
                     </div>
                     <div class="pl-2">
                       <span>9672278122 Kolvacharawong Derm,</span>
-
                       <br />
-
                       <span>Siam Commercial Bank</span>
                     </div>
                   </div>
@@ -237,5 +235,6 @@ export default {
 .selected{
   border: 1px solid #218838 !important;
 }
+
 
 </style>
