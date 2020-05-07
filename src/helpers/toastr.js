@@ -5,7 +5,7 @@ export const initToastr = function () {
     Vue.use(Toasted, {
         theme: "toasted-primary",
         position: "bottom-right",
-        duration: 5000,
+        duration: 2000,
         iconPack: 'custom-class'
     });
 }

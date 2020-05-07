@@ -88,7 +88,7 @@ export default {
     PhoneNumber
   },
    computed: {
-    ...mapGetters("onboard", ["details", "product", "shippingMethod"])
+    ...mapGetters("onboard", ["details", "product", "shippingMethods"])
     
   },
   created(){

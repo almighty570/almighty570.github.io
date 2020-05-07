@@ -1,0 +1,113 @@
+<template>
+  <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
+    <div
+      v-for="(sm, index) in options"
+      :key="index"
+      class="shipping-method"
+      :class="smClass(sm)"
+      @click="toggle(sm)"
+    >{{sm.name}}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ShippingMethodInput",
+  props: {
+    options: {
+      type: Array,
+      default: () => {
+        return [
+          { name: "EMS", available: true },
+          { name: "KERRY", available: true },
+          { name: "ALPHA", available: true },
+          { name: "FLASH", available: false },
+          { name: "BEST", available: false },
+          { name: "J&T", available: false },
+          { name: "SCG", available: false }
+        ];
+      }
+    },
+    values: {
+      type: Array
+    },
+    variant: {
+      type: String,
+      default: "success"
+    }
+  },
+
+  data() {
+    return {
+      selectedMethods: this.values || []
+    };
+  },
+
+  created() {
+    this.emitUpdate();
+  },
+
+  methods: {
+    toggle(sm) {
+      if (!sm.available) return;
+      let name = sm.name;
+      let index = this.selectedMethods.findIndex(sm => sm === name);
+      if (index == -1) this.selectedMethods.push(name);
+      else this.selectedMethods.splice(index, 1);
+
+      this.emitUpdate();
+    },
+
+    checkIfSelected(name) {
+      return this.selectedMethods.includes(name);
+    },
+
+    emitUpdate() {
+      this.$emit("input", this.selectedMethods);
+    },
+
+    smClass(sm) {
+      let css = {
+        "--disabled": !sm.available,
+        "--active": this.checkIfSelected(sm.name)
+      };
+      css["--" + this.variant] = true;
+      return css;
+    }
+  },
+
+  computed: {}
+};
+</script>
+
+<style lang="scss" scoped>
+.shipping-method {
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  min-width: 100px;
+  text-align: center;
+
+  // apply color according to variant
+  @each $variant, $color in $variants {
+    &.--#{$variant} {
+      border: 2px solid #{$color};
+      color: $color;
+
+      &.--active {
+        background-color: $color;
+        // border-color: lightgrey;
+        color: white;
+      }
+    }
+  }
+
+  &.--disabled {
+    background-color: whitesmoke;
+    border-color: lightgrey;
+    color: lightgrey;
+  }
+}
+</style>

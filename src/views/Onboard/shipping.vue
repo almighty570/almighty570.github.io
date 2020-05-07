@@ -2,55 +2,41 @@
   <div class="text-center">
     <h2>Pick a shipping method</h2>
 
-    <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
-      <div
-        class="shipping-method"
-        :class="{'--disabled': !sm.available, '--active': shippingMethod.includes(sm)}"
-        v-for="(sm, index) in shippingMethods"
-        :key="index"
-        @click="selectShippingMethod(sm)"
-      >{{sm.name}}</div>
-    </div>
+    <ShippingMethodInput v-model="shippingMethods" />
 
-    <button @click="next()" class="btn btn-success pl-4 pr-4" :disabled="!shippingMethod">Continue</button>
+    <button
+      @click="next()"
+      class="btn btn-success pl-4 pr-4"
+      :disabled="!shippingMethods || !shippingMethods.length"
+    >Continue</button>
   </div>
 </template>
 
 <script>
 import Select from "@/components/core/Select";
 import Card from "@/components/core/Card";
+import ShippingMethodInput from "@/components/derived/ShippingMethodInput";
+
 export default {
   name: "Onboard-Shipping",
   components: {
     Select,
-    Card
+    Card,
+    ShippingMethodInput
   },
 
   data() {
     return {
-      shippingMethod: [],
-      shippingMethods: [
-        { name: "EMS", available: true },
-        { name: "KERRY", available: true },
-        { name: "ALPHA", available: true },
-        { name: "FLASH", available: false },
-        { name: "BEST", available: false },
-        { name: "J&T", available: false },
-        { name: "SCG", available: false }
-      ]
+      shippingMethods: null
     };
   },
 
   methods: {
-    selectShippingMethod(sm) {
-      if (sm.available) this.shippingMethod.push(sm);
-    },
-
     next() {
-      if (this.shippingMethod) {
-        let data = this.shippingMethod;
-        this.$store.dispatch("onboard/storeshippingMethod", {
-          shippingMethod: data,
+      if (this.shippingMethods) {
+        let data = this.shippingMethods;
+        this.$store.dispatch("onboard/storeshippingMethods", {
+          shippingMethods: data,
           callback: data => {
             this.$router.push({ name: "Onboard-Final" });
           }
@@ -62,26 +48,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shipping-method {
-  margin: 0.5rem 1rem;
-  padding: 1rem;
-  border: 2px solid map-get($variants, "success");
-  border-radius: 5px;
-  color: map-get($variants, "success");
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  min-width: 100px;
-
-  &.--disabled {
-    background-color: whitesmoke;
-    border-color: lightgrey;
-    color: lightgrey;
-  }
-
-  &.--active {
-    background-color: map-get($variants, "success");
-    // border-color: lightgrey;
-    color: white;
-  }
-}
 </style>

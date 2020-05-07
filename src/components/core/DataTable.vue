@@ -12,7 +12,7 @@
     <vuetable
       ref="datatable"
       :api-mode="false"
-      :fields="responsiveColumns"
+      :fields="responsiveColumns()"
       :per-page="per_page"
       :data-manager="dataManager"
       :css="cssConfig.table"
@@ -83,6 +83,7 @@ export default {
 
   data() {
     return {
+      computedColumns: this.columns,
       searchKeyword: null,
       cssConfig: {
         table: {
@@ -120,6 +121,11 @@ export default {
         }
       }
     };
+  },
+
+  created() {
+    this.checkIfMobile();
+    window.onresize = () => this.checkIfMobile();
   },
 
   methods: {
@@ -183,15 +189,30 @@ export default {
 
     refreshTable() {
       this.$refs.datatable.refresh();
+    },
+
+    responsiveColumns() {
+      return this.columns.map(col => {
+        if (col != "actions") {
+          if (window.isMobile && col.hideMobile) col.visible = false;
+          else col.visible = true;
+        }
+        return col;
+      });
+      return this.columns;
+    },
+
+    checkIfMobile() {
+      let os = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+      let width = window.innerWidth < 768;
+      if (os || width) window.isMobile = true;
+      else window.isMobile = false;
     }
   },
 
-  computed: {
-    responsiveColumns() {
-      if (window.isMobile) return this.columns.filter(col => !col.hideMobile);
-      return this.columns;
-    }
-  }
+  computed: {}
 };
 </script>
 

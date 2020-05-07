@@ -90,7 +90,8 @@ export default {
         sortField: "description",
         formatter(value) {
           return value.length > 20 ? value.substring(0, 20) + "..." : value;
-        }
+        },
+        hideMobile: true
       },
 
       {

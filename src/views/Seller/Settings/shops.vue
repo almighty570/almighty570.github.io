@@ -19,7 +19,7 @@
                     <tr>
                       <th>Shipping:</th>
                       <td>
-                        <span v-for="(ship,index) in shippingMethod" :key="index">{{ship.name}},</span>
+                        <span v-for="(ship,index) in shippingMethods" :key="index">{{ship.name}},</span>
                       </td>
                     </tr>
                     <tr>
@@ -57,10 +57,10 @@ export default {
     CardWidget
   },
   computed: {
-    ...mapGetters("onboard", ["details", "product", "shippingMethod"])
+    ...mapGetters("onboard", ["details", "product", "shippingMethods"])
   },
   created() {
-    console.log(this.shippingMethod);
+    console.log(this.shippingMethods);
   },
   data() {
     return {};

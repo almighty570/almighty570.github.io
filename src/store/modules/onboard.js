@@ -7,7 +7,7 @@ export default {
         details: null,
         options: null,
         product: null,
-        shippingMethod: null
+        shippingMethods: null
     },
 
     getters: {
@@ -20,8 +20,8 @@ export default {
         product(state) {
             return state.product;
         },
-        shippingMethod(state) {
-            return state.shippingMethod;
+        shippingMethods(state) {
+            return state.shippingMethods;
         },
     },
 
@@ -39,26 +39,26 @@ export default {
             Vue.set(state, 'product', product);
         },
 
-        setshippingMethod(state, shippingMethod) {
-            Vue.set(state, 'shippingMethod', shippingMethod);
+        setshippingMethods(state, shippingMethods) {
+            Vue.set(state, 'shippingMethods', shippingMethods);
         }
     },
     actions: {
         storeDetails({ state, commit, rootState }, payload) {
             commit('setDetails', payload.details);
-            if (payload.callback) payload.callback();
+            if (payload.callback) payload.callback(true, null);
         },
         storeOptions({ state, commit, rootState }, payload) {
             commit('setOptions', payload.options);
-            if (payload.callback) payload.callback();
+            if (payload.callback) payload.callback(true, null);
         },
         storeProduct({ state, commit, rootState }, payload) {
             commit('setProduct', payload.product);
-            if (payload.callback) payload.callback();
+            if (payload.callback) payload.callback(true, null);
         },
-        storeshippingMethod({ state, commit, rootState }, payload) {
-            commit('setshippingMethod', payload.shippingMethod);
-            if (payload.callback) payload.callback();
+        storeshippingMethods({ state, commit, rootState }, payload) {
+            commit('setshippingMethods', payload.shippingMethods);
+            if (payload.callback) payload.callback(true, null);
         }
     }
 }

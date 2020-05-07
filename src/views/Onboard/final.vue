@@ -77,7 +77,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("onboard", ["details", "product", "shippingMethod"])
+    ...mapGetters("onboard", ["details", "product", "shippingMethods"])
   }
 };
 </script>

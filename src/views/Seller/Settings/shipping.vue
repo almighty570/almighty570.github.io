@@ -2,24 +2,14 @@
   <div>
     <Card>
       <div slot="body">
-        <div class="text-center">
-          <h3>Pick default shipping method</h3>
-
-          <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
-            <div
-              class="shipping-method"
-              :class="{'--disabled': !sm.available, '--active': shippingSettingsMethod.includes(sm)  }"
-              v-for="(sm, index) in shippingSettingsMethods"
-              :key="index"
-              @click="selectShippingMethod(sm)"
-            >{{sm.name}}</div>
-          </div>
-
-          <button
-            @click="next()"
-            class="btn btn-primary pl-4 pr-4"
-            :disabled="!shippingSettingsMethod"
-          >Save</button>
+        <div>
+          <h5 class="text-center text-md-left">Manage Shipping Methods</h5>
+          <ShippingMethodInput
+            v-model="selectedShippingMethods"
+            :values="shippingMethods"
+            variant="primary"
+            @input="save()"
+          />
         </div>
       </div>
     </Card>
@@ -29,44 +19,34 @@
 <script>
 import Card from "@/components/core/Card";
 import { mapGetters } from "vuex";
+import ShippingMethodInput from "@/components/derived/ShippingMethodInput";
+import { Toast } from "@/helpers/toastr";
 
 export default {
   name: "SellerSettingsShipping",
   components: {
-    Card
+    Card,
+    ShippingMethodInput
   },
-   computed: {
-    ...mapGetters("onboard", ["shippingMethod"])
-    
+  computed: {
+    ...mapGetters("onboard", ["shippingMethods"])
   },
-  created(){
-   this.shippingSettingsMethod = this.shippingMethod.slice();    
-  },
-  
+  created() {},
+
   data() {
     return {
-      shippingSettingsMethod: [],
-      shippingSettingsMethods: [
-        { name: "EMS", available: true },
-        { name: "KERRY", available: true },
-        { name: "ALPHA", available: true },
-        { name: "FLASH", available: false },
-        { name: "BEST", available: false },
-        { name: "J&T", available: false },
-        { name: "SCG", available: false }
-      ]
+      selectedShippingMethods: null
     };
   },
 
-    methods: {
-    selectShippingMethod(sm) {
-      if (sm.available) 
-      console.log(sm)
-      this.shippingSettingsMethod.push(sm);           
-    },
-
-    next() {
-      alert('Hi');
+  methods: {
+    save() {
+      this.$store.dispatch("onboard/storeshippingMethods", {
+        shippingMethods: this.selectedShippingMethods,
+        callback: (status, data) => {
+          // if (status) Toast("Shipping method updated");
+        }
+      });
     }
   }
 };
