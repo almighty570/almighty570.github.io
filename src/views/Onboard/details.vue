@@ -28,23 +28,14 @@
 
         <!-- Shipping Address && Zip Code -->
         <div class="row">
-          <div class="col-md-6 col-sm-12">
-            <TextBox
-              type="text"
+          <div class="col-md-12 col-sm-12">
+            <TextArea
               id="shipping-address"
-              placeholder="Shipping from (address)"
+              placeholder="Shipping address"
               rules="required"
               v-model="detailForm.address"
-            />
-          </div>
-
-          <div class="col">
-            <TextBox
-              type="text"
-              id="zip-code"
-              placeholder="Zip Code"
-              rules="required"
-              v-model="detailForm.zip"
+              @input="handleAddressInput()"
+              rows="2"
             />
           </div>
         </div>
@@ -52,30 +43,70 @@
         <!-- District and SubDistrict -->
         <div class="row">
           <div class="col-6">
-            <Select
+            <!-- <Select
               id="district"
               label="District"
               :options="districtOptions"
               v-model="detailForm.district"
+            />-->
+
+            <TextBox
+              type="text"
+              size="sm"
+              id="district"
+              placeholder="District"
+              rules="required"
+              v-model="detailForm.district"
             />
           </div>
           <div class="col-6">
-            <Select
+            <!-- <Select
               id="sub-district"
               label="Sub-District"
               :options="subDistrictOptions"
+              v-model="detailForm.subdistrict"
+            />-->
+
+            <TextBox
+              type="text"
+              size="sm"
+              id="sub-district"
+              placeholder="Sub District"
+              rules="required"
               v-model="detailForm.subdistrict"
             />
           </div>
         </div>
 
-        <Select
-          id="province"
-          label="Province"
-          :options="provinceOptions"
-          v-model="detailForm.province"
-          rules="required"
-        />
+        <!-- Zipcode && Province -->
+        <div class="row">
+          <div class="col">
+            <TextBox
+              type="text"
+              id="zip-code"
+              placeholder="Zip Code"
+              rules="required"
+              v-model="detailForm.zipcode"
+            />
+          </div>
+          <div class="col">
+            <!-- <Select
+              id="province"
+              label="Province"
+              :options="provinceOptions"
+              v-model="detailForm.province"
+              rules="required"
+            />-->
+            <TextBox
+              type="text"
+              size="sm"
+              id="province"
+              placeholder="Province"
+              rules="required"
+              v-model="detailForm.province"
+            />
+          </div>
+        </div>
 
         <div class="text-center">
           <button type="submit" class="btn btn-success pl-4 pr-4" :disabled="invalid">Continue</button>
@@ -91,13 +122,17 @@ import TextBox from "@/components/core/TextBox";
 import Select from "@/components/core/Select";
 import PhoneNumber from "@/components/derived/PhoneNumber";
 import Vue from "vue";
+import TextArea from "@/components/core/TextArea";
+import { http } from "@/helpers/http";
+
 export default {
   name: "Onboard-Details",
   components: {
     TextBox,
     Select,
     Card,
-    PhoneNumber
+    PhoneNumber,
+    TextArea
   },
   data() {
     return {
@@ -138,7 +173,7 @@ export default {
   methods: {
     handleFormSubmit() {
       let data = {
-        ...this.detailForm,        
+        ...this.detailForm
       };
       this.$store.dispatch("onboard/storeDetails", {
         details: data,
@@ -146,6 +181,33 @@ export default {
           this.$router.push({ name: "Onboard-Options" });
         }
       });
+    },
+
+    handleAddressInput() {
+      let url =
+        "https://iwjkvg2m94.execute-api.ap-southeast-1.amazonaws.com/dev/parse-address?text=" +
+        this.detailForm.address;
+      http.get(url).then(response => {
+        let d = response.data;
+        if (d.zipcodeMatched) this.detailForm.zipcode = d.zipcode;
+        if (d.provinceMatched) this.detailForm.province = d.provinceName;
+        if (d.districtMatched) this.detailForm.district = d.districtName;
+        if (d.subdistrictMatched)
+          this.detailForm.subdistrict = d.subdistrictName;
+      });
+    },
+
+    fetchAddress() {
+      let input = "some address here";
+      return {
+        districtAvailable: true,
+        subDistrictAvailable: true,
+        proviceAvailable: false,
+        zipcodeAvailable: true,
+        district: "District 3",
+        subDistrict: "Sub District 2",
+        zipcode: "1234"
+      };
     }
   }
 };
