@@ -39,6 +39,7 @@ import OnboardShipping from "../views/Onboard/shipping.vue";
 import OnboardFinal from "../views/Onboard/final.vue";
 
 import PaymentDetails from "../views/Buyer/PaymentDetails.vue";
+import BuyerThanks from "../views/Buyer/Thanks.vue";
 
 import SellerReports from "../views/Seller/Reports.vue";
 
@@ -273,6 +274,12 @@ const routes = [
     meta: { layout: 'buyer' },
     name: 'Payment-Details',
     component: PaymentDetails
+  },
+  {
+    path: '/thanks',
+    meta: { layout: 'buyer' },
+    name: 'Buyer-Thanks',
+    component: BuyerThanks
   }
 
 
