@@ -4,7 +4,7 @@
       <div class="card payment-detail-card">
         <div class="number-date-wrapper">
           <div class="row">
-            <div class="col-6">
+            <div class="col-7">
               <div class="number">
                 <span>
                   <span class="is-brand">Number:</span> #0R00041445
@@ -16,7 +16,7 @@
                 </span>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
               <div class="total-price is-brand text-right">฿ 640.00</div>
             </div>
           </div>
