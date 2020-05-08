@@ -24,7 +24,7 @@
         <div class="product-list">
           <div class="product">
             <div class="row">
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-2 align-items-center d-flex">
                 <div class="product__image-wrapper">
                   <img
                     class="product__image"
@@ -33,11 +33,11 @@
                   />
                 </div>
               </div>
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-8 align-items-center d-flex">
                 <div class="product__name">1 x Dried Pork 1k.g</div>
               </div>
               <div
-                class="col-4 align-items-center d-flex text-right text-brand justify-content-end"
+                class="col-4  col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
               >
                 <span class="is-brand">฿ 590.00</span>
               </div>
@@ -45,7 +45,7 @@
           </div>
           <div class="product">
             <div class="row">
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-2 align-items-center d-flex">
                 <div class="product__image-wrapper">
                   <img
                     class="product__image"
@@ -54,11 +54,11 @@
                   />
                 </div>
               </div>
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-8 align-items-center d-flex">
                 <div class="product__name">1 x Dried Pork 1k.g</div>
               </div>
               <div
-                class="col-4 align-items-center d-flex text-right text-brand justify-content-end"
+                class="col-4 col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
               >
                 <span class="is-brand">฿ 590.00</span>
               </div>
@@ -66,7 +66,7 @@
           </div>
           <div class="product">
             <div class="row">
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-2 align-items-center d-flex">
                 <div class="product__image-wrapper">
                   <img
                     class="product__image"
@@ -75,11 +75,11 @@
                   />
                 </div>
               </div>
-              <div class="col-4 align-items-center d-flex">
+              <div class="col-4 col-md-8 align-items-center d-flex">
                 <div class="product__name">1 x Dried Pork 1k.g</div>
               </div>
               <div
-                class="col-4 align-items-center d-flex text-right text-brand justify-content-end"
+                class="col-4 col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
               >
                 <span class="is-brand">฿ 590.00</span>
               </div>
