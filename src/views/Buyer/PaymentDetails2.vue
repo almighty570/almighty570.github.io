@@ -1,7 +1,7 @@
 <template>
   <div class="payment-details-wrapper text-sm">
     <div class="payment-detail">
-      <div class="card">
+      <div class="card payment-detail-card">
         <div class="number-date-wrapper">
           <div class="row">
             <div class="col-6">
@@ -207,6 +207,10 @@ $brand-color: #6a7c90;
 
 .total-price {
   font-size: 24px;
+}
+
+.payment-detail-card{
+  margin-bottom: 30px;
 }
 
 .card {
