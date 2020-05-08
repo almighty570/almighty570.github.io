@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CardWidget id="order-details-card" class="card-info">
+    <CardWidget v-if="details" id="order-details-card" class="card-info">
       <div slot="title">{{details.shopName}}</div>
       <div slot="body">
         <div class="row">
@@ -22,7 +22,7 @@
       </div>
     </CardWidget>
 
-    <div class="text-center">
+    <div class="text-center mt-4">
       <Button
         id="btn-cancel"
         type="button"
@@ -34,6 +34,7 @@
         <i class="mr-2 fal fa-store-alt"></i>Add New Shop
       </Button>
     </div>
+
     <Modal id="addShopModal">
       <template slot="header">
         <h5 class="modal-title" id="addShopModalLabel">

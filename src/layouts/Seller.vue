@@ -192,7 +192,7 @@ export default {
       ];
 
       // Product Management is conditional
-      if (this.options.productMgt) {
+      if (this.options && this.options.productMgt) {
         this.menus.push({
           title: "Products",
           icon: "fal fa-box-full",

@@ -116,7 +116,7 @@
 
                     <div class="row">
                       <div class="col">
-                        <TextArea
+                        <SmartAddress
                           id="customer-address"
                           label="Address"
                           v-model="orderCreateForm.customerDetails.address"
@@ -245,6 +245,7 @@ import DataTable from "@/components/core/DataTable";
 import Vue from "vue";
 import { generateOrderCode } from "@/helpers/core";
 import { mapGetters } from "vuex";
+import SmartAddress from "@/components/derived/SmartAddress";
 
 export default {
   name: "Seller-Order-Create",
@@ -262,7 +263,8 @@ export default {
     FileUpload,
     DataTable,
     TextBoxAddon,
-    Button
+    Button,
+    SmartAddress
   },
   data() {
     return {
