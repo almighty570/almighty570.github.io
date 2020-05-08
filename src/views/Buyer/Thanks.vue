@@ -240,4 +240,8 @@ ul {
 .-modal-open .content {
   overflow-y:scroll;
 }
+
+.buyer-container{
+  background-color: white;
+}
 </style>
