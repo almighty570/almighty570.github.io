@@ -9,7 +9,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="tabs">
-          <Tabs :tabs="tabs" custom_class="is-primary" @tabSelected="handleTabSelected" />
+          <Tabs :tabs="tabs" custom_class="is-info" @tabSelected="handleTabSelected" />
         </div>
 
         <router-view />
