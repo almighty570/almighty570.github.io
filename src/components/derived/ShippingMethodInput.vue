@@ -1,5 +1,8 @@
 <template>
-  <div class="shipping-methods d-flex flex-wrap mt-5 mb-5 justify-content-center">
+  <div
+    class="shipping-methods d-flex flex-wrap justify-content-center"
+    :class="wrapper_class"
+  >
     <div
       v-for="(sm, index) in options"
       :key="index"
@@ -34,6 +37,13 @@ export default {
     variant: {
       type: String,
       default: "success"
+    },
+    size: {
+      type: String,
+      default: "lg"
+    },
+    wrapper_class: {
+      type: String
     }
   },
 
@@ -72,6 +82,7 @@ export default {
         "--active": this.checkIfSelected(sm.name)
       };
       css["--" + this.variant] = true;
+      css["--" + this.size] = true;
       return css;
     }
   },
@@ -108,6 +119,14 @@ export default {
     background-color: whitesmoke;
     border-color: lightgrey;
     color: lightgrey;
+  }
+
+  &.--sm {
+    margin: 0.15rem 0.25rem;
+    padding: 0.15rem;
+    font-size: 12px;
+    border-width: 1px;
+    min-width: 50px;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="text-center">
     <h2>Pick a shipping method</h2>
 
-    <ShippingMethodInput v-model="shippingMethods" />
+    <ShippingMethodInput v-model="shippingMethods" wrapper_class="mt-5 mb-5" />
 
     <button
       @click="next()"

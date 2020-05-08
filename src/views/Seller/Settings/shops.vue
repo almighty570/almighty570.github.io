@@ -82,13 +82,22 @@
                 />
               </div>
             </div>
+
+            <div class="row">
+              <div class="col">
+                <label>Choose Shipping Methods</label>
+                <ShippingMethodInput variant="info" size="sm" wrapper_class="mt-2 mb-2" />
+              </div>
+            </div>
+            <hr />
             <div class="d-flex justify-content-center">
               <Button
+                custom_class="pl-4 pr-4"
                 type="submit"
                 id="btn-add-shop"
                 size="sm"
                 :disabled="invalid"
-                variant="primary"
+                variant="info"
               >Add shop</Button>
             </div>
           </form>
@@ -105,6 +114,7 @@ import Button from "@/components/core/Button";
 import TextBox from "@/components/core/TextBox";
 import Select from "@/components/core/Select";
 import PhoneNumber from "@/components/derived/PhoneNumber";
+import ShippingMethodInput from "@/components/derived/ShippingMethodInput";
 import Modal from "@/components/core/Modal";
 import { mapGetters } from "vuex";
 import { Alert } from "@/helpers/alert";
@@ -120,7 +130,8 @@ export default {
     Select,
     PhoneNumber,
     Modal,
-    SmartAddress
+    SmartAddress,
+    ShippingMethodInput
   },
   computed: {
     ...mapGetters("onboard", ["details", "product", "shippingMethods"])
@@ -143,7 +154,6 @@ export default {
   },
 
   methods: {
-    
     handleFormSubmit() {
       let data = {
         ...this.addShopForm

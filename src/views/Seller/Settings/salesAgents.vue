@@ -11,7 +11,7 @@
             custom_class="mr-1 align-self-center"
             id="btn-add-sales-agent"
             data-toggle="modal"
-            data-target="#addSalesAgentModal"
+            data-target="#salesAgentModal"
           >
             <i class="fal fa-plus"></i> Add New
           </Button>
@@ -30,18 +30,9 @@
               variant="outline-primary"
               size="sm"
               custom_class="mr-1"
-              id="btn-action-detail"
-            >
-              <i class="fal fa-eye"></i>
-            </Button>
-            <Button
-              variant="outline-primary"
-              size="sm"
-              custom_class="mr-1"
               data-toggle="modal"
-              data-target="#editSalesAgentModal"
+              data-target="#salesAgentModal"
               id="btn-action-edit"
-              @click="editSalesAgent(props.props.rowData)"
             >
               <i class="fal fa-pen"></i>
             </Button>
@@ -52,7 +43,8 @@
         </DataTable>
       </div>
     </Card>
-    <Modal id="addSalesAgentModal">
+
+    <Modal id="salesAgentModal">
       <template slot="header">
         <h5 class="modal-title" id="addSalesAgentLabel">
           <i class="fas fa-users mr-2"></i>Add New Sales Agent
@@ -60,234 +52,103 @@
       </template>
 
       <template slot="body">
-        <div>
-          <section class="content">
-            <div class="container-fluid">
-              <div class="card">
-                <div class="card-body">
-                  <ValidationObserver v-slot="{ invalid }">
-                    <form @submit.prevent="handleCreateFormSubmit">
-                      <!-- Name & Email -->
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <TextBox
-                            type="text"
-                            id="create-name"
-                            label="Name"
-                            v-model="salesAgentCreateForm.name"
-                            rules="required"
-                          />
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <TextBox
-                            type="email"
-                            id="create-email"
-                            label="Email"
-                            v-model="salesAgentCreateForm.email"
-                            rules="required"
-                          />
-                        </div>
-                      </div>
+        <ValidationObserver v-slot="{ invalid }">
+          <form @submit.prevent="handleCreateFormSubmit">
+            <!-- Name & Email -->
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <TextBox
+                  type="text"
+                  id="create-name"
+                  label="Name"
+                  v-model="salesAgentCreateForm.name"
+                  rules="required"
+                />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <TextBox
+                  type="email"
+                  id="create-email"
+                  label="Email"
+                  v-model="salesAgentCreateForm.email"
+                  rules="required"
+                />
+              </div>
+            </div>
 
-                      <!-- Phone Line Id -->
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <NumberField
-                            id="create-phone-no"
-                            label="Phone No."
-                            v-model="salesAgentCreateForm.phoneNo"
-                            rules="required"
-                          />
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <TextBox
-                            type="text"
-                            id="create-line-id"
-                            label="Line ID"
-                            v-model="salesAgentCreateForm.lineId"
-                            rules="required"
-                          />
-                        </div>
-                      </div>
+            <!-- Phone Line Id -->
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <PhoneNumber
+                  label="Phone No"
+                  placeholder="Phone Number"
+                  id="phone-number"
+                  rules="required"
+                  v-model="salesAgentCreateForm.phoneNo"
+                />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <TextBox
+                  type="text"
+                  id="create-line-id"
+                  label="Line ID"
+                  v-model="salesAgentCreateForm.lineId"
+                  rules="required"
+                />
+              </div>
+            </div>
 
-                      <!-- Id Card & Address -->
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <FileUpload name="create_id_card" label="Id Card" />
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <TextBox
-                            type="text"
-                            id="create-address"
-                            label="Address"
-                            v-model="salesAgentCreateForm.address"
-                            rules="required"
-                          />
-                        </div>
-                      </div>
+            <!-- Id Card -->
+            <div class="row">
+              <div class="col">
+                <FileUpload name="create_id_card" label="Id Card" />
+              </div>
+            </div>
 
-                      <div class="row">
-                        <div class="col">
-                          <CheckBoxGroup
-                            label="Permissions"
-                            :options="permissionOptions"
-                            id="create-permission"
-                            name="create_permission"
-                            v-model="salesAgentCreateForm.permissions"
-                          />
-                        </div>
-                      </div>
-                      <!-- Submit & Cancel Buttons -->
-                      <div class="row">
-                        <div class="col text-center">
-                          <hr />
-                          <div class="d-flex mt-4 justify-content-center">
-                            <button
-                              type="submit"
-                              class="btn btn-primary btn-lg mr-4"
-                              :disabled="invalid"
-                            >Submit</button>
-                            <button
-                              type="button"
-                              class="btn btn-secondary btn-lg"
-                              @click="cancel()"
-                            >Cancel</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </ValidationObserver>
+            <!-- Address  -->
+            <div class="row">
+              <div class="col">
+                <div class="mb-2"></div>
+                <SmartAddress
+                  label="Address"
+                  placeholder="Address"
+                  id="create-address"
+                  rules="required"
+                  v-model="salesAgentCreateForm.address"
+                  rows="3"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <CheckBoxGroup
+                  label="Permissions"
+                  :options="permissionOptions"
+                  id="create-permission"
+                  name="create_permission"
+                  v-model="salesAgentCreateForm.permissions"
+                />
+              </div>
+            </div>
+            <!-- Submit & Cancel Buttons -->
+            <div class="row">
+              <div class="col text-center">
+                <hr />
+                <div class="d-flex mt-4 justify-content-center">
+                  <Button
+                    id="btn-sales-agent-add-submit"
+                    custom_class="pl-4 pr-4"
+                    type="submit"
+                    variant="primary"
+                    size="sm"
+                    :disabled="invalid"
+                  >Submit</Button>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-      </template>
-    </Modal>
-
-    <Modal id="editSalesAgentModal">
-      <template slot="header">
-        <h5 class="modal-title" id="editSalesAgentLabel">
-          <i class="fas fa-users mr-2"></i>Edit Sales Agent
-        </h5>
-      </template>
-
-      <template slot="body">
-        <div>
-          <section class="content">
-            <div class="container-fluid">
-              <div class="card">
-                <div class="card-body">
-                  <div v-if="salesAgentEditForm">
-                    <ValidationObserver v-slot="{ invalid }">
-                      <form @submit.prevent="handleEditFormSubmit">
-                        <!-- Name & Email -->
-                        <div class="row">
-                          <div class="col-md-6 col-sm-12">
-                            <TextBox
-                              type="text"
-                              id="edit-name"
-                              label="Name"
-                              v-model="salesAgentEditForm.name"
-                              rules="required"
-                            />
-                          </div>
-                          <div class="col-md-6 col-sm-12">
-                            <TextBox
-                              type="email"
-                              id="edit-email"
-                              label="Email"
-                              v-model="salesAgentEditForm.email"
-                              rules="required"
-                            />
-                          </div>
-                        </div>
-
-                        <!-- Phone Line Id -->
-                        <div class="row">
-                          <div class="col-md-6 col-sm-12">
-                            <NumberField
-                              id="edit-phone-no"
-                              label="Phone No."
-                              v-model="salesAgentEditForm.phoneNo"
-                              rules="required"
-                            />
-                          </div>
-                          <div class="col-md-6 col-sm-12">
-                            <TextBox
-                              type="text"
-                              id="edit-line-id"
-                              label="Line ID"
-                              v-model="salesAgentEditForm.lineId"
-                              rules="required"
-                            />
-                          </div>
-                        </div>
-
-                        <!-- Id Card & Address -->
-                        <div class="row">
-                          <div class="col-md-6 col-sm-12">
-                            <FileUpload name="edit_id_card" label="Id Card" />
-                          </div>
-                          <div class="col-md-6 col-sm-12">
-                            <TextBox
-                              type="text"
-                              id="edit-address"
-                              label="Address"
-                              v-model="salesAgentEditForm.address"
-                              rules="required"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col">
-                            <CheckBoxGroup
-                              label="Permissions"
-                              :options="permissionOptions"
-                              id="edit-permission"
-                              name="edit_permission"
-                              :value="salesAgentEditForm.permissions"
-                              v-model="salesAgentEditForm.permissions"
-                            />
-                          </div>
-                        </div>
-                        <!-- Submit & Cancel Buttons -->
-                        <div class="row">
-                          <div class="col text-center">
-                            <hr />
-                            <div class="d-flex mt-4 justify-content-center">
-                              <Button
-                                id="edit-btn-submit"
-                                type="submit"
-                                variant="primary"
-                                custom_class="mr-4"
-                                size="lg"
-                                :disabled="invalid"
-                                :loading="loading"
-                              >Submit</Button>
-
-                              <Button
-                                id="edit-btn-cancel"
-                                type="button"
-                                variant="secondary"
-                                size="lg"
-                                @click="cancel()"
-                              >Cancel</Button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </ValidationObserver>
-                  </div>   
-                  <div v-else>
-                    <Spinner size="lg" variation="info" />
-                  </div>               
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+          </form>
+        </ValidationObserver>
       </template>
     </Modal>
   </div>
@@ -309,9 +170,11 @@ import RowControls from "@/components/core/RowControls";
 import ProductVariation from "@/components/derived/ProductVariation";
 import Modal from "@/components/core/Modal";
 import Spinner from "@/components/core/Spinner";
+import PhoneNumber from "@/components/derived/PhoneNumber";
+import SmartAddress from "@/components/derived/SmartAddress";
 
 export default {
-  name: "SellerSettingsPayment",
+  name: "SellerSettingsSalesAgents",
   components: {
     Card,
     DataTable,
@@ -327,7 +190,9 @@ export default {
     Toggle,
     RadioGroup,
     Modal,
-    Spinner
+    Spinner,
+    PhoneNumber,
+    SmartAddress
   },
   data() {
     return {
@@ -354,8 +219,7 @@ export default {
         idCard: null,
         address: null,
         permissions: []
-      },
-
+      }
     };
   },
   created() {
