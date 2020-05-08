@@ -43,6 +43,8 @@ import BuyerThanks from "../views/Buyer/Thanks.vue";
 
 import SellerReports from "../views/Seller/Reports.vue";
 
+import Test from "../views/Test.vue";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -51,6 +53,13 @@ const routes = [
     name: 'Seller-Home',
     meta: { layout: 'seller' },
     component: SellerDashboard
+  },
+
+  {
+    path: '/test',
+    name: 'Test',
+    meta: { layout: 'auth' },
+    component: Test
   },
 
   {
