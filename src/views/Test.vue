@@ -1,11 +1,15 @@
 <template>
-  <div class="p-5"></div>
+  <div class="p-5">
+    <SmartAddress label="Smart Address" id="s-a" rules="required" />
+  </div>
 </template>
 
 <script>
+import SmartAddress from "@/components/derived/SmartAddress";
+
 export default {
   name: "Test",
-  components: {},
+  components: {SmartAddress},
   data() {
     return {};
   },

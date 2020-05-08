@@ -10,6 +10,7 @@
               type="text"
               size="sm"
               id="shop-name"
+              label="Shop Name"
               placeholder="Shop Name"
               rules="required"
               v-model="detailForm.shopName"
@@ -18,6 +19,7 @@
 
           <div class="col-md-6 sol-sm-12">
             <PhoneNumber
+              label="Shop Phone Number"
               placeholder="Shop Phone Number"
               id="shop-phone-number"
               rules="required"
@@ -29,72 +31,13 @@
         <!-- Shipping Address && Zip Code -->
         <div class="row">
           <div class="col-md-12 col-sm-12">
-            <TextArea
-              id="shipping-address"
+            <SmartAddress
+              label="Address"
               placeholder="Shipping address"
+              id="shipping-address"
               rules="required"
               v-model="detailForm.address"
-              @input="handleAddressInput()"
-              rows="2"
-            />
-          </div>
-        </div>
-
-        <!-- District and SubDistrict -->
-        <div class="row">
-          <div class="col-6">
-            <!-- <Select
-              id="district"
-              label="District"
-              :options="districtOptions"
-              v-model="detailForm.district"
-            />-->
-
-            <TextBox
-              type="text"
-              size="sm"
-              id="district"
-              placeholder="District"
-              v-model="detailForm.district"
-            />
-          </div>
-          <div class="col-6">
-            <!-- <Select
-              id="sub-district"
-              label="Sub-District"
-              :options="subDistrictOptions"
-              v-model="detailForm.subdistrict"
-            />-->
-
-            <TextBox
-              type="text"
-              size="sm"
-              id="sub-district"
-              placeholder="Sub District"
-              v-model="detailForm.subdistrict"
-            />
-          </div>
-        </div>
-
-        <!-- Zipcode && Province -->
-        <div class="row">
-          <div class="col">
-            <TextBox type="text" id="zip-code" placeholder="Zip Code" v-model="detailForm.zipcode" />
-          </div>
-          <div class="col">
-            <!-- <Select
-              id="province"
-              label="Province"
-              :options="provinceOptions"
-              v-model="detailForm.province"
-              rules="required"
-            />-->
-            <TextBox
-              type="text"
-              size="sm"
-              id="province"
-              placeholder="Province"
-              v-model="detailForm.province"
+              rows="3"
             />
           </div>
         </div>
@@ -112,6 +55,7 @@ import Card from "@/components/core/Card";
 import TextBox from "@/components/core/TextBox";
 import Select from "@/components/core/Select";
 import PhoneNumber from "@/components/derived/PhoneNumber";
+import SmartAddress from "@/components/derived/SmartAddress";
 import { Alert } from "@/helpers/alert";
 import Vue from "vue";
 import TextArea from "@/components/core/TextArea";
@@ -125,7 +69,7 @@ export default {
     Select,
     Card,
     PhoneNumber,
-    TextArea
+    SmartAddress
   },
   data() {
     return {
