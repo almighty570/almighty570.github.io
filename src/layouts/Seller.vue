@@ -201,16 +201,16 @@ export default {
           ]
         },
 
-        {
-          title: "Sales Agents",
-          icon: "fal fa-users",
-          pathName: [
-            "Seller-Sales-Agent-List",
-            "Seller-Sales-Agent-Detail",
-            "Seller-Sales-Agent-Create",
-            "Seller-Sales-Agent-Edit"
-          ]
-        },
+        // {
+        //   title: "Sales Agents",
+        //   icon: "fal fa-users",
+        //   pathName: [
+        //     "Seller-Sales-Agent-List",
+        //     "Seller-Sales-Agent-Detail",
+        //     "Seller-Sales-Agent-Create",
+        //     "Seller-Sales-Agent-Edit"
+        //   ]
+        // },
 
         {
           title: "Reports",
