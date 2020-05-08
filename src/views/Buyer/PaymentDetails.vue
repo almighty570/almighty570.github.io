@@ -256,10 +256,6 @@ export default {
 </script>
 
 <style scoped>
-.selected {
-  border-color: #218838;
-}
-
 .product {
   background-color: #e1e1e1;
 }
