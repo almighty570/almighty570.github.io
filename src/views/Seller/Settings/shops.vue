@@ -211,6 +211,7 @@ export default {
   },
 
   methods: {
+    
     handleFormSubmit() {
       let data = {
         ...this.addShopForm,        
