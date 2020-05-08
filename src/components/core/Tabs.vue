@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs__wrapper justify-content-md-start mt-4" :id="id" :class="custom_class">
+  <div class="tabs__wrapper justify-content-start mt-4" :id="id" :class="custom_class">
     <div
       class="tab-list-item"
       :class="{'--active': tab === activeTab}"
@@ -53,7 +53,6 @@ $variants: (
 
 .tabs__wrapper {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   .tab-list-item {
     padding: 0.25rem 1rem;

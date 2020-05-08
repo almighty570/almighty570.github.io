@@ -76,6 +76,11 @@ export default {
       default: false
     },
 
+    sm: {
+      type: Boolean,
+      default: false
+    },
+
     search_fields: {
       type: Array
     }
@@ -87,7 +92,7 @@ export default {
       searchKeyword: null,
       cssConfig: {
         table: {
-          tableWrapper: "table-responsive",
+          tableWrapper: "table-responsive " + (this.sm ? "table-sm" : ""),
           tableHeaderClass: "mb-0",
           tableBodyClass: "mb-0",
           tableClass: "_datatable table table-hover table-bordered",

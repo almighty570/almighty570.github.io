@@ -155,6 +155,7 @@ import NumberField from "@/components/core/NumberField";
 import DatePicker from "@/components/core/DatePicker";
 import FileUpload from "@/components/core/FileUpload";
 import { Alert } from "@/helpers/alert";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Seller",
@@ -169,17 +170,30 @@ export default {
         amount: null,
         files: null
       },
+      menus: null
+    };
+  },
 
+  created() {
+    this.initNavbarMenu();
+    this.setCurrentRoute(this.$route);
+  },
+
+  methods: {
+    initNavbarMenu() {
       // pathname can contain multiple values
       // routed to the 1st one only
-      menus: [
+      this.menus = [
         {
           title: "Dashboard",
           icon: "fal fa-tachometer-fastest",
           pathName: ["Seller-Dashboard", "Seller-Home"]
-        },
+        }
+      ];
 
-        {
+      // Product Management is conditional
+      if (this.options.productMgt) {
+        this.menus.push({
           title: "Products",
           icon: "fal fa-box-full",
           pathName: [
@@ -188,8 +202,10 @@ export default {
             "Seller-Product-Edit",
             "Seller-Product-Detail"
           ]
-        },
+        });
+      }
 
+      this.menus.push(
         {
           title: "Orders",
           icon: "fal fa-dolly",
@@ -201,17 +217,6 @@ export default {
           ]
         },
 
-        // {
-        //   title: "Sales Agents",
-        //   icon: "fal fa-users",
-        //   pathName: [
-        //     "Seller-Sales-Agent-List",
-        //     "Seller-Sales-Agent-Detail",
-        //     "Seller-Sales-Agent-Create",
-        //     "Seller-Sales-Agent-Edit"
-        //   ]
-        // },
-
         {
           title: "Reports",
           icon: "fal fa-chart-line",
@@ -222,21 +227,17 @@ export default {
           title: "Settings",
           icon: "fal fa-cogs",
           pathName: [
+            "Seller-Settings",
             "Seller-Settings-Shops",
             "Seller-Settings-Payment",
             "Seller-Settings-Shipping",
+            "Seller-Settings-Sales-Agent",
             "Seller-Settings-Account"
           ]
         }
-      ]
-    };
-  },
+      );
+    },
 
-  created() {
-    this.setCurrentRoute(this.$route);
-  },
-
-  methods: {
     setCurrentRoute(route) {
       this.currentRoute = route.name;
     },
@@ -285,6 +286,10 @@ export default {
     $route(to, from) {
       this.setCurrentRoute(to);
     }
+  },
+
+  computed: {
+    ...mapGetters("onboard", ["options"])
   }
 };
 </script>

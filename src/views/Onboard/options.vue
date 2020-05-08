@@ -74,14 +74,32 @@ export default {
   methods: {
     setProductMgt(val) {
       this.productMgt = val;
-      if (val) this.showInventoryMgtOption = true;
-      else this.$router.push({ name: "Onboard-Shipping" });
+      this.updateStore((status, data) => {
+        if (status) {
+          if (val) this.showInventoryMgtOption = true;
+          else this.$router.push({ name: "Onboard-Shipping" });
+        }
+      });
     },
 
     setInventoryMgt(val) {
       this.inventoryMgt = val;
-      if (val) this.next();
-      else this.$router.push({ name: "Onboard-Shipping" });
+      this.updateStore((status, data) => {
+        if (status) {
+          if (val) this.next();
+          else this.$router.push({ name: "Onboard-Shipping" });
+        }
+      });
+    },
+
+    updateStore(callback) {
+      this.$store.dispatch("onboard/storeOptions", {
+        options: {
+          productMgt: this.productMgt,
+          inventoryMgt: this.inventoryMgt
+        },
+        callback: (status, data) => callback(status, data)
+      });
     },
 
     next() {

@@ -176,20 +176,27 @@ const routes = [
   },
 
   {
-    path: '/seller/settings',
+    path: '/settings',
     meta: { layout: 'seller' },
     component: SellerSettings,
     children: [
+
+      {
+        path: '',
+        name: 'Seller-Settings',
+        component: SellerSettingsAccount
+      },
+
       {
         path: 'account',
         name: 'Seller-Settings-Account',
         component: SellerSettingsAccount
-      },      
+      },
       {
         path: 'shops',
         name: 'Seller-Settings-Shops',
         component: SellerSettingsShops
-      }, 
+      },
       {
         path: 'payment',
         name: 'Seller-Settings-Payment',
@@ -205,12 +212,11 @@ const routes = [
         name: 'Seller-Settings-Sales-Agents',
         component: SellerSettingsSalesAgents
       },
-      
-      
 
     ]
   },
 
+  // Onboard
   {
     path: '/onboard',
     component: Onboard,

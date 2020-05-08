@@ -4,18 +4,27 @@ import Vue from 'vue'
 export default {
     namespaced: true,
     state: {
-        registrationData: null
+        registrationData: null,
+        authData: null
     },
 
     getters: {
         registrationData(state) {
             return state.registrationData;
+        },
+
+        authData(state) {
+            return state.authData;
         }
     },
 
     mutations: {
         setRegistrationData(state, registrationData) {
             Vue.set(state, 'registrationData', registrationData);
+        },
+
+        setAuthData(state, authData) {
+            Vue.set(state, 'authData', authData);
         }
     },
     actions: {

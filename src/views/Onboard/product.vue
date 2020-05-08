@@ -9,7 +9,7 @@
         <div class="mt-4"></div>
 
         <p class="text-center mb-1">How much do you sell it for?</p>
-        <TextBox type="text" id="selling-price" rules="required" v-model="productForm.price" />
+        <NumberField type="text" id="selling-price" rules="required" v-model.number="productForm.price" />
         <div class="mt-4"></div>
 
         <p class="text-center mb-1">How much do you have in stock?</p>

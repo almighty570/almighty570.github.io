@@ -4,6 +4,7 @@
     <validation-provider :rules="rules" v-slot="{ errors }">
       <div class="input-group">
         <input
+          v-on:keypress="limitKeypress(value, maxval)"
           :type="type"
           ref="input"
           class="form-control"
@@ -65,6 +66,13 @@ export default {
 
     addon_btn_text: {
       type: String
+    },
+
+    maxval: {
+      type: Number
+    },
+    value: {
+      type: String
     }
   },
 
@@ -75,6 +83,12 @@ export default {
 
     addonClicked() {
       this.$emit("addonClicked", this.$refs.input.value);
+    },
+
+    limitKeypress(value, maxLength) {
+      if (value != undefined && value.toString().length >= maxLength) {
+        event.preventDefault();
+      }
     }
   }
 };

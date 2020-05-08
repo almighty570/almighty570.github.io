@@ -29,21 +29,28 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6 col-sm-12">
+                <!-- Order Details -->
                 <CardWidget id="order-details-card" class="card card-success">
                   <div slot="title">{{$t('orders.create_edit.card_order_title')}}</div>
                   <div slot="body">
-                    <Select
-                      id="agent"
-                      label="Agent"
-                      :options="agentOptions"
-                      v-model="orderCreateForm.agent"
+                    <!-- Either Seller or Sales Agent is filled by default -->
+                    <TextBox
+                      label="User"
+                      type="text"
+                      size="sm"
+                      id="user"
+                      v-model="orderCreateForm.user"
+                      :disabled="true"
                     />
+
+                    <!-- Automatically generated -->
                     <TextBox
                       type="text"
                       id="order"
-                      label="Order #"
-                      v-model="orderCreateForm.order"
+                      label="Order No #"
+                      v-model="orderCreateForm.orderCode"
                       rules="required"
+                      :disabled="true"
                     />
                     <Select
                       id="shipper"
@@ -53,32 +60,29 @@
                     />
                     <TextBox
                       type="text"
-                      id="cod"
-                      label="COD"
-                      v-model="orderCreateForm.cod"
+                      id="weight"
+                      label="Weight"
+                      v-model="orderCreateForm.weight"
                       rules="required"
                     />
-                    <TextArea
-                      id="remark"
-                      label="Remark"
-                      v-model="orderCreateForm.remark"
-                      rules="required"
-                      rows="5"
-                    />
+                    <TextArea id="remark" label="Remark" v-model="orderCreateForm.remark" rows="3" />
                   </div>
                 </CardWidget>
               </div>
 
               <div class="col-md-6 col-sm-12">
+                <!-- Customer Details -->
                 <CardWidget id="customer-details-card" class="card card-success">
                   <div slot="title">{{$t('orders.create_edit.card_customer_title')}}</div>
                   <div slot="body">
+                    <!-- Either Mobile or Phone is required -->
                     <TextBoxAddon
-                      type="text"
+                      type="number"
                       id="customer-mobile"
                       label="Mobile"
                       v-model="orderCreateForm.customerDetails.mobile"
-                      rules="required"
+                      :maxval="10"
+                      :rules="'phone' + (orderCreateForm.customerDetails.phone ? '' : '|required')"
                       addon_btn_text="Check"
                       @addonClicked="checkPhoneNo()"
                     />
@@ -90,7 +94,7 @@
                           id="customer-phone"
                           label="Phone"
                           v-model="orderCreateForm.customerDetails.phone"
-                          rules="required"
+                          :rules="orderCreateForm.customerDetails.mobile ? '' : 'required'"
                         />
                       </div>
                       <div class="col-md-6 col-sm-12">
@@ -99,7 +103,6 @@
                           id="customer-email"
                           label="Email"
                           v-model="orderCreateForm.customerDetails.email"
-                          rules="required"
                         />
                       </div>
                     </div>
@@ -109,51 +112,16 @@
                       id="customer-name"
                       label="Name"
                       v-model="orderCreateForm.customerDetails.name"
-                      rules="required"
                     />
 
                     <div class="row">
-                      <div class="col-md-6 col-sm-12">
+                      <div class="col">
                         <TextArea
                           id="customer-address"
                           label="Address"
                           v-model="orderCreateForm.customerDetails.address"
                           rules="required"
-                          rows="5"
-                        />
-                      </div>
-                      <div class="col-md-6 col-sm-12">
-                        <TextBox
-                          type="text"
-                          id="customer-postal-code"
-                          label="Postal Code"
-                          v-model="orderCreateForm.customerDetails.postalCode"
-                          rules="required"
-                        />
-                        <Select
-                          id="customer-sub-district"
-                          label="Sub-District"
-                          :options="subDistrictOptions"
-                          v-model="orderCreateForm.customerDetails.subDistrict"
-                        />
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6 col-sm-12">
-                        <Select
-                          id="customer-district"
-                          label="District"
-                          :options="districtOptions"
-                          v-model="orderCreateForm.customerDetails.district"
-                        />
-                      </div>
-                      <div class="col-md-6 col-sm-12">
-                        <Select
-                          id="customer-province"
-                          label="Province"
-                          :options="provinceOptions"
-                          v-model="orderCreateForm.customerDetails.province"
+                          rows="3"
                         />
                       </div>
                     </div>
@@ -166,7 +134,9 @@
               <div slot="body">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 mb-4 mb-md-none">
-                    <p class="lead font-weight-normal">{{$t('orders.create_edit.card_product_title.all_products')}}</p>
+                    <p
+                      class="lead font-weight-normal"
+                    >{{$t('orders.create_edit.card_product_title.all_products')}}</p>
 
                     <DataTable
                       id="show-products"
@@ -175,8 +145,9 @@
                       :per_page="5"
                       searchable
                       :search_fields="['item_code', 'product_code']"
+                      sm
                     >
-                      <div slot="actions" slot-scope="props">
+                      <div class="text-center" slot="actions" slot-scope="props">
                         <Button
                           :variant="'outline-success'"
                           size="sm"
@@ -191,9 +162,11 @@
                   </div>
 
                   <div class="col-md-6 col-sm-12">
-                    <p class="lead font-weight-normal">{{$t('orders.create_edit.card_product_title.selected_products')}}</p>
+                    <p
+                      class="lead font-weight-normal"
+                    >{{$t('orders.create_edit.card_product_title.selected_products')}}</p>
 
-                    <table class="table table-bordered" v-if="selectedProductsCount">
+                    <table class="table table-bordered table-sm" v-if="selectedProductsCount">
                       <thead>
                         <th>{{$t('orders.create_edit.card_product_title.table.product_code')}}</th>
                         <th>{{$t('orders.create_edit.card_product_title.table.qty')}}</th>
@@ -220,7 +193,11 @@
                       </tbody>
                     </table>
 
-                    <div v-else class="alert alert-warning" role="alert">{{$t('orders.create_edit.card_product_title.no_products')}}</div>
+                    <div
+                      v-else
+                      class="alert alert-warning"
+                      role="alert"
+                    >{{$t('orders.create_edit.card_product_title.no_products')}}</div>
                   </div>
                 </div>
 
@@ -228,8 +205,16 @@
                   <div class="col">
                     <hr />
                     <div class="d-flex mt-4 justify-content-center">
-                      <button type="submit" class="btn btn-success mr-4" :disabled="invalid">{{$t('buttons.submit')}}</button>
-                      <button type="button" class="btn btn-secondary" @click="cancel()">{{$t('buttons.cancel')}}</button>
+                      <button
+                        type="submit"
+                        class="btn btn-success mr-4"
+                        :disabled="invalid"
+                      >{{$t('buttons.submit')}}</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        @click="cancel()"
+                      >{{$t('buttons.cancel')}}</button>
                     </div>
                   </div>
                 </div>
@@ -259,6 +244,7 @@ import FileUpload from "@/components/core/FileUpload";
 import DataTable from "@/components/core/DataTable";
 import Vue from "vue";
 import { generateOrderCode } from "@/helpers/core";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Seller-Order-Create",
@@ -299,10 +285,10 @@ export default {
       ],
 
       orderCreateForm: {
-        agent: null,
-        orderCode: generateOrderCode(5),
+        user: "Seller/Sales Agent Name",
+        orderCode: "asdasdas",
         shipper: null,
-        cod: null,
+        weight: null,
         remark: null,
         customerDetails: {
           name: null,
@@ -415,12 +401,15 @@ export default {
     };
   },
 
-  created() {},
+  created() {
+    this.orderCreateForm.orderCode = generateOrderCode(10);
+    this.shipperOptions = this.shippingMethods.map(sm => {
+      return { name: sm, value: sm };
+    });
+  },
 
   methods: {
-    handleFormSubmit() {
-
-    },
+    handleFormSubmit() {},
 
     cancel() {
       this.$router.push({ name: "Seller-Order-List" });
@@ -454,6 +443,8 @@ export default {
   },
 
   computed: {
+    ...mapGetters("onboard", ["shippingMethods"]),
+
     selectedProductsCount() {
       return Math.max(...Object.values(this.product.selectedProducts)) > 0;
     }

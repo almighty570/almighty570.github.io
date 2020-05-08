@@ -42,8 +42,8 @@ export default {
     value: {
       type: String
     },
-    derived:{
-      type:Boolean
+    derived: {
+      type: Boolean
     },
     label: {
       type: String
@@ -80,7 +80,7 @@ export default {
       if (value != undefined && value.toString().length >= maxLength) {
         event.preventDefault();
       }
-  }
+    }
   }
 };
 </script>
