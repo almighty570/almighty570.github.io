@@ -205,7 +205,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .selected {
   border-color: #218838;
 }
@@ -239,5 +239,9 @@ ul {
 .-modal-open .fixed,
 .-modal-open .content {
   overflow-y:scroll;
+}
+
+.buyer-container{
+  background-color: white;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
   <div class="buyer">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <div class="container buyer-container">
       <slot></slot>
     </div>
@@ -17,10 +19,8 @@ export default {
   background-color: #dcdcdc;
 }
 .buyer-container {
-  background-color: #ffffff;
   min-height: 100vh;
   max-width: 800px;
-  padding-bottom: 160px;
 }
 
 </style>

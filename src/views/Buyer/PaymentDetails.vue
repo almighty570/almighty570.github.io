@@ -228,7 +228,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .product {
   background-color: #e1e1e1;
 }
