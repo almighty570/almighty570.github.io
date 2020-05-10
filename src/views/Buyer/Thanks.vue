@@ -1,247 +1,236 @@
 <template>
-  <div class="payment-details-wrapper p-3 text-sm-xm">
-    <Stepper :steps="2" :currentStepIndex="2" />
-    <div class="thanks-message-wrapper mb-4 mt-4 text-center">
-      <div>
-        <i class="text-success thanks__icon mb-2 fal fa-check-circle"></i>
-      </div>
-      <div class="thanks-message text-success">Thanks for shopping with us</div>
-    </div>
-    <div class="payment-details-summary mb-4 mt-4 text-sm-mobile">
-      <div class="row">
-        <div class="col-6">
-          <div class="number-orderdate-wrapper">
-            <div class="number">
-              <span>
-                <span class="text-bold">Number:</span> #0R00041445
-              </span>
+  <div class="payment-details-wrapper text-sm">
+    <div class="payment-detail">
+      <div class="card payment-detail-card">
+        <div class="number-date-wrapper">
+          <div class="row">
+            <div class="col-7">
+              <div class="number">
+                <span>
+                  <span class="is-brand">Number:</span> #0R00041445
+                </span>
+              </div>
+              <div class="order-date">
+                <span>
+                  <span class="is-brand">Order Date:</span> 3rd May,’2020
+                </span>
+              </div>
+              <div class="order-status">
+                <span>
+                  <span class="is-brand">Status:</span> Pending
+                </span>
+              </div>
             </div>
-            <div class="order-date">
-              <span>
-                <span class="text-bold">Order Date:</span> 2020-05-03
-              </span>
-            </div>
-            <div class="order-status">
-              <span>
-                <span class="text-bold">Status:</span>
-                <span class="text-danger">Pending Payments</span>
-              </span>
+            <div class="col-5">
+              <div class="total-price is-brand text-right">฿ 640.00</div>
             </div>
           </div>
         </div>
-        <div class="col-6 text-right">
-          <span class="text-success text-bold text-lg">฿ 640.00</span>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="operation-steps mb-4 mt-4">
-      <h5 class="header-sm-mobile">An Operation</h5>
-      <ul class="operations clearfix text-sm-mobile">
-        <li class="mb-3">
-          <div class="operation-wrapper d-flex align-items-center">
-            <div>
-              <i class="operation__icon text-success mb-2 fal fa-check-circle"></i>
-            </div>
-            <div class="operation__text ml-2">
-              <div class="operation__name">
-                <span>Order</span>
+        <div class="product-list">
+          <div class="product">
+            <div class="row">
+              <div class="col-4 col-md-2 align-items-center d-flex">
+                <div class="product__image-wrapper">
+                  <img
+                    class="product__image"
+                    src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                    alt
+                  />
+                </div>
               </div>
-              <div class="operation__date">
-                <span class="text-sm text-secondary">2020-05-03 13:05:56</span>
+              <div class="col-4 col-md-8 align-items-center d-flex">
+                <div class="product__name">1 x Dried Pork 1k.g</div>
               </div>
-            </div>
-          </div>
-        </li>
-        <li class="mb-3">
-          <div class="operation-wrapper d-flex align-items-center">
-            <div>
-              <i class="operation__icon fal fa-circle text-success"></i>
-            </div>
-            <div class="operation__text ml-2">
-              <div class="operation__name">
-                <span>Waiting Review</span>
-              </div>
-              <div class="operation__date">
-                <span class="text-sm text-secondary">2020-05-03 13:05:56</span>
+              <div
+                class="col-4  col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
+              >
+                <span class="is-brand">฿ 590.00</span>
               </div>
             </div>
           </div>
-        </li>
-      </ul>
-    </div>
-    <hr />
-    <div class="product-list mb-4 mt-4">
-      <h5 class="header-sm-mobile">Product List</h5>
-      <div class="products text-sm-mobile">
-        <div class="product p-3 mb-3">
-          <div class="row pr-2">
-            <div class="col-2 text-left">
-              <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
-                class="rounded"
-                style="max-height: 100px; max-width: 100%;"
-              />
+          <div class="product">
+            <div class="row">
+              <div class="col-4 col-md-2 align-items-center d-flex">
+                <div class="product__image-wrapper">
+                  <img
+                    class="product__image"
+                    src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                    alt
+                  />
+                </div>
+              </div>
+              <div class="col-4 col-md-8 align-items-center d-flex">
+                <div class="product__name">1 x Dried Pork 1k.g</div>
+              </div>
+              <div
+                class="col-4 col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
+              >
+                <span class="is-brand">฿ 590.00</span>
+              </div>
             </div>
-            <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-              <div class="amount">x 1</div>
-            </div>
-            <div class="col-3 text-right d-flex align-items-center justify-content-end">
-              <div class="product-cost">
-                <span class="text-right">฿ 590.00</span>
+          </div>
+          <div class="product">
+            <div class="row">
+              <div class="col-4 col-md-2 align-items-center d-flex">
+                <div class="product__image-wrapper">
+                  <img
+                    class="product__image"
+                    src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
+                    alt
+                  />
+                </div>
+              </div>
+              <div class="col-4 col-md-8 align-items-center d-flex">
+                <div class="product__name">1 x Dried Pork 1k.g</div>
+              </div>
+              <div
+                class="col-4 col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
+              >
+                <span class="is-brand">฿ 590.00</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="product p-3 mb-3">
-          <div class="row pr-2">
-            <div class="col-2 text-left">
-              <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
-                class="rounded"
-                style="max-height: 100px; max-width: 100%;"
-              />
-            </div>
-            <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-              <div class="amount">x 1</div>
-            </div>
-            <div class="col-3 text-right d-flex align-items-center justify-content-end">
-              <div class="product-cost">
-                <span class="text-right">฿ 590.00</span>
+        <div class="product__cost-wrapper">
+          <div class="row">
+            <div class="col-4 text-left">
+              <div class="product-cost-type">
+                <span class="is-brand">SubTotal</span>
               </div>
+              <div class="cost">฿ 640.00</div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="product-cost-type">
+                <span class="is-brand">Delievery</span>
+              </div>
+              <div class="cost">฿ 640.00</div>
+            </div>
+            <div class="col-4 text-right">
+              <div class="product-cost-type">
+                <span class="is-brand">Total</span>
+              </div>
+              <div class="cost">฿ 640.00</div>
             </div>
           </div>
         </div>
-        <div class="product p-3 mb-3">
-          <div class="row pr-2">
-            <div class="col-2 text-left">
-              <img
-                src="https://bankpig1995.onepage.sale/storage/app/images/584/202004165e988b4ecd38a.jpg"
-                class="rounded"
-                style="max-height: 100px; max-width: 100%;"
-              />
-            </div>
-            <div class="col-4 d-flex align-items-center">
-              <div class="product-name font-weight-bold">Dried Pork 1 KG</div>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-              <div class="amount">x 1</div>
-            </div>
-            <div class="col-3 text-right d-flex align-items-center justify-content-end">
-              <div class="product-cost">
-                <span class="text-right">฿ 590.00</span>
+        <div class="shipping-infos-wrapper">
+          <span class="is-brand">Shipping Info</span>
+          <div class="shipping-infos">
+            <div class="row">
+              <div class="col-6">
+                <div class="location d-flex align-items-center">
+                  <div class="shipping-info-icon">
+                    <i class="fal fa-map-marker-alt is-brand"></i>
+                  </div>
+                  <span class="location">Whereabouts, Tha Raeng, Bang Khen, Bangkok 10220</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="phone d-flex justify-content-end align-items-center">
+                  <div class="shipping-info-icon">
+                    <i class="fal fa-phone is-brand"></i>
+                  </div>
+                  <span class="phone">0900000003</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="price-details text-right text-sm-mobile">
-        <div>
-          <div class="cost-of-goods">Cost of Goods: ฿ 590.00</div>
-          <div class="delivery-charge">Delievery Fee: ฿ 590.00</div>
-          <div class="total text-bold">Total: ฿ 590.00</div>
-        </div>
+      <div class="cta-buttons">
+        <button class="btn btn-block payment-details-btn --inverted">BACK TO SHOP</button>
+        <button class="btn btn-block payment-details-btn">PAY LATER</button>
       </div>
     </div>
-    <hr />
-    <div class="shipping-information mb-4 mt-4 text-sm-mobile">
-      <h5 class="header-sm-mobile">Shipping information</h5>
-      <div class="card mt-3">
-        <div class="card-body">
-          <div class="recipient">
-            <span>Recipient: TEST</span>
-          </div>
-          <div class="mobile-number">
-            <span>Mobile number: 0900000003</span>
-          </div>
-          <div class="address">
-            <span>Address: Whereabouts, Tha Raeng, Bang Khen, Bangkok 10220</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="payment-notification mb-4 mt-4">
-      <h5 class="header-sm-mobile">Payment Notification</h5>
-      <div class="payment-slip-wrapper text-center">
-        <img
-          class="payment-slip"
-          src="https://i.pinimg.com/originals/8b/1a/03/8b1a03731976a8bffd52a9aac98e1a58.png"
-          alt
-        />
-      </div>
-    </div>
-    <div class="fixed-footer p-2">
-      <div class="cta">
-        <div class="row">
-          <div class="col-md-6">
-            <button
-              type="button"
-              class="mb-2 btn btn-md btn-outline-primary"
-            >Share This Page / Make Payment Later</button>
-          </div>
-          <div class="col-md-6">
-            <button type="button" class="mb-2 btn btn-primary btn-block">Back To Shop</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
   </div>
 </template>
 
 <script>
-import Stepper from "@/components/core/Stepper.vue";
-
-export default {
-  components: { Stepper }
-};
+export default {};
 </script>
 
-<style scoped lang="scss">
-.selected {
-  border-color: #218838;
+<style lang="scss" scoped>
+$brand-color: #6a7c90;
+
+* {
+  font-family: "Cabin";
 }
 
-.product {
-  background-color: #e1e1e1;
+.is-brand {
+  color: $brand-color;
 }
 
-.btn {
-  width: 100%;
-}
-
-.payment-slip {
-  height: 400px;
-  max-width: 100%;
-}
-
-.thanks__icon {
-  font-size: 60px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-.operation__icon {
+.total-price {
   font-size: 24px;
 }
 
-.-modal-open .fixed,
-.-modal-open .content {
-  overflow-y:scroll;
+.payment-detail-card{
+  margin-bottom: 30px;
 }
 
-.buyer-container{
-  background-color: white;
+.card {
+  border-radius: 5px;
+  padding: 20px;
+  border-radius: 20px;
 }
+
+.payment-details-wrapper {
+  padding: 30px 0;
+}
+
+.payment-method-icon {
+  &.--detail {
+    margin-right: 12px;
+  }
+}
+
+.number-date-wrapper {
+  margin-bottom: 30px;
+}
+
+.product__image {
+  width: 80px;
+  height: 80px;
+}
+
+.shipping-infos-wrapper {
+  border-top: 1px solid #d0cde1;
+  padding-top: 10px;
+}
+
+.shipping-infos {
+  margin-top: 10px;
+}
+
+.product {
+  margin-bottom: 15px;
+}
+
+.product__cost-wrapper {
+  margin: 25px 0;
+}
+
+.shipping-info-icon {
+  margin-right: 10px;
+}
+
+.payment-details-btn {
+  background-color: $brand-color;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  &.--inverted {
+    border: 1px solid $brand-color;
+    color: $brand-color;
+    background-color: #fff;
+
+    &:hover {
+      background-color: $brand-color;
+      color: #fff;
+    }
+  }
+}
+
+
 </style>
