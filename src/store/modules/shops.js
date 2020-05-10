@@ -35,12 +35,15 @@ export default {
     fetchShopDetail({ state, commit, rootState }, payload) {
       let shops = state.shops;
       let index = shops.findIndex((item) => item.id == payload.id);
-      let shop = shops.splice(index, 1);
-      commit("setShop", shop);
+      let shop = shops[index];
+      commit("setShop", shop);  
+      payload.callback(state.shop); 
+        
     },
 
     createShop({ state, commit, rootState }, payload) {
       commit("addShops", payload.shop);
+      console.log(state.shops);
     },
 
     updateShop({ state, commit, rootState }, payload) {

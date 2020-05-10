@@ -1,26 +1,47 @@
 <template>
-  <div>
-    <CardWidget v-if="details" id="order-details-card" class="card-info">
-      <div slot="title">{{details.shopName}}</div>
-      <div slot="body">
-        <div class="row">
-          <div class="col">
-            <label>Address</label>
-            <p v-html="details.address"></p>
+  <div v-if="shops">
+    <div v-for="(shop,index) in shops" :key="index">
+      <CardWidget id="order-details-card" class="card-info">
+        <div slot="title">{{shop.shopName}}</div>
+        <div slot="body">
+          <div class="toolbar mb-2 d-flex">
+            <div class="ml-auto">
+              <Button
+                class="mr-2"
+                type="button"
+                data-toggle="modal"
+                data-target=".shopModal"
+                @click="editItem(shop.id)"
+                variant="outline-primary"
+                size="sm"
+              >Edit</Button>
+              <Button
+                type="button"
+                @click="deleteItem(shop.id)"
+                variant="outline-danger"
+                size="sm"
+              >Delete</Button>
+            </div>
           </div>
-          <div class="col">
-            <label>Shipper</label>
-            <br />
-            {{shippingMethods.join(", ")}}
-            <br />
-            <br />
-            <label>Phone</label>
-            <br />
-            {{details.phone}}
+          <div class="row">
+            <div class="col">
+              <label>Address</label>
+              <p v-html="shop.address"></p>
+            </div>
+            <div class="col">
+              <label>Shipper</label>
+              <br />
+              {{shop.shippingMethods.join(", ")}}
+              <br />
+              <br />
+              <label>Phone</label>
+              <br />
+              {{shop.phone}}
+            </div>
           </div>
         </div>
-      </div>
-    </CardWidget>
+      </CardWidget>
+    </div>
 
     <div class="text-center mt-4">
       <Button
@@ -28,14 +49,14 @@
         type="button"
         variant="info"
         data-toggle="modal"
-        data-target="#addShopModal"
+        data-target=".shopModal"
         size="sm"
       >
         <i class="mr-2 fal fa-store-alt"></i>Add New Shop
       </Button>
     </div>
 
-    <Modal id="addShopModal">
+    <Modal class="shopModal">
       <template slot="header">
         <h5 class="modal-title" id="addShopModalLabel">
           <i class="mr-2 fal fa-store-alt"></i>Add New Shop
@@ -65,10 +86,13 @@
                   placeholder="Shop Phone Number"
                   id="shop-phone-number"
                   rules="required"
+                  :value="addShopForm.phone"
                   v-model="addShopForm.phone"
                 />
               </div>
             </div>
+
+            {{addShopForm.phone}}
 
             <!-- Shipping Address && Zip Code -->
             <div class="row">
@@ -87,7 +111,7 @@
             <div class="row">
               <div class="col">
                 <label>Choose Shipping Methods</label>
-                <ShippingMethodInput variant="info" size="sm" wrapper_class="mt-2 mb-2" />
+                <ShippingMethodInput  v-model="addShopForm.shippingMethods" variant="info" size="sm" wrapper_class="mt-2 mb-2" />
               </div>
             </div>
             <hr />
@@ -135,10 +159,10 @@ export default {
     ShippingMethodInput
   },
   computed: {
-    ...mapGetters("onboard", ["details", "product", "shippingMethods"])
+    ...mapGetters("shops", ["shops"])
   },
   created() {
-    console.log(this.details);
+   
   },
   data() {
     return {
@@ -149,19 +173,45 @@ export default {
         zip: null,
         district: null,
         subdistrict: null,
-        province: null
+        province: null,
+        shippingMethods: []
       }
     };
   },
 
   methods: {
     handleFormSubmit() {
-      let data = {
-        ...this.addShopForm
+         let data = {
+        ...this.addShopForm,
+        id: Math.floor(Math.random() * 101)
       };
-      this.$store.dispatch("onboard/storeDetails", {
-        details: data
+       this.$store.dispatch("shops/createShop", {
+        shop: data
       });
+     
+    },
+    editItem(id){
+      this.$store.dispatch("shops/fetchShopDetail", {
+       id: id,          
+       callback: data => {
+          this.addShopForm = data;      
+          console.log(this.addShopForm.phone);
+        }     
+      });
+    },
+    deleteItem(id){
+      Alert(
+        "Delete",
+        "Are you sure you want to delete this item ?",
+        null,
+        () => {
+           this.$store.dispatch("shops/deleteShop", {
+            id: id,            
+      });
+     
+        }
+      );
+     
     }
   }
 };

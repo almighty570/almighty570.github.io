@@ -7,6 +7,7 @@
         :maxval="10"
         :placeholder="placeholder"
         :id="id"
+        :value="value"
         :label="label"
         @input="emitUpdate()"
         v-model="phone"
@@ -15,6 +16,9 @@
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </div>
     </ValidationProvider>
+    <p>From phone</p>
+      {{value}}
+
   </div>
 </template>
 
@@ -32,14 +36,14 @@ export default {
     label: {
       type: String
     },
+    value: {
+      type: String
+    },
     placeholder: {
       type: String
     },
     id: {
       type: String
-    },
-    value: {
-      type: null
     },
     rules: {
       type: String,
