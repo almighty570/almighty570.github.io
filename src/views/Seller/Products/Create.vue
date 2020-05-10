@@ -258,7 +258,7 @@ export default {
         },
         available: "Yes"
       };
-      this.$store.dispatch("seller/createProduct", {
+      this.$store.dispatch("products/createProduct", {
         product: data,
         callback: data => {
           this.loading = false;

@@ -224,7 +224,7 @@ export default {
     },
 
     fetchProduct() {
-      this.$store.dispatch("seller/fetchProductDetail", {
+      this.$store.dispatch("products/fetchProductDetail", {
         id: this.$route.params.id,
         callback: data => {
           this.productDetail = data;

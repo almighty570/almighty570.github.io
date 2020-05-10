@@ -261,7 +261,7 @@ export default {
       let data = {
         ...this.productEditForm
       };
-      this.$store.dispatch("seller/updateProduct", {
+      this.$store.dispatch("products/updateProduct", {
         product: data,
         callback: data => {
           this.loading = false;
@@ -275,7 +275,7 @@ export default {
     },
 
     fetchProduct() {
-      this.$store.dispatch("seller/fetchProductDetail", {
+      this.$store.dispatch("products/fetchProductDetail", {
         id: this.$route.params.id,
         callback: data => {
           console.log(data);

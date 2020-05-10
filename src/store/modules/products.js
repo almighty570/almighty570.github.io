@@ -4,11 +4,7 @@ import Vue from 'vue'
 export default {
     namespaced: true,
     state: {
-        dashboardData: null,
-        products: null,
-        orders: null,
-        salesAgents: null,
-        settings: null
+    products: null,        
     },
 
     getters: {
@@ -19,22 +15,12 @@ export default {
 
     mutations: {
 
-        setDashboardData(state, dashboardData) {
-            state.dashboardData = dashboardData;
-        },
 
         setProducts(state, products) {
             Vue.set(state, 'products', products);
-            // state.products = products;
+
         },
 
-        setOrders(state, orders) {
-            state.orders = orders;
-        },
-
-        setSalesAgents(state, salesAgents) {
-            state.salesAgents = salesAgents;
-        },
 
     },
     actions: {

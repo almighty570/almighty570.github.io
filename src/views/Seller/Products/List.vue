@@ -128,7 +128,7 @@ export default {
 
   methods: {
     fetchProducts() {
-      this.$store.dispatch("seller/fetchProducts");
+      this.$store.dispatch("products/fetchProducts");
     },
 
     handleDelete() {
@@ -138,7 +138,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters("seller", ["products"])
+    ...mapGetters("products", ["products"])
   }
 };
 </script>
