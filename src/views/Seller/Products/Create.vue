@@ -23,134 +23,150 @@
       </div>
     </div>
 
-    <section class="content">
-      <div class="container-fluid">
-        <div class="card">
-          <div class="card-body">
-            <ValidationObserver v-slot="{ invalid }">
-              <form @submit.prevent="handleFormSubmit">
-                <div class="row">
-                  <div class="col-md-6 col-sm-12">
-                    <TextBox
-                      type="text"
-                      id="item-code"
-                      label="Item Code(SKU)"
-                      v-model="productCreateForm.sku"
-                      rules="required"
-                    />
+    <section class="content d-flex justify-content-center">
+      <div class="container-fluid ">
+        <div class="product-create card">
+           <ValidationObserver v-slot="{ invalid }">
+          <form >
+            <div class="container">
+              <!--Step 1 Product details Part 1-->
+              <div class="product-details" v-if="step == 1">
+                <Stepper :steps="3" :currentStepIndex="1" variant="primary" />
+                <p class="auth-box-body__msg">Add product details</p>
+                <div>
+                  <TextBox
+                    type="text"
+                    id="item-code"
+                    label="Item Code(SKU)"
+                    v-model="productCreateForm.sku"
+                    rules="required"
+                  />
 
-                    <NumberField
-                      id="cost"
-                      label="Cost"
-                      v-model.number="productCreateForm.cost"
-                      rules="required"
-                    />
+                  <NumberField
+                    id="cost"
+                    label="Cost"
+                    v-model.number="productCreateForm.cost"
+                    rules="required"
+                  />
 
-                    <TextArea
-                      id="description"
-                      label="Description"
-                      v-model="productCreateForm.description"
-                      rules="required"
-                      rows="5"
-                    />
-                  </div>
-                  <div class="col-md-6 col-sm-12">
-                    <NumberField
-                      id="sale-price"
-                      label="Sale Price"
-                      v-model.number="productCreateForm.salePrice"
-                      rules="required"
-                    />
+                  <TextArea
+                    id="description"
+                    label="Description"
+                    v-model="productCreateForm.description"
+                    rules="required"
+                    rows="5"
+                  />
 
-                    <NumberField
-                      id="weight-approx"
-                      label="Weight Approx"
-                      v-model.number="productCreateForm.weightApprox"
-                      rules="required"
-                    />
-
-                    <div class="row">
-                      <div class="col">
-                        <NumberField
-                          id="quantity"
-                          label="Quantity"
-                          placeholder="Product quantity"
-                          rules="required"
-                          v-model.number="productCreateForm.quantity"
-                        />
-                      </div>
-                      <div class="col">
-                        <ImageUpload label="Image" custom_class="ml-4" />
-                      </div>
-                    </div>
-
-                    <div class="mt-4"></div>
-                    <Toggle
-                      id="has-bundles"
-                      :value="false"
-                      variant="primary"
-                      v-model="productHasBundles"
-                      :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
-                    />
-
-                    <div v-if="productHasBundles">
-                      <RowControls
-                        :config="bundlePriceConfig"
-                        v-model="productCreateForm.bundlePrices"
-                      />
-                    </div>
-                  </div>
+                  <NumberField
+                    id="quantity"
+                    label="Quantity"
+                    placeholder="Product quantity"
+                    rules="required"
+                    v-model.number="productCreateForm.quantity"
+                  />
                 </div>
 
-                <!-- Product Variations -->
-                <div class="row">
-                  <div class="col-12">
-                    <Toggle
-                      id="has-variations"
-                      :value="false"
-                      variant="primary"
-                      v-model="productHasVariations"
-                      :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
+                <div class="auth-box__cta-wrapper d-flex justify-content-center">
+                  <Button
+                    id="details-form-button"
+                    variant="info"
+                    type="button"
+                    size="md"
+                    :disabled="invalid"
+                    @click="step=2"
+                  >Add more details</Button>
+                </div>
+                <div class="mb-4"></div>
+              </div>
+
+              <!--Step 2 Product details Part 2-->
+              <div class="additional-product-details" v-if="step==2">
+                <Stepper :steps="3" :currentStepIndex="2" variant="primary" />
+                <p class="auth-box-body__msg">Add additional product details</p>
+                <div>
+                  <NumberField
+                    id="sale-price"
+                    label="Sale Price"
+                    v-model.number="productCreateForm.salePrice"
+                    rules="required"
+                  />
+
+                  <NumberField
+                    id="weight-approx"
+                    label="Weight Approx"
+                    v-model.number="productCreateForm.weightApprox"
+                    rules="required"
+                  />
+
+                  <ImageUpload label="Image" />
+
+                  <div class="mt-4"></div>
+                  <Toggle
+                    id="has-bundles"
+                    :value="false"
+                    variant="primary"
+                    v-model="productHasBundles"
+                    :labels="{true: 'This product has bundle pricing', false: 'This product doesn\'t have bundle pricing' }"
+                  />
+                  <div class="mt-4"></div>
+                  <div v-if="productHasBundles">
+                    <RowControls
+                      :config="bundlePriceConfig"
+                      v-model="productCreateForm.bundlePrices"
                     />
-                    <div class="mb-2"></div>
-
-                    <div v-if="productHasVariations">
-                      <ProductVariation
-                        color_scheme="primary"
-                        :product="productCreateForm"
-                        v-model="productCreateForm.variations"
-                      />
-                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col">
-                    <hr />
-                    <div class="d-flex mt-4 justify-content-center">
-                      <Button
-                        id="btn-submit"
-                        type="submit"
-                        variant="primary"
-                        custom_class="mr-4"
-                        size="lg"
-                        :disabled="invalid"
-                        :loading="loading"
-                      >{{$t('buttons.submit')}}</Button>
+                <div class="auth-box__cta-wrapper d-flex justify-content-center">
+                  <Button
+                    id="additional-detail-form-button"
+                    type="button"
+                    variant="info"
+                    size="md"
+                    :disabled="invalid"
+                    @click="step=3"
+                  >Add Product Variation</Button>
+                </div>
+                <div class="mb-4"></div>
+              </div>
 
-                      <Button
-                        id="btn-cancel"
-                        type="button"
-                        variant="secondary"
-                        custom_class="mr-4"
-                        size="lg"
-                        @click="cancel()"
-                      >{{$t('buttons.cancel')}}</Button>
-                    </div>
+              <!--Step 3 -->
+              <div class="product-variations" v-if="step==3">
+                <Stepper :steps="3" :currentStepIndex="3" variant="primary" />
+                <p class="auth-box-body__msg">What about product variations?</p>
+                <div>
+                  <Toggle
+                    id="has-variations"
+                    :value="false"
+                    variant="primary"
+                    v-model="productHasVariations"
+                    :labels="{true: 'This product has variations', false: 'This product doesn\'t have variation' }"
+                  />
+                  <div class="mb-2"></div>
+
+                  <div v-if="productHasVariations">
+                    <ProductVariation
+                      color_scheme="primary"
+                      :product="productCreateForm"
+                      v-model="productCreateForm.variations"
+                    />
                   </div>
                 </div>
-              </form>
-            </ValidationObserver>
-          </div>
+                <div class="auth-box__cta-wrapper d-flex justify-content-center">
+                  <Button
+                    id="btn-submit"
+                    type="submit"
+                    variant="info"
+                    custom_class="mr-4"
+                    size="md"
+                   :disabled="invalid"
+                   @click="handleFormSubmit"
+                  >Create Product</Button>
+                </div>
+                <div class="mb-4"></div>
+              </div>
+            </div>
+          </form>
+           </ValidationObserver>
         </div>
       </div>
     </section>
@@ -162,6 +178,7 @@ import TextBox from "@/components/core/TextBox";
 import Button from "@/components/core/Button";
 import Toggle from "@/components/core/Toggle";
 import TextArea from "@/components/core/TextArea";
+import Stepper from "@/components/core/Stepper";
 import NumberField from "@/components/core/NumberField";
 import ImageUpload from "@/components/core/ImageUpload";
 import Select from "@/components/core/Select";
@@ -181,7 +198,8 @@ export default {
     RowControls,
     ProductVariation,
     Toggle,
-    Button
+    Button,
+    Stepper
   },
   data() {
     return {
@@ -202,7 +220,7 @@ export default {
           pathName: "Seller-Product-Create"
         }
       ],
-
+      step: 1,
       loading: false,
       productCreateForm: {
         sku: null,
@@ -262,6 +280,7 @@ export default {
         product: data,
         callback: data => {
           this.loading = false;
+          console.log(data);
           this.$router.push({ name: "Seller-Product-List" });
         }
       });
@@ -279,4 +298,8 @@ export default {
 </script>
 
 <style>
+.product-create{
+  max-width: 700px;
+  margin: 0 auto;
+}
 </style>
