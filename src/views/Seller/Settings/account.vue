@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="account-form">
     <Card>
       <div slot="body">
                <ValidationObserver v-slot="{ invalid }">

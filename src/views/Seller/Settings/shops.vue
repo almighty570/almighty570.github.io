@@ -1,7 +1,7 @@
 <template>
   <div v-if="shops">
     <div v-for="(shop,index) in shops" :key="index">
-      <CardWidget id="order-details-card" class="card-info">
+      <CardWidget :id="'shop-details-' + index" class="card-info">
         <div slot="title">{{shop.shopName}}</div>
         <div slot="body">
           <div class="toolbar d-flex mt-n2">
@@ -44,7 +44,7 @@
 
     <div class="text-center mt-4">
       <Button
-        id="btn-cancel"
+        id="btn-add-new-shop"
         type="button"
         variant="info"
         data-toggle="modal"

@@ -1,7 +1,11 @@
 <template>
   <div>
     <ValidationProvider :rules="rules" v-slot="{errors}">
-      <div class="shipping-methods d-flex flex-wrap justify-content-center" :class="wrapper_class">
+      <div
+        class="shipping-methods d-flex flex-wrap justify-content-center"
+        :class="wrapper_class"
+        :id="id"
+      >
         <div
           v-for="(sm, index) in options"
           :key="index"
@@ -21,6 +25,9 @@
 export default {
   name: "ShippingMethodInput",
   props: {
+    id: {
+      type: String
+    },
     options: {
       type: Array,
       default: () => {

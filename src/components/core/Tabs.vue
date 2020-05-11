@@ -5,7 +5,7 @@
       :class="{'--active': tab === activeTab}"
       v-for="(tab, index) in tabs"
       :key="index"
-      @click="setActiveTab(tab)"
+      @click="setActiveTab(index)"
     >
       {{tab.label}}
       <span v-if="tab.number">{{tab.number}}</span>
@@ -17,6 +17,7 @@
 export default {
   name: "Tabs",
   props: {
+    active_tab_index: Number,
     custom_class: String,
     id: String,
     tabs: Array,
@@ -30,13 +31,19 @@ export default {
   },
 
   created() {
-    this.setActiveTab(this.tabs[0]);
+    this.setActiveTab(this.active_tab_index || 0);
   },
 
   methods: {
-    setActiveTab(tab) {
-      this.activeTab = tab;
-      this.$emit("tabSelected", tab);
+    setActiveTab(index) {
+      this.activeTab = this.tabs[index];
+      this.$emit("tabSelected", index);
+    }
+  },
+
+  watch: {
+    active_tab_index(newVal, oldVal) {
+      this.setActiveTab(this.tabs[newVal || 0]);
     }
   }
 };

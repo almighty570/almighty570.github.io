@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :id="id">
     <TextBox
       type="text"
       v-if="searchable"

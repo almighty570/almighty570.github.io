@@ -1,5 +1,6 @@
 <template>
   <button
+    :id="id"
     :type="type"
     class="btn"
     :class="'btn-' + variant + ' btn-' + size + ' ' + custom_class"

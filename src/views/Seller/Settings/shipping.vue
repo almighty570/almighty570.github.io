@@ -5,6 +5,7 @@
         <div>
           <h5 class="text-center text-md-left">Manage Shipping Methods</h5>
           <ShippingMethodInput
+            id="shipping-input"
             v-model="selectedShippingMethods"
             :values="shippingMethods"
             variant="primary"
