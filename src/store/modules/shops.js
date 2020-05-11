@@ -30,19 +30,19 @@ export default {
     },
   },
   actions: {
-    fetchShops({ state, commit, rootState }) {},
+    fetchShops({ state, commit, rootState }) { },
 
     fetchShopDetail({ state, commit, rootState }, payload) {
       let shops = state.shops;
       let index = shops.findIndex((item) => item.id == payload.id);
       let shop = shops[index];
-      commit("setShop", shop);  
-      payload.callback(state.shop); 
-        
+      commit("setShop", shop);
+      payload.callback(state.shop);
     },
 
     createShop({ state, commit, rootState }, payload) {
       commit("addShops", payload.shop);
+      if (payload.callback) payload.callback();
       console.log(state.shops);
     },
 
@@ -51,6 +51,7 @@ export default {
       let index = shops.findIndex((item) => item.id == payload.id);
       shops[index] = payload.shop;
       commit("setShops", shops);
+      if (payload.callback) payload.callback();
     },
 
     deleteShop({ state, commit, rootState }, payload) {
@@ -58,6 +59,7 @@ export default {
       let index = shops.findIndex((item) => item.id == payload.id);
       shops.splice(index, 1);
       commit("setShops", shops);
+      if (payload.callback) payload.callback();
     },
   },
 };

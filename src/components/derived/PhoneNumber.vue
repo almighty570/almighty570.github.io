@@ -16,9 +16,6 @@
         <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
       </div>
     </ValidationProvider>
-    <p>From phone</p>
-      {{value}}
-
   </div>
 </template>
 
@@ -52,6 +49,7 @@ export default {
   },
 
   created() {
+    // debugger;
     this.phone = this.value;
     this.emitUpdate();
   },
@@ -66,18 +64,15 @@ export default {
     emitUpdate() {
       this.$emit("input", this.phone);
     }
-  }
+  },
 
-  // mounted() {
-  //   extend("min", value => {
-  //     if (value.length !== 10) return "Phone number must have 10 digits.";
-  //     return true;
-  //   });
-  //   extend("start", value => {
-  //     if (value[0] !== "0") return "Phone number must start with 0.";
-  //     return true;
-  //   });
-  // }
+  watch: {
+    value: function(newVal, oldVal) {
+      // debugger;
+      this.phone = newVal;
+      this.emitUpdate();
+    }
+  }
 };
 </script>
 

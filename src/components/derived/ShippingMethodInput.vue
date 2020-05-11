@@ -1,15 +1,19 @@
 <template>
-  <div
-    class="shipping-methods d-flex flex-wrap justify-content-center"
-    :class="wrapper_class"
-  >
-    <div
-      v-for="(sm, index) in options"
-      :key="index"
-      class="shipping-method"
-      :class="smClass(sm)"
-      @click="toggle(sm)"
-    >{{sm.name}}</div>
+  <div>
+    <ValidationProvider :rules="rules" v-slot="{errors}">
+      <div class="shipping-methods d-flex flex-wrap justify-content-center" :class="wrapper_class">
+        <div
+          v-for="(sm, index) in options"
+          :key="index"
+          class="shipping-method"
+          :class="smClass(sm)"
+          @click="toggle(sm)"
+        >{{sm.name}}</div>
+      </div>
+      <div class="template-error">
+        <span class="text-danger text-sm" v-for="(error, index) in errors" :key="index">{{error}}</span>
+      </div>
+    </ValidationProvider>
   </div>
 </template>
 
@@ -44,16 +48,21 @@ export default {
     },
     wrapper_class: {
       type: String
+    },
+    rules: {
+      type: String,
+      default: ""
     }
   },
 
   data() {
     return {
-      selectedMethods: this.values || []
+      selectedMethods: null
     };
   },
 
   created() {
+    this.selectedMethods = this.values || [];
     this.emitUpdate();
   },
 
@@ -87,7 +96,12 @@ export default {
     }
   },
 
-  computed: {}
+  watch: {
+    values: function(newVal, oldVal) {
+      this.selectedMethods = newVal || [];
+      this.emitUpdate();
+    }
+  }
 };
 </script>
 

@@ -4,7 +4,7 @@
       <CardWidget id="order-details-card" class="card-info">
         <div slot="title">{{shop.shopName}}</div>
         <div slot="body">
-          <div class="toolbar mb-2 d-flex">
+          <div class="toolbar d-flex mt-n2">
             <div class="ml-auto">
               <Button
                 class="mr-2"
@@ -14,13 +14,12 @@
                 @click="editItem(shop.id)"
                 variant="outline-primary"
                 size="sm"
-              >Edit</Button>
-              <Button
-                type="button"
-                @click="deleteItem(shop.id)"
-                variant="outline-danger"
-                size="sm"
-              >Delete</Button>
+              >
+                <i class="fal fa-pen"></i>
+              </Button>
+              <Button type="button" @click="deleteItem(shop.id)" variant="outline-danger" size="sm">
+                <i class="fal fa-trash"></i>
+              </Button>
             </div>
           </div>
           <div class="row">
@@ -50,6 +49,7 @@
         variant="info"
         data-toggle="modal"
         data-target=".shopModal"
+        @click="handleAddForm()"
         size="sm"
       >
         <i class="mr-2 fal fa-store-alt"></i>Add New Shop
@@ -59,7 +59,9 @@
     <Modal class="shopModal">
       <template slot="header">
         <h5 class="modal-title" id="addShopModalLabel">
-          <i class="mr-2 fal fa-store-alt"></i>Add New Shop
+          <i class="mr-2 fal fa-store-alt"></i>
+          <span v-if="formMode === 0">Add New Shop</span>
+          <span v-else-if="formMode === 1">Edit Shop</span>
         </h5>
       </template>
 
@@ -76,7 +78,7 @@
                   label="Shop Name"
                   placeholder="Shop Name"
                   rules="required"
-                  v-model="addShopForm.shopName"
+                  v-model="shopForm.shopName"
                 />
               </div>
 
@@ -86,13 +88,11 @@
                   placeholder="Shop Phone Number"
                   id="shop-phone-number"
                   rules="required"
-                  :value="addShopForm.phone"
-                  v-model="addShopForm.phone"
+                  :value="shopForm.phone"
+                  v-model="shopForm.phone"
                 />
               </div>
             </div>
-
-            {{addShopForm.phone}}
 
             <!-- Shipping Address && Zip Code -->
             <div class="row">
@@ -102,7 +102,8 @@
                   placeholder="Shipping address"
                   id="shipping-address"
                   rules="required"
-                  v-model="addShopForm.address"
+                  :value="shopForm.address"
+                  v-model="shopForm.address"
                   rows="3"
                 />
               </div>
@@ -111,7 +112,13 @@
             <div class="row">
               <div class="col">
                 <label>Choose Shipping Methods</label>
-                <ShippingMethodInput  v-model="addShopForm.shippingMethods" variant="info" size="sm" wrapper_class="mt-2 mb-2" />
+                <ShippingMethodInput
+                  :values="shopForm.shippingMethods"
+                  v-model="shopForm.shippingMethods"
+                  variant="info"
+                  size="sm"
+                  wrapper_class="mt-2 mb-2"
+                />
               </div>
             </div>
             <hr />
@@ -123,7 +130,10 @@
                 size="sm"
                 :disabled="invalid"
                 variant="info"
-              >Add shop</Button>
+              >
+                <span v-if="formMode === 0">Add shop</span>
+                <span v-if="formMode === 1">Update shop</span>
+              </Button>
             </div>
           </form>
         </ValidationObserver>
@@ -158,15 +168,25 @@ export default {
     SmartAddress,
     ShippingMethodInput
   },
+
   computed: {
     ...mapGetters("shops", ["shops"])
   },
-  created() {
-   
-  },
+  created() {},
   data() {
     return {
-      addShopForm: {
+      formMode: 0, //0: create, 1: edit
+      shopForm: null
+    };
+  },
+
+  created() {
+    this.initForm();
+  },
+
+  methods: {
+    initForm() {
+      this.shopForm = {
         name: null,
         phone: null,
         address: null,
@@ -175,87 +195,105 @@ export default {
         subdistrict: null,
         province: null,
         shippingMethods: []
-      }
-    };
-  },
-
-  methods: {
-    handleFormSubmit() {
-         let data = {
-        ...this.addShopForm,
-        id: Math.floor(Math.random() * 101)
       };
-       this.$store.dispatch("shops/createShop", {
-        shop: data
-      });
-     
     },
-    editItem(id){
+
+    handleFormSubmit() {
+      if (this.formMode === 0) {
+        // create
+        let data = {
+          ...this.shopForm,
+          id: Math.floor(Math.random() * 101)
+        };
+        this.$store.dispatch("shops/createShop", {
+          shop: data,
+          callback: () => {
+            $(".shopModal").modal("hide");
+          }
+        });
+      } else if (this.formMode === 1) {
+        this.$store.dispatch("shops/updateShop", {
+          id: this.shopForm.id,
+          shop: this.shopForm,
+          callback: () => {
+            $(".shopModal").modal("hide");
+            this.initForm();
+          }
+        });
+      }
+    },
+
+    handleAddForm() {
+      this.formMode = 0;
+      this.initForm();
+    },
+
+    editItem(id) {
+      this.formMode = 1;
       this.$store.dispatch("shops/fetchShopDetail", {
-       id: id,          
-       callback: data => {
-          this.addShopForm = data;      
-          console.log(this.addShopForm.phone);
-        }     
+        id: id,
+        callback: data => {
+          this.shopForm = JSON.parse(JSON.stringify(data));
+          console.log(this.shopForm);
+        }
       });
     },
-    deleteItem(id){
-      Alert(
-        "Delete",
-        "Are you sure you want to delete this item ?",
-        null,
-        () => {
-           this.$store.dispatch("shops/deleteShop", {
-            id: id,            
+
+    deleteItem(id) {
+      let deleteMsg = "Are you sure you want to delete this item ?";
+      Alert("Delete", deleteMsg, null, () => {
+        this.$store.dispatch("shops/deleteShop", {
+          id: id
+        });
       });
-     
-        }
-      );
-     
+    },
+
+    setFormMode(mode) {
+      this.formMode = mode;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.setting__header {
-  font-weight: bold;
-  font-size: 18px;
-}
-.setting__description {
-  font-weight: thin;
-  font-size: 13px;
-}
+// .setting__header {
+//   font-weight: bold;
+//   font-size: 18px;
+// }
+// .setting__description {
+//   font-weight: thin;
+//   font-size: 13px;
+// }
 
-.setting {
-  &.--inline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+// .setting {
+//   &.--inline {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
 
-  &.--table {
-    .setting__text {
-      margin-bottom: 20px;
-    }
-  }
+//   &.--table {
+//     .setting__text {
+//       margin-bottom: 20px;
+//     }
+//   }
 
-  margin-bottom: 30px;
-}
+//   margin-bottom: 30px;
+// }
 
-.settings-wrapper {
-  margin-top: 24px;
-}
+// .settings-wrapper {
+//   margin-top: 24px;
+// }
 
-.setting-status-tag {
-  text-transform: uppercase;
+// .setting-status-tag {
+//   text-transform: uppercase;
 
-  font-weight: bold;
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 2px;
-  text-align: center;
-  width: 68px;
-  height: 29px;
-}
+//   font-weight: bold;
+//   font-size: 12px;
+//   padding: 5px 10px;
+//   border-radius: 2px;
+//   text-align: center;
+//   width: 68px;
+//   height: 29px;
+// }
 </style>

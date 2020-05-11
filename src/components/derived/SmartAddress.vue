@@ -122,6 +122,14 @@ export default {
         } else this.state = 3;
       });
     }
+  },
+
+  watch: {
+    value: function(newVal, oldVal) {
+      this.address = newVal;
+      this.parsedAddress = newVal;
+      this.emitUpdate();
+    }
   }
 };
 </script>
