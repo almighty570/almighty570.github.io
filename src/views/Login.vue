@@ -82,4 +82,8 @@ export default {
 #submit-login-form-button {
   width: 100%;
 }
+
+.auth-box__body{
+  width: 100%;
+}
 </style>

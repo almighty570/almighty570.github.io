@@ -180,4 +180,6 @@ export default {
   font-size: 50px;
   color: #28a745;
 }
+
+
 </style>
