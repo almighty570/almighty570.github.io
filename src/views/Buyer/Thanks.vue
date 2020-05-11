@@ -1,5 +1,15 @@
 <template>
   <div class="payment-details-wrapper text-sm">
+    <div class="card success-card">
+      <div class="status-icon bg-success text-center">
+        <i class="far fa-check"></i>
+      </div>
+      <div class="success-message text-center">
+        <h5>Thank You</h5>
+        <span>Your orders are under way</span>
+      </div>
+      <div class="order-status bg-warning"><span class="font-weight-bold">Status:</span> Payment Pending</div>
+    </div>
     <div class="payment-detail">
       <div class="card payment-detail-card">
         <div class="number-date-wrapper">
@@ -13,11 +23,6 @@
               <div class="order-date">
                 <span>
                   <span class="is-brand">Order Date:</span> 3rd May,’2020
-                </span>
-              </div>
-              <div class="order-status">
-                <span>
-                  <span class="is-brand">Status:</span> Pending
                 </span>
               </div>
             </div>
@@ -42,7 +47,7 @@
                 <div class="product__name">1 x Dried Pork 1k.g</div>
               </div>
               <div
-                class="col-4  col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
+                class="col-4 col-md-2 align-items-center d-flex text-right text-brand justify-content-end"
               >
                 <span class="is-brand">฿ 590.00</span>
               </div>
@@ -156,6 +161,37 @@ $brand-color: #6a7c90;
   font-family: "Cabin";
 }
 
+.status-icon{
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  border-radius: 50%;
+  padding: 4px;
+  position: absolute;
+  top: -20px;
+    left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.order-status {
+  padding: 6px;
+  width: 80%;
+  text-align: center;
+  border-radius: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  bottom: -10px;
+  height: 30px;
+}
+
+.success-card {
+  position: relative;
+  padding: 30px 0 !important;
+  min-height: 110px;
+  margin-bottom: 30px;
+}
+
 .is-brand {
   color: $brand-color;
 }
@@ -164,7 +200,7 @@ $brand-color: #6a7c90;
   font-size: 24px;
 }
 
-.payment-detail-card{
+.payment-detail-card {
   margin-bottom: 30px;
 }
 
@@ -231,6 +267,4 @@ $brand-color: #6a7c90;
     }
   }
 }
-
-
 </style>
